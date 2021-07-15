@@ -1,0 +1,52 @@
+.sidenav-container {
+    height: 93%;
+    // height: 100%
+  }
+
+.user-info-bar {
+    padding: 10px 10px 10px 40px;
+  
+    h3 {
+      font-size: 14px;
+    }
+  
+    span {
+      color: gray;
+      font-size: 12px;
+      margin-top: -15px;
+    }
+  }
+
+  .user-button {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    text-align: center;
+    background-color:darkgray;
+    color: white;
+    border-radius: 50%;
+  }
+
+  .sidenav {
+
+    width: 62px;
+    background-color: whitesmoke;//mat-color($ng-app-primary);
+  
+    .mat-toolbar {
+      color: white;
+    }
+  
+    .mat-nav-list {
+      padding-bottom: 10px;
+  
+      .mat-icon-button {
+        width: 60px;
+        height: 60px;
+        // margin-top: 10px;
+        // background-color: rgba(255, 255, 255, 0.644);
+        color:darkkhaki
+        // font-size: 20px;
+  
+      }
+    }
+  }

@@ -1,0 +1,80 @@
+<mat-toolbar>
+    <div fxFill fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+            <span></span>
+            <!-- <img class="app-banner" src="/assets/images/logo/wann.png" alt=""> -->
+        </div>
+        <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+            <div fxFlex fxLayout="column" fxLayoutAlign="start center" class="user-info-bar">
+                <h3>{{user}}</h3>
+            </div>
+            <button mat-icon-button>
+                <div class="user-button"  fxFlex fxLayout="row"
+                    fxLayoutAlign="center center">
+                    k
+                    <!-- {{(user | shotName)}}{{(user | shotName)}} -->
+                </div>
+            </button>
+
+            <mat-menu >
+                <button mat-menu-item >
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Logout</span>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #maindrawer class="sidenav" [mode]="'side'" [opened]="true">
+      <mat-nav-list fxFill fxLayout="column" fxLayoutAlign="start center">
+        <div fxFlex="1 0 auto" fxLayout="column" fxLayoutAlign="start center">
+  
+          <a name="link-dashboard" [routerLink]="['']" routerLinkActive="router-link-active">
+            <button mat-icon-button>
+              <mat-icon>dashboard</mat-icon>
+            </button>
+          </a>
+  
+          <a name="link-line-chat" [routerLink]="['']" routerLinkActive="router-link-active">
+            <button mat-icon-button>
+              <mat-icon svgIcon="line"></mat-icon>
+            </button>
+          </a>
+  
+          <a name="link-contact" [routerLink]="['']" routerLinkActive="router-link-active">
+            <button mat-icon-button>
+              <mat-icon svgIcon="contact"></mat-icon>
+            </button>
+          </a>
+  
+          <a name="link-dashboard" [routerLink]="['']" routerLinkActive="router-link-active">
+            <button mat-icon-button>
+              <mat-icon svgIcon="company"></mat-icon>
+            </button>
+          </a>
+  
+  
+  
+          <a name="link-board-rd" [routerLink]="['']" routerLinkActive="router-link-active">
+            <button mat-icon-button>
+              <mat-icon svgIcon="lab"></mat-icon>
+            </button>
+          </a>
+  
+        </div>
+        <div fxFlex="0 1 auto" fxLayout="column" fxLayoutAlign="end center">
+          <a name="link-settings" [routerLink]="['/setting']" routerLinkActive="router-link-active">
+            <button mat-icon-button>
+              <mat-icon>settings</mat-icon>
+            </button>
+          </a>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+      <router-outlet> </router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
