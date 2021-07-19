@@ -3,15 +3,21 @@
 </div>
 <mat-drawer-container class="employeedrawer">
     <mat-drawer class="drawer" mode="side" opened>
-        <mat-card>
-            <mat-label>Search : </mat-label>
-            <input>
-        </mat-card>
-            <button class="button-customer">เพิ่มผู้ใช้</button>
+        <mat-toolbar class="test">
+            <mat-toolbar-row>
+                <mat-label>Search : </mat-label>
+                <input>
+            </mat-toolbar-row>
+        </mat-toolbar>
     </mat-drawer>
     <mat-drawer-content>
         <app-toolbar-display></app-toolbar-display>
+        <app-table></app-table>
     </mat-drawer-content>
 </mat-drawer-container>
 
-
+<form>
+    <mat-toolbar style="height: 5.9vh;" >
+        <button class="button-customer">เพิ่มผู้ใช้</button>
+    </mat-toolbar>
+</form>

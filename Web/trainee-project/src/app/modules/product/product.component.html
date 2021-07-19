@@ -22,20 +22,30 @@
     </div>
   </mat-toolbar>
 
+  
   <div fxLayout="row warp">
     <div *ngFor="let item of foods">
+
+      
+
       <mat-card class="card">
-        <mat-toolbar>
+        <mat-toolbar class="toolbar-card">
 
         </mat-toolbar>
-        <img class="img"src="https://hilight.kapook.com/img_cms2/user/pisitta/new/shutterstock_720452491.jpg">
+        <img class="img"src="https://www.chiiwiidoctor.com/assets/images/default-profile.jpg">
         <div>
         <content>
-          รายละเอียด
+          <p>
+          ชื่อ
+          <p>
+          ราคา
+          <p>
+          จำนวนคงเหลือ
+          <p>
         </content>
       </div>
       </mat-card>
+      
     </div>
   </div>
-
 </div>

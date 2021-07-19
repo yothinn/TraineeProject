@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ToolbarDisplayComponent } from './toolbar-display/toolbar-display.component';
+import { TableComponent } from './table/table.component';
 
 
 
@@ -18,7 +19,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [PettycashComponent,ToolbarComponent, ToolbarDisplayComponent],
+  declarations: [PettycashComponent,ToolbarComponent, ToolbarDisplayComponent, TableComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
