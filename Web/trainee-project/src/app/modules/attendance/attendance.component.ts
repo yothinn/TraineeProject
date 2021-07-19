@@ -1,5 +1,6 @@
 import { Component,OnInit, ViewChild} from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { AttendanceService } from './attendance.service';
 
 
 @Component({
@@ -10,12 +11,17 @@ import { MatDrawer } from '@angular/material/sidenav';
 export class AttendanceComponent implements OnInit {
   @ViewChild('leftSide') left: MatDrawer;
   @ViewChild('rightSide') right: MatDrawer;
+  employeeData: any;
   
  
-  constructor() { }
+  constructor(private attendanceService: AttendanceService) { }
 
   ngOnInit(): void {
-   
+    this.attendanceService.getAttendance().subscribe((res:any)=>{
+      console.log(res)
+      this.employeeData = res.data
+      console.log(this.employeeData)
+    })
   }
 
   toggleLeft(): void{
