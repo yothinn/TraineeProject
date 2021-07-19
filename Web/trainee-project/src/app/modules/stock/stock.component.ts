@@ -9,7 +9,7 @@ import { StockService } from './stock.service';
 export class StockComponent implements OnInit {
 
   stocklist: any;
-  categories: any = [{ name: "น้ำอัดลม" }, { name: "น้ำผลไม้" }, { name: "นม" }, { name: "ลูกอม" }]
+  categories: any;
 
   constructor(private stockService: StockService) { }
 
@@ -17,6 +17,9 @@ export class StockComponent implements OnInit {
     this.stockService.getStockByProduct().subscribe((res: any) => {
       this.stocklist = res.data
       console.log(this.stocklist)
+    })
+    this.stockService.getcategoriesByProduct().subscribe((res: any) => {
+      this.categories = res.data
     })
   }
 
