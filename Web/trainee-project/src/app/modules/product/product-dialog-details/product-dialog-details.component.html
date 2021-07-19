@@ -1,1 +1,45 @@
-<p>product-dialog-details works!</p>
+<div fxLayout="column" fxFlexFill>
+
+  <div fxLayout="row" fxFlex="10">
+    <mat-toolbar class="test" fxLayoutAlign="center" fxFlex>
+      <p>รายละเอียดสินค้า</p>
+    </mat-toolbar>
+    <mat-icon fxLayoutAlign="end" class="material-icons-outlined">
+      close
+    </mat-icon>
+  </div>
+  <div fxLayout="row" fxFlex="90">
+    <div fxFlex="50">
+      <mat-card class="detail">
+        <img style="padding: 10px; width: 40vw; height: 25vh;"
+          src="https://th.jobsdb.com/en-th/cms/employer/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png">
+      </mat-card>
+    </div>
+    <div style="padding: 15px;" fxFlex="50">
+      <div fxLayout="column">
+        <mat-card class="detail">
+          <div fxLayoutAlign="start">
+            <h1>
+              ชื่อสินค้า ยาหม่อง
+            </h1>
+          </div>
+          <div fxLayoutAlign="start">
+            <h1>
+              รายละเอียดสินค้า xxxxxxxx
+            </h1>
+          </div>
+          <div fxLayoutAlign="start">
+            <h1>
+              ราคา 1222
+            </h1>
+          </div>
+          <div fxLayoutAlign="start">
+            <h1>
+              จำนวนคงเหลือ 2
+            </h1>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
