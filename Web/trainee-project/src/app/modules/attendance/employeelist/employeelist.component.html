@@ -1,1 +1,6 @@
-<p>employeelist works!</p>
+<mat-list *ngFor="let item of employeeData" class="matlist">
+  <mat-list-item>
+      {{item.name}} {{item.lastname}}
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>

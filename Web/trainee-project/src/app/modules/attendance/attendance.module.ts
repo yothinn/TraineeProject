@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { EmployeeprofileComponent } from './employeeprofile/employeeprofile.component';
 import { EmployeelistComponent } from './employeelist/employeelist.component';
 
+
 const routes: Routes = [
   {
     path:'',
@@ -23,7 +24,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MatCardModule,
     MatIconModule,
-    SharedModule
+    SharedModule,
+    
   ]
 })
 export class AttendanceModule { }
