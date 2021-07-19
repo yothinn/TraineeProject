@@ -1,0 +1,16 @@
+.avatars-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+}
+.avatar-sample.icon .igx-avatar{
+    background: #9e9e9e;
+}
+.user-button {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+    text-align: center;
+    background-color:darkgray;
+    color: white;
+    border-radius: 50%;
+  }
