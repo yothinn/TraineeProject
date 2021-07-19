@@ -1,19 +1,14 @@
-
-<mat-drawer-container *ngFor="let item of employeeData">
+<mat-drawer-container>
     <mat-drawer #liftSide mode="side" opened>
-        asdasd
-            <!-- <app-employeelist></app-employeelist> -->
-     
-    </mat-drawer>
+        <app-employeelist></app-employeelist>
 
+    </mat-drawer>
     <div>
         <button (click)="liftSide.toggle()">1</button>
         <button (click)="rightSide.toggle()">2</button>
     </div>
-
     <mat-drawer #rightSide mode="side" position='end' opened>
-      
-            <app-employeeprofile class="profile" fxLayout="row" fxLayoutAlign="center center"></app-employeeprofile>
-        
+        <app-employeeprofile class="profile" fxLayout="row" fxLayoutAlign="center center">
+        </app-employeeprofile>
     </mat-drawer>
 </mat-drawer-container>
