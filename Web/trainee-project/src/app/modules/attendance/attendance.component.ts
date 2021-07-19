@@ -10,10 +10,12 @@ import { MatDrawer } from '@angular/material/sidenav';
 export class AttendanceComponent implements OnInit {
   @ViewChild('leftSide') left: MatDrawer;
   @ViewChild('rightSide') right: MatDrawer;
+  
  
   constructor() { }
 
   ngOnInit(): void {
+   
   }
 
   toggleLeft(): void{
