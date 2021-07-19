@@ -5,9 +5,26 @@ var Schema = mongoose.Schema;
 
 
 var ProductsSchema = new Schema({
-    name: {
+    product_id: {
         type: String,
-        required: 'Please fill a Products name',
+    },
+    product_name: {
+        type: String,
+    },
+    category: {
+        type: String,
+    },
+    type: {
+        type: String,
+    },
+    price: {
+        type: Number,
+    },
+    count: {
+        type: Number,
+    },
+    description: {
+        type: String,
     },
     created: {
         type: Date,
