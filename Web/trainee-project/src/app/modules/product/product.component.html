@@ -22,30 +22,34 @@
     </div>
   </mat-toolbar>
 
-  
   <div fxLayout="row warp">
     <div *ngFor="let item of foods">
-
-      
-
       <mat-card class="card">
-        <mat-toolbar class="toolbar-card">
-
-        </mat-toolbar>
-        <img class="img"src="https://www.chiiwiidoctor.com/assets/images/default-profile.jpg">
+        <button class="buttontest" mat-icon-button [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button style="font-size: 15px;" mat-menu-item>
+            <mat-icon>deletel</mat-icon><span>ลบ</span>
+          </button>
+          <button style="font-size: 15px;" mat-menu-item>
+            <mat-icon>edit</mat-icon><span>เเก้ไข</span>
+          </button>
+        </mat-menu>
+        <img class="img" src="https://www.chiiwiidoctor.com/assets/images/default-profile.jpg">
         <div>
-        <content>
-          <p>
-          ชื่อ
-          <p>
-          ราคา
-          <p>
-          จำนวนคงเหลือ
-          <p>
-        </content>
-      </div>
+          <content>
+            <p>
+              ชื่อ
+            <p>
+              ราคา
+            <p>
+              จำนวนคงเหลือ
+            <p>
+          </content>
+        </div>
       </mat-card>
-      
     </div>
   </div>
 </div>
