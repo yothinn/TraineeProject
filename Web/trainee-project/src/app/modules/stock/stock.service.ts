@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,12 @@ import { Injectable } from '@angular/core';
 })
 export class StockService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
+
+  getStockByProduct(){
+    return this.http.get('http://localhost:3000/api/productss')
+  }
+  getcategoriesByProduct(){
+    return this.http.get('http://localhost:3000/api/categoriess')
+  }
 }

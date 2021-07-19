@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductComponent } from './product.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductDialogDetailsComponent } from './product-dialog-details/product-dialog-details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ProductDialogDetailsComponent } from './product-dialog-details/product-dialog-details.component';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 
 const routes: Routes = [{
   path: '',
@@ -11,7 +12,7 @@ const routes: Routes = [{
 }]
 
 @NgModule({
-  declarations: [ProductComponent, ProductDialogDetailsComponent],
+  declarations: [ProductComponent, ProductDialogDetailsComponent, ProductDialogComponent],
   imports: [
     CommonModule,
     SharedModule,

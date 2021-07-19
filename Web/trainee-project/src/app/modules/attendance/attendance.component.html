@@ -1,1 +1,14 @@
-<p>attendance works!</p>
+<mat-drawer-container>
+    <mat-drawer #liftSide mode="side" opened>
+        <app-employeelist></app-employeelist>
+
+    </mat-drawer>
+    <div>
+        <button (click)="liftSide.toggle()">1</button>
+        <button (click)="rightSide.toggle()">2</button>
+    </div>
+    <mat-drawer #rightSide mode="side" position='end' opened>
+        <app-employeeprofile class="profile" fxLayout="row" fxLayoutAlign="center center">
+        </app-employeeprofile>
+    </mat-drawer>
+</mat-drawer-container>
