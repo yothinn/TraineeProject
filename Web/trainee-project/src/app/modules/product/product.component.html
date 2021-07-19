@@ -1,1 +1,41 @@
-<p>product works!</p>
+<div>
+  <mat-toolbar>
+    <label class="font_head">เรียงตาม</label>
+    <mat-form-field class="font_category">
+      <mat-label>หมวดหมู่สินค้า</mat-label>
+      <mat-select class="font">
+        <mat-option value="1">หมวก</mat-option>
+        <mat-option value="2">เสื้อ</mat-option>
+        <mat-option value="3">กางเฟง</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="font_search" appearance="standard">
+      <mat-label>ค้นหา</mat-label>
+      <input matInput placeholder="กรอกชื่อสินค้า">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <div class="button-add">
+      <button mat-button color="primary">จัดการหมวดหมู่</button>
+      <button mat-button color="primary">เพิ่มสินค้า</button>
+    </div>
+  </mat-toolbar>
+
+  <div fxLayout="row warp">
+    <div *ngFor="let item of foods">
+      <mat-card class="card">
+        <mat-toolbar>
+
+        </mat-toolbar>
+        <img class="img"src="https://hilight.kapook.com/img_cms2/user/pisitta/new/shutterstock_720452491.jpg">
+        <div>
+        <content>
+          รายละเอียด
+        </content>
+      </div>
+      </mat-card>
+    </div>
+  </div>
+
+</div>
