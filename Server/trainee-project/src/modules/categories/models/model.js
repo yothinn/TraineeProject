@@ -4,27 +4,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var ProductsSchema = new Schema({
-    product_id: {
+var CategoriesSchema = new Schema({
+    name: {
         type: String,
-    },
-    product_name: {
-        type: String,
-    },
-    category: {
-        type: String,
-    },
-    type: {
-        type: String,
-    },
-    price: {
-        type: Number,
-    },
-    count: {
-        type: Number,
-    },
-    description: {
-        type: String,
+        required: 'Please fill a Categories name',
     },
     created: {
         type: Date,
@@ -56,18 +39,18 @@ var ProductsSchema = new Schema({
         }
     }
 });
-ProductsSchema.pre('save', function(next){
-    let Products = this;
-    const model = mongoose.model("Products", ProductsSchema);
-    if (Products.isNew) {
+CategoriesSchema.pre('save', function(next){
+    let Categories = this;
+    const model = mongoose.model("Categories", CategoriesSchema);
+    if (Categories.isNew) {
         // create
         next();
     }else{
         // update
-        Products.updated = new Date();
+        Categories.updated = new Date();
         next();
     }
     
     
 })
-mongoose.model("Products", ProductsSchema);
+mongoose.model("Categories", CategoriesSchema);
