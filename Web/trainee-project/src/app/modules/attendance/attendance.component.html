@@ -1,9 +1,14 @@
-<mat-drawer-container class="matdrawercontent">
-  <mat-drawer mode="side" opened>
-    1
-  </mat-drawer>
+<mat-drawer-container >
+    <mat-drawer #liftSide mode="side" opened>
+        Drawer content
+    </mat-drawer>
 
-  <mat-drawer-content>
-    2
-  </mat-drawer-content>
-</mat-drawer-container>
+    <mat-drawer-container >
+        <button (click)="liftSide.toggle()">1</button>
+        <button (click)="rightSide.toggle()">2</button>
+    </mat-drawer-container >
+
+    <mat-drawer #rightSide mode="side" position='end' opened>
+        Main content
+    </mat-drawer>
+  </mat-drawer-container>
