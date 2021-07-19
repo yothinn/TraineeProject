@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EmployeeprofileComponent } from './employeeprofile.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { Routes } from '@angular/router';
+import { AttendanceComponent } from '../attendance.component';
+
 
 
 
@@ -9,7 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   declarations: [EmployeeprofileComponent],
   imports: [
     CommonModule,
-    SharedModule
+    
   ]
 })
 export class EmployeeprofileModule { }
