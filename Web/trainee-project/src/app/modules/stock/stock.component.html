@@ -28,10 +28,18 @@
         </div>
         <div fxLayout="column">
             <mat-selection-list [multiple]="false">
-                <mat-list-option *ngFor="let item of stocklist" >
+                <mat-list-option *ngFor="let item of stocklist">
                     {{item.product_name}}
                 </mat-list-option>
             </mat-selection-list>
         </div>
     </mat-drawer>
+
+    <mat-drawer-content class="customer-content-panel" fxLayout="column">
+        <mat-toolbar>
+            1
+        </mat-toolbar>
+    </mat-drawer-content>
+
+
 </mat-drawer-container>
