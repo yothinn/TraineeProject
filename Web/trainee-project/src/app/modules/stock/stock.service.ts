@@ -11,4 +11,7 @@ export class StockService {
   getStockByProduct(){
     return this.http.get('http://localhost:3000/api/productss')
   }
+  getcategoriesByProduct(){
+    return this.http.get('http://localhost:3000/api/categoriess')
+  }
 }
