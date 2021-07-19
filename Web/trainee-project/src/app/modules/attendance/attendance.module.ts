@@ -5,6 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EmployeelistComponent } from './employeelist/employeelist.component';
+import { EmployeeprofileComponent } from './employeeprofile/employeeprofile.component';
+
+
 
 const routes: Routes = [
   {
@@ -14,7 +18,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AttendanceComponent],
+  declarations: [AttendanceComponent,EmployeelistComponent,EmployeeprofileComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
