@@ -8,7 +8,7 @@ import { ProductDialogComponent } from './product-dialog/product-dialog.componen
 
 const routes: Routes = [{
   path: '',
-  component: ProductDialogDetailsComponent
+  component: ProductComponent
 }]
 
 @NgModule({
