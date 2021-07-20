@@ -22,7 +22,7 @@ export class ProductComponent implements OnInit {
     {value: 'tacos-2', viewValue: 'Tacos'},
     {value: 'tacos-2', viewValue: 'Tacos'},
     {value: 'tacos-2', viewValue: 'Tacos'}
-  ]; 
+  ];
   constructor() { }
 
   ngOnInit(): void {
