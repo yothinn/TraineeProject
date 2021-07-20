@@ -5,11 +5,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PettycashService {
-  customer:any;
-  constructor(private http:HttpClient) { }
+  customer: any;
+  constructor(private http: HttpClient) { }
 
 
-  createCustomer(customerList : any){
-  
+
+  getList() {
+    return this.http.get('http://localhost:3000/api/pettychashss')
+  }
+  createCustomer(customerList: any) {
+    return this.http.post('http://localhost:3000/api/pettychashss', customerList)
   }
 }

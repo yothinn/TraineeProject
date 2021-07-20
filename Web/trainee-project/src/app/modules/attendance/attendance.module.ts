@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EmployeeprofileComponent } from './employeeprofile/employeeprofile.component';
 import { EmployeelistComponent } from './employeelist/employeelist.component';
+import { EmployeeTableComponent } from './employee-table/employee-table.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AttendanceComponent,EmployeeprofileComponent,EmployeelistComponent],
+  declarations: [AttendanceComponent,EmployeeprofileComponent,EmployeelistComponent, EmployeeTableComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
