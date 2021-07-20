@@ -1,83 +1,50 @@
 <mat-toolbar class="User-details">
-    <small>
-        <p class="user-details">รายละเอียดผุ้ใช้</p>
-    </small>
-    <button class="button-add">เพิ่มรายการ</button>
+  <small>
+    <p class="user-details">รายละเอียดผุ้ใช้</p>
+  </small>
+  <button class="button-add">เพิ่มรายการ</button>
 </mat-toolbar>
-<!-- <div >
-    <div class="table-list" fxLayout="row" fxLayoutAlign="space-around stretch">
-        <div >
-            <span>
-                วันที่
-            </span>
-        </div>
-        <div>
-            <span>
-                เลขที่เอกสาร
-            </span>
-        </div>
-        <div>
-            <span>
-                รายการ
-            </span>
-        </div>
-        <div>
-            <span>
-                รับเข้า
-            </span>
-        </div>
-        <div>
-            <span>
-                จ่าย
-            </span>
-        </div>
-        <div>
-            <span>
-                สถานที่ใช้งาน
-            </span>
-        </div>
-    </div>
-</div> -->
+<mat-divider></mat-divider>
 <div>
-    <table mat-table [dataSource]="dataSource">
-  
-    
+  <div class="table-list" fxLayout="row" fxLayoutAlign="space-around stretch">
+    <div>
       <ng-container matColumnDef="วันที่">
-        <th mat-header-cell *matHeaderCellDef> วันที่ </th>
-        <td mat-cell *matCellDef="let element"> </td>
+        <th mat-header-cell> วันที่ </th>
+        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> {{item.created}} </td>
       </ng-container>
-  
-      
+    </div>
+    <div>
       <ng-container matColumnDef="เลขที่เอกสาร">
-        <th mat-header-cell *matHeaderCellDef> เลขที่เอกสาร </th>
-        <td mat-cell *matCellDef="let element">  </td>
+        <th mat-header-cell> เลขที่เอกสาร </th>
+        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> {{item.documentNo}} </td>
       </ng-container>
-  
-     
+    </div>
+    <div>
       <ng-container matColumnDef="รายการ">
-        <th mat-header-cell *matHeaderCellDef> รายการ </th>
-        <td mat-cell *matCellDef="let element">  </td>
+        <th mat-header-cell> รายการ </th>
+        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> {{item.list}} </td>
       </ng-container>
-  
-      
+    </div>
+    <div>
       <ng-container matColumnDef="รับเข้า">
-        <th mat-header-cell *matHeaderCellDef> รับเข้า </th>
-        <td mat-cell *matCellDef="let element">  </td>
+        <th mat-header-cell> รับเข้า </th>
+        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> {{item.admit}} </td>
       </ng-container>
-
+    </div>
+    <div>
       <ng-container matColumnDef="จ่าย">
-        <th mat-header-cell *matHeaderCellDef> จ่าย </th>
-        <td mat-cell *matCellDef="let element">  </td>
+        <th mat-header-cell> จ่าย </th>
+        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> {{item.pay}} </td>
       </ng-container>
-
+    </div>
+    <div>
       <ng-container matColumnDef="สถานที่ใช้งาน">
-        <th mat-header-cell *matHeaderCellDef> สถานที่ใช้งาน </th>
-        <td mat-cell *matCellDef="let element">  </td>
+        <th mat-header-cell> สถานที่ใช้งาน </th>
+        <td fxLayout="column" mat-cell *ngFor="let item of pdata">  </td>
       </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  
-    <mat-paginator [pageSizeOptions]="[5, 10, 20, 30, 50, 100]" showFirstLastButtons></mat-paginator>
+    </div>
   </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+
