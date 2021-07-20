@@ -6,7 +6,7 @@
     <div>
         <button (click)="liftSide.toggle()">1</button>
         <button (click)="rightSide.toggle()">2</button>
-        <button>3</button>
+        <button mat-button (click)="openDialog()">Open dialog</button>
     </div>
     <mat-drawer #rightSide mode="side" position='end' opened>
         <app-employeeprofile class="profile" >

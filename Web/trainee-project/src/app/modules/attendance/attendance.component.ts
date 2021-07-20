@@ -1,6 +1,8 @@
 import { Component,OnInit, ViewChild} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatDrawer } from '@angular/material/sidenav';
 import { AttendanceService } from './attendance.service';
+import { DialogAddComponent } from './dialog-add/dialog-add.component';
 
 
 @Component({
@@ -13,8 +15,9 @@ export class AttendanceComponent implements OnInit {
   @ViewChild('rightSide') right: MatDrawer;
   employeeData: any;
   
- 
-  constructor(private attendanceService: AttendanceService) { }
+  constructor(
+    private attendanceService: AttendanceService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.attendanceService.getAttendance().subscribe((res:any)=>{
@@ -23,6 +26,10 @@ export class AttendanceComponent implements OnInit {
       console.log(this.employeeData)
     })
   }
+  openDialog() {
+     this.dialog.open( DialogAddComponent);
+  }
+  
 
   toggleLeft(): void{
     this.left.toggle();
@@ -34,3 +41,5 @@ export class AttendanceComponent implements OnInit {
   }
 
 }
+
+
