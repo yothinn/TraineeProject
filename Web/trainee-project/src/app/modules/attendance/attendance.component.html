@@ -3,10 +3,18 @@
         <app-employeelist></app-employeelist>
 
     </mat-drawer>
-    <div>
-        <button (click)="liftSide.toggle()">1</button>
-        <button (click)="rightSide.toggle()">2</button>
-    </div>
+   
+
+        <mat-drawer-container class="middle">
+         <div fxLayout="row">
+            <button (click)="liftSide.toggle()">1</button>
+            <button (click)="rightSide.toggle()" class="button-right">2</button>
+         </div>
+        </mat-drawer-container>
+
+        <app-employee-table></app-employee-table>
+
+ 
     <mat-drawer #rightSide mode="side" position='end' opened>
         <app-employeeprofile class="profile" fxLayout="row" fxLayoutAlign="center center">
         </app-employeeprofile>
