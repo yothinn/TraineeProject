@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 
 var AttendancesSchema = new Schema({
-    employee_id: {
+    employeeId: {
         type: String,
         required: 'Please fill a Attendances employee_id',
     },
