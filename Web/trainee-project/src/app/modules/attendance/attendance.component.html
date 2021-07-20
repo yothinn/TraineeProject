@@ -6,9 +6,10 @@
     <div>
         <button (click)="liftSide.toggle()">1</button>
         <button (click)="rightSide.toggle()">2</button>
+        <button>3</button>
     </div>
     <mat-drawer #rightSide mode="side" position='end' opened>
-        <app-employeeprofile class="profile" fxLayout="row" fxLayoutAlign="center center">
+        <app-employeeprofile class="profile" >
         </app-employeeprofile>
     </mat-drawer>
 </mat-drawer-container>
