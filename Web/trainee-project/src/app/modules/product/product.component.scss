@@ -27,19 +27,23 @@
 }
 
 .card{
+    margin-bottom: -px;
     margin-top: 50px;
     margin-left: 57px;
     margin-right: 17px;
     width: 160px;
-    height: 210px;
+    height: 250px;
+    border: solid black;
 }
 
 .img{
     margin-left: 20px;
     width: 120px;
     height: 120px;
+    
 }
 .toolbar-card{
+    
     height: 20px;
     width: 100%;
 }
@@ -51,4 +55,8 @@
     width: 160px;
     height: 210px;
     color: #000;
+}
+
+.buttontest{
+    margin-left: 135px;
 }
