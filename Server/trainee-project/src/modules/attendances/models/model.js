@@ -21,9 +21,6 @@ var AttendancesSchema = new Schema({
         type: String,
         required: 'Please fill a Attendances tel',
     },
-    img : {
-        type: String,
-    },
     created: {
         type: Date,
         default: Date.now

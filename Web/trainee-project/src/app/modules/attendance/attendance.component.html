@@ -9,8 +9,10 @@
          <div fxLayout="row">
             <button (click)="liftSide.toggle()">1</button>
             <button (click)="rightSide.toggle()" class="button-right">2</button>
-            <button mat-button (click)="openDialog()">Open dialog</button>
+            
          </div>
+
+         <button mat-button (click)="openDialog()">Open dialog</button>
         </mat-drawer-container>
 
         <app-employee-table></app-employee-table>
@@ -20,4 +22,5 @@
         <app-employeeprofile class="profile" >
         </app-employeeprofile>
     </mat-drawer>
+
 </mat-drawer-container>
