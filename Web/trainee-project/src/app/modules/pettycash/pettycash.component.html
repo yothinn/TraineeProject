@@ -1,16 +1,27 @@
 <app-toolbar></app-toolbar>
 
-<mat-drawer-container class="employeedrawer">
-    <mat-drawer class="drawer" mode="side" opened>
+<mat-drawer-container>
+    <mat-drawer mode="side" opened>
         <mat-toolbar class="test">
             <mat-toolbar-row>
-                <mat-label>Search : </mat-label>
-                <input>
+                <small>
+                    <mat-label>Search : </mat-label>
+                    <input>
+                </small>
             </mat-toolbar-row>
         </mat-toolbar>
+        <div>
+            <mat-card>
+                <p>
+
+                </p>
+                <p>
+                    
+                </p>
+            </mat-card>
+        </div>
     </mat-drawer>
     <mat-drawer-content>
-        <app-toolbar-display></app-toolbar-display>
         <app-table></app-table>
     </mat-drawer-content>
 </mat-drawer-container>
