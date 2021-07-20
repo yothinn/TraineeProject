@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductDialogDetailsComponent } from './product-dialog-details/product-dialog-details.component';
+import { ProductService } from './product.service';
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
+
 
 @Component({
   selector: 'app-product',
@@ -12,20 +12,31 @@ interface Food {
 })
 export class ProductComponent implements OnInit {
 
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-  constructor() { }
+  productCategories: any;
+  productData: any;
+  constructor(private dataService: ProductService,
+    public dialog: MatDialog) { }
+
+
+
 
   ngOnInit(): void {
+    this.dataService.getProductData().subscribe((res: any) => {
+      console.log(res.data)
+      this.productData = res.data
+    })
+
+    this.dataService.getProductCategories().subscribe((res: any) => {
+      console.log(res.data)
+      this.productCategories = res.data
+    })
   }
+
+  openDialog() {
+    this.dialog.open(ProductDialogDetailsComponent, {
+      width: "200px"
+    });
+  }
+
 
 }

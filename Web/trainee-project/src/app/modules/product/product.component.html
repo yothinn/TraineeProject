@@ -1,12 +1,10 @@
 <div>
   <mat-toolbar>
     <label class="font_head">เรียงตาม</label>
-    <mat-form-field class="font_category">
+    <mat-form-field class="font_category" >
       <mat-label>หมวดหมู่สินค้า</mat-label>
       <mat-select class="font">
-        <mat-option value="1">หมวก</mat-option>
-        <mat-option value="2">เสื้อ</mat-option>
-        <mat-option value="3">กางเฟง</mat-option>
+        <mat-option *ngFor="let item of productCategories; let i = index;"value="i">{{item.name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -18,12 +16,12 @@
 
     <div class="button-add">
       <button mat-button color="primary">จัดการหมวดหมู่</button>
-      <button mat-button color="primary">เพิ่มสินค้า</button>
+      <button mat-button color="primary" (click)="openDialog()">เพิ่มสินค้า</button>
     </div>
   </mat-toolbar>
 
   <div fxLayout="row warp">
-    <div *ngFor="let item of foods">
+    <div *ngFor="let item of productData">
       <mat-card class="card">
         <button class="buttontest" mat-icon-button [matMenuTriggerFor]="menu"
           aria-label="Example icon-button with a menu">
@@ -41,11 +39,11 @@
         <div>
           <content>
             <p>
-              ชื่อ
+              ชื่อสินค้า: {{item.productName}}
             <p>
-              ราคา
+              ราคา: {{item.price}}
             <p>
-              จำนวนคงเหลือ
+              จำนวนคงเหลือ: {{item.count}}
             <p>
           </content>
         </div>
