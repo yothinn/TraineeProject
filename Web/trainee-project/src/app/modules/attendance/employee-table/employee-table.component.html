@@ -1,0 +1,38 @@
+ <mat-toolbar>
+      <p>ข้อมูลพนักงาน</p>
+ </mat-toolbar>
+ <mat-divider></mat-divider>
+
+ 
+    <div class="table-list" fxLayout="row" fxLayoutAlign="space-around stretch" *ngFor="let item of employeeData">
+      <div>
+        <ng-container matColumnDef="รหัสพนักงาน">
+          <th mat-header-cell>รหัสพนักงาน</th>
+          <td fxLayout="column" mat-cell> {{item.employeeId}} </td>
+        </ng-container>
+      </div>
+
+      <div>
+        <ng-container matColumnDef="ชื่อ">
+          <th mat-header-cell>ชื่อ</th>
+          <td fxLayout="column" mat-cell> {{item.name}} </td>
+        </ng-container>
+      </div>
+
+      <div>
+        <ng-container matColumnDef="นามสกุล">
+          <th mat-header-cell>นามสกุล</th>
+          <td fxLayout="column" mat-cell> {{item.lastname}} </td>
+        </ng-container>
+      </div>
+
+      <div>
+        <ng-container matColumnDef="เบอร์โทรศัพท์">
+          <th mat-header-cell>เบอร์โทรศัพท์</th>
+          <td fxLayout="column" mat-cell> {{item.tel}} </td>
+        </ng-container>
+      </div>
+      </div>
+  
+ 
+ 
