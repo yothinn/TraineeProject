@@ -4,24 +4,24 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var PettychashsSchema = new Schema({
-    documentNo: {
-        type: Number,
-    },
-    list: {
+var CustomersSchema = new Schema({
+    name: {
         type: String,
+        required: 'Please fill a Customers name',
     },
-    admit: {
-        type: Number,
+    lastName: {
+        type: String,
+        required: 'Please fill a Customers lastName',
     },
-    pay: {
+    amount: {
         type: Number,
+        required: 'Please fill a Customers amount',
+    },
+    limit: {
+        type: Number,
+        required: 'Please fill a Customers limit',
+    },
 
-    },
-    placeOfUse: {
-        type: String,
-    },
-    
 
 
     created: {
@@ -54,18 +54,18 @@ var PettychashsSchema = new Schema({
         }
     }
 });
-PettychashsSchema.pre('save', function (next) {
-    let Pettychashs = this;
-    const model = mongoose.model("Pettychashs", PettychashsSchema);
-    if (Pettychashs.isNew) {
+CustomersSchema.pre('save', function(next){
+    let Customers = this;
+    const model = mongoose.model("Customers", CustomersSchema);
+    if (Customers.isNew) {
         // create
         next();
-    } else {
+    }else{
         // update
-        Pettychashs.updated = new Date();
+        Customers.updated = new Date();
         next();
     }
-
-
+    
+    
 })
-mongoose.model("Pettychashs", PettychashsSchema);
+mongoose.model("Customers", CustomersSchema);
