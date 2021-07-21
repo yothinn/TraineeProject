@@ -1,6 +1,9 @@
-import { Component,OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatDrawer } from '@angular/material/sidenav';
 import { AttendanceService } from './attendance.service';
+import { DialogAddComponent } from './dialog-add/dialog-add.component';
+
 
 
 @Component({
@@ -12,25 +15,44 @@ export class AttendanceComponent implements OnInit {
   @ViewChild('leftSide') left: MatDrawer;
   @ViewChild('rightSide') right: MatDrawer;
   employeeData: any;
-  
- 
-  constructor(private attendanceService: AttendanceService) { }
+
+  constructor(
+    private attendanceService: AttendanceService,
+    public dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
-    this.attendanceService.getAttendance().subscribe((res:any)=>{
-      console.log(res)
+    this.attendanceService.getAttendance().subscribe((res: any) => {
+      // console.log(res)
       this.employeeData = res.data
-      console.log(this.employeeData)
+      // console.log(this.employeeData)
+    })
+  }
+  openDialog(data1) {
+    const dialogRef = this.dialog.open(DialogAddComponent, {
+      data: data1
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.attendanceService.getAttendance().subscribe((res: any) => {
+          // console.log(res)
+          this.employeeData = res.data
+          // console.log(this.employeeData)
+        })
+      }
     })
   }
 
-  toggleLeft(): void{
+
+  toggleLeft(): void {
     this.left.toggle();
 
   }
 
-  toggleRight(): void{
+  toggleRight(): void {
     this.right.toggle();
   }
 
 }
+
+

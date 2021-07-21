@@ -1,13 +1,22 @@
+<!-- <mat-card>
+    <div *ngFor="let item of employeeData">
+        <button mat-fab class="button-row">
+            B
+        </button>
+        {{item.name}} {{item.lastname}}
 
-    <mat-list *ngFor="let item of employeeData" class="matlist">
-        <mat-list-item class="user-button" fxLayout="row" fxLayoutAlign="center center">
-            <button mat-icon-button>
-                    B
-                    <!-- {{(user | shotName)}}{{(user | shotName)}} -->
-            </button>
-        </mat-list-item>
-        <mat-list-item>
-            {{item.name}} {{item.lastname}}
-        </mat-list-item>
-        <mat-divider></mat-divider>
-    </mat-list>
+        <div class="tel">
+            <p>ID:{{item.employee_id}}</p>
+            <p>TEL: {{item.tel}}</p>
+        </div>
+    </div>
+</mat-card> -->
+<div class="card" *ngFor="let item of employeeData">
+    <img src="https://scontent.fbkk12-4.fna.fbcdn.net/v/t1.18169-9/13343153_269021276821269_6009404563585981644_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=tCnTOC3XdIkAX97t8E6&_nc_ht=scontent.fbkk12-4.fna&oh=8aa3447f18c58107694ab258e0288d46&oe=60FB9B7D"
+        style="width:100%">
+    <h1>{{item.name}} {{item.lastname}}</h1>
+    <div class="detail">
+        <p>ID: {{item.employeeId}}</p>
+        <p>TEL: {{item.tel}}</p>
+    </div>
+</div>

@@ -1,21 +1,22 @@
-.avatars-wrapper {
-    display: flex;
-    flex-flow: row wrap;
+.button-row {
+  display: table-cell;
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
 }
-.avatar-sample.icon .igx-avatar{
-    background: #9e9e9e;
+.tel{
+  margin-top: 10px;
+  
 }
-.user-button {
-    width: 80px;
-    height: 80px;
-    font-size: 50px;
-    text-align: center;
-    background-color:darkgray;
-    color: white;
-    border-radius: 50%;
-  }
-  .matlist{
-    font-size: 30px;
-    margin-top: 60%;
 
-  }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+}
+.detail{
+  max-width: 300px;
+  margin: auto;
+  text-align: left;
+}

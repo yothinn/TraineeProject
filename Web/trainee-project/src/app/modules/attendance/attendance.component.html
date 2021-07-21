@@ -1,23 +1,17 @@
 <mat-drawer-container>
     <mat-drawer #liftSide mode="side" opened>
         <app-employeelist></app-employeelist>
-
     </mat-drawer>
-   
-
-        <mat-drawer-container class="middle">
-         <div fxLayout="row">
+    <mat-drawer-container class="middle">
+        <div fxLayout="row">
             <button (click)="liftSide.toggle()">1</button>
             <button (click)="rightSide.toggle()" class="button-right">2</button>
-         </div>
-         
+        </div>
         <app-employee-table></app-employee-table>
-        </mat-drawer-container>
-
-
- 
+    </mat-drawer-container>
+    <button mat-button (click)="openDialog('new')">Add</button>
     <mat-drawer #rightSide mode="side" position='end' opened>
-        <app-employeeprofile class="profile" fxLayout="row" fxLayoutAlign="center center">
+        <app-employeeprofile class="profile">
         </app-employeeprofile>
     </mat-drawer>
 </mat-drawer-container>

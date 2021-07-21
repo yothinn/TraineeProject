@@ -13,9 +13,9 @@ export class EmployeeTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.attendanceService.getAttendance().subscribe((res:any)=>{
-      console.log(res)
+      // console.log(res)
       this.employeeData = res.data
-      console.log(this.employeeData)
+      // console.log(this.employeeData)
     })
   }
 
