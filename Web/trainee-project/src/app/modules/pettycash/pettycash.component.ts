@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
+
 
 @Component({
   selector: 'app-pettycash',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PettycashComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(AddUserDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }
