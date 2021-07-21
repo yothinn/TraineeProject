@@ -35,8 +35,6 @@ import { MatStepperModule } from '@angular/material/stepper';
 
 
 
-
-
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -81,6 +79,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
    
     MatExpansionModule,
     MatProgressSpinnerModule,
+   
     
 
 
@@ -121,7 +120,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatTooltipModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
-    
+    MatDialogModule,
+  
     
   ]
 })
