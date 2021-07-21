@@ -1,2 +1,15 @@
-<h2 mat-dialog-title>เข้างาน-ออกงาน</h2>
-<mat-dialog-content></mat-dialog-content>
+<h2 mat-dialog-title>เพื่มรายการ</h2>
+<mat-dialog-content fxLayout="column" fxLayoutAlign="space-around ">
+
+  <mat-form-field  appearance="fill">
+    <mat-label>
+        Choose a date
+    </mat-label>
+
+  <input matInput [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+
+</mat-dialog-content>

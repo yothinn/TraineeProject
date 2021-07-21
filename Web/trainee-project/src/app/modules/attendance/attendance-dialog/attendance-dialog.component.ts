@@ -1,6 +1,4 @@
-import { Component,OnInit } from '@angular/core';
-
-
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-attendance-dialog',
@@ -9,9 +7,7 @@ import { Component,OnInit } from '@angular/core';
 })
 export class AttendanceDialogComponent implements OnInit {
 
-
-
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
   }
