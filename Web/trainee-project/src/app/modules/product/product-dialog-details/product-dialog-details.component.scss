@@ -25,9 +25,9 @@
   font-size: 45px;
 }
 .img {
-  padding: 10px;
-  width: 670px;
-  height: 470px;
+  margin-top: 50px;
+  width: 430px;
+  height: 399px;
   font-size: 45px;
 }
 .text{
@@ -35,4 +35,20 @@
   padding: 28px;
   height: 35px;
 
+}
+
+.card-menu{
+  background-color: lightskyblue;
+  padding: 20px;
+  width: 1000px;
+  height: 545px;
+  border: solid black;
+}
+
+.input{
+  margin-bottom: 100px;
+}
+
+.full-width {
+  width: 100%;
 }

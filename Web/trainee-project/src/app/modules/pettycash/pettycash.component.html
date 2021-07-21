@@ -2,22 +2,29 @@
 
 <mat-drawer-container>
     <mat-drawer mode="side" opened>
-        <mat-toolbar class="test">
-            <mat-toolbar-row>
-                <small>
-                    <mat-label>Search : </mat-label>
-                    <input>
-                </small>
-            </mat-toolbar-row>
+        <mat-toolbar  class="test">
+            <mat-icon class="search">search</mat-icon>
+            <mat-form-field class="field-search" appearance="outline">
+                <mat-label></mat-label>
+                <input matInput type="text" placeholder="search">
+            </mat-form-field>
         </mat-toolbar>
-        <div>
-            <mat-card>
-                <p>
-
-                </p>
-                <p>
-                    
-                </p>
+        <div class="customer" align="center">
+            <mat-card class="card-customer">
+                <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                    <span class="size-name">
+                        nan
+                    </span>
+                    <app-edit-cutomer></app-edit-cutomer>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                    <span class="size-mount">
+                        20,000฿
+                    </span>
+                    <span class="limit">
+                        วงเงิน 100,000฿
+                    </span>
+                </div>
             </mat-card>
         </div>
     </mat-drawer>
@@ -27,7 +34,5 @@
 </mat-drawer-container>
 
 <form>
-    <mat-toolbar style="height: 5.9vh;">
-        <button class="button-customer">เพิ่มผู้ใช้</button>
-    </mat-toolbar>
+    <button class="button-customer" mat-button (click)="openDialog()">เพิ่มผู้ใช้</button>
 </form>

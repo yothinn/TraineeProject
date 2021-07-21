@@ -5,10 +5,10 @@ var Schema = mongoose.Schema;
 
 
 var ProductsSchema = new Schema({
-    product_id: {
+    productId: {
         type: String,
     },
-    product_name: {
+    productName: {
         type: String,
     },
     category: {

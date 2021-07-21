@@ -9,6 +9,8 @@ import { EmployeeprofileComponent } from './employeeprofile/employeeprofile.comp
 import { EmployeelistComponent } from './employeelist/employeelist.component';
 import { EmployeeTableComponent } from './employee-table/employee-table.component';
 import { AttendanceDialogComponent } from './attendance-dialog/attendance-dialog.component';
+import { DialogAddComponent } from './dialog-add/dialog-add.component';
+
 
 
 
@@ -21,7 +23,8 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AttendanceComponent,EmployeeprofileComponent,EmployeelistComponent, EmployeeTableComponent,AttendanceDialogComponent],
+  declarations: [AttendanceComponent,EmployeeprofileComponent,EmployeelistComponent, EmployeeTableComponent,AttendanceDialogComponent,DialogAddComponent],
+  
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

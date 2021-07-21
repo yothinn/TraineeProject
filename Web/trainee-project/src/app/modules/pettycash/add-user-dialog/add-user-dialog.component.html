@@ -1,1 +1,27 @@
-<p>add-user-dialog works!</p>
+<h2 mat-dialog-title>เพื่มผู้ใช้</h2>
+<mat-dialog-content fxLayout="column" fxLayoutAlign="space-around ">
+
+  <mat-form-field  appearance="fill">
+    <mat-label>ชื่อ</mat-label>
+    <input matInput type="text" [(ngModel)]="name"  value="">
+  </mat-form-field>
+
+  <mat-form-field  appearance="fill">
+    <mat-label>นามสกุล</mat-label>
+    <input matInput type="text" [(ngModel)]="lastName"  value="">
+  </mat-form-field>
+
+  <mat-form-field  appearance="fill">
+    <mat-label>ยอดเงิน</mat-label>
+    <input matInput type="text" [(ngModel)]="amount"  value="">
+  </mat-form-field>
+
+  <mat-form-field  appearance="fill">
+    <mat-label>วงเงิน</mat-label>
+    <input matInput type="text" [(ngModel)]="limit"  value="">
+  </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="createList()">Create New customer</button>
+</mat-dialog-actions>
