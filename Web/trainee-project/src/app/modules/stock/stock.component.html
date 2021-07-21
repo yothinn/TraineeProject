@@ -11,7 +11,7 @@
             <div fxLayout="row">
                 <div class="stock-searchbar">
                     <mat-form-field appearance="legacy">
-                        <input matInput placeholder="Search">
+                        <input #searchStockList matInput (keyup)="onSearch()" placeholder="Search">
                     </mat-form-field>
                 </div>
 
@@ -28,17 +28,114 @@
         </div>
         <div fxLayout="column">
             <mat-selection-list [multiple]="false">
-                <mat-list-option *ngFor="let item of stocklist">
+                <mat-list-option *ngFor="let item of stockList">
                     {{item.product_name}}
                 </mat-list-option>
             </mat-selection-list>
         </div>
     </mat-drawer>
 
-    <mat-drawer-content class="customer-content-panel" fxLayout="column">
-        <mat-toolbar>
-            1
-        </mat-toolbar>
+    <mat-drawer-content class="stock-content-panel" fxLayout="column">
+        <div fxLayout="column" fxFlexFill>
+            <div fxLayout="row">
+                <mat-toolbar>
+                    <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex>
+                        <div>
+                            <span name="mat-toolbar-left">เรียงตาม</span>
+                        </div>
+                        <div>
+                            <section>
+                                <mat-checkbox style="padding-left: 15px;">นำเข้า</mat-checkbox>
+                                <mat-checkbox style="padding-left: 15px;">นำออก</mat-checkbox>
+                            </section>
+                        </div>
+                        <div>
+                            <span name="mat-toolbar-left">ค้นหาตามช่วงเวลา</span>
+                        </div>
+                        <!-- <div>
+                            datepicker
+                        </div> -->
+                        <div>
+                            <button mat-button color="primary">
+                                <label>สรุปรายการสินค้า</label>
+                            </button>
+                        </div>
+                    </div>
+                </mat-toolbar>
+            </div>
+            <div fxLayout="column" fxFlex>
+                <div style="padding: 15px;" fxLayout="row" fxFlex>
+                    <div style="padding-left: 25px;" fxFlex="10">
+                        <p>
+                            ลำดับ
+                        </p>
+                    </div>
+                    <div style="padding-left: 10px;" fxFlex="20">
+                        <p>
+                            ชื่อสินค้า
+                        </p>
+                    </div>
+                    <div style="padding-left: 10px;" fxFlex="10">
+                        <p>
+                            รหัสสินค้า
+                        </p>
+                    </div>
+                    <div style="padding-left: 10px;" fxFlex="10">
+                        <p>
+                            ประเภทสินค้า
+                        </p>
+                    </div>
+                    <div style="padding-left: 10px;" fxFlex="10">
+                        <p>
+                            จำนวน(คงเหลือ)
+                        </p>
+                    </div>
+                    <div style="padding-left: 10px;" fxFlex="20">
+                        <p>
+                            ราคา
+                        </p>
+                    </div>
+                    <div style="padding-left: 10px;" fxFlex="30">
+                        <p>
+                            วัน-เวลา
+                        </p>
+                    </div>
+                </div>
+                <div style="padding: 15px;" fxLayout="row" fxFlex>
+                    <!-- <div fxLayoutAlign="start center" style="padding-left: 25px;" fxFlex="10">
+                        <p>
+                            {{i+1}}
+                        </p>
+                    </div>
+                    <div fxLayoutAlign="start center" style="padding-left: 25px;" fxFlex="20">
+                        <p>
+
+                            {{item.name}}
+                        </p>
+                    </div>
+                    <div fxLayoutAlign="start center" style="padding-left: 25px;" fxFlex="20">
+                        <p>
+                            {{item.price}}
+                        </p>
+                    </div> -->
+                    <!-- <div style="padding-left: 25px;" fxFlex="30">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>แก้ไข</span>
+                            </button>
+                            <button mat-menu-item >
+                                <mat-icon>delete</mat-icon>
+                                <span>ลบ</span>
+                            </button>
+                        </mat-menu>
+                    </div> -->
+                </div>
+            </div>
+        </div>
     </mat-drawer-content>
 
 

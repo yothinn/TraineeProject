@@ -1,16 +1,14 @@
 <div>
   <mat-toolbar>
-    <label class="font_head">เรียงตาม</label>
-    <mat-form-field class="font_category">
+    <label class="font-head">เรียงตาม</label>
+    <mat-form-field class="font-category" >
       <mat-label>หมวดหมู่สินค้า</mat-label>
       <mat-select class="font">
-        <mat-option value="1">หมวก</mat-option>
-        <mat-option value="2">เสื้อ</mat-option>
-        <mat-option value="3">กางเฟง</mat-option>
+        <mat-option *ngFor="let item of productCategories; let i = index;"value="i">{{item.name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="font_search" appearance="standard">
+    <mat-form-field class="font-search" appearance="standard">
       <mat-label>ค้นหา</mat-label>
       <input matInput placeholder="กรอกชื่อสินค้า">
       <mat-icon matSuffix>search</mat-icon>
@@ -23,17 +21,17 @@
   </mat-toolbar>
 
   <div fxLayout="row warp">
-    <div *ngFor="let item of foods">
-      <mat-card class="card">
-        <button class="buttontest" mat-icon-button [matMenuTriggerFor]="menu"
+    <div *ngFor="let item of productData">
+      <mat-card (click)="openDialog()" class="card">
+        <button class="button-test" mat-icon-button [matMenuTriggerFor]="menu"
           aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>
-        <mat-menu #menu="matMenu">
-          <button style="font-size: 15px;" mat-menu-item>
+        <mat-menu class="font-menu" #menu="matMenu">
+          <button  mat-menu-item>
             <mat-icon>deletel</mat-icon><span>ลบ</span>
           </button>
-          <button style="font-size: 15px;" mat-menu-item>
+          <button mat-menu-item>
             <mat-icon>edit</mat-icon><span>เเก้ไข</span>
           </button>
         </mat-menu>
@@ -41,11 +39,11 @@
         <div>
           <content>
             <p>
-              ชื่อ
+              ชื่อสินค้า: {{item.productName}}
             <p>
-              ราคา
+              ราคา: {{item.price}}
             <p>
-              จำนวนคงเหลือ
+              จำนวนคงเหลือ: {{item.count}}
             <p>
           </content>
         </div>

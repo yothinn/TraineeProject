@@ -5,10 +5,25 @@ var Schema = mongoose.Schema;
 
 
 var PettychashsSchema = new Schema({
-    name: {
-        type: String,
-        required: 'Please fill a Pettychashs name',
+    documentNo: {
+        type: Number,
     },
+    list: {
+        type: String,
+    },
+    admit: {
+        type: Number,
+    },
+    pay: {
+        type: Number,
+
+    },
+    placeOfUse: {
+        type: String,
+    },
+    
+
+
     created: {
         type: Date,
         default: Date.now
@@ -39,18 +54,18 @@ var PettychashsSchema = new Schema({
         }
     }
 });
-PettychashsSchema.pre('save', function(next){
+PettychashsSchema.pre('save', function (next) {
     let Pettychashs = this;
     const model = mongoose.model("Pettychashs", PettychashsSchema);
     if (Pettychashs.isNew) {
         // create
         next();
-    }else{
+    } else {
         // update
         Pettychashs.updated = new Date();
         next();
     }
-    
-    
+
+
 })
 mongoose.model("Pettychashs", PettychashsSchema);

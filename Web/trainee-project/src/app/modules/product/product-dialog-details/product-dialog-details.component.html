@@ -3,78 +3,47 @@
     <mat-toolbar class="test" fxLayoutAlign="center" fxFlex>
       <p>รายละเอียดสินค้า</p>
     </mat-toolbar>
-    <div fxLayout="row" fxLayoutAlign="end">
+    <!-- <div fxLayout="row" fxLayoutAlign="end">
       <button class="btn">X</button>
-    </div>
+    </div> -->
   </div>
-  <div fxLayout="row" fxFlex="50">
-    <mat-card class="card">
-      <img class="img"
-        src="https://th.jobsdb.com/en-th/cms/employer/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png">
+
+  <div fxLayout="row">
+    <mat-card class = "card">
+          <img class="img"
+            src="https://www.chiiwiidoctor.com/assets/images/default-profile.jpg">
     </mat-card>
-    <div fxLayout="row" fxFlex="50">
-      <mat-card class="detail">
-        <div fxLayout="column">
-          <mat-form-field appearance="outline" class="field">
-            <mat-label class="text">ชื่อสินค้า</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="field">
-            <mat-label class="text">รายละเอียดสินค้า</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="field">
-            <mat-label class="text">ราคาสินค้า</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="field">
-            <mat-label class="text">จำนวนสินค้าคงเหลือ</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </div>
+      <mat-card fxLayout="column" class="card-menu">
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>รหัสสินค้า</mat-label>
+                <input matInput disabled value="XXXXXXXXXXXXXX">
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label >ชื่อสินค้า</mat-label>
+                <input matInput disabled value="XXXXXXXXXXXXXX">
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label >หมวดหมู่สินค้า </mat-label>
+                <input matInput disabled value="XXXXXXXXXXXXXX">
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label >จำนวน</mat-label>
+                <input matInput disabled value="XXXXXXXXXXXXXX">
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label >ราคาา</mat-label>
+                <input matInput disabled value="XXXXXXXXXXXXXX">
+              </mat-form-field>
+
+              <mat-card-actions>
+                <button mat-button >เเก้ไข</button>
+                <button mat-button disabled>ยืนยัน</button>
+              </mat-card-actions>
       </mat-card>
-    </div>
-  </div>
-</div>
-<div fxLayout="column" fxFlexFill>
-  <div fxLayout="row" fxFlex="10">
-    <mat-toolbar class="test" fxLayoutAlign="center" fxFlex>
-      <p>เพิ่มรายการสินค้า</p>
-    </mat-toolbar>
-    <div fxLayout="row" fxLayoutAlign="end">
-      <button class="btn">X</button>
-    </div>
-  </div>
-  <div fxLayout="row" fxFlex="50">
-    <mat-card class="card">
-      <img class="img"
-        src="https://th.jobsdb.com/en-th/cms/employer/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png">
-    </mat-card>
-    <div fxLayout="row" fxFlex="50">
-      <mat-card class="detail">
-        <div fxLayout="column">
-          <mat-form-field appearance="outline" class="field">
-            <mat-label class="text">ชื่อสินค้า</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="field">
-            <mat-label>รายละเอียดสินค้า</mat-label>
-            <mat-select>
-              <mat-option value="one">First option</mat-option>
-              <mat-option value="two">Second option</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="field">
-            <mat-label class="text">ราคาสินค้า</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="field">
-            <mat-label class="text">จำนวนสินค้าคงเหลือ</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <button mat-button color="primary"> เพิ่มข้อมูล</button>
-        </div>
-      </mat-card>
-    </div>
+
   </div>
 </div>

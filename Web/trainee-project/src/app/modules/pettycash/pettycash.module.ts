@@ -7,6 +7,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TableComponent } from './table/table.component';
+import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
+import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
+import { EditCutomerComponent } from './edit-cutomer/edit-cutomer.component';
 
 
 
@@ -20,7 +23,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [PettycashComponent,ToolbarComponent, TableComponent],
+  declarations: [PettycashComponent,ToolbarComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent, EditCutomerComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
