@@ -8,6 +8,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { EmployeeprofileComponent } from './employeeprofile/employeeprofile.component';
 import { EmployeelistComponent } from './employeelist/employeelist.component';
 import { EmployeeTableComponent } from './employee-table/employee-table.component';
+import { AttendanceDialogComponent } from './attendance-dialog/attendance-dialog.component';
+
 
 
 const routes: Routes = [
@@ -19,7 +21,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AttendanceComponent,EmployeeprofileComponent,EmployeelistComponent, EmployeeTableComponent],
+  declarations: [AttendanceComponent,EmployeeprofileComponent,EmployeelistComponent, EmployeeTableComponent,AttendanceDialogComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
