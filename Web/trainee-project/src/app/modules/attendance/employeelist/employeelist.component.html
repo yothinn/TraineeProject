@@ -1,27 +1,17 @@
-
 <mat-toolbar class="header">
   <div>
     <small>
-   <mat-label class="header-list">ข้อมูลรายชื่อพนักงาน</mat-label>
+      <mat-label class="header-list">ข้อมูลรายชื่อพนักงาน</mat-label>
     </small>
   </div>
 </mat-toolbar>
-
- <mat-divider></mat-divider>
-
-
-  
-    
-    <form>
-      <mat-form-field  class="search" appearance="fill">
-        <mat-label>ค้นรายชื่อพนักงาน</mat-label>
-        <input matInput placeholder="กรุณาพิมพ์รายชื่อพนักงาน" >
-      </mat-form-field>
-    </form>
-
-    <mat-card *ngFor="let item of employeeData">
-      {{item.name}} {{item.lastname}}
-    </mat-card>
-    
-
-  
+<mat-divider></mat-divider>
+<form>
+  <mat-form-field class="search" appearance="fill">
+    <mat-label>ค้นรายชื่อพนักงาน</mat-label>
+    <input matInput placeholder="กรุณาพิมพ์รายชื่อพนักงาน">
+  </mat-form-field>
+</form>
+<mat-card *ngFor="let item of employeeData">
+  {{item.name}} {{item.lastname}}
+</mat-card>
