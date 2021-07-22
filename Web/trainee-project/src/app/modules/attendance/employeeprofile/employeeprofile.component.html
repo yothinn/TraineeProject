@@ -19,4 +19,13 @@
         <p>ID: {{item.employeeId}}</p>
         <p>TEL: {{item.tel}}</p>
     </div>
+    <div class="menubutton" fxLayoutAlign="end">
+    <button mat-button [matMenuTriggerFor]="menu" >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openDialog(item)">Edit</button>
+        <button mat-menu-item >Delete</button>
+      </mat-menu>
+    </div>
 </div>

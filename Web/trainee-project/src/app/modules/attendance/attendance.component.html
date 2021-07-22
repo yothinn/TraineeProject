@@ -7,15 +7,12 @@
             <button (click)="liftSide.toggle()">1</button>
             <button (click)="rightSide.toggle()" class="button-right">2</button>
         </div>
-
         <form>
             <button mat-button (click)="openDialog('new')">Add</button>
-            <button mat-button (click)="openDialogLeft()">Add</button>
+            <button mat-button (click)="openDialogLeft()">I/O</button>
         </form>
-
         <app-employee-table></app-employee-table>
     </mat-drawer-container>
-   
     <mat-drawer #rightSide mode="side" position='end' opened>
         <app-employeeprofile class="profile">
         </app-employeeprofile>
