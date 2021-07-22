@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PettyCashService } from '../pettycash.service';
+import { PettyCashService } from '../pettyCash.service';
 
 @Component({
   selector: 'app-add-user-dialog',

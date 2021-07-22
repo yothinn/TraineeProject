@@ -4,11 +4,11 @@ import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.compon
 
 
 @Component({
-  selector: 'app-pettycash',
-  templateUrl: './pettycash.component.html',
-  styleUrls: ['./pettycash.component.scss']
+  selector: 'app-pettyCash',
+  templateUrl: './pettyCash.component.html',
+  styleUrls: ['./pettyCash.component.scss']
 })
-export class PettycashComponent implements OnInit {
+export class PettyCashComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
 
