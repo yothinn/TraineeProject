@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDrawer } from '@angular/material/sidenav';
+import { AttendanceDialogComponent } from './attendance-dialog/attendance-dialog.component';
 import { AttendanceService } from './attendance.service';
 import { DialogAddComponent } from './dialog-add/dialog-add.component';
 
@@ -52,6 +53,14 @@ export class AttendanceComponent implements OnInit {
   toggleRight(): void {
     this.right.toggle();
   }
+  openDialogLeft() {
+    const dialogRef = this.dialog.open(AttendanceDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  
 
 
 }
