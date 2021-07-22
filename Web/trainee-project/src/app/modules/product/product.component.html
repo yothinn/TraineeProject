@@ -1,10 +1,10 @@
 <div>
   <mat-toolbar>
     <label class="font-head">เรียงตาม</label>
-    <mat-form-field class="font-category" >
+    <mat-form-field class="font-category">
       <mat-label>หมวดหมู่สินค้า</mat-label>
       <mat-select class="font">
-        <mat-option *ngFor="let item of productCategories; let i = index;"value="i">{{item.name}}</mat-option>
+        <mat-option *ngFor="let item of productCategories; let i = index;" value="i">{{item.name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -16,36 +16,35 @@
 
     <div class="button-add">
       <button mat-button color="primary">จัดการหมวดหมู่</button>
-      <button mat-button color="primary">เพิ่มสินค้า</button>
+      <button mat-button color="primary" (click)="openDialog('null')">เพิ่มสินค้า</button>
     </div>
   </mat-toolbar>
 
   <div fxLayout="row warp">
     <div *ngFor="let item of productData">
-      <mat-card (click)="openDialog()" class="card">
+      <mat-card class="card">
         <button class="button-test" mat-icon-button [matMenuTriggerFor]="menu"
           aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu class="font-menu" #menu="matMenu">
-          <button  mat-menu-item>
-            <mat-icon>deletel</mat-icon><span>ลบ</span>
-          </button>
           <button mat-menu-item>
-            <mat-icon>edit</mat-icon><span>เเก้ไข</span>
+            <mat-icon (click)="delete(item)">deletel</mat-icon><span>ลบ</span>
           </button>
         </mat-menu>
-        <img class="img" src="https://www.chiiwiidoctor.com/assets/images/default-profile.jpg">
-        <div>
-          <content>
-            <p>
-              ชื่อสินค้า: {{item.productName}}
-            <p>
-              ราคา: {{item.price}}
-            <p>
-              จำนวนคงเหลือ: {{item.count}}
-            <p>
-          </content>
+        <div (click)="openDialog(item)">
+          <img class="img" src="https://www.chiiwiidoctor.com/assets/images/default-profile.jpg">
+          <div>
+            <content>
+              <p>
+                ชื่อสินค้า: {{item.productName}}
+              <p>
+                ราคา: {{item.price}}
+              <p>
+                จำนวนคงเหลือ: {{item.count}}
+              <p>
+            </content>
+          </div>
         </div>
       </mat-card>
     </div>
