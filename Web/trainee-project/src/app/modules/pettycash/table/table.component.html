@@ -13,8 +13,8 @@
     <ng-container matColumnDef="วันที่">
       <th mat-header-cell> วันที่ </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData "> {{item.date | date }} <mat-divider>
-        </mat-divider>
+      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData "> {{item.date | date }} 
+        <mat-divider></mat-divider>
       </td>
     </ng-container>
   </div>
@@ -64,4 +64,4 @@
     </ng-container>
   </div>
 </div>
-<mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons></mat-paginator>
+<mat-paginator #PettyCashData.paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons></mat-paginator>
