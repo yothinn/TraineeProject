@@ -22,7 +22,6 @@ export class TableComponent implements OnInit {
       console.log(res);
       this.PettyCashData = res.data;
       console.log(this.PettyCashData);
-      this.PettyCashData.paginator = this.paginator;
     });
   }
   openDialog() {

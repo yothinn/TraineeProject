@@ -5,6 +5,10 @@ var Schema = mongoose.Schema;
 
 
 var CategoriesSchema = new Schema({
+    id: {
+        type: String,
+        required: 'Please fill a Categories id',
+    },
     name: {
         type: String,
         required: 'Please fill a Categories name',
