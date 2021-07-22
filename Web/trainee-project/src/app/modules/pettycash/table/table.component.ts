@@ -38,29 +38,4 @@ export class TableComponent implements AfterViewInit, OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-
-  createList() {
-    let customerList: any = {
-      date: this.PettyCashData ,
-      documentNo: this.PettyCashData,
-      list: this.PettyCashData,
-      admit: this.PettyCashData,
-      pay: this.PettyCashData,
-      placeOfUse: this.PettyCashData
-
-    };
-    this.pettycashService.createCustomer(customerList).subscribe(
-      success => alert("Done"),
-      error => alert(error)
-    )
-  }
-
-
-
-
-
 }
-
-
-
-

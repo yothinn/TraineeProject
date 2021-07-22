@@ -11,7 +11,7 @@ var ProductsSchema = new Schema({
     productName: {
         type: String,
     },
-    category: {
+    categoryId: {
         type: String,
     },
     type: {
