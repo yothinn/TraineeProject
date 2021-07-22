@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductDialogDetailsComponent } from './product-dialog-details/product-dialog-details.component';
 import { ProductService } from './product.service';
 
@@ -11,14 +12,12 @@ import { ProductService } from './product.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-
   productCategories: any;
   productData: any;
+
   constructor(private dataService: ProductService,
-    public dialog: MatDialog) { }
-
-
-
+    public dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
     this.dataService.getProductData().subscribe((res: any) => {
@@ -32,12 +31,30 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  openDialog() {
-    this.dialog.open(ProductDialogDetailsComponent, {
+  openDialog(dataProduct) {
+    console.log(dataProduct)
+    const dialogRef = this.dialog.open(ProductDialogDetailsComponent, {
       width: "900px",
-      height: "650px"
+      height: "650px",
+      data: dataProduct
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataService.getProductData().subscribe((res: any) => {
+          this.productData = res.data
+        })
+      }
+    })
   }
 
-
+  delete(dataDelete) {
+    this.dataService.deleteProduct(dataDelete).subscribe((res: any) => {
+      if (res) {
+        this.dataService.getProductData().subscribe((res: any) => {
+          this.productData = res.data
+        })
+      }
+    })
+  }
 }
