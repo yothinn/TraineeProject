@@ -14,7 +14,7 @@ export class AttendanceComponent implements OnInit {
   @ViewChild('leftSide') left: MatDrawer;
   @ViewChild('rightSide') right: MatDrawer;
   employeeData: any;
-
+ 
   constructor(
     private attendanceService: AttendanceService,
     public dialog: MatDialog,

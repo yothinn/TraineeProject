@@ -8,11 +8,20 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProductData(){
+  getProductData() {
     return this.http.get('http://localhost:3000/api/productss')
   }
-
-  getProductCategories(){
+  getProductCategories() {
     return this.http.get('http://localhost:3000/api/categoriess')
   }
+  deleteProduct(body) {
+    return this.http.delete(`http://localhost:3000/api/productss/${body._id}`, body)
+  }
+  createProductData(body) {
+    return this.http.post(`http://localhost:3000/api/productss`, body)
+  }
+  editProductData(body) {
+    return this.http.put(`http://localhost:3000/api/productss/${body._id}`, body)
+  }
+
 }
