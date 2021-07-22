@@ -11,7 +11,7 @@ import { AttendanceService } from '../attendance.service';
 })
 export class DialogAddComponent implements OnInit {
   userForm: FormGroup;
-  
+
   constructor(
     private attendanceService: AttendanceService,
     private fb: FormBuilder,
@@ -23,34 +23,41 @@ export class DialogAddComponent implements OnInit {
   ngOnInit(): void {
     // console.log(this.data)
     if (this.data._id) {
-      this.userForm = this.createForm(this.data)
+      this.userForm = this.createForm(this.data);
     } else {
-      this.userForm = this.createForm(this.data)
+      this.userForm = this.createForm(this.data);
 
     }
   }
+
   createForm(data) {
     // console.log(data)
     return this.fb.group({
       employeeId: [data.employeeId],
       name: [data.name],
-      lastname: [data.lstname],
+      lastname: [data.lastname],
       tel: [data.tel]
-    })
+    });
   }
 
-  Onsubmit() {
+  onSubmit() {
     // console.log(this.userForm.value)
-    this.attendanceService.createattendan(this.userForm.value)
+    this.attendanceService.createAttendance(this.userForm.value)
       .subscribe(res => {
         if (res) {
           this.dialogRef.close(res);
         }
+      
       })
   }
-  backClicked() {
-    this.dialogRef.close();
-  }
 
+  onbackClick() {
+    this.dialogRef.close();
+  };
+ 
 }
+      //this.attendanceService.createattendan().subscribe(
+      //     success => alert("Done"),
+      //     error => alert(error)
+      //   )
 
