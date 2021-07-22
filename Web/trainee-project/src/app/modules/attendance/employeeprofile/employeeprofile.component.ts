@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AttendanceService } from '../attendance.service';
+import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 
 @Component({
   selector: 'app-employeeprofile',
@@ -9,7 +11,9 @@ import { AttendanceService } from '../attendance.service';
 export class EmployeeprofileComponent implements OnInit {
   employeeData: any;
 
-  constructor(private attendanceService: AttendanceService) { }
+  constructor(
+    private attendanceService: AttendanceService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.attendanceService.getAttendance().subscribe((res:any)=>{
@@ -20,4 +24,18 @@ export class EmployeeprofileComponent implements OnInit {
     })
   }
 
+  openDialog(data1) {
+      const dialogRef = this.dialog.open(DialogAddComponent, {
+        data: data1
+      });
+      dialogRef.afterClosed().subscribe(res => {
+        if (res) {
+          this.attendanceService.getAttendance().subscribe((res: any) => {
+            // console.log(res)
+            this.employeeData = res.data
+            // console.log(this.employeeData)
+          })
+        }
+      })
+    }
 }

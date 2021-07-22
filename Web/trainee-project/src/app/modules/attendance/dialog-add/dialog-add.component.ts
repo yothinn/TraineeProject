@@ -42,14 +42,23 @@ export class DialogAddComponent implements OnInit {
 
   onSubmit() {
     // console.log(this.userForm.value)
+    if (this.data._id) {
+      console.log('id')
+      this.attendanceService.updateAttendance(this.userForm.value)
+        .subscribe((res) => {
+          if (res) {
+            this.dialogRef.close(res);
+          }
+        })
+      }else{
     this.attendanceService.createAttendance(this.userForm.value)
       .subscribe(res => {
         if (res) {
           this.dialogRef.close(res);
         }
-      
       })
   }
+}
 
   onbackClick() {
     this.dialogRef.close();

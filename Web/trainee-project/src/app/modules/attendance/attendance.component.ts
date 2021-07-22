@@ -41,6 +41,7 @@ export class AttendanceComponent implements OnInit {
       }
     })
   }
+  
   toggleLeft(): void {
     this.left.toggle();
   }
