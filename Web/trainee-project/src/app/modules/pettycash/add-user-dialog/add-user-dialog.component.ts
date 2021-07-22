@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PettycashService } from '../pettycash.service';
+import { PettyCashService } from '../pettycash.service';
 
 @Component({
   selector: 'app-add-user-dialog',
@@ -11,23 +11,24 @@ export class AddUserDialogComponent implements OnInit {
   lastName: String;
   amount: Number;
   limit: Number;
-  
 
-  constructor(private pettycashService: PettycashService) { }
+
+  constructor(private pettyCashService: PettyCashService) { }
 
   ngOnInit(): void {
   }
 
   createList(){
     let customerList: any ={
+      
       name: this.name ,
       lastName: this.lastName ,
       amount:this.amount ,
       limit: this.limit
-    
+
 
     };
-    this.pettycashService.createCustomer(customerList).subscribe(
+    this.pettyCashService.createCustomer(customerList).subscribe(
       success => alert("Done"),
       error => alert(error)
     )
