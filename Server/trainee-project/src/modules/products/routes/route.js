@@ -3,8 +3,8 @@ var controller = require('../controllers/controller'),
     mq = require('../../core/controllers/rabbitmq'),
     policy = require('../policy/policy');
 module.exports = function (app) {
-    var url = '/api/productss';
-    var urlWithParam = '/api/productss/:productsId';
+    var url = '/api/products';
+    var urlWithParam = '/api/products/:productsId';
     app.route(url)//.all(policy.isAllowed)
         .get(controller.getList)
         .post(controller.create);

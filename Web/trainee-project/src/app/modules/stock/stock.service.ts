@@ -9,10 +9,10 @@ export class StockService {
   constructor(private http:HttpClient) { }
 
   getCategories(){
-    return this.http.get('http://localhost:3000/api/categoriess')
+    return this.http.get('http://localhost:3000/api/categories')
   }
   getProductByCategories(id){
-    return this.http.get(`http://localhost:3000/api/productss?categoryId=${id}`)
+    return this.http.get(`http://localhost:3000/api/products?categoryId=${id}`)
   }
   // getProductByCategories(){
   //   return this.http.get('http://localhost:3000/api/categoriess')

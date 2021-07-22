@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { StockService } from './stock.service';
 import { debounceTime, filter, map, } from 'rxjs/operators';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-stock',
@@ -14,11 +15,16 @@ export class StockComponent implements OnInit {
   stockList: any[];
   stockData: any;
   categories: any;
-  productData:any;
+  productData: any;
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
 
   constructor(private stockService: StockService) { }
 
   ngOnInit(): void {
+    
     // this.stockService.getStockByProduct().subscribe((res: any) => {
     //   this.stockData = res.data;
     //   this.stockList = this.stockData
@@ -42,6 +48,10 @@ export class StockComponent implements OnInit {
       console.log(res);
       this.productData = res.data
     })
+  }
+
+  onChooseDate(){
+    console.log(this.range.value)
   }
 
 
