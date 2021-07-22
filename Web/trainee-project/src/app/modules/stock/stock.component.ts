@@ -14,22 +14,33 @@ export class StockComponent implements OnInit {
   stockList: any[];
   stockData: any;
   categories: any;
+  productData:any;
 
   constructor(private stockService: StockService) { }
 
   ngOnInit(): void {
-    this.stockService.getStockByProduct().subscribe((res: any) => {
+    // this.stockService.getStockByProduct().subscribe((res: any) => {
+    //   this.stockData = res.data;
+    //   this.stockList = this.stockData
+    // })
+    this.stockService.getCategories().subscribe((res: any) => {
+      console.log(res)
       this.stockData = res.data;
-      this.stockList = this.stockData
-    })
-    this.stockService.getcategoriesByProduct().subscribe((res: any) => {
-      this.categories = res.data
+      this.stockList = this.stockData;
     })
   }
+
   onSearch() {
-    let fillData = this.searchRef.nativeElement.value.toLowerCase()
+    let fillData = this.searchRef.nativeElement.value.toLowerCase();
     this.stockList = this.stockData.filter(res => {
-      return res.product_name.toLowerCase().startsWith(fillData)
+      return res.name.toLowerCase().startsWith(fillData);
+    })
+  }
+
+  onChooseCategory(item) {
+    this.stockService.getProductByCategories(item.id).subscribe((res: any) => {
+      console.log(res);
+      this.productData = res.data
     })
   }
 

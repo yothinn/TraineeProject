@@ -8,10 +8,13 @@ export class StockService {
 
   constructor(private http:HttpClient) { }
 
-  getStockByProduct(){
-    return this.http.get('http://localhost:3000/api/productss')
-  }
-  getcategoriesByProduct(){
+  getCategories(){
     return this.http.get('http://localhost:3000/api/categoriess')
   }
+  getProductByCategories(id){
+    return this.http.get(`http://localhost:3000/api/productss?categoryId=${id}`)
+  }
+  // getProductByCategories(){
+  //   return this.http.get('http://localhost:3000/api/categoriess')
+  // }
 }
