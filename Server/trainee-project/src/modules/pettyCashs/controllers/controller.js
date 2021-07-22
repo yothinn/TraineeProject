@@ -2,7 +2,7 @@
 var mongoose = require('mongoose'),
     model = require('../models/model'),
     mq = require('../../core/controllers/rabbitmq'),
-    Pettychashs = mongoose.model('Pettychashs'),
+    Pettycashs = mongoose.model('Pettycashs'),
     errorHandler = require('../../core/controllers/errors.server.controller'),
     _ = require('lodash');
 
@@ -16,7 +16,7 @@ exports.getList = function (req, res) {
     }
     query.skip = size * (pageNo - 1);
     query.limit = size;
-        Pettychashs.find({}, {}, query, function (err, datas) {
+        Pettycashs.find({}, {}, query, function (err, datas) {
             if (err) {
                 return res.status(400).send({
                     status: 400,
@@ -32,9 +32,9 @@ exports.getList = function (req, res) {
 };
 
 exports.create = function (req, res) {
-    var newPettychashs = new Pettychashs (req.body);
-    newPettychashs.createby = req.user;
-    newPettychashs.save(function (err, data) {
+    var newPettycashs = new Pettycashs (req.body);
+    newPettycashs.createby = req.user;
+    newPettycashs.save(function (err, data) {
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -62,7 +62,7 @@ exports.getByID = function (req, res, next, id) {
         });
     }
 
-    Pettychashs.findById(id, function (err, data) {
+    Pettycashs.findById(id, function (err, data) {
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -83,10 +83,10 @@ exports.read = function (req, res) {
 };
 
 exports.update = function (req, res) {
-    var updPettychashs = _.extend(req.data, req.body);
-    updPettychashs.updated = new Date();
-    updPettychashs.updateby = req.user;
-    updPettychashs.save(function (err, data) {
+    var updPettycashs = _.extend(req.data, req.body);
+    updPettycashs.updated = new Date();
+    updPettycashs.updateby = req.user;
+    updPettycashs.save(function (err, data) {
         if (err) {
             return res.status(400).send({
                 status: 400,

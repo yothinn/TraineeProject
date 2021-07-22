@@ -9,41 +9,40 @@
   </div>
 
   <div fxLayout="row">
-    <mat-card class = "card">
-          <img class="img"
-            src="https://www.chiiwiidoctor.com/assets/images/default-profile.jpg">
+    <mat-card class="card">
+      <img class="img" src="https://www.chiiwiidoctor.com/assets/images/default-profile.jpg">
     </mat-card>
-      <mat-card fxLayout="column" class="card-menu">
-              <mat-form-field class="full-width" appearance="fill">
-                <mat-label>รหัสสินค้า</mat-label>
-                <input matInput disabled value="XXXXXXXXXXXXXX">
-              </mat-form-field>
+    <mat-card fxLayout="column" class="card-menu">
+      <form [formGroup]="productForm">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>รหัสสินค้า</mat-label>
+          <input matInput formControlName="productId">
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>ชื่อสินค้า</mat-label>
+          <input matInput formControlName="productName">
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>หมวดหมู่สินค้า </mat-label>
+          <input matInput formControlName="category">
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>รายละเอียดสินค้า </mat-label>
+          <input matInput formControlName="description">
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>จำนวน</mat-label>
+          <input matInput formControlName="count">
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>ราคา</mat-label>
+          <input matInput formControlName="price">
+        </mat-form-field>
+        <mat-card-actions>
+          <button mat-button (click)="addProduct()">ยืนยัน</button>
+        </mat-card-actions>
 
-              <mat-form-field class="full-width" appearance="fill">
-                <mat-label >ชื่อสินค้า</mat-label>
-                <input matInput disabled value="XXXXXXXXXXXXXX">
-              </mat-form-field>
-
-              <mat-form-field class="full-width" appearance="fill">
-                <mat-label >หมวดหมู่สินค้า </mat-label>
-                <input matInput disabled value="XXXXXXXXXXXXXX">
-              </mat-form-field>
-
-              <mat-form-field class="full-width" appearance="fill">
-                <mat-label >จำนวน</mat-label>
-                <input matInput disabled value="XXXXXXXXXXXXXX">
-              </mat-form-field>
-
-              <mat-form-field class="full-width" appearance="fill">
-                <mat-label >ราคาา</mat-label>
-                <input matInput disabled value="XXXXXXXXXXXXXX">
-              </mat-form-field>
-
-              <mat-card-actions>
-                <button mat-button >เเก้ไข</button>
-                <button mat-button disabled>ยืนยัน</button>
-              </mat-card-actions>
-      </mat-card>
-
+      </form>
+    </mat-card>
   </div>
 </div>

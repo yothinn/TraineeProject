@@ -3,17 +3,17 @@
   padding: 20px;
   width: 1000px;
   height: 500px;
-  border: 15px solid lightsteelblue;
+  border: solid black;
 }
 .card {
   background-color: lightskyblue;
   padding: 20px;
   width: 1000px;
   height: 500px;
-  border: 15px solid lightsteelblue;
+  border: solid black;
 }
 .test {
-  border: 10px solid lightslategray;
+  border: solid black;
   font-size: 45px;
   padding: 10px;
   height: 64px;
@@ -30,16 +30,11 @@
   height: 399px;
   font-size: 45px;
 }
-.text {
-  font-size: 15px;
-  padding: 15px;
-  height: 5px;
-}
-.field {
-  font-size: 10px;
-  padding: 2px;
-  width: 400px;
-  height: 100px;
+.text{
+  font-size:25px;
+  padding: 28px;
+  height: 35px;
+
 }
 
 .card-menu{

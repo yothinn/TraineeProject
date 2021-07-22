@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PettycashService } from '../pettycash.service';
+import { PettyCashService } from '../pettycash.service';
 
 @Component({
   selector: 'app-add-item-dialog',
@@ -7,19 +7,21 @@ import { PettycashService } from '../pettycash.service';
   styleUrls: ['./add-item-dialog.component.scss']
 })
 export class AddItemDialogComponent implements OnInit {
+  date:any;
   documentNo: Number;
   list: String;
   admit: Number;
   pay: Number;
   placeOfUse: String;
 
-  constructor(private pettycashService: PettycashService) { }
+  constructor(private pettyCashService: PettyCashService) { }
 
   ngOnInit(): void {
   }
 
   createList(){
     let customerList: any ={
+      date:this.date,
       documentNo: this.documentNo ,
       list: this.list ,
       admit:this.admit ,
@@ -27,7 +29,7 @@ export class AddItemDialogComponent implements OnInit {
       placeOfUse: this.placeOfUse
 
     };
-    this.pettycashService.createCustomer(customerList).subscribe(
+    this.pettyCashService.createCustomer(customerList).subscribe(
       success => alert("Done"),
       error => alert(error)
     )
