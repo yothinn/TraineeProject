@@ -12,7 +12,7 @@
     <div>
       <ng-container matColumnDef="วันที่" >
         <th mat-header-cell> วันที่ </th>
-        <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData " > {{item.date | date }} </td>
+        <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData " > {{item.date | date:"dd/MM/yy" }} </td>
       </ng-container>
     </div>
     <div>
@@ -30,7 +30,7 @@
     <div>
       <ng-container matColumnDef="รับเข้า">
         <th mat-header-cell> รับเข้า </th>
-        <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData"> {{item.admit}} </td>
+        <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData"> {{item.admit | number:"0.2"}} </td>
       </ng-container>
     </div>
     <div>
