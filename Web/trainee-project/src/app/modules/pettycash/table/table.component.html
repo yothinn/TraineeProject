@@ -1,7 +1,10 @@
-<mat-toolbar class="User-details">
+<mat-toolbar class="customer-details">
   <small>
-    <p class="user-details">รายละเอียดผุ้ใช้</p>
+    <header class="user-details">รายละเอียดผุ้ใช้</header>
+    <span>name</span>
+    <p>100,000฿</p>
   </small>
+  <a  class="amount">20,000฿</a>
   <button class="button-add" mat-button (click)="openDialog()">เพิ่มรายการ</button>
 </mat-toolbar>
 <div>
@@ -39,11 +42,9 @@
     <div>
       <ng-container matColumnDef="สถานที่ใช้งาน">
         <th mat-header-cell> สถานที่ใช้งาน </th>
-        <td fxLayout="column" mat-cell *ngFor="let item of pdata">  </td>
+        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> </td>
       </ng-container>
     </div>
   </div>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-
-
