@@ -10,41 +10,43 @@
 <div>
   <div class="table-list" fxLayout="row" fxLayoutAlign="space-around stretch">
     <div>
-      <ng-container matColumnDef="วันที่">
+      <ng-container matColumnDef="วันที่" >
         <th mat-header-cell> วันที่ </th>
-        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> {{item.created}} </td>
+        <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData " > {{item.date | date }} </td>
       </ng-container>
     </div>
     <div>
       <ng-container matColumnDef="เลขที่เอกสาร">
         <th mat-header-cell> เลขที่เอกสาร </th>
-        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> {{item.documentNo}} </td>
+        <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData"> {{item.documentNo}} </td>
       </ng-container>
     </div>
     <div>
       <ng-container matColumnDef="รายการ">
         <th mat-header-cell> รายการ </th>
-        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> {{item.list}} </td>
+        <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData"> {{item.list}} </td>
       </ng-container>
     </div>
     <div>
       <ng-container matColumnDef="รับเข้า">
         <th mat-header-cell> รับเข้า </th>
-        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> {{item.admit}} </td>
+        <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData"> {{item.admit}} </td>
       </ng-container>
     </div>
     <div>
       <ng-container matColumnDef="จ่าย">
         <th mat-header-cell> จ่าย </th>
-        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> {{item.pay}} </td>
+        <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData"> {{item.pay}} </td>
       </ng-container>
     </div>
     <div>
       <ng-container matColumnDef="สถานที่ใช้งาน">
         <th mat-header-cell> สถานที่ใช้งาน </th>
-        <td fxLayout="column" mat-cell *ngFor="let item of pdata"> </td>
+        <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData">  </td>
       </ng-container>
     </div>
   </div>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons></mat-paginator>
 </div>
+
+

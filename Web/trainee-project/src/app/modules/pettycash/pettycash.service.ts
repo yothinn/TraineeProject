@@ -4,16 +4,16 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class PettycashService {
+export class PettyCashService {
   customer: any;
   constructor(private http: HttpClient) { }
 
 
 
   getList() {
-    return this.http.get('http://localhost:3000/api/pettychashss')
+    return this.http.get('http://localhost:3000/api/pettycashs')
   }
   createCustomer(customerList: any) {
-    return this.http.post('http://localhost:3000/api/pettychashss', customerList)
+    return this.http.post('http://localhost:3000/api/pettycashs', customerList)
   }
 }

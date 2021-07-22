@@ -2,6 +2,13 @@
 <mat-dialog-content fxLayout="column" fxLayoutAlign="space-around ">
 
   <mat-form-field  appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput  type="date"  [(ngModel)]="date "  value="" >
+
+  </mat-form-field>
+
+
+  <mat-form-field  appearance="fill">
     <mat-label>เลขที่เอกสาร</mat-label>
     <input matInput type="text" [(ngModel)]="documentNo"  value="">
   </mat-form-field>
