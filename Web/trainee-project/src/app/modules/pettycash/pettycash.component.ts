@@ -11,9 +11,13 @@ import { PettyCashService } from './pettyCash.service';
 })
 export class PettyCashComponent implements OnInit {
   customerdata : any
+  pattyCashData:any
   constructor(private pettyCashService: PettyCashService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.pettyCashService.getList().subscribe((res : any)=>{
+      this.pattyCashData = res.data
+    })
   }
 
   openDialog(data1) {
