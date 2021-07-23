@@ -10,6 +10,8 @@ import { ProductService } from '../product.service';
 })
 export class ProductDialogDetailsComponent implements OnInit {
   productForm: FormGroup;
+  categories: any;
+  selected = 'option2';
   
   constructor(private dataService: ProductService,
     private fb: FormBuilder,
@@ -17,19 +19,19 @@ export class ProductDialogDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
-    // this.dataService.getProductCategories().subscribe((res: any) => {
-    //   console.log(res.data)
-    //   this.categories = res.data
-    // })
+    this.dataService.getProductCategories().subscribe((res: any) => {
+      // console.log(res.data)
+      this.categories = res.data
+    })
 
-    if (this.data._id) {
+    if (this.data?._id) {
       this.productForm = this.createForm(this.data);
-    } else {
-      this.productForm = this.createForm(this.data);
+    } else  { //if (this.data == null) เช็ค null เเล้ว เซ้คให้เป็นค่าว่างก่อนส่งเข้า function
+      // this.productForm = this.createForm(this.data);
     }
   }
 
-  createForm(data) {
+  createForm(data:any) {
     // console.log(data)
     return this.fb.group({
       _id: [data._id],
@@ -43,7 +45,6 @@ export class ProductDialogDetailsComponent implements OnInit {
   }
 
   addProduct() {
-    console.log(this.productForm.value)
     if (this.data._id) {
       this.dataService.editProductData(this.productForm.value).subscribe(res => {
         if (res) {
@@ -59,6 +60,9 @@ export class ProductDialogDetailsComponent implements OnInit {
       })
 
     }
+  }
+  closeDialog(){
+    this.dialogRef.close();
   }
 
 
