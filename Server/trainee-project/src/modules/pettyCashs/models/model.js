@@ -12,7 +12,7 @@ var PettycashsSchema = new Schema({
         type: String,
     },
     admit: {
-        type: String,
+        type: Number,
     },
     pay: {
         type: Number,

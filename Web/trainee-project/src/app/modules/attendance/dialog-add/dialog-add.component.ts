@@ -33,6 +33,7 @@ export class DialogAddComponent implements OnInit {
   createForm(data) {
     // console.log(data)
     return this.fb.group({
+      _id:[data._id],
       employeeId: [data.employeeId],
       name: [data.name],
       lastname: [data.lastname],
@@ -41,29 +42,28 @@ export class DialogAddComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log(this.userForm.value)
     if (this.data._id) {
-      console.log('id')
       this.attendanceService.updateAttendance(this.userForm.value)
         .subscribe((res) => {
+          console.log(res)
           if (res) {
             this.dialogRef.close(res);
           }
         })
-      }else{
-    this.attendanceService.createAttendance(this.userForm.value)
-      .subscribe(res => {
-        if (res) {
-          this.dialogRef.close(res);
-        }
-      })
+    } else {
+      this.attendanceService.createAttendance(this.userForm.value)
+        .subscribe(res => {
+          if (res) {
+            this.dialogRef.close(res);
+          }
+        })
+    }
   }
-}
 
   onbackClick() {
     this.dialogRef.close();
   };
- 
+
 }
       //this.attendanceService.createattendan().subscribe(
       //     success => alert("Done"),

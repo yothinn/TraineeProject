@@ -28,13 +28,10 @@ export class EmployeelistComponent implements OnInit {
   }
   onKeyup(event) {
     let filter = this.searchEle.nativeElement.value.toLowerCase();
-
     console.log(filter)
     this.fillterList = this.employeeData.filter(res =>{
      return res.name.toLowerCase().startsWith(filter);
-    })
-
-    
+    }) 
   }
   
 

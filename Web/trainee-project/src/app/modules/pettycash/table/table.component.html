@@ -4,16 +4,17 @@
     <span>name</span>
     <p>100,000฿</p>
   </small>
-  <a class="amount">20,000฿</a>
-  <button class="button-add" mat-button (click)="openDialog()">เพิ่มรายการ</button>
+  <button class="button-add" mat-button (click)="openDialog('new')">เพิ่มรายการ</button>
 </mat-toolbar>
+
 <mat-divider></mat-divider>
+
 <div align="center" fxLayout="row">
   <div class="padding">
     <ng-container matColumnDef="วันที่">
       <th mat-header-cell> วันที่ </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData "> {{item.date | date }} <mat-divider>
+      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData "> {{item.date | date:"dd/MM/yy"}} <mat-divider>
         </mat-divider>
       </td>
     </ng-container>
@@ -22,7 +23,7 @@
     <ng-container matColumnDef="เลขที่เอกสาร">
       <th mat-header-cell> เลขที่เอกสาร </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData">{{item.documentNo}} 
+      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData">{{item.documentNo}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
@@ -31,7 +32,7 @@
     <ng-container matColumnDef="รายการ">
       <th mat-header-cell> รายการ </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData"> {{item.list}} 
+      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData"> {{item.list}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
@@ -40,7 +41,7 @@
     <ng-container matColumnDef="รับเข้า">
       <th mat-header-cell> รับเข้า </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData"> {{item.admit}} 
+      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData"> {{item.admit | number:"0.2"}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
@@ -49,7 +50,7 @@
     <ng-container matColumnDef="จ่าย">
       <th mat-header-cell> จ่าย </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData"> {{item.pay}} 
+      <td fxLayout="column" mat-cell *ngFor="let item of PettyCashData" slot="end"> {{item.pay | number:"0.2"}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
