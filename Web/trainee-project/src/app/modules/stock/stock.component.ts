@@ -58,7 +58,7 @@ export class StockComponent implements OnInit {
     });
   }
 
-  onChossCatagory(item): void {
+  onChooseCatagory(item): void {
     this.stockService.getProductByCategory(item.id).subscribe((res: any) => {
       console.log(res.data);
       this.productList = res.data;
