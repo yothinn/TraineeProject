@@ -1,6 +1,4 @@
-
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { filter } from 'rxjs/operators';
 import { AttendanceService } from '../attendance.service';
 
 
@@ -30,13 +28,10 @@ export class EmployeelistComponent implements OnInit {
   }
   onKeyup(event) {
     let filter = this.searchEle.nativeElement.value.toLowerCase();
-
     console.log(filter)
     this.fillterList = this.employeeData.filter(res =>{
      return res.name.toLowerCase().startsWith(filter);
-    })
-
-    
+    }) 
   }
   
 

@@ -1,26 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
+import { PettyCashService } from './pettyCash.service';
 
 
 @Component({
-  selector: 'app-pettycash',
-  templateUrl: './pettycash.component.html',
-  styleUrls: ['./pettycash.component.scss']
+  selector: 'app-pettyCash',
+  templateUrl: './pettyCash.component.html',
+  styleUrls: ['./pettyCash.component.scss']
 })
-export class PettycashComponent implements OnInit {
-
-  constructor(public dialog: MatDialog) { }
+export class PettyCashComponent implements OnInit {
+  customerdata : any
+  pattyCashData:any
+  constructor(private pettyCashService: PettyCashService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.pettyCashService.getList().subscribe((res : any)=>{
+      this.pattyCashData = res.data
+    })
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(AddUserDialogComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  openDialog(data1) {
+    const dialogRef = this.dialog.open(AddUserDialogComponent, {
+      data:data1
     });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.pettyCashService.getList().subscribe((res: any) => {
+          // console.log(res)
+          this.customerdata = res.data
+          // console.log(this.employeeData)
+        })
+      }
+    })
   }
 
 }

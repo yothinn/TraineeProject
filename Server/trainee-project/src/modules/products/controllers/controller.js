@@ -9,6 +9,9 @@ var mongoose = require('mongoose'),
 exports.getList = function (req, res) {
     var pageNo = parseInt(req.query.pageNo);
     var size = parseInt(req.query.size);
+    delete req.query.pageNo;
+    delete req.query.size;
+
     var query = {};
     if (pageNo < 0 || pageNo === 0) {
         response = { "error": true, "message": "invalid page number, should start with 1" };
@@ -16,7 +19,7 @@ exports.getList = function (req, res) {
     }
     query.skip = size * (pageNo - 1);
     query.limit = size;
-        Products.find({}, {}, query, function (err, datas) {
+        Products.find(req.query, {}, query, function (err, datas) {
             if (err) {
                 return res.status(400).send({
                     status: 400,

@@ -11,10 +11,13 @@ var ProductsSchema = new Schema({
     productName: {
         type: String,
     },
-    category: {
+    categoryId: {
         type: String,
     },
     type: {
+        type: String,
+    },
+    status: {
         type: String,
     },
     price: {
@@ -56,18 +59,18 @@ var ProductsSchema = new Schema({
         }
     }
 });
-ProductsSchema.pre('save', function(next){
+ProductsSchema.pre('save', function (next) {
     let Products = this;
     const model = mongoose.model("Products", ProductsSchema);
     if (Products.isNew) {
         // create
         next();
-    }else{
+    } else {
         // update
         Products.updated = new Date();
         next();
     }
-    
-    
+
+
 })
 mongoose.model("Products", ProductsSchema);

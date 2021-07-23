@@ -1,27 +1,32 @@
-<h2 mat-dialog-title>เพื่มผู้ใช้</h2>
-<mat-dialog-content fxLayout="column" fxLayoutAlign="space-around ">
+<div>
+  <form [formGroup]="customerForm">
+      <div>
+          <div>
+              <mat-form-field>
+                  <input matInput formControlName="name" placeholder="ชื่อ" >
+              </mat-form-field>
+          </div>
+      </div>
+      <div>
+          <div>
+              <mat-form-field>
+                  <input matInput formControlName="lastName" placeholder="นามสกุล">
+              </mat-form-field>
+          </div>
+          <div>
+              <mat-form-field>
+                  <input matInput formControlName="amount" placeholder="ยอดเงินยก" >
+              </mat-form-field>
+          </div>
+      </div>
+      <div>
+          <div>
+              <mat-form-field>
+                  <input matInput formControlName="limit" placeholder="วงเงิน" >
+              </mat-form-field>
+          </div>
+      </div>
+      <button mat-raised-button mat-dialog-close type="submit" [disabled]="!customerForm.valid" (click)="onSubmit()"> Update Profile</button>
+  </form>
+</div>
 
-  <mat-form-field  appearance="fill">
-    <mat-label>ชื่อ</mat-label>
-    <input matInput type="text" [(ngModel)]="name"  value="">
-  </mat-form-field>
-
-  <mat-form-field  appearance="fill">
-    <mat-label>นามสกุล</mat-label>
-    <input matInput type="text" [(ngModel)]="lastName"  value="">
-  </mat-form-field>
-
-  <mat-form-field  appearance="fill">
-    <mat-label>ยอดเงิน</mat-label>
-    <input matInput type="text" [(ngModel)]="amount"  value="">
-  </mat-form-field>
-
-  <mat-form-field  appearance="fill">
-    <mat-label>วงเงิน</mat-label>
-    <input matInput type="text" [(ngModel)]="limit"  value="">
-  </mat-form-field>
-
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close (click)="createList()">Create New customer</button>
-</mat-dialog-actions>

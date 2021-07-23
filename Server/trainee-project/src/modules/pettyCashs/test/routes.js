@@ -6,13 +6,13 @@ var request = require('supertest'),
     jwt = require('jsonwebtoken'),
     mongoose = require('mongoose'),
     app = require('../../../config/express'),
-    Pettychashs = mongoose.model('Pettychashs');
+    Pettycashs = mongoose.model('Pettycashs');
 
 var credentials,
     token,
     mockup;
 
-describe('Pettychashs CRUD routes tests', function () {
+describe('Pettycashs CRUD routes tests', function () {
 
     before(function (done) {
         mockup = {
@@ -32,9 +32,9 @@ describe('Pettychashs CRUD routes tests', function () {
         done();
     });
 
-    it('should be Pettychashs get use token', (done)=>{
+    it('should be Pettycashs get use token', (done)=>{
         request(app)
-        .get('/api/pettychashss')
+        .get('/api/pettycashss')
         .set('Authorization', 'Bearer ' + token)
         .expect(200)
         .end((err, res)=>{
@@ -46,10 +46,10 @@ describe('Pettychashs CRUD routes tests', function () {
         });
     });
 
-    it('should be Pettychashs get by id', function (done) {
+    it('should be Pettycashs get by id', function (done) {
 
         request(app)
-            .post('/api/pettychashss')
+            .post('/api/pettycashss')
             .set('Authorization', 'Bearer ' + token)
             .send(mockup)
             .expect(200)
@@ -59,7 +59,7 @@ describe('Pettychashs CRUD routes tests', function () {
                 }
                 var resp = res.body;
                 request(app)
-                    .get('/api/pettychashss/' + resp.data._id)
+                    .get('/api/pettycashss/' + resp.data._id)
                     .set('Authorization', 'Bearer ' + token)
                     .expect(200)
                     .end(function (err, res) {
@@ -75,9 +75,9 @@ describe('Pettychashs CRUD routes tests', function () {
 
     });
 
-    it('should be Pettychashs post use token', (done)=>{
+    it('should be Pettycashs post use token', (done)=>{
         request(app)
-            .post('/api/pettychashss')
+            .post('/api/pettycashss')
             .set('Authorization', 'Bearer ' + token)
             .send(mockup)
             .expect(200)
@@ -91,10 +91,10 @@ describe('Pettychashs CRUD routes tests', function () {
             });
     });
 
-    it('should be pettychashs put use token', function (done) {
+    it('should be pettycashs put use token', function (done) {
 
         request(app)
-            .post('/api/pettychashss')
+            .post('/api/pettycashss')
             .set('Authorization', 'Bearer ' + token)
             .send(mockup)
             .expect(200)
@@ -107,7 +107,7 @@ describe('Pettychashs CRUD routes tests', function () {
                     name: 'name update'
                 }
                 request(app)
-                    .put('/api/pettychashss/' + resp.data._id)
+                    .put('/api/pettycashss/' + resp.data._id)
                     .set('Authorization', 'Bearer ' + token)
                     .send(update)
                     .expect(200)
@@ -123,10 +123,10 @@ describe('Pettychashs CRUD routes tests', function () {
 
     });
 
-    it('should be pettychashs delete use token', function (done) {
+    it('should be pettycashs delete use token', function (done) {
 
         request(app)
-            .post('/api/pettychashss')
+            .post('/api/pettycashss')
             .set('Authorization', 'Bearer ' + token)
             .send(mockup)
             .expect(200)
@@ -136,7 +136,7 @@ describe('Pettychashs CRUD routes tests', function () {
                 }
                 var resp = res.body;
                 request(app)
-                    .delete('/api/pettychashss/' + resp.data._id)
+                    .delete('/api/pettycashss/' + resp.data._id)
                     .set('Authorization', 'Bearer ' + token)
                     .expect(200)
                     .end(done);
@@ -144,9 +144,9 @@ describe('Pettychashs CRUD routes tests', function () {
 
     });
 
-    it('should be pettychashs get not use token', (done)=>{
+    it('should be pettycashs get not use token', (done)=>{
         request(app)
-        .get('/api/pettychashss')
+        .get('/api/pettycashss')
         .expect(403)
         .expect({
             status: 403,
@@ -155,10 +155,10 @@ describe('Pettychashs CRUD routes tests', function () {
         .end(done);
     });
 
-    it('should be pettychashs post not use token', function (done) {
+    it('should be pettycashs post not use token', function (done) {
 
         request(app)
-            .post('/api/pettychashss')
+            .post('/api/pettycashss')
             .send(mockup)
             .expect(403)
             .expect({
@@ -169,10 +169,10 @@ describe('Pettychashs CRUD routes tests', function () {
 
     });
 
-    it('should be pettychashs put not use token', function (done) {
+    it('should be pettycashs put not use token', function (done) {
 
         request(app)
-            .post('/api/pettychashss')
+            .post('/api/pettycashss')
             .set('Authorization', 'Bearer ' + token)
             .send(mockup)
             .expect(200)
@@ -185,7 +185,7 @@ describe('Pettychashs CRUD routes tests', function () {
                     name: 'name update'
                 }
                 request(app)
-                    .put('/api/pettychashss/' + resp.data._id)
+                    .put('/api/pettycashss/' + resp.data._id)
                     .send(update)
                     .expect(403)
                     .expect({
@@ -197,10 +197,10 @@ describe('Pettychashs CRUD routes tests', function () {
 
     });
 
-    it('should be pettychashs delete not use token', function (done) {
+    it('should be pettycashs delete not use token', function (done) {
 
         request(app)
-            .post('/api/pettychashss')
+            .post('/api/pettycashss')
             .set('Authorization', 'Bearer ' + token)
             .send(mockup)
             .expect(200)
@@ -210,7 +210,7 @@ describe('Pettychashs CRUD routes tests', function () {
                 }
                 var resp = res.body;
                 request(app)
-                    .delete('/api/pettychashss/' + resp.data._id)
+                    .delete('/api/pettycashss/' + resp.data._id)
                     .expect(403)
                     .expect({
                         status: 403,
@@ -222,7 +222,7 @@ describe('Pettychashs CRUD routes tests', function () {
     });
 
     afterEach(function (done) {
-        Pettychashs.deleteMany().exec(done);
+        Pettycashs.deleteMany().exec(done);
     });
 
 });
