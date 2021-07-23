@@ -12,6 +12,7 @@ import { PettyCashService } from '../pettyCash.service';
 export class TableComponent implements OnInit {
   displayedColumns: string[] = ['วันที่', 'เลขที่เอกสาร', 'รายการ', 'รับเข้า', 'จ่าย', 'สถานที่ใช้งาน'];
   PettyCashData: any;
+  customerdata: any;
 
   constructor(private pettyCashService: PettyCashService, public dialog: MatDialog) { }
 
@@ -22,11 +23,18 @@ export class TableComponent implements OnInit {
       console.log(this.PettyCashData);
     });
   }
-  openDialog() {
-    const dialogRef = this.dialog.open(AddItemDialogComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  openDialog(data1) {
+    const dialogRef = this.dialog.open(AddItemDialogComponent, {
+      data:data1
     });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.pettyCashService.getList().subscribe((res: any) => {
+          // console.log(res)
+          this.customerdata = res.data
+          // console.log(this.employeeData)
+        })
+      }
+    })
   }
 }

@@ -1,38 +1,40 @@
 <h2 mat-dialog-title>เพื่มรายการ</h2>
-<mat-dialog-content fxLayout="column" fxLayoutAlign="space-around ">
+<div>
+  <form [formGroup]="customerForm">
 
-  <mat-form-field  appearance="fill">
-    <mat-label>Choose a date</mat-label>
-    <input matInput  type="date"  [(ngModel)]="date "  >
-  </mat-form-field>
-
-
-  <mat-form-field  appearance="fill">
-    <mat-label>เลขที่เอกสาร</mat-label>
-    <input matInput type="text" [(ngModel)]="documentNo"  value="">
-  </mat-form-field>
-
-  <mat-form-field  appearance="fill">
-    <mat-label>รายการ</mat-label>
-    <input matInput type="text" [(ngModel)]="list"  value="">
-  </mat-form-field>
-
-  <mat-form-field  appearance="fill">
-    <mat-label>รับเข้า</mat-label>
-    <input matInput type="text" [(ngModel)]="admit"  value="">
-  </mat-form-field>
-
-  <mat-form-field  appearance="fill">
-    <mat-label>จ่าย</mat-label>
-    <input matInput type="text" [(ngModel)]="pay"  value="">
-  </mat-form-field>
-
-  <mat-form-field  appearance="fill">
-    <mat-label>สถานที่ใช้งาน</mat-label>
-    <input matInput type="text" [(ngModel)]="placeOfUse"  value="">
-  </mat-form-field>
-
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close (click)="createList()">Create New list</button>
-</mat-dialog-actions>
+    <div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput formControlName="documentNo" placeholder="เลขที่เอกสาร">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput formControlName="list" placeholder="รายการ">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput formControlName="admit" placeholder="รับเข้า">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput formControlName="pay" placeholder="จ่าย">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput formControlName="placeOfUse" placeholder="สถานที่ใช้งาน">
+      </mat-form-field>
+    </div>
+    <button mat-raised-button mat-dialog-close type="submit" [disabled]="!customerForm.valid" (click)="onSubmit()">
+      Update Profile</button>
+  </form>
+</div>

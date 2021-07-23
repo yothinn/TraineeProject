@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { PettyCashService } from '../pettyCash.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-item-dialog',
@@ -7,31 +9,29 @@ import { PettyCashService } from '../pettyCash.service';
   styleUrls: ['./add-item-dialog.component.scss']
 })
 export class AddItemDialogComponent implements OnInit {
-  date:any;
-  documentNo: Number;
-  list: String;
-  admit: Number;
-  pay: Number;
-  placeOfUse: String;
+  customerForm: FormGroup;
 
-  constructor(private pettyCashService: PettyCashService) { }
+  constructor(private pettyCashService: PettyCashService,private fb: FormBuilder,
+    public dialogRef: MatDialogRef<AddItemDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
+    this.customerForm = this.createList(this.data)
   }
 
-  createList(){
-    let customerList: any ={
-      date:this.date,
-      documentNo: this.documentNo ,
-      list: this.list ,
-      admit:this.admit ,
-      pay: this.pay,
-      placeOfUse: this.placeOfUse
+  createList(data){
+    return this.fb.group({
+      date:[data.date,Validators.required],
+      documentNo: [data.documentNo,Validators.required] ,
+      list: [data.list,Validators.required] ,
+      admit:[data.admit,Validators.required] ,
+      pay: [data.pay,Validators.required],
+      placeOfUse: [data.placeOfUse,Validators.required]
 
-    };
-    this.pettyCashService.createCustomer(customerList).subscribe(
-      success => alert("Done"),
-      error => alert(error)
-    )
+    });
+  }
+
+  onSubmit(){
+    this.pettyCashService.createCustomer(this.customerForm.value).subscribe()
   }
 }

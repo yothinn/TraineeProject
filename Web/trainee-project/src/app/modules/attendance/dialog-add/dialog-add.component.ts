@@ -50,20 +50,20 @@ export class DialogAddComponent implements OnInit {
             this.dialogRef.close(res);
           }
         })
-      }else{
-    this.attendanceService.createAttendance(this.userForm.value)
-      .subscribe(res => {
-        if (res) {
-          this.dialogRef.close(res);
-        }
-      })
+    } else {
+      this.attendanceService.createAttendance(this.userForm.value)
+        .subscribe(res => {
+          if (res) {
+            this.dialogRef.close(res);
+          }
+        })
+    }
   }
-}
 
   onbackClick() {
     this.dialogRef.close();
   };
- 
+
 }
       //this.attendanceService.createattendan().subscribe(
       //     success => alert("Done"),
