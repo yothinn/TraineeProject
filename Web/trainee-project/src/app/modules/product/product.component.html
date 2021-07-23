@@ -4,7 +4,7 @@
     <mat-form-field class="font-category">
       <mat-label>หมวดหมู่สินค้า</mat-label>
       <mat-select class="font">
-        <mat-option *ngFor="let item of productCategories; let i = index;" value="i">{{item.name}}</mat-option>
+        <mat-option *ngFor="let item of productCategories;let i = index" [value]="i">{{item.name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -15,8 +15,8 @@
     </mat-form-field>
 
     <div class="button-add">
-      <button mat-button color="primary">จัดการหมวดหมู่</button>
-      <button mat-button color="primary" (click)="openDialog('null')">เพิ่มสินค้า</button>
+      <button mat-button color="primary" (click)="openDialogCategories()">จัดการหมวดหมู่</button>
+      <button mat-button color="primary" (click)="openDialogProduct()">เพิ่มสินค้า</button>
     </div>
   </mat-toolbar>
 
@@ -32,7 +32,7 @@
             <mat-icon (click)="delete(item)">deletel</mat-icon><span>ลบ</span>
           </button>
         </mat-menu>
-        <div (click)="openDialog(item)">
+        <div (click)="openDialogProduct(item)">
           <img class="img" src="https://www.chiiwiidoctor.com/assets/images/default-profile.jpg">
           <div>
             <content>

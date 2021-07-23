@@ -3,9 +3,9 @@
     <mat-toolbar class="test" fxLayoutAlign="center" fxFlex>
       <p>รายละเอียดสินค้า</p>
     </mat-toolbar>
-    <!-- <div fxLayout="row" fxLayoutAlign="end">
-      <button class="btn">X</button>
-    </div> -->
+    <div fxLayout="row" fxLayoutAlign="end">
+      <button class="btn" (click)="closeDialog()">X</button>
+    </div>
   </div>
 
   <div fxLayout="row">
@@ -22,21 +22,25 @@
           <mat-label>ชื่อสินค้า</mat-label>
           <input matInput formControlName="productName">
         </mat-form-field>
-        <mat-form-field class="full-width" appearance="fill">
-          <mat-label>หมวดหมู่สินค้า </mat-label>
-          <input matInput formControlName="category">
+        <mat-form-field  class="full-width">
+          <mat-label>หมวดหมู่สินค้า</mat-label>
+          <input matInput formControlName="category"  [matAutocomplete]="autoProductCode">
+          <mat-autocomplete #autoProductCode=matAutocomplete>
+            <mat-option *ngFor="let item of categories;" [value]="item.name">
+              {{item.name}}</mat-option>
+          </mat-autocomplete>
         </mat-form-field>
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>รายละเอียดสินค้า </mat-label>
-          <input matInput formControlName="description">
+          <textarea class="text-area" matInput formControlName="description"></textarea>
         </mat-form-field>
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>จำนวน</mat-label>
-          <input matInput formControlName="count">
+          <input matInput type="number" required formControlName="count">
         </mat-form-field>
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>ราคา</mat-label>
-          <input matInput formControlName="price">
+          <input matInput type="number" required formControlName="price">
         </mat-form-field>
         <mat-card-actions>
           <button mat-button (click)="addProduct()">ยืนยัน</button>

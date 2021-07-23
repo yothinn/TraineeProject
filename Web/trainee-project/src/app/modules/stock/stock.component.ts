@@ -12,10 +12,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class StockComponent implements OnInit {
   @ViewChild('searchStockList') searchRef: ElementRef;
 
-  stockList: any[];
-  stockData: any;
-  categories: any;
+  categoriesList: any[];
+  categoriesData: any;
   productData: any;
+  productList: any;
+  listData: any;
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
@@ -24,37 +25,52 @@ export class StockComponent implements OnInit {
   constructor(private stockService: StockService) { }
 
   ngOnInit(): void {
-    
-    // this.stockService.getStockByProduct().subscribe((res: any) => {
-    //   this.stockData = res.data;
-    //   this.stockList = this.stockData
-    // })
+    this.stockService.getProduct().subscribe((res: any) => {
+      // console.log(res.data);
+      //  let response = res.data.filter(data => {
+      //   if (data.productName === "ดัชมิล") {
+      //     return data
+      //   }
+      // })
+      // console.log(response)
+      this.productData = res.data;
+      this.productList = this.productData;
+    })
     this.stockService.getCategories().subscribe((res: any) => {
-      console.log(res)
-      this.stockData = res.data;
-      this.stockList = this.stockData;
+
+      this.categoriesData = res.data;
+      this.categoriesList = this.categoriesData;
     })
   }
 
   onSearch() {
     let fillData = this.searchRef.nativeElement.value.toLowerCase();
-    this.stockList = this.stockData.filter(res => {
-      return res.name.toLowerCase().startsWith(fillData);
-    })
+    this.productList = this.productData.filter(res => {
+      return res.productName.toLowerCase().startsWith(fillData);
+    });
   }
 
-  onChooseCategory(item) {
-    this.stockService.getProductByCategories(item.id).subscribe((res: any) => {
+  onChooseList(item: any): void {
+    // console.log(item)
+    this.stockService.getProductById(item.productName).subscribe((res: any) => {
+      console.log(res.data);
+      this.productData = res.data;
+    });
+  }
+
+  onChooseCatagory(item): void {
+    this.stockService.getProductByCategory(item.id).subscribe((res: any) => {
+      console.log(res.data);
+      this.productList = res.data;
+    });
+  }
+
+  onChooseDate():void {
+    let date;
+    date = this.range.value;
+    // console.log(JSON.parse(date.start))
+    this.stockService.getProductByDate(date.start).subscribe((res: any) => {
       console.log(res);
-      this.productData = res.data
-    })
+    });
   }
-
-  onChooseDate(){
-    console.log(this.range.value)
-  }
-
-
-
-
 }

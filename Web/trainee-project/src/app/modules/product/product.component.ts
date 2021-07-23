@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CategoriesDialogComponent } from './categories-dialog/categories-dialog.component';
 import { ProductDialogDetailsComponent } from './product-dialog-details/product-dialog-details.component';
 import { ProductService } from './product.service';
 
@@ -31,11 +32,11 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  openDialog(dataProduct) {
+  openDialogProduct(dataProduct?: any): void {
     console.log(dataProduct)
     const dialogRef = this.dialog.open(ProductDialogDetailsComponent, {
       width: "900px",
-      height: "650px",
+      height: "700px",
       data: dataProduct
     });
 
@@ -48,7 +49,7 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  delete(dataDelete) {
+  delete(dataDelete: any): void {
     this.dataService.deleteProduct(dataDelete).subscribe((res: any) => {
       if (res) {
         this.dataService.getProductData().subscribe((res: any) => {
@@ -57,4 +58,12 @@ export class ProductComponent implements OnInit {
       }
     })
   }
+
+  openDialogCategories(): void {
+    const dialogRef = this.dialog.open(CategoriesDialogComponent, {
+      width: "900px",
+      height: "535px",
+    });
+  }
+
 }

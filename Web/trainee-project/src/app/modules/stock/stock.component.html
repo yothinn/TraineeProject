@@ -19,7 +19,8 @@
                     <mat-form-field appearance="legacy">
                         <mat-label>หมวดหมู่สินค้า</mat-label>
                         <mat-select>
-                            <mat-option *ngFor="let item of stockList">{{item.name}}</mat-option>
+                            <mat-option *ngFor="let item of categoriesList" (click)="onChooseCatagory(item)">
+                                {{item.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -27,11 +28,12 @@
 
         </div>
         <div fxLayout="column">
-            <mat-selection-list [multiple]="false">
-                <mat-list-option *ngFor="let item of stockList" (click)="onChooseCategory(item)">
-                    {{item.name}}
+            <mat-selection-list  [multiple]="false">
+                <mat-list-option  *ngFor="let item of productList" (click)="onChooseList(item)">
+                    {{item.productName}}
                 </mat-list-option>
             </mat-selection-list>
+
         </div>
     </mat-drawer>
 
@@ -40,19 +42,22 @@
             <div fxLayout="row">
                 <mat-toolbar>
                     <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex>
-                        <div>
+                        <!-- <div>
                             <span name="mat-toolbar-left">เรียงตาม</span>
-                        </div>
-                        <div>
+                        </div> -->
+                        <div fxLayoutAlign="start">
                             <section>
-                                <mat-checkbox style="padding-left: 15px;">นำเข้า</mat-checkbox>
-                                <mat-checkbox style="padding-left: 15px;">นำออก</mat-checkbox>
+                                <label style="padding-right: 15px;">เรียงตาม:</label>
+                                <mat-radio-group>
+                                    <mat-radio-button style="padding-right: 15px;" value="after">นำเข้า
+                                    </mat-radio-button>
+                                    <mat-radio-button style="padding-right: 15px;" value="before">นำออก
+                                    </mat-radio-button>
+                                </mat-radio-group>
                             </section>
                         </div>
                         <div>
-                            <span name="mat-toolbar-left">ค้นหาตามช่วงเวลา</span>
-                        </div>
-                        <div>
+                            <span style="padding-right: 15px;">ค้นหาตามช่วงเวลา</span>
                             <mat-form-field appearance="legacy">
                                 <mat-label>Enter a date range</mat-label>
                                 <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
@@ -113,6 +118,11 @@
                             วัน-เวลา
                         </p>
                     </div>
+                    <div style="padding-left: 10px;" fxFlex="10">
+                        <p>
+                            สถานะ
+                        </p>
+                    </div>
                 </div>
                 <div style="padding: 15px;" fxLayout="row" *ngFor="let item of productData;let i = index" fxFlex>
                     <div style="padding-left: 25px;" fxFlex="10">
@@ -120,35 +130,39 @@
                             {{i+1}}
                         </p>
                     </div>
-                    <div style="padding-left: 25px;" fxFlex="20">
+                    <div style="padding-left: 10px;" fxFlex="20">
                         <p>
 
                             {{item.productName}}
                         </p>
                     </div>
-                    <div style="padding-left: 25px;" fxFlex="10">
+                    <div style="padding-left: 10px;" fxFlex="10">
                         <p>
                             {{item.categoryId}}
                         </p>
                     </div>
-                    <div style="padding-left: 25px;" fxFlex="10">
+                    <div style="padding-left: 10px;" fxFlex="10">
                         <p>
                             {{item.type}}
                         </p>
                     </div>
-                    <div style="padding-left: 25px;" fxFlex="10">
-                        <p>
-                            {{item.price}}
-                        </p>
-                    </div>
-                    <div style="padding-left: 25px;" fxFlex="10">
+                    <div style="padding-left: 10px;" fxFlex="10">
                         <p>
                             {{item.count}}
                         </p>
                     </div>
-                    <div style="padding-left: 25px;" fxFlex="30">
+                    <div style="padding-left: 10px;" fxFlex="10">
+                        <p>
+                            {{item.price}}
+                        </p>
+                    </div>
+                    <div style="padding-left: 10px;" fxFlex="30">
                         <p>
                             {{item.created | date:"dd/MM/yy" }}
+                        </p>
+                    </div>
+                    <div style="padding-left: 25px;" fxFlex="10">
+                        <p>
                         </p>
                     </div>
                 </div>
