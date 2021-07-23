@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { EditCutomerComponent } from './edit-cutomer.component';
+import { EditCustomerComponent } from './edit-customer.component';
 
 
 
 @NgModule({
-  declarations: [EditCutomerComponent],
+  declarations: [EditCustomerComponent],
   imports: [
     CommonModule,
     SharedModule
   ]
 })
-export class EditCutomerModule { }
+export class EditCustomerModule { }
