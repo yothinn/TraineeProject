@@ -1,38 +1,38 @@
 <app-toolbar></app-toolbar>
 
 <mat-drawer-container>
-    <mat-drawer mode="side" opened>
-        <mat-toolbar  class="test">
-            <mat-icon class="search">search</mat-icon>
-            <mat-form-field class="field-search" appearance="outline">
-                <mat-label></mat-label>
-                <input matInput type="text" placeholder="search">
-            </mat-form-field>
-        </mat-toolbar>
-        <div class="customer" align="center">
-            <mat-card class="card-customer">
-                <div fxLayout="row" fxLayoutAlign="space-between stretch">
-                    <span class="size-name">
-                        nan
-                    </span>
-                    <app-edit-cutomer></app-edit-cutomer>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="space-between stretch">
-                    <span class="size-mount">
-                        20,000฿
-                    </span>
-                    <span class="limit">
-                        วงเงิน 100,000฿
-                    </span>
-                </div>
-            </mat-card>
+  <mat-drawer mode="side" opened>
+    <mat-toolbar class="test">
+      <mat-icon class="search">search</mat-icon>
+      <mat-form-field class="field-search" appearance="outline">
+        <mat-label></mat-label>
+        <input matInput type="text" placeholder="search">
+      </mat-form-field>
+    </mat-toolbar>
+    <div *ngFor="let item of pattyCashData " class="customer" align="center">
+      <mat-card class="card-customer">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch">
+          <span class="size-name">
+            {{item.name}}{{item.lastName}}
+          </span>
+          <app-edit-cutomer></app-edit-cutomer>
         </div>
-    </mat-drawer>
-    <mat-drawer-content>
-        <app-table></app-table>
-    </mat-drawer-content>
+        <div fxLayout="row" fxLayoutAlign="space-between stretch">
+          <span class="size-mount">
+            20,000฿
+          </span>
+          <span class="limit">
+            วงเงิน {{item.limit}}
+          </span>
+        </div>
+      </mat-card>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-table></app-table>
+  </mat-drawer-content>
 </mat-drawer-container>
 
 <form>
-    <button class="button-customer" mat-button (click)="openDialog('new')">เพิ่มผู้ใช้</button>
+  <button class="button-customer" mat-button (click)="openDialog('new')">เพิ่มผู้ใช้</button>
 </form>
