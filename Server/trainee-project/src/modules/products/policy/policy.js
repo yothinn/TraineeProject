@@ -17,11 +17,11 @@ exports.invokeRolesPolicies = function() {
       roles: ["admin", "user"],
       allows: [
         {
-          resources: "/api/productss",
+          resources: "/api/products",
           permissions: "*"
         },
         {
-          resources: "/api/productss/:productsId",
+          resources: "/api/products/:productsId",
           permissions: "*"
         }
       ]
