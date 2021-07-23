@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,31 +9,31 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProductData() {
+  getProductData():Observable<any> {
     return this.http.get('http://localhost:3000/api/products');
   }
 
-  deleteProduct(body) {
+  deleteProduct(body:any):Observable<any> {
     return this.http.delete(`http://localhost:3000/api/products/${body._id}`, body);
   }
 
-  createProductData(body) {
+  createProductData(body:any):Observable<any> {
     return this.http.post(`http://localhost:3000/api/products`, body);
   }
 
-  editProductData(body) {
+  editProductData(body:any):Observable<any> {
     return this.http.put(`http://localhost:3000/api/products/${body._id}`, body);
   }
 
-  getProductCategories() {
+  getProductCategories():Observable<any> {
     return this.http.get('http://localhost:3000/api/categories');
   }
 
-  getProductCategoriesById(id) {
+  getProductCategoriesById(id:any):Observable<any> {
     return this.http.get(`http://localhost:3000/api/categories/${id}`);
   }
   
-  editCategories(body) {
+  editCategories(body:any):Observable<any> {
     return this.http.put(`http://localhost:3000/api/categories/${body._id}`, body);
   }
 

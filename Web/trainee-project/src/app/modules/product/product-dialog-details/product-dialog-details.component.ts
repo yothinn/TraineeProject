@@ -12,7 +12,7 @@ export class ProductDialogDetailsComponent implements OnInit {
   productForm: FormGroup;
   categories: any;
   selected = 'option2';
-  
+
   constructor(private dataService: ProductService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ProductDialogDetailsComponent>,
@@ -26,12 +26,12 @@ export class ProductDialogDetailsComponent implements OnInit {
 
     if (this.data?._id) {
       this.productForm = this.createForm(this.data);
-    } else  { //if (this.data == null) เช็ค null เเล้ว เซ้คให้เป็นค่าว่างก่อนส่งเข้า function
+    } else { //if (this.data == null) เช็ค null เเล้ว เซ้คให้เป็นค่าว่างก่อนส่งเข้า function
       // this.productForm = this.createForm(this.data);
     }
   }
 
-  createForm(data:any) {
+  createForm(data: any) {
     // console.log(data)
     return this.fb.group({
       _id: [data._id],
@@ -44,7 +44,7 @@ export class ProductDialogDetailsComponent implements OnInit {
     })
   }
 
-  addProduct() {
+  addProduct(): void {
     if (this.data._id) {
       this.dataService.editProductData(this.productForm.value).subscribe(res => {
         if (res) {
@@ -61,7 +61,7 @@ export class ProductDialogDetailsComponent implements OnInit {
 
     }
   }
-  closeDialog(){
+  closeDialog(): void {
     this.dialogRef.close();
   }
 

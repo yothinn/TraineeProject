@@ -23,14 +23,14 @@ export class CategoriesDialogComponent implements OnInit {
     })
   }
 
-  ediCalories(dataCategory: any) {
+  ediCalories(dataCategory: any): void {
     this.dataService.getProductCategoriesById(dataCategory._id).subscribe((res: any) => {
       this.category = res.data.name;
       console.log(this.category);
     })
   }
 
-  confirmEdit(body:any) {
+  confirmEdit(body: any): void {
     console.log(body);
     // this.dataService.editCategories(this.category).subscribe(res => {
     // if (res) {
@@ -39,11 +39,11 @@ export class CategoriesDialogComponent implements OnInit {
     // })
   }
 
-  confirmAdd() {
+  confirmAdd(): void {
 
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 }

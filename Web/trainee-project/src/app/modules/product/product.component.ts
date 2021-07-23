@@ -32,7 +32,7 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  openDialogProduct(dataProduct?:any) {
+  openDialogProduct(dataProduct?: any): void {
     console.log(dataProduct)
     const dialogRef = this.dialog.open(ProductDialogDetailsComponent, {
       width: "900px",
@@ -49,7 +49,7 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  delete(dataDelete: any) {
+  delete(dataDelete: any): void {
     this.dataService.deleteProduct(dataDelete).subscribe((res: any) => {
       if (res) {
         this.dataService.getProductData().subscribe((res: any) => {
@@ -59,11 +59,11 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  openDialogCategories() {
+  openDialogCategories(): void {
     const dialogRef = this.dialog.open(CategoriesDialogComponent, {
       width: "900px",
       height: "535px",
     });
   }
- 
+
 }
