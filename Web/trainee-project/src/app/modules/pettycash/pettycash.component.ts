@@ -10,8 +10,8 @@ import { PettyCashService } from './pettyCash.service';
   styleUrls: ['./pettyCash.component.scss']
 })
 export class PettyCashComponent implements OnInit {
-  customerdata : any
-  pattyCashData:any
+  customerdata : any;
+  pattyCashData:any[];
   constructor(private pettyCashService: PettyCashService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
