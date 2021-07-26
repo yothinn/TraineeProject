@@ -9,21 +9,33 @@
         <input matInput type="text" placeholder="search">
       </mat-form-field>
     </mat-toolbar>
-    <div *ngFor="let item of pattyCashData " class="customer" align="center">
+    <div *ngFor="let item of filterList; let i = index;" class="customer" align="center">
       <mat-card class="card-customer">
         <div fxLayout="row" fxLayoutAlign="space-between stretch">
-          <span class="size-name">
-           
-          </span>
-          <app-edit-customer></app-edit-customer>
+          <a class="size-name">
+            {{item.name}} {{item.lastName}}
+          </a>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openDialog2(item)">
+              <mat-icon>edit</mat-icon>
+              <span>edit</span>
+            </button>
+            <button mat-menu-item (click)="deleteList(item)">
+              <mat-icon>delete</mat-icon>
+              <span>delete</span>
+            </button>
+          </mat-menu>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between stretch">
-          <span class="size-mount">
-    
-          </span>
-          <span class="limit">
-          
-          </span>
+          <a class="size-amount">
+            {{item.amount | number:"0.2"}}
+          </a>
+          <a class="limit">
+            วงเงิน {{item.limit | number}}
+          </a>
         </div>
       </mat-card>
     </div>

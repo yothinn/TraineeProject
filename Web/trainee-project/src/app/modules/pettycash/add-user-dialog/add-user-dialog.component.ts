@@ -21,6 +21,7 @@ export class AddUserDialogComponent implements OnInit {
 
   createList(data){
     return this.fb.group({
+      _id: [data._id],
       name: [data.name,Validators.required] ,
       lastName: [data.lastName,Validators.required] ,
       amount:[data.amount,Validators.required] ,
