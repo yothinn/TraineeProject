@@ -16,21 +16,33 @@ export class UpdateCuctomerComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
-    this.customerForm = this.updateList(this.data);
+    if (this.data.name) {
+      this.customerForm = this.updateList(this.data);
+    } else {
+      this.customerForm = this.updateList(this.data);
+
+    }
   }
 
   updateList(data) {
     return this.fb.group({
+      _id: [data._id],
       name: [data.name],
       lastName: [data.lastName],
       amount: [data.amount],
       limit: [data.limit]
-      
+
 
     });
   }
 
-  onSubmit(data) {
-    this.pettyCashService.updateCustomer(this.customerForm.value).subscribe()
+  onSubmit() {
+    if (this.data.name) {
+      this.pettyCashService.updateCustomer(this.customerForm.value)
+        .subscribe()
+    } else {
+      this.pettyCashService.createCustomer(this.customerForm.value)
+        .subscribe()
+    }
   }
 }

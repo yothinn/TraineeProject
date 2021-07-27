@@ -7,7 +7,6 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TableComponent } from './table/table.component';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
-import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { UpdateCuctomerComponent } from './update-cuctomer/update-cuctomer.component';
 
 
@@ -22,7 +21,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [PettyCashComponent,ToolbarComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent, EditCustomerComponent, UpdateCuctomerComponent],
+  declarations: [PettyCashComponent,ToolbarComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent, UpdateCuctomerComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
