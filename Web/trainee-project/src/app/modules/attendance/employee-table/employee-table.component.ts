@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AttendanceService } from '../attendance.service';
+import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class EmployeeTableComponent implements OnInit {
       }
     })
   }
-  
+
   delete(dataDelete) {
     this.attendanceService.deleteAttendance(dataDelete).subscribe((res: any) => {
       if (res) {
