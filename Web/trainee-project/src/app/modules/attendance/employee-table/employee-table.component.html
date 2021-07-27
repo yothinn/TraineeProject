@@ -6,25 +6,51 @@
   <div>
     <ng-container matColumnDef="รหัสพนักงาน">
       <th mat-header-cell>รหัสพนักงาน</th>
-      <td fxLayout="column" mat-cell *ngFor="let item of employeeData"> {{item.employeeId}} </td>
+      <td fxLayout="column" mat-cell *ngFor="let item of employeeData" class="magintop">
+        {{item.employeeId}}
+      </td>
     </ng-container>
   </div>
   <div>
     <ng-container matColumnDef="ชื่อ">
       <th mat-header-cell>ชื่อ</th>
-      <td fxLayout="column" mat-cell *ngFor="let item of employeeData"> {{item.name}} </td>
+      <td fxLayout="column" mat-cell *ngFor="let item of employeeData" class="magintop">
+        {{item.name}}
+      </td>
     </ng-container>
   </div>
   <div>
     <ng-container matColumnDef="นามสกุล">
       <th mat-header-cell>นามสกุล</th>
-      <td fxLayout="column" mat-cell *ngFor="let item of employeeData"> {{item.lastname}} </td>
+      <td fxLayout="column" mat-cell *ngFor="let item of employeeData" class="magintop">
+        {{item.lastname}}
+      </td>
     </ng-container>
   </div>
   <div>
     <ng-container matColumnDef="เบอร์โทรศัพท์">
       <th mat-header-cell>เบอร์โทรศัพท์</th>
-      <td fxLayout="column" mat-cell *ngFor="let item of employeeData"> {{item.tel}} </td>
+      <td fxLayout="column" mat-cell *ngFor="let item of employeeData" class="magintop">
+        {{item.tel}}
+      </td>
     </ng-container>
   </div>
+
+  <div>
+    <ng-container matColumnDef="menu">
+      <th mat-header-cell>menu</th>
+      <td fxLayout="column" mat-cell *ngFor="let item of employeeData">
+
+        <button mat-button [matMenuTriggerFor]="menu" class="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openDialog(item)">Edit</button>
+          <button mat-menu-item (click)="delete(item)">Delete</button>
+        </mat-menu>
+
+      </td>
+    </ng-container>
+  </div>
+
 </div>
