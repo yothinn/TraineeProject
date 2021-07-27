@@ -18,9 +18,6 @@ export class UpdateCuctomerComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.name) {
       this.customerForm = this.updateList(this.data);
-    } else {
-      this.customerForm = this.updateList(this.data);
-
     }
   }
 
@@ -39,10 +36,7 @@ export class UpdateCuctomerComponent implements OnInit {
   onSubmit() {
     if (this.data.name) {
       this.pettyCashService.updateCustomer(this.customerForm.value)
-        .subscribe()
-    } else {
-      this.pettyCashService.createCustomer(this.customerForm.value)
-        .subscribe()
-    }
+        .subscribe();
+    } 
   }
 }

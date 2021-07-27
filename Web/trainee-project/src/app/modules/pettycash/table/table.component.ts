@@ -10,7 +10,6 @@ import { PettyCashService } from '../pettyCash.service';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  displayedColumns: string[] = ['วันที่', 'เลขที่เอกสาร', 'รายการ', 'รับเข้า', 'จ่าย', 'สถานที่ใช้งาน'];
   PettyCashData: any;
   customerdata: any;
   filterList: any[];
@@ -24,7 +23,7 @@ export class TableComponent implements OnInit {
       this.PettyCashData = res.data;
       // console.log(this.PettyCashData);
       this.filterList = this.PettyCashData.filter(res =>{
-        return res.documentNo
+        return res.documentNo;
       });
     });
   }
@@ -34,7 +33,7 @@ export class TableComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.pettyCashService.getList().subscribe()
+        this.pettyCashService.getList().subscribe();
       }
     })
   }

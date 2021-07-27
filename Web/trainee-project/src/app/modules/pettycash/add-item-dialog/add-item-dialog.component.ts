@@ -16,7 +16,7 @@ export class AddItemDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
-    this.customerForm = this.createList(this.data)
+    this.customerForm = this.createList(this.data);
   }
 
   createList(data){
@@ -32,6 +32,6 @@ export class AddItemDialogComponent implements OnInit {
   }
 
   onSubmit(){
-    this.pettyCashService.createCustomer(this.customerForm.value).subscribe()
+    this.pettyCashService.createCustomer(this.customerForm.value).subscribe();
   }
 }
