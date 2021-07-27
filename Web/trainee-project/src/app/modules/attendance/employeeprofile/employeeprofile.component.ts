@@ -8,7 +8,8 @@ import { DialogAddComponent } from '../dialog-add/dialog-add.component';
   templateUrl: './employeeprofile.component.html',
   styleUrls: ['./employeeprofile.component.scss']
 })
-export class EmployeeprofileComponent implements OnInit {
+export class EmployeeProfileComponent implements OnInit {
+
   employeeData: any;
 
   constructor(
@@ -21,7 +22,7 @@ export class EmployeeprofileComponent implements OnInit {
       this.employeeData = res.data;
       // console.log(this.employeeData)
 
-    })
+    });
   }
 
   openDialog(data1) {
@@ -32,20 +33,20 @@ export class EmployeeprofileComponent implements OnInit {
       if (res) {
         this.attendanceService.getAttendance().subscribe((res: any) => {
           // console.log(res)
-          this.employeeData = res.data
+          this.employeeData = res.data;
           // console.log(this.employeeData)
         })
       }
-    })
+    });
   }
   
   delete(dataDelete) {
     this.attendanceService.deleteAttendance(dataDelete).subscribe((res: any) => {
       if (res) {
         this.attendanceService.getAttendance().subscribe((res: any) => {
-          this.employeeData = res.data
+          this.employeeData = res.data;
         })
       }
-    })
+    });
   }
 }

@@ -1,19 +1,31 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Params } from '@angular/router';
+import { Observable } from 'rxjs';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PettyCashService {
-  customer: any;
   constructor(private http: HttpClient) { }
 
 
 
   getList() {
-    return this.http.get('http://localhost:3000/api/pettycashs')
+    return this.http.get('http://localhost:3000/api/pettycashs');
   }
-  createCustomer(customerList: any) {
-    return this.http.post('http://localhost:3000/api/pettycashs', customerList)
+  createCustomer(body) {
+    return this.http.post('http://localhost:3000/api/pettycashs', body);
+  }
+  updateCustomer(body){
+    console.log(body)
+    return this.http.put(`http://localhost:3000/api/pettycashs/${body._id}`,body);
+  }
+  deleteList(body): Observable<any>{
+    console.log(body)
+    return this.http.delete(`http://localhost:3000/api/pettycashs/${body._id}`,body)
+    
   }
 }

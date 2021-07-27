@@ -1,0 +1,57 @@
+.card{
+    width: 389px;
+    height: 400px;
+    border: solid black;
+}
+.toolbar{
+    width: 1040px;
+    height: 50px;
+    background-color: lightskyblue;
+    border: solid black;
+}
+.btn{
+    border: solid black;
+  }
+
+.card-categories{
+    width: 350px;
+    height: 365px;
+    border: solid black;
+}
+.card-add{
+    margin-left: 20px;
+    margin-bottom: 33px;
+    width: 311px;
+    height: 100px;
+    border: solid black;
+}
+.card-head{
+    margin-left: 20px;
+    border: solid black;
+    width: 311px;
+    height: 10px;
+
+}
+
+.card-actions{
+    margin-left: 75px;
+    padding-top: 1px ;
+}
+.btn-confirm{
+  width: 97px;
+}
+.btn-cancel{
+    width: 97px;
+    
+}
+// .font-head{
+//     margin-left: 50px;
+// }
+.font-head{
+    margin-left: 119px;
+    font-weight: bold;
+}
+.font-head-edit{
+    margin-left: 110px;
+    font-weight: bold;
+}

@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>เพิ่มผู้ใช้</h2>
+<h2 mat-dialog-title>แก้ไขผู้ใช้</h2>
 <div>
   <form [formGroup]="customerForm">
       <div>
@@ -27,7 +27,7 @@
               </mat-form-field>
           </div>
       </div>
-      <button mat-raised-button mat-dialog-close type="submit" [disabled]="!customerForm.valid" (click)="onSubmit()"> เพิ่มผู้ใช้</button>
+      <button mat-raised-button mat-dialog-close type="submit"  (click)="onSubmit()">แก้ไขผู้ใช้</button>
   </form>
 </div>
 
