@@ -27,7 +27,7 @@ export class DialogAddComponent implements OnInit {
     } else {
       this.userForm = this.createForm(this.data);
 
-    };
+    }
   }
 
   createForm(data) {
@@ -49,14 +49,14 @@ export class DialogAddComponent implements OnInit {
           if (res) {
             this.dialogRef.close(res);
           }
-        });
+        })
     } else {
       this.attendanceService.createAttendance(this.userForm.value)
         .subscribe(res => {
           if (res) {
             this.dialogRef.close(res);
           }
-        });
+        })
     }
   }
 
