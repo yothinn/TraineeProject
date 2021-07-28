@@ -26,24 +26,24 @@ export class StockComponent implements OnInit {
 
   ngOnInit(): void {
     this.stockService.getProduct().subscribe((res: any) => {
-      // console.log(res.data);
-      //  let response = res.data.filter(data => {
-      //   if (data.productName === "ดัชมิล") {
-      //     return data
-      //   }
-      // })
-      // console.log(response)
+      // console.log(res)
       this.productData = res.data;
-      this.productList = this.productData;
+      // console.log(this.productData)
+      // this.productData.filter((item, index) => {
+      //   console.log(item.productId)
+      //   return this.productData.indexOf(item.productName) === index
+      // })
+      // console.log(this.productData);
+      // this.productData = res.data;
+      // this.productList = this.productData;
     })
     this.stockService.getCategories().subscribe((res: any) => {
-
       this.categoriesData = res.data;
       this.categoriesList = this.categoriesData;
     })
   }
 
-  onSearch() {
+  onSearch(): void {
     let fillData = this.searchRef.nativeElement.value.toLowerCase();
     this.productList = this.productData.filter(res => {
       return res.productName.toLowerCase().startsWith(fillData);
@@ -65,7 +65,7 @@ export class StockComponent implements OnInit {
     });
   }
 
-  onChooseDate():void {
+  onChooseDate(): void {
     let date;
     date = this.range.value;
     // console.log(JSON.parse(date.start))

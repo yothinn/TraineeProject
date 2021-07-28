@@ -19,6 +19,7 @@
                     <mat-form-field appearance="legacy">
                         <mat-label>หมวดหมู่สินค้า</mat-label>
                         <mat-select>
+                            <mat-option>ทั้งหมด</mat-option>
                             <mat-option *ngFor="let item of categoriesList" (click)="onChooseCatagory(item)">
                                 {{item.name}}</mat-option>
                         </mat-select>
@@ -28,8 +29,8 @@
 
         </div>
         <div fxLayout="column">
-            <mat-selection-list  [multiple]="false">
-                <mat-list-option  *ngFor="let item of productList" (click)="onChooseList(item)">
+            <mat-selection-list [multiple]="false">
+                <mat-list-option *ngFor="let item of productList" (click)="onChooseList(item)">
                     {{item.productName}}
                 </mat-list-option>
             </mat-selection-list>
@@ -42,9 +43,6 @@
             <div fxLayout="row">
                 <mat-toolbar>
                     <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex>
-                        <!-- <div>
-                            <span name="mat-toolbar-left">เรียงตาม</span>
-                        </div> -->
                         <div fxLayoutAlign="start">
                             <section>
                                 <label style="padding-right: 15px;">เรียงตาม:</label>
@@ -118,11 +116,6 @@
                             วัน-เวลา
                         </p>
                     </div>
-                    <div style="padding-left: 10px;" fxFlex="10">
-                        <p>
-                            สถานะ
-                        </p>
-                    </div>
                 </div>
                 <div style="padding: 15px;" fxLayout="row" *ngFor="let item of productData;let i = index" fxFlex>
                     <div style="padding-left: 25px;" fxFlex="10">
@@ -138,7 +131,7 @@
                     </div>
                     <div style="padding-left: 10px;" fxFlex="10">
                         <p>
-                            {{item.categoryId}}
+                            {{item.productId}}
                         </p>
                     </div>
                     <div style="padding-left: 10px;" fxFlex="10">
@@ -156,11 +149,6 @@
                             {{item.price}}
                         </p>
                     </div>
-                    <div style="padding-left: 10px;" fxFlex="30">
-                        <p>
-                            {{item.created | date:"dd/MM/yy" }}
-                        </p>
-                    </div>
                     <div style="padding-left: 25px;" fxFlex="10">
                         <p>
                         </p>
@@ -169,6 +157,4 @@
             </div>
         </div>
     </mat-drawer-content>
-
-
 </mat-drawer-container>
