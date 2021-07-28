@@ -19,9 +19,9 @@ export class PettyCashComponent implements OnInit {
 
   ngOnInit(): void {
     this.pettyCashService.getList().subscribe((res: any) => {
-      this.pattyCashData = res.data
+      this.pattyCashData = res.data;
       this.filterList = this.pattyCashData.filter(res => {
-        return res.name
+        return res.name;
       })
 
     })
@@ -33,7 +33,7 @@ export class PettyCashComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.pettyCashService.getList().subscribe()
+        this.pettyCashService.getList().subscribe();
 
       }
     })
@@ -52,6 +52,6 @@ export class PettyCashComponent implements OnInit {
     })
   }
   deleteList(dataDelete) {
-    this.pettyCashService.deleteList(dataDelete).subscribe()
+    this.pettyCashService.deleteList(dataDelete).subscribe();
   }
 }

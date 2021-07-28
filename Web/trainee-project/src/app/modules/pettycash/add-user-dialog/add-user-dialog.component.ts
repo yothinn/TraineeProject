@@ -16,12 +16,11 @@ export class AddUserDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
-    this.customerForm = this.createList(this.data)
+    this.customerForm = this.createList(this.data);
   }
 
   createList(data){
     return this.fb.group({
-      _id: [data._id],
       name: [data.name,Validators.required] ,
       lastName: [data.lastName,Validators.required] ,
       amount:[data.amount,Validators.required] ,
@@ -32,6 +31,6 @@ export class AddUserDialogComponent implements OnInit {
   }
 
   onSubmit(){
-    this.pettyCashService.createCustomer(this.customerForm.value).subscribe()
+    this.pettyCashService.createCustomer(this.customerForm.value).subscribe();
   }
 }
