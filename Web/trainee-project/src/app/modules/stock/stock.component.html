@@ -1,43 +1,7 @@
 <mat-drawer-container class="stock-container">
     <mat-drawer fxLayout="column" class="stock-left-panel" mode="side" opened="true" position="start">
-        <mat-toolbar class="mat-toolbar-left">
-            <div fxFill fxLayout="column" fxLayoutAlign="start center">
-                <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-                    <span name="mat-toolbar-left">รายการสินค้า</span>
-                </div>
-            </div>
-        </mat-toolbar>
-        <div fxLayout="column">
-            <div fxLayout="row">
-                <div class="stock-searchbar">
-                    <mat-form-field appearance="legacy">
-                        <input #searchStockList matInput (keyup)="onSearch()" placeholder="Search">
-                    </mat-form-field>
-                </div>
-
-                <div class="stock-searchbar">
-                    <mat-form-field appearance="legacy">
-                        <mat-label>หมวดหมู่สินค้า</mat-label>
-                        <mat-select>
-                            <mat-option>ทั้งหมด</mat-option>
-                            <mat-option *ngFor="let item of categoriesList" (click)="onChooseCatagory(item)">
-                                {{item.name}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
-
-        </div>
-        <div fxLayout="column">
-            <mat-selection-list [multiple]="false">
-                <mat-list-option *ngFor="let item of productList" (click)="onChooseList(item)">
-                    {{item.productName}}
-                </mat-list-option>
-            </mat-selection-list>
-
-        </div>
+        <app-stock-list></app-stock-list>
     </mat-drawer>
-
     <mat-drawer-content class="stock-content-panel" fxLayout="column">
         <div fxLayout="column" fxFlexFill>
             <div fxLayout="row">
@@ -79,82 +43,7 @@
                     </div>
                 </mat-toolbar>
             </div>
-            <div fxLayout="column">
-                <div style="padding: 15px;" fxLayout="row" fxFlex>
-                    <div style="padding-left: 25px;" fxFlex="10">
-                        <p>
-                            ลำดับ
-                        </p>
-                    </div>
-                    <div style="padding-left: 10px;" fxFlex="20">
-                        <p>
-                            ชื่อสินค้า
-                        </p>
-                    </div>
-                    <div style="padding-left: 10px;" fxFlex="10">
-                        <p>
-                            รหัสสินค้า
-                        </p>
-                    </div>
-                    <div style="padding-left: 10px;" fxFlex="10">
-                        <p>
-                            ประเภทสินค้า
-                        </p>
-                    </div>
-                    <div style="padding-left: 10px;" fxFlex="10">
-                        <p>
-                            จำนวน(คงเหลือ)
-                        </p>
-                    </div>
-                    <div style="padding-left: 10px;" fxFlex="10">
-                        <p>
-                            ราคา
-                        </p>
-                    </div>
-                    <div style="padding-left: 10px;" fxFlex="30">
-                        <p>
-                            วัน-เวลา
-                        </p>
-                    </div>
-                </div>
-                <div style="padding: 15px;" fxLayout="row" *ngFor="let item of productData;let i = index" fxFlex>
-                    <div style="padding-left: 25px;" fxFlex="10">
-                        <p>
-                            {{i+1}}
-                        </p>
-                    </div>
-                    <div style="padding-left: 10px;" fxFlex="20">
-                        <p>
-
-                            {{item.productName}}
-                        </p>
-                    </div>
-                    <div style="padding-left: 10px;" fxFlex="10">
-                        <p>
-                            {{item.productId}}
-                        </p>
-                    </div>
-                    <div style="padding-left: 10px;" fxFlex="10">
-                        <p>
-                            {{item.type}}
-                        </p>
-                    </div>
-                    <div style="padding-left: 10px;" fxFlex="10">
-                        <p>
-                            {{item.count}}
-                        </p>
-                    </div>
-                    <div style="padding-left: 10px;" fxFlex="10">
-                        <p>
-                            {{item.price}}
-                        </p>
-                    </div>
-                    <div style="padding-left: 25px;" fxFlex="10">
-                        <p>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <app-stock-table></app-stock-table>
         </div>
     </mat-drawer-content>
 </mat-drawer-container>
