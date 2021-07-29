@@ -4,6 +4,7 @@
 <mat-divider></mat-divider>
 <div class="table-list" fxLayout="row" fxLayoutAlign="space-around stretch">
   <div>
+    
     <ng-container matColumnDef="รหัสพนักงาน">
       <th mat-header-cell>รหัสพนักงาน</th>
       <td fxLayout="column" mat-cell *ngFor="let item of employeeData" class="magintop">
@@ -11,6 +12,7 @@
       </td>
     </ng-container>
   </div>
+
   <div>
     <ng-container matColumnDef="ชื่อ">
       <th mat-header-cell>ชื่อ</th>
@@ -19,6 +21,7 @@
       </td>
     </ng-container>
   </div>
+
   <div>
     <ng-container matColumnDef="นามสกุล">
       <th mat-header-cell>นามสกุล</th>
@@ -27,6 +30,7 @@
       </td>
     </ng-container>
   </div>
+  
   <div>
     <ng-container matColumnDef="เบอร์โทรศัพท์">
       <th mat-header-cell>เบอร์โทรศัพท์</th>
@@ -37,7 +41,35 @@
   </div>
 
   <div>
-    <ng-container matColumnDef="menu">
+    <ng-container matColumnDef="วันที่เข้าทำงาน">
+      <th mat-header-cell>วันที่เข้าทำงาน</th>
+      <td fxLayout="column" mat-cell *ngFor="let item of employeeData" class="magintop">
+        {{item.workDate}}
+      </td>
+    </ng-container>
+  </div>
+
+  <div>
+    <ng-container matColumnDef="เวลาเข้างาน">
+      <th mat-header-cell>เวลาเข้างาน</th>
+      <td fxLayout="column" mat-cell *ngFor="let item of employeeData" class="magintop">
+        {{item.timeIn}}
+      </td>
+    </ng-container>
+  </div>
+
+  <div>
+    <ng-container matColumnDef="เวลาออกงาน">
+      <th mat-header-cell>เวลาออกงาน</th>
+      <td fxLayout="column" mat-cell *ngFor="let item of employeeData" class="magintop">
+        {{item.timeOut}}
+      </td>
+    </ng-container>
+  </div>
+
+
+  <div>
+    <ng-container  class="menu" matColumnDef="menu">
       <th mat-header-cell>menu</th>
       <td fxLayout="column" mat-cell *ngFor="let item of employeeData">
 
@@ -54,3 +86,9 @@
   </div>
 
 </div>
+
+
+<mat-paginator #paginator
+[pageSize]="10"
+[pageSizeOptions]="[5, 10, 20]">
+</mat-paginator>

@@ -9,20 +9,20 @@
         <div fxLayout="row">
                 <button (click)="leftSide.toggle()" class="button-left" fxLayoutAlign="start">
                     <mat-icon>
-                        fast_forward
+                        chevron_right
                     </mat-icon>
                 </button>
 
                 <button (click)="rightSide.toggle()" class="button-right" fxLayoutAlign="end">
                     <mat-icon>
-                        fast_rewind
+                        chevron_left
                     </mat-icon>
                 </button>
         </div>
 
         <form>
-            <button mat-button (click)="openDialog('new')">Add</button>
-            <button mat-button (click)="openDialogLeft()">I/O</button>
+            <button mat-button (click)="openDialog('new')">เพิ่มข้อมูลพนักงาน</button>
+            <button mat-button (click)="openDialogLeft()">เข้างาน/ออกงาน</button>
         </form>
         <app-employee-table></app-employee-table>
     </mat-drawer-container>
