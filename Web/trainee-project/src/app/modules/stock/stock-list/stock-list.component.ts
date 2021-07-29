@@ -16,9 +16,14 @@ export class StockListComponent implements OnInit {
   constructor(private stockService: StockService) { }
 
   ngOnInit(): void {
+
     this.stockService.getCategories().subscribe((res: any) => {
       this.categoriesData = res.data;
       this.categoriesList = this.categoriesData;
+    })
+    this.stockService.getProduct().subscribe((res: any) => {
+      this.productData = res.data;
+      this.productList = this.productData;
     })
   }
 
@@ -41,6 +46,12 @@ export class StockListComponent implements OnInit {
       console.log(res.data);
       this.productList = res.data;
     });
+  }
+  getAll(){
+    this.stockService.getProduct().subscribe((res: any) => {
+      this.productData = res.data;
+      this.productList = this.productData;
+    })
   }
 
 }

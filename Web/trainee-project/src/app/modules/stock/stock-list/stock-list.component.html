@@ -20,7 +20,7 @@
                 <mat-form-field appearance="legacy">
                     <mat-label>หมวดหมู่สินค้า</mat-label>
                     <mat-select>
-                        <mat-option>ทั้งหมด</mat-option>
+                        <mat-option (click)="getAll()">ทั้งหมด</mat-option>
                         <mat-option *ngFor="let item of categoriesList" (click)="onChooseCatagory(item)">
                             {{item.name}}</mat-option>
                     </mat-select>

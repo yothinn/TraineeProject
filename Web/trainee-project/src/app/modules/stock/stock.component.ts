@@ -25,13 +25,6 @@ export class StockComponent implements OnInit {
   ngOnInit(): void {
     this.stockService.getProduct().subscribe((res: any) => {
       this.productData = res.data;
-      // console.log(this.productData)
-      // this.productData.filter((item, index) => {
-      //   console.log(item.productId)
-      //   return this.productData.indexOf(item.productName) === index
-      // })
-      // console.log(this.productData);
-      // this.productData = res.data;
       this.productList = this.productData;
     })
 
@@ -41,7 +34,6 @@ export class StockComponent implements OnInit {
   onChooseDate(): void {
     let date;
     date = this.range.value;
-    // console.log(JSON.parse(date.start))
     this.stockService.getProductByDate(date.start).subscribe((res: any) => {
       console.log(res);
     });
