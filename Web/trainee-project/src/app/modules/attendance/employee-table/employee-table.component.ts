@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { AttendanceService } from '../attendance.service';
 import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 
@@ -10,7 +12,13 @@ import { DialogAddComponent } from '../dialog-add/dialog-add.component';
   styleUrls: ['./employee-table.component.scss']
 })
 export class EmployeeTableComponent implements OnInit {
+
+ @ViewChild(MatPaginator) paginator: MatPaginator;
+  
   employeeData: any;
+  dataSource = new MatTableDataSource();
+       
+
 
   constructor(
     private attendanceService: AttendanceService,
