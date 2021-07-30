@@ -10,8 +10,7 @@ import { EmployeeListComponent } from './employeelist/employeelist.component';
 import { EmployeeTableComponent } from './employee-table/employee-table.component';
 import { DialogAddComponent } from './dialog-add/dialog-add.component';
 import { AttendanceDialogComponent } from './attendance-dialog/attendance-dialog.component';
-
-
+import { MatTimepickerModule } from 'mat-timepicker';
 
 
 
@@ -32,6 +31,7 @@ const routes: Routes = [
     MatCardModule,
     MatIconModule,
     SharedModule,
+    MatTimepickerModule
     
   ]
 })

@@ -7,19 +7,31 @@ var Schema = mongoose.Schema;
 var AttendancesSchema = new Schema({
     employeeId: {
         type: String,
-        required: 'Please fill a Attendances employId',
+       
     },
     name: {
         type: String,
-        required: 'Please fill a Attendances name',
+        
     },
     lastname: {
         type: String,
-        required: 'Please fill a Attendances lastname',
+       
     },
     tel: {
         type: String,
-        required: 'Please fill a Attendances tel',
+       
+    },
+    workDate: {
+        type: String,
+
+    },
+    timeIn: {
+        type: String,
+
+    },
+    timeOut: {
+        type: String,
+
     },
     created: {
         type: Date,
