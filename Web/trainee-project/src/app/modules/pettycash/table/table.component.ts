@@ -17,7 +17,7 @@ export class TableComponent implements OnInit {
 
   constructor(private pettyCashService: PettyCashService, public dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.pettyCashService.getList().subscribe((res: any) => {
       // console.log(res);
       this.PettyCashData = res.data;
@@ -27,7 +27,7 @@ export class TableComponent implements OnInit {
       });
     });
   }
-  openDialog(data) {
+  openDialog(data):void {
     const dialogRef = this.dialog.open(AddItemDialogComponent, {
       data:data
     });
