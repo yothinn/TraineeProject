@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { StockListComponent } from './stock-list/stock-list.component';
 import { StockTableComponent } from './stock-table/stock-table.component';
+import { StockReportDialogComponent } from './stock-report-dialog/stock-report-dialog.component';
 
 const routes: Routes = [
 
@@ -16,7 +17,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [StockComponent, StockListComponent, StockTableComponent],
+  declarations: [StockComponent, StockListComponent, StockTableComponent, StockReportDialogComponent],
   imports: [
     CommonModule,
     SharedModule,
