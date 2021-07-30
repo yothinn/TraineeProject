@@ -24,9 +24,15 @@
     "@angular/router": "~11.1.1",
     "debounce": "^1.2.1",
     "map": "^1.0.1",
+<<<<<<< HEAD
     "ng2-search-filter": "^0.5.1",
     "rxjs": "^6.6.7",
     "tolowercase": "^1.0.0",
+=======
+    "mat-timepicker": "^5.1.4",
+    "ngx-material-timepicker": "^5.5.3",
+    "rxjs": "~6.6.0",
+>>>>>>> df9edd6601a8507a3f0f86de78756e966b512e3a
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

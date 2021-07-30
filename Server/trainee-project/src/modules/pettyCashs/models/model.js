@@ -5,9 +5,6 @@ var Schema = mongoose.Schema;
 
 
 var PettycashsSchema = new Schema({
-    id:{
-        type: Number
-    },
     documentNo: {
         type: Number,
     },
