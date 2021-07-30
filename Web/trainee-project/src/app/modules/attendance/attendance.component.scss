@@ -1,5 +1,6 @@
 mat-drawer-container {
-    height: 99%;
+    height: 100%;
+    width: 100%;
     border: 1px solid black;
  }
 mat-drawer{
@@ -7,10 +8,15 @@ mat-drawer{
  }
 .profile{
     margin-top: 10px;
-    height: 80px;
+    height: 100%;
  }
  .button-right{
-     margin-left:93.6%;
+    // margin-inline-start: 87%;
+    padding: auto;
+    margin-left:91%;
+ }
+ .button-left{
+    padding: auto;
  }
  .middle{
      width: 100%;
