@@ -13,11 +13,11 @@ import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 })
 export class EmployeeTableComponent implements OnInit {
 
- @ViewChild(MatPaginator) paginator: MatPaginator;
-  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   employeeData: any;
   dataSource = new MatTableDataSource();
-       
+
 
 
   constructor(
@@ -31,7 +31,7 @@ export class EmployeeTableComponent implements OnInit {
       // console.log(this.employeeData)
     });
   }
-  
+
   openDialog(data1) {
     const dialogRef = this.dialog.open(DialogAddComponent, {
       data: data1
@@ -48,13 +48,32 @@ export class EmployeeTableComponent implements OnInit {
   }
 
   delete(dataDelete) {
+    if(confirm("Are you sure to delete ")) {
     this.attendanceService.deleteAttendance(dataDelete).subscribe((res: any) => {
       if (res) {
         this.attendanceService.getAttendance().subscribe((res: any) => {
           this.employeeData = res.data
         })
+      }else{
+        console.log("")
       }
     })
   }
 }
+}
 
+// openConfirmDialog(){
+  //   const dialogRef = this.dialog.open(ConfirmdialogComponent);
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     // console.log(`Dialog result: ${result}`)
+  //   });
+  //   dialogRef.afterClosed().subscribe(res => {
+  //     if (res) {
+  //       this.attendanceService.getAttendance().subscribe((res: any) => {
+  //         // console.log(res)
+  //         this.employeeData = res.data
+  //         // console.log(this.employeeData)
+  //       })
+  //     }
+  //   })
+  // }
