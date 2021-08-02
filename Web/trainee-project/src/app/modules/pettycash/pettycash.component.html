@@ -6,7 +6,7 @@
       <mat-icon class="search">search</mat-icon>
       <mat-form-field class="field-search" appearance="outline">
         <mat-label></mat-label>
-        <input matInput type="text" placeholder="search">
+        <input #searchList matInput placeholder="Search..." (keyup)="onKeyup()" >
       </mat-form-field>
     </mat-toolbar>
     <div *ngFor="let item of filterList; let i = index;" class="customer" align="center">
