@@ -1,8 +1,8 @@
 <mat-toolbar class="customer-details">
   <small>
-    <header class="user-details">รายละเอียดผู้ใช้</header>
-    <span>name</span>
-    <p>100,000฿</p>
+    <header class="user-details">รายละเอียดผุ้ใช้</header>
+    <span></span>
+    <p></p>
   </small>
   <button class="button-add" mat-button (click)="openDialog('new')">เพิ่มรายการ</button>
 </mat-toolbar>
@@ -14,7 +14,11 @@
     <ng-container matColumnDef="วันที่">
       <th mat-header-cell> วันที่ </th><br>
       <mat-divider></mat-divider>
+<<<<<<< HEAD
       <td fxLayout="column" mat-cell *ngFor="let item of filterList; let i = index;"> {{item.date | date:"dd / MM/ yy"}} <mat-divider>
+=======
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource; let i = index;"> {{item.date | date:"dd/MM/yy"}} <mat-divider>
+>>>>>>> d0859d919dcae1dfc3b316dc307f4d45b0f82285
         </mat-divider>
       </td>
     </ng-container>
@@ -23,7 +27,7 @@
     <ng-container matColumnDef="เลขที่เอกสาร">
       <th mat-header-cell> เลขที่เอกสาร </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of filterList; let i = index;">{{item.documentNo}}
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource; let i = index;">{{item.documentNo}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
@@ -32,7 +36,7 @@
     <ng-container matColumnDef="รายการ">
       <th mat-header-cell> รายการ </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of filterList; let i = index;"> {{item.list}}
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource; let i = index;"> {{item.list}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
@@ -41,7 +45,11 @@
     <ng-container matColumnDef="รับเข้า">
       <th mat-header-cell> รับเข้า </th><br>
       <mat-divider></mat-divider>
+<<<<<<< HEAD
       <td fxLayout="column" mat-cell *ngFor="let item of filterList; let i = index;" class="layout-number"> {{item.admit | number:"0.2"}}
+=======
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource; let i = index;"> {{item.admit | number:"0.2"}}
+>>>>>>> d0859d919dcae1dfc3b316dc307f4d45b0f82285
         <mat-divider></mat-divider>
       </td>
     </ng-container>
@@ -50,7 +58,11 @@
     <ng-container matColumnDef="จ่าย">
       <th mat-header-cell> จ่าย </th><br>
       <mat-divider></mat-divider>
+<<<<<<< HEAD
       <td fxLayout="column" mat-cell *ngFor="let item of filterList; let i = index;" class="layout-number"> {{item.pay | number:"0.2"}}
+=======
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource; let i = index;"> {{item.pay | number:"0.2"}}
+>>>>>>> d0859d919dcae1dfc3b316dc307f4d45b0f82285
         <mat-divider></mat-divider>
       </td>
     </ng-container>
@@ -59,10 +71,16 @@
     <ng-container matColumnDef="สถานที่ใช้งาน">
       <th mat-header-cell> สถานที่ใช้งาน </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of filterList; let i = index;"> {{item.placeOfUse}}
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource; let i = index;"> {{item.placeOfUse}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
   </div>
 </div>
+<<<<<<< HEAD
 <mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons></mat-paginator>
+=======
+<!-- <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true" [length]="totalSize"
+    [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
+</mat-paginator> -->
+>>>>>>> d0859d919dcae1dfc3b316dc307f4d45b0f82285
