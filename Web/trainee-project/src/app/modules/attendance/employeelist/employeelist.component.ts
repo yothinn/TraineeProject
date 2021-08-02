@@ -32,7 +32,9 @@ export class EmployeeListComponent implements OnInit {
     let filter = this.searchEle.nativeElement.value.toLowerCase();
     console.log(filter)
     this.filterList = this.employeeData.filter(res =>{
+      console.log(res)
      return res.name.toLowerCase().startsWith(filter);
+     
     });
   }
   

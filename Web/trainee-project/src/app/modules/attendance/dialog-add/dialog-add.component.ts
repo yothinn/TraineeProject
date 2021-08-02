@@ -27,13 +27,13 @@ export class DialogAddComponent implements OnInit {
     } else {
       this.userForm = this.createForm(this.data);
 
-    };
+    }
   }
 
   createForm(data) {
     // console.log(data)
     return this.fb.group({
-      _id:[data._id],
+      _id: [data._id],
       employeeId: [data.employeeId],
       name: [data.name],
       lastname: [data.lastname],
@@ -49,24 +49,24 @@ export class DialogAddComponent implements OnInit {
           if (res) {
             this.dialogRef.close(res);
           }
-        });
+        })
     } else {
       this.attendanceService.createAttendance(this.userForm.value)
         .subscribe(res => {
           if (res) {
             this.dialogRef.close(res);
           }
-        });
+        })
     }
+
   }
 
   onbackClick() {
     this.dialogRef.close();
   };
 
+ 
+
 }
-      //this.attendanceService.createattendan().subscribe(
-      //     success => alert("Done"),
-      //     error => alert(error)
-      //   )
+
 

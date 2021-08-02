@@ -48,11 +48,12 @@ export class AttendanceComponent implements OnInit {
   toggleRight(): void {
     this.right.toggle();
   }
-  openDialogLeft() {
+  openDialogAttendance() {
     const dialogRef = this.dialog.open(AttendanceDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`)
     });
+    
   }
 }
 

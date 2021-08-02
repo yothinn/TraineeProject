@@ -1,33 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
 import { PettyCashService } from './pettyCash.service';
-import { UpdateCuctomerComponent } from './update-cuctomer/update-cuctomer.component';
+
 
 
 @Component({
   selector: 'app-pettyCash',
   templateUrl: './pettyCash.component.html',
-  styleUrls: ['./pettyCash.component.scss']
+  styleUrls: ['./pettyCash.component.scss'],
+  providers: [PettyCashService]
 })
 export class PettyCashComponent implements OnInit {
-  customerdata: any;
+  @ViewChild('searchList') searchEle:ElementRef;
   pattyCashData: any;
   filterList: any[];
-  
+  searchList:any[];
+
+
+
   constructor(private pettyCashService: PettyCashService, public dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.pettyCashService.getList().subscribe((res: any) => {
       this.pattyCashData = res.data;
       this.filterList = this.pattyCashData.filter(res => {
         return res.name;
       })
-
+      this.searchList = this.filterList
     })
   }
 
-  openDialog(data) {
+  openDialog(data):void {
     const dialogRef = this.dialog.open(AddUserDialogComponent, {
       data: data
     });
@@ -39,8 +44,8 @@ export class PettyCashComponent implements OnInit {
     })
   }
 
-  openDialog2(data) {
-    const dialogRef = this.dialog.open(UpdateCuctomerComponent, {
+  openDialog2(data):void {
+    const dialogRef = this.dialog.open(AddUserDialogComponent, {
       data: data
     });
     dialogRef.afterClosed().subscribe(res => {
@@ -51,7 +56,16 @@ export class PettyCashComponent implements OnInit {
       }
     })
   }
-  deleteList(dataDelete) {
+  deleteList(dataDelete):void {
     this.pettyCashService.deleteList(dataDelete).subscribe();
+  }
+
+  onKeyup() {
+    let filter = this.searchEle.nativeElement.value.toLowerCase();
+    console.log(filter)
+    this.filterList = this.searchList.filter(res =>{
+      console.log(res)
+      return res.name.toLowerCase().startsWith(filter);
+    });
   }
 }

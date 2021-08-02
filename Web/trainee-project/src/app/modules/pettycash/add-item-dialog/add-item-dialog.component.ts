@@ -31,7 +31,7 @@ export class AddItemDialogComponent implements OnInit {
     });
   }
 
-  onSubmit(){
+  onSubmit():void{
     this.pettyCashService.createCustomer(this.customerForm.value).subscribe();
   }
 }
