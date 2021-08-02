@@ -16,13 +16,12 @@ export class PettyCashService {
   createCustomer(body): Observable<any> {
     return this.http.post('http://localhost:3000/api/pettycashs', body);
   }
-  updateCustomer(body): Observable<any>{
+  updateCustomer(body): Observable<any> {
     console.log(body)
-    return this.http.put(`http://localhost:3000/api/pettycashs/${body._id}`,body);
+    return this.http.put(`http://localhost:3000/api/pettycashs/${body._id}`, body);
   }
-  deleteList(body): Observable<any>{
+  deleteList(body): Observable<any> {
     console.log(body)
-    return this.http.delete(`http://localhost:3000/api/pettycashs/${body._id}`,body)
+    return this.http.delete(`http://localhost:3000/api/pettycashs/${body._id}`, body)
   }
-  
 }
