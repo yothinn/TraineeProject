@@ -30,6 +30,7 @@ export class StockListComponent implements OnInit {
   onSearch(): void {
     let fillData = this.searchRef.nativeElement.value.toLowerCase();
     this.productList = this.productData.filter(res => {
+      console.log(res);
       return res.productName.toLowerCase().startsWith(fillData);
     });
   }
@@ -41,13 +42,17 @@ export class StockListComponent implements OnInit {
   //   });
   // }
 
+  onChooseList(item: any): void {
+    this.stockService.getProductById(item._id)
+  }
+
   onChooseCatagory(item): void {
     this.stockService.getProductByCategory(item.id).subscribe((res: any) => {
       console.log(res.data);
       this.productList = res.data;
     });
   }
-  getAll(){
+  getAll() {
     this.stockService.getProduct().subscribe((res: any) => {
       this.productData = res.data;
       this.productList = this.productData;

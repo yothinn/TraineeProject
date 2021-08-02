@@ -8,23 +8,20 @@ import { StockService } from '../stock.service';
 })
 export class StockTableComponent implements OnInit {
   productData: any;
-  productList: any;
 
 
   constructor(private stockService: StockService) { }
 
   ngOnInit(): void {
-    this.stockService.getProduct().subscribe((res: any) => {
-      this.productData = res.data;
-      // console.log(this.productData)
-      // this.productData.filter((item, index) => {
-      //   console.log(item.productId)
-      //   return this.productData.indexOf(item.productName) === index
-      // })
-      // console.log(this.productData);
-      // this.productData = res.data;
-      this.productList = this.productData;
+    this.stockService.onDataChangedObservable$
+    .subscribe((res)=>{
+      this.productData = res
+      console.log(res);
     })
+    // this.stockService.getProduct().subscribe((res: any) => {
+    //   this.productData = res.data;
+    //   this.productList = this.productData;
+    // })
   }
 
 }

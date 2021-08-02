@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockService {
-  private onDataChanged$ = new BehaviorSubject<any[]>([]);
+
+  
+  private onDataChanged$ = new Subject();
   public onDataChangedObservable$ = this.onDataChanged$.asObservable();
 
   constructor(private http: HttpClient) { }
@@ -16,11 +18,15 @@ export class StockService {
   }
 
   getProduct(): Observable<any> {
-    return this.http.get('http://localhost:3000/api/products');
+    return this.http.get('http://localhost:3000/api/products')
   }
 
-  getProductById(id: string): Observable<any> {
-    return this.http.get(`http://localhost:3000/api/products?productName=${id}`);
+  getProductById(id: string) {
+    console.log(id);
+    this.http.get(`http://localhost:3000/api/products/${id}`)
+      .subscribe((res: any) => {
+        this.onDataChanged$.next(res.data)
+      })
   }
 
   getProductByCategory(id): Observable<any> {

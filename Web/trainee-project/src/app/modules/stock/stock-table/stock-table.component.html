@@ -36,41 +36,41 @@
             </p>
         </div>
     </div>
-    <div style="padding: 15px;" fxLayout="row" *ngFor="let item of productData;let i = index" fxFlex>
+    <div style="padding: 15px;" fxLayout="row"  fxFlex>
         <div style="padding-left: 25px;" fxFlex="10">
-            <p>
+            <!-- <p>
                 {{i+1}}
-            </p>
+            </p> -->
         </div>
         <div style="padding-left: 10px;" fxFlex="20">
             <p>
 
-                {{item.productName}}
+                {{productData?.productName}}
             </p>
         </div>
         <div style="padding-left: 10px;" fxFlex="10">
             <p>
-                {{item.productId}}
+                {{productData?.productId}}
             </p>
         </div>
         <div style="padding-left: 10px;" fxFlex="10">
             <p>
-                {{item.type}}
+                {{productData?.type}}
             </p>
         </div>
         <div style="padding-left: 10px;" fxFlex="10">
             <p>
-                {{item.count}}
+                {{productData?.count}}
             </p>
         </div>
         <div style="padding-left: 10px;" fxFlex="10">
             <p>
-                {{item.price}}
+                {{productData?.price}}
             </p>
         </div>
         <div style="padding-left: 10px;" fxFlex="10">
             <p>
-                {{item.created | date}}
+                {{productData?.created | date}}
             </p>
         </div>
     </div>
