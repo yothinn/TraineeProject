@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { StockListComponent } from './stock-list/stock-list.component';
 import { StockTableComponent } from './stock-table/stock-table.component';
 import { StockReportDialogComponent } from './stock-report-dialog/stock-report-dialog.component';
+import { StockManageDialogComponent } from './stock-manage-dialog/stock-manage-dialog.component';
 
 const routes: Routes = [
 
@@ -17,7 +18,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [StockComponent, StockListComponent, StockTableComponent, StockReportDialogComponent],
+  declarations: [StockComponent, StockListComponent, StockTableComponent, StockReportDialogComponent, StockManageDialogComponent],
   imports: [
     CommonModule,
     SharedModule,
