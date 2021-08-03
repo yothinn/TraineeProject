@@ -1,13 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PettyCashService {
-  constructor(private http: HttpClient) { }
+  dataCenter: Subject<any>;
+  constructor(private http: HttpClient) { 
+    this.dataCenter = new Subject();
+  }
 
+  getDataCenter(): Observable<any>{
+    return this.dataCenter.asObservable();
+
+  }
+  onClickCard(data: any){
+    this.dataCenter.next(data);
+    console.log(data)
+  }
 
 
   getList(): Observable<any> {

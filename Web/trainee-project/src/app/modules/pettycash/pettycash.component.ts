@@ -68,4 +68,7 @@ export class PettyCashComponent implements OnInit {
       return res.name.toLowerCase().startsWith(filter);
     });
   }
+  onClick(data){
+    this.pettyCashService.onClickCard(data)
+  }
 }

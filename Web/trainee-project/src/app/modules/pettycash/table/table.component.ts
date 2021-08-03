@@ -28,11 +28,9 @@ export class TableComponent implements OnInit {
   constructor(private pettyCashService: PettyCashService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.pettyCashService.getList().subscribe((res: any)=>{
-      this.PettyCashData = res.data;
-      this.filterList = this.PettyCashData.filter(res => {
-        return res.documentNo;
-      });
+    this.pettyCashService.getDataCenter().subscribe((res: any)=>{
+      this.PettyCashData = res;
+
     })
     // this.getArray();
   }
