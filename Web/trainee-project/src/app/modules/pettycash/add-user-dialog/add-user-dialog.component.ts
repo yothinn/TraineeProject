@@ -43,7 +43,7 @@ export class AddUserDialogComponent implements OnInit {
     } else {
       this.pettyCashService.createCustomer(this.customerForm.value)
         .subscribe();
-    }
+    }window.location.reload();
   }
-  
+
 }

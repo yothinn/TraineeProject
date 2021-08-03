@@ -13,10 +13,10 @@ import { PettyCashService } from './pettyCash.service';
   providers: [PettyCashService]
 })
 export class PettyCashComponent implements OnInit {
-  @ViewChild('searchList') searchEle:ElementRef;
+  @ViewChild('searchList') searchEle: ElementRef;
   pattyCashData: any;
   filterList: any[];
-  searchList:any[];
+  searchList: any[];
 
 
 
@@ -32,7 +32,7 @@ export class PettyCashComponent implements OnInit {
     })
   }
 
-  openDialog(data):void {
+  openDialog(data): void {
     const dialogRef = this.dialog.open(AddUserDialogComponent, {
       data: data
     });
@@ -44,7 +44,7 @@ export class PettyCashComponent implements OnInit {
     })
   }
 
-  openDialog2(data):void {
+  openDialog2(data): void {
     const dialogRef = this.dialog.open(AddUserDialogComponent, {
       data: data
     });
@@ -56,14 +56,26 @@ export class PettyCashComponent implements OnInit {
       }
     })
   }
-  deleteList(dataDelete):void {
-    this.pettyCashService.deleteList(dataDelete).subscribe();
+  deleteList(dataDelete): void {
+    if (confirm("Are you sure to delete ")) {
+      this.pettyCashService.deleteList(dataDelete).subscribe((res: any) => {
+        if (res) {
+          this.pettyCashService.getList().subscribe((res: any) => {
+            this.pattyCashData = res.data
+          })
+        } else {
+          console.log("")
+        }
+      })
+    } window.location.reload();
+    // this.pettyCashService.deleteList(dataDelete).subscribe();
+
   }
 
   onKeyup() {
     let filter = this.searchEle.nativeElement.value.toLowerCase();
     console.log(filter)
-    this.filterList = this.searchList.filter(res =>{
+    this.filterList = this.searchList.filter(res => {
       console.log(res)
       return res.name.toLowerCase().startsWith(filter);
     });

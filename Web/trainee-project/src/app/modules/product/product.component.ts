@@ -5,8 +5,6 @@ import { CategoriesDialogComponent } from './categories-dialog/categories-dialog
 import { ProductDialogDetailsComponent } from './product-dialog-details/product-dialog-details.component';
 import { ProductService } from './product.service';
 
-
-
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -22,12 +20,10 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getProductData().subscribe((res: any) => {
-      console.log(res.data)
       this.productData = res.data
     })
 
     this.dataService.getProductCategories().subscribe((res: any) => {
-      console.log(res.data)
       this.productCategories = res.data
     })
   }
@@ -50,6 +46,7 @@ export class ProductComponent implements OnInit {
   }
 
   delete(dataDelete: any): void {
+    if (confirm("คุณยืนยันที่จะลบหรือไม่")) {
     this.dataService.deleteProduct(dataDelete).subscribe((res: any) => {
       if (res) {
         this.dataService.getProductData().subscribe((res: any) => {
@@ -57,13 +54,50 @@ export class ProductComponent implements OnInit {
         })
       }
     })
+    }else{
+      console.log("cencel")
+    }
   }
 
-  openDialogCategories(): void {
+  openDialogCategories(dataCategories?: any): void {
+    console.log(dataCategories);
     const dialogRef = this.dialog.open(CategoriesDialogComponent, {
-      width: "900px",
-      height: "535px",
+      width: "473px",
+      height: "355px",
+      data: dataCategories
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataService.getProductCategories().subscribe((res: any) => {
+          this.productCategories = res.data
+        })
+      }
+    })
+  }
+
+  deleteCategories(dataDelete: any): void { 
+    if (confirm("คุณยืนยันที่จะลบหรือไม่")) {
+      this.dataService.deleteCategories(dataDelete).subscribe((res: any) => {
+        if (res) {
+          this.dataService.getProductCategories().subscribe((res: any) => {
+            this.productCategories = res.data
+          })
+        }
+      })
+    } else {
+      console.log("cencel")
+    }
+  }
+
+  filterData(category: any) {
+    console.log(category)
+    this.dataService.getProductData().subscribe((res: any) => {
+      this.productData = res.data.filter((res) => {
+        return res.type === category
+       
+      })
+    })
   }
 
 }

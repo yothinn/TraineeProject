@@ -4,7 +4,17 @@
     <mat-form-field class="font-category">
       <mat-label>หมวดหมู่สินค้า</mat-label>
       <mat-select class="font">
-        <mat-option *ngFor="let item of productCategories;let i = index" [value]="i">{{item.name}}</mat-option>
+        <mat-option [value]="-1">ทั้งหมด</mat-option>
+        <div fxLayout="row" *ngFor="let item of productCategories;let i = index">
+        <mat-option class="mat-option-name" [value]="item.name" (click)="filterData(item)">{{item.name}}</mat-option>
+         <div class="icon" >
+        <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="openDialogCategories(item)">edit
+        </mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="deleteCategories(item)">delete
+        </mat-icon>
+        </div> 
+        </div>
+        <mat-option (click)="openDialogCategories()">เพิ่ม</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -15,7 +25,6 @@
     </mat-form-field>
 
     <div class="button-add">
-      <button mat-button color="primary" (click)="openDialogCategories()">จัดการหมวดหมู่</button>
       <button mat-button color="primary" (click)="openDialogProduct()">เพิ่มสินค้า</button>
     </div>
   </mat-toolbar>
@@ -28,8 +37,8 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu class="font-menu" #menu="matMenu">
-          <button mat-menu-item>
-            <mat-icon (click)="delete(item)">deletel</mat-icon><span>ลบ</span>
+          <button mat-menu-item (click)="delete(item)" >
+            <mat-icon >deletel</mat-icon><span>ลบ</span>
           </button>
         </mat-menu>
         <div (click)="openDialogProduct(item)">

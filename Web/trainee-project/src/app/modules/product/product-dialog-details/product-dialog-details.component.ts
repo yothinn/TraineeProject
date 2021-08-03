@@ -20,24 +20,23 @@ export class ProductDialogDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getProductCategories().subscribe((res: any) => {
-      // console.log(res.data)
-      this.categories = res.data
+      this.categories = res.data;
     })
 
     if (this.data?._id) {
       this.productForm = this.createForm(this.data);
-    } else { //if (this.data == null) เช็ค null เเล้ว เซ้คให้เป็นค่าว่างก่อนส่งเข้า function
-      // this.productForm = this.createForm(this.data);
+    } else {
+      this.data = [];                            //if (this.data == null) เช็ค null เเล้ว เซ้คให้เป็นค่าว่างก่อนส่งเข้า function
+      this.productForm = this.createForm(this.data); // this.productForm = this.createForm(this.data);
     }
   }
 
   createForm(data: any) {
-    // console.log(data)
     return this.fb.group({
       _id: [data._id],
       productId: [data.productId],
       productName: [data.productName],
-      category: [data.category],
+      type: [data.type],
       description: [data.description],
       count: [data.count],
       price: [data.price]
