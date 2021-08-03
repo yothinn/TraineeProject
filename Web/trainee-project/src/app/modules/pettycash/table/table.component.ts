@@ -20,8 +20,8 @@ export class TableComponent implements OnInit {
   filterList: any[];
   pageEvent: any;
   array: any;
-  dataSource: any;    
-  pageSize = 5;
+  dataSource: any;
+  pageSize = 2;
   currentPage = 0;
   totalSize = 0;
 
@@ -34,7 +34,7 @@ export class TableComponent implements OnInit {
         return res.documentNo;
       });
     })
-    // this.getArray();
+    this.getArray();
   }
   openDialog(data): void {
     const dialogRef = this.dialog.open(AddItemDialogComponent, {
@@ -46,30 +46,30 @@ export class TableComponent implements OnInit {
       }
     })
   }
-  //
-  // handlePage(pagin: any):void {
-  //   this.currentPage = pagin.pageIndex;
-  //   this.pageSize = pagin.pageSize;
-  //   this.iterator();
-  // }
-  
-  // getArray():void{
-  //   this.pettyCashService.getList()
-  //     .subscribe((res) => {
-  //       this.dataSource = new MatTableDataSource<Element>(this.filterList);
-  //       this.dataSource.paginator = this.paginator;
-  //       this.array = this.filterList;
-  //       this.totalSize = this.array.length;
-  //       this.iterator();
-  //       console.log(this.dataSource)
-  //     });
-  // }
-  
-  // iterator():void {
-  //   const end = (this.currentPage + 1) * this.pageSize;
-  //   const start = this.currentPage * this.pageSize;
-  //   const part = this.array.slice(start, end);
-  //   this.dataSource = part;
-  // }
- 
+
+  handlePage(pagin: any):void {
+    this.currentPage = pagin.pageIndex;
+    this.pageSize = pagin.pageSize;
+    this.iterator();
+  }
+
+  getArray():void{
+    this.pettyCashService.getList()
+      .subscribe((res) => {
+        this.dataSource = new MatTableDataSource<Element>(this.filterList);
+        this.dataSource.paginator = this.paginator;
+        this.array = this.filterList;
+        this.totalSize = this.array.length;
+        this.iterator();
+        console.log(this.dataSource)
+      });
+  }
+
+  iterator():void {
+    const end = (this.currentPage + 1) * this.pageSize;
+    const start = this.currentPage * this.pageSize;
+    const part = this.array.slice(start, end);
+    this.dataSource = part;
+  }
+
 }

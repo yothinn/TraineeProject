@@ -1,6 +1,8 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -9,38 +11,49 @@ import { ProductService } from '../product.service';
   styleUrls: ['./categories-dialog.component.scss']
 })
 export class CategoriesDialogComponent implements OnInit {
-  productCategories: any;
-  category = "";
-  dataAddCategory: any;
-  name: any;
+  categoriesForm: FormGroup;
+  input: any = "disabled";
+  isDisabled: boolean = true;
+
   constructor(private dataService: ProductService,
-    public dialogRef: MatDialogRef<CategoriesDialogComponent>) { }
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<CategoriesDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
-    this.dataService.getProductCategories().subscribe((res: any) => {
-      console.log(res.data);
-      this.productCategories = res.data;
+
+    if (this.data?._id) {
+      this.categoriesForm = this.createForm(this.data);
+    } else {
+      this.data = [{ _id: "" }, { id: ""}, { name: ""}];    //เเก้ค่าว่าง     object                       //if (this.data == null) เช็ค null เเล้ว เซ้คให้เป็นค่าว่างก่อนส่งเข้า function
+      this.categoriesForm = this.createForm(this.data); // this.productForm = this.createForm(this.data);
+    }
+  }
+
+  createForm(data: any) {
+    return this.fb.group({
+      _id: [data?._id ], // ||""
+      id: [ data?.id ],
+      name: [data?.name]
     })
   }
 
-  ediCalories(dataCategory: any): void {
-    this.dataService.getProductCategoriesById(dataCategory._id).subscribe((res: any) => {
-      this.category = res.data.name;
-      console.log(this.category);
-    })
-  }
+  addCategories(): void {
+    if (this.data._id) {
+      this.dataService.editCategories(this.categoriesForm.value).subscribe(res => {
+        if (res) {
+          this.dialogRef.close(res);
+        }
+      })
+    }
+    else {
+      this.dataService.createCategoriesData(this.categoriesForm.value).subscribe(res => {
+        if (res) {
+          this.dialogRef.close(res);
+        }
+      })
 
-  confirmEdit(body: any): void {
-    console.log(body);
-    // this.dataService.editCategories(this.category).subscribe(res => {
-    // if (res) {
-    //   this.dialogRef.close(res);
-    // }
-    // })
-  }
-
-  confirmAdd(): void {
-
+    }
   }
 
   closeDialog(): void {
