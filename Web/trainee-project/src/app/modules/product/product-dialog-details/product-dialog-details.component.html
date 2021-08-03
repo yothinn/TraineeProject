@@ -22,14 +22,16 @@
           <mat-label>ชื่อสินค้า</mat-label>
           <input matInput formControlName="productName">
         </mat-form-field>
+
         <mat-form-field  class="full-width">
           <mat-label>หมวดหมู่สินค้า</mat-label>
-          <input matInput formControlName="category"  [matAutocomplete]="autoProductCode">
+          <input matInput formControlName="type"  [matAutocomplete]="autoProductCode">
           <mat-autocomplete #autoProductCode=matAutocomplete>
             <mat-option *ngFor="let item of categories;" [value]="item.name">
               {{item.name}}</mat-option>
           </mat-autocomplete>
         </mat-form-field>
+
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>รายละเอียดสินค้า </mat-label>
           <textarea class="text-area" matInput formControlName="description"></textarea>

@@ -37,5 +37,12 @@ export class ProductService {
     return this.http.put(`http://localhost:3000/api/categories/${body._id}`, body);
   }
 
+  createCategoriesData(body:any):Observable<any> {
+    return this.http.post(`http://localhost:3000/api/categories`, body);
+  }
+
+  deleteCategories(body:any):Observable<any> {
+    return this.http.delete(`http://localhost:3000/api/categories/${body._id}`, body);
+  }
 
 }

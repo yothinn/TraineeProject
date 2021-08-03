@@ -1,60 +1,34 @@
-<div fxLayout="column" >
-    <div fxLayout="row" >
-      <mat-toolbar class = "toolbar" fxLayoutAlign="center" >
-        <p>จัดการหมวดหมู่สินค้า</p>
-      </mat-toolbar>
-      <div class="btn" fxLayoutAlign="end">
-        <button  (click)="closeDialog()" >X</button>
-      </div>
-    </div>
-    <div fxLayout="row">
-      <mat-card class="card">
-        <mat-card class="card-categories">
-          <table matSort >  <!--ฝั้่งซ้าย-->
-            <tr>
-              <th mat-sort-header="name" >รายชื่อหมวดหมู่สินค้า</th>
-              <th mat-sort-header="calories">เเก้ไข</th>
-              <th mat-sort-header="fat">ลบ</th>
-            </tr>
-            <tr *ngFor="let item of productCategories" >   
-              <td>{{item.name}}</td>
-              <td><mat-icon aria-hidden="false" aria-label="Example home icon" (click)="ediCalories(item)">edit</mat-icon></td>
-              <td><mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon></td>
-            </tr>
-          </table>
-        </mat-card>
-      </mat-card>
-      <mat-card class="card">
-        <!-- ฝั่งขวา -->
-          <mat-card class="card-head" ><!-- เพิ่ม -->
-          <label class="font-head">เพิ่มหมวดหมู่</label>
-          </mat-card>
-          <mat-card class="card-add"> 
-            <label>ชื่อหมวดหมู่: </label>
-            <mat-form-field appearance="fill">
-              <mat-label>กรอกชื่อหมวดหมู่</mat-label>
-              <input matInput>
-            </mat-form-field>
-            <mat-card-actions class="card-actions" >
-              <button class="btn-confirm" mat-raised-button color="primary" (click)="confirmAdd()">ยืนยัน</button>
-              <button class="btn-cancel" mat-raised-button color="primary" (click)="closeDialog()">ยกเลิก</button>
-            </mat-card-actions>
-          </mat-card>
-          <mat-card class="card-head"><!--เเก้ไข-->
-            <label class="font-head-edit">เเก้ไขหมวดหมู่</label>
-          </mat-card>
-          <mat-card class="card-add"> 
-            <label>ชื่อหมวดหมู่: </label>
-            <mat-form-field class="input-text" appearance="fill">
-              <mat-label>เเก้ไขชื่อหมวดหมู่</mat-label>
-              <input matInput [value]= "category" > 
-            </mat-form-field>
-            <mat-card-actions class="card-actions" >
-              <button class="btn-confirm" mat-raised-button color="primary" (click)="confirmEdit(category)" >ยืนยัน</button>
-              <button class="btn-cancel" mat-raised-button color="primary" (click)="closeDialog()">ยกเลิก</button>
-            </mat-card-actions>
-          </mat-card>
-      </mat-card>
+<div fxLayout="column">
+  <div fxLayout="row">
+    <mat-toolbar class="toolbar" fxLayoutAlign="center">
+      <p>จัดการหมวดหมู่สินค้า</p>
+    </mat-toolbar>
+    <div class="btn" fxLayoutAlign="end">
+      <button (click)="closeDialog()">X</button>
     </div>
   </div>
   
+  <div fxLayout="row">
+    <mat-card class="card">
+      <mat-card class="card-categories">
+        <form [formGroup]="categoriesForm">
+          <label class="font-code">รหัสหมวดหมู่:</label>
+          <mat-form-field appearance="fill">
+            <mat-label>กรอกรหัสหมวดหมู่</mat-label>
+            <input matInput  formControlName="id" >
+          </mat-form-field>
+          <br>
+          <label class="font-name">ชื่อหมวดหมู่:</label>
+          <mat-form-field appearance="fill">
+            <mat-label>กรอกชื่อหมวดหมู่</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+          <mat-card-actions class="card-actions">
+            <button class="btn-confirm" mat-raised-button color="primary" (click)="addCategories()">ยืนยัน</button>
+            <button class="btn-cancel" mat-raised-button color="primary" (click)="closeDialog()">ยกเลิก</button>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+    </mat-card>
+  </div>
+</div>
