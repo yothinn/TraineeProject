@@ -7,11 +7,13 @@ import { AttendanceService } from '../attendance.service';
   templateUrl: './employeelist.component.html',
   styleUrls: ['./employeelist.component.scss']
 })
-export class EmployeelistComponent implements OnInit {
- @ViewChild('search') searchEle: ElementRef;
+export class EmployeeListComponent implements OnInit {
+
+  @ViewChild('search') searchEle: ElementRef;
   
+  employeeListData: any;
   employeeData: any;
-  fillterList: any[];
+  filterList: any[];
   
 
   constructor(private attendanceService: AttendanceService) { }
@@ -19,20 +21,29 @@ export class EmployeelistComponent implements OnInit {
   ngOnInit(): void {
     this.attendanceService.getAttendance().subscribe((res:any)=>{
       // console.log(res)
-      this.employeeData = res.data
+      this.employeeData = res.data;
       // console.log(this.employeeData)
-      this.fillterList = this.employeeData
+      this.filterList = this.employeeData;
      
        
-    })
+    });
   }
   onKeyup(event) {
     let filter = this.searchEle.nativeElement.value.toLowerCase();
     console.log(filter)
-    this.fillterList = this.employeeData.filter(res =>{
+    this.filterList = this.employeeData.filter(res =>{
+      console.log(res)
      return res.name.toLowerCase().startsWith(filter);
-    }) 
+     
+    });
   }
   
+  onChooseEmployee(item) {
+    this.attendanceService.getEmployeeById(item._id).subscribe((res: any) => {
+      console.log(res);
+      this.employeeListData = res.data;
+      // return this.employeeListData(item.id)
+    });
+  }
 
 }

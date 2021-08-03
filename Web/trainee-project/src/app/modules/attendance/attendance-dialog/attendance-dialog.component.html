@@ -1,15 +1,37 @@
-<h2 mat-dialog-title>เพื่มรายการ</h2>
+<h2 mat-dialog-title>เข้างาน-ออกงาน</h2>
 <mat-dialog-content fxLayout="column" fxLayoutAlign="space-around ">
 
-  <mat-form-field  appearance="fill">
-    <mat-label>
-        Choose a date
-    </mat-label>
 
-  <input matInput [matDatepicker]="picker">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
+<form [formGroup]="workDateForm">
+
+   <div fxLayout="column">
+   
+   <mat-form-field appearance="fill">
+    <mat-label>เลือกรายชื่อพนักงาน</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option value="option1" *ngFor="let item of employeeData">{{item.name}} {{item.lastname}}</mat-option>
+    </mat-select>
+  </mat-form-field> 
+
+  <mat-form-field>
+   <input matInput  [matDatepicker]="picker" placeholder="กรุณาเลือกวันที่">
+   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+   <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+
+  <mat-form-field>
+    <div fxLayout="row">
+      <input matTimepicker placeholder="กรุณาเลือกเวลา" >
+      <mat-icon>schedule</mat-icon>
+    </div>
+ </mat-form-field>
+ 
+</div>
+<div fxLayout="row">
+ <button class="btn-in"  >เข้างาน</button>
+ <button class="btn-out" >ออกงาน</button>
+</div>
+</form>
 
 
 </mat-dialog-content>

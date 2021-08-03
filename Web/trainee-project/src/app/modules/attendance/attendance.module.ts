@@ -5,13 +5,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { EmployeeprofileComponent } from './employeeprofile/employeeprofile.component';
-import { EmployeelistComponent } from './employeelist/employeelist.component';
+import { EmployeeProfileComponent } from './employeeprofile/employeeprofile.component';
+import { EmployeeListComponent } from './employeelist/employeelist.component';
 import { EmployeeTableComponent } from './employee-table/employee-table.component';
 import { DialogAddComponent } from './dialog-add/dialog-add.component';
 import { AttendanceDialogComponent } from './attendance-dialog/attendance-dialog.component';
-
-
+import { MatTimepickerModule } from 'mat-timepicker';
 
 
 
@@ -24,7 +23,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AttendanceComponent,EmployeeprofileComponent,EmployeelistComponent, EmployeeTableComponent,DialogAddComponent, AttendanceDialogComponent],
+  declarations: [AttendanceComponent,EmployeeProfileComponent,EmployeeListComponent, EmployeeTableComponent,DialogAddComponent, AttendanceDialogComponent],
   
   imports: [
     CommonModule,
@@ -32,6 +31,7 @@ const routes: Routes = [
     MatCardModule,
     MatIconModule,
     SharedModule,
+    MatTimepickerModule
     
   ]
 })

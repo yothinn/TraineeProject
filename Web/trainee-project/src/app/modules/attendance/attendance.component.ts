@@ -35,9 +35,9 @@ export class AttendanceComponent implements OnInit {
       if (res) {
         this.attendanceService.getAttendance().subscribe((res: any) => {
           // console.log(res)
-          this.employeeData = res.data
+          this.employeeData = res.data;
           // console.log(this.employeeData)
-        })
+        });
       }
     })
   }
@@ -48,11 +48,12 @@ export class AttendanceComponent implements OnInit {
   toggleRight(): void {
     this.right.toggle();
   }
-  openDialogLeft() {
+  openDialogAttendance() {
     const dialogRef = this.dialog.open(AttendanceDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`)
     });
+    
   }
 }
 
