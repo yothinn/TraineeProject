@@ -21,9 +21,11 @@ export class StockService {
     return this.http.get('http://localhost:3000/api/products');
   }
 
-  getProductById(id: string): void {
-    this.http.get(`http://localhost:3000/api/products/${id}`)
+  getStockById(id: string): void {
+    console.log(id);
+    this.http.get(`http://localhost:3000/api/stocksproducts?productId=${id}`)
       .subscribe((res: any) => {
+        console.log(res);
         this.onDataChanged$.next(res.data);
       })
   }

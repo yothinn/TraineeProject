@@ -11,13 +11,13 @@ var StocksproductSchema = new Schema({
     productName: {
         type: String
     },
-    categoryId: {
+    date: {
         type: String
     },
-    type: {
+    count: {
         type: String
     },
-    description: {
+    status: {
         type: String
     },
     
