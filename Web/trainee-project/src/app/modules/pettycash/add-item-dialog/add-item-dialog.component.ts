@@ -21,6 +21,7 @@ export class AddItemDialogComponent implements OnInit {
 
   createList(data){
     return this.fb.group({
+      id:[data._id],
       date:[data.date,Validators.required],
       documentNo: [data.documentNo,Validators.required] ,
       list: [data.list,Validators.required] ,
@@ -33,5 +34,6 @@ export class AddItemDialogComponent implements OnInit {
 
   onSubmit():void{
     this.pettyCashService.createCustomer(this.customerForm.value).subscribe();
+    window.location.reload();
   }
 }

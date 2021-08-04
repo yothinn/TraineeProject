@@ -15,17 +15,19 @@ export class PettyCashService {
     return this.dataCenter.asObservable();
 
   }
-  onClickCard(data: any){
-    this.dataCenter.next(data);
-    console.log(data)
+  onClickCard(id: string){
+    this.http.get(`http://localhost:3000/api/tableList/${id}`).subscribe((res: any)=>{
+      this.dataCenter.next(res.id);
+      console.log(res.id)
+    })
   }
 
 
   getList(): Observable<any> {
     return this.http.get('http://localhost:3000/api/pettycashs');
   }
-  createCustomer(body): Observable<any> {
-    return this.http.post('http://localhost:3000/api/pettycashs', body);
+  createCustomer(id): Observable<any> {
+    return this.http.post('http://localhost:3000/api/tableLists', id);
   }
   updateCustomer(body): Observable<any> {
     console.log(body)

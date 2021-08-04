@@ -4,22 +4,28 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var PettycashsSchema = new Schema({
-    name: {
-        type: String,
-        // required: 'Please fill a Attendances name',
+var TablelistSchema = new Schema({
+    id:{
+        type: String
     },
-    lastName: {
-        type: String,
-        // required: 'Please fill a Attendances lastName',
+    date:{
+        type: Date ,
     },
-    amount: {
+    documentNo: {
         type: Number,
-        // required: 'Please fill a Attendances amount',
     },
-    limit: {
+    list: {
+        type: String,
+    },
+    admit: {
         type: Number,
-        // required: 'Please fill a Attendances limit',
+    },
+    pay: {
+        type: Number,
+
+    },
+    placeOfUse: {
+        type: String,
     },
     created: {
         type: Date,
@@ -51,18 +57,18 @@ var PettycashsSchema = new Schema({
         }
     }
 });
-PettycashsSchema.pre('save', function(next){
-    let Pettycashs = this;
-    const model = mongoose.model("Pettycashs", PettycashsSchema);
-    if (Pettycashs.isNew) {
+TablelistSchema.pre('save', function(next){
+    let Tablelist = this;
+    const model = mongoose.model("Tablelist", TablelistSchema);
+    if (Tablelist.isNew) {
         // create
         next();
     }else{
         // update
-        Pettycashs.updated = new Date();
+        Tablelist.updated = new Date();
         next();
     }
     
     
 })
-mongoose.model("Pettycashs", PettycashsSchema);
+mongoose.model("Tablelist", TablelistSchema);

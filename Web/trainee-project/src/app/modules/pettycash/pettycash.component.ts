@@ -64,10 +64,11 @@ export class PettyCashComponent implements OnInit {
             this.pattyCashData = res.data
           })
         } else {
-          console.log("")
+          console.log("erro")
         }
       })
-    } window.location.reload();
+    } 
+    window.location.reload();
     // this.pettyCashService.deleteList(dataDelete).subscribe();
 
   }
@@ -81,6 +82,6 @@ export class PettyCashComponent implements OnInit {
     });
   }
   onClick(data){
-    this.pettyCashService.onClickCard(data)
+    this.pettyCashService.onClickCard(data._id);
   }
 }
