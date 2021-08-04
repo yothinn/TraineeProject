@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class StockService {
 
-  
+
   private onDataChanged$ = new Subject();
   public onDataChangedObservable$ = this.onDataChanged$.asObservable();
 
@@ -18,14 +18,15 @@ export class StockService {
   }
 
   getProduct(): Observable<any> {
-    return this.http.get('http://localhost:3000/api/products')
+    return this.http.get('http://localhost:3000/api/products');
   }
 
-  getProductById(id: string) {
+  getStockById(id: string): void {
     console.log(id);
-    this.http.get(`http://localhost:3000/api/products/${id}`)
+    this.http.get(`http://localhost:3000/api/stocksproducts?productId=${id}`)
       .subscribe((res: any) => {
-        this.onDataChanged$.next(res.data)
+        console.log(res);
+        this.onDataChanged$.next(res.data);
       })
   }
 

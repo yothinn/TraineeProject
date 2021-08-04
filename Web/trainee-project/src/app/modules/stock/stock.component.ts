@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { StockService } from './stock.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { StockManageDialogComponent } from './stock-manage-dialog/stock-manage-dialog.component';
 
 @Component({
   selector: 'app-stock',
@@ -20,7 +22,10 @@ export class StockComponent implements OnInit {
     end: new FormControl()
   });
 
-  constructor(private stockService: StockService) { }
+  constructor(
+    private stockService: StockService,
+    public dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
     this.stockService.getProduct().subscribe((res: any) => {
@@ -37,5 +42,18 @@ export class StockComponent implements OnInit {
     this.stockService.getProductByDate(date.start).subscribe((res: any) => {
       console.log(res);
     });
+  }
+
+  openStockManageDialog() {
+    const dialogRef = this.dialog.open(StockManageDialogComponent, {
+      // data: data
+    });
+    // dialogRef.afterClosed().subscribe(res => {
+    //   if (res) {
+    //     this.stockService.getProduct().subscribe((res: any) => {
+    //       this.employeeData = res.data;
+    //     });
+    //   }
+    // })
   }
 }
