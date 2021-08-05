@@ -4,24 +4,17 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var AttendancesSchema = new Schema({
+var DatetimeSchema = new Schema({
     employeeId: {
         type: String,
        
     },
-    name: {
+    date: {
         type: String,
-        
     },
-    lastname: {
+    timeIn: {
         type: String,
-       
     },
-    tel: {
-        type: String,
-       
-    },
- 
     created: {
         type: Date,
         default: Date.now
@@ -32,18 +25,18 @@ var AttendancesSchema = new Schema({
     createby: {},
     updateby: {}
 });
-AttendancesSchema.pre('save',(next) => {
-    let Attendances = this;
-    const model = mongoose.model("Attendances", AttendancesSchema);
-    if (Attendances.isNew) {
+DatetimeSchema.pre('save',(next) => {
+    let Datetime = this;
+    const model = mongoose.model("Datetime", DatetimeSchema);
+    if (Datetime.isNew) {
         // create
         next();
     }else{
         // update
-        Attendances.updated = new Date();
+        Datetime.updated = new Date();
         next();
     }
     
     
 })
-mongoose.model("Attendances", AttendancesSchema);
+mongoose.model("Datetime", DatetimeSchema);

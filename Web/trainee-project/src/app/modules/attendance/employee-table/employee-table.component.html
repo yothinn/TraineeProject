@@ -2,7 +2,7 @@
   <p>ข้อมูลพนักงาน</p>
 </mat-toolbar>
 <mat-divider></mat-divider>
-<div class="table-list" fxLayout="row" fxLayoutAlign="space-around stretch">
+<div class="table-list" fxLayout="row"   fxLayoutAlign="space-around stretch">
 
   
   <div>
@@ -45,7 +45,7 @@
     <ng-container matColumnDef="วันที่เข้าทำงาน">
       <th mat-header-cell>วันที่เข้าทำงาน</th>
       <td fxLayout="column" mat-cell class="magintop">
-        {{employeeData?.workDate}}
+        {{dateTimeData1?.date}}
       </td>
     </ng-container>
   </div>
@@ -54,19 +54,19 @@
     <ng-container matColumnDef="เวลาเข้างาน">
       <th mat-header-cell>เวลาเข้างาน</th>
       <td fxLayout="column" mat-cell class="magintop">
-        {{employeeData?.timeIn}}
+        {{dateTimeData1?.timeIn}}
       </td>
     </ng-container>
   </div>
 
-  <div>
+  <!-- <div>
     <ng-container matColumnDef="เวลาออกงาน">
       <th mat-header-cell>เวลาออกงาน</th>
       <td fxLayout="column" mat-cell class="magintop">
         {{employeeData?.timeOut}}
       </td>
     </ng-container>
-  </div>
+  </div> -->
 
   <div>
     <ng-container class="menu" matColumnDef="menu" >

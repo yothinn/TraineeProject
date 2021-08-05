@@ -11,6 +11,7 @@ import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 export class EmployeeProfileComponent implements OnInit {
 
   employeeData: any;
+  
 
 
   constructor(
@@ -19,8 +20,9 @@ export class EmployeeProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.employeeData = res;
+     
   });
 }
 
