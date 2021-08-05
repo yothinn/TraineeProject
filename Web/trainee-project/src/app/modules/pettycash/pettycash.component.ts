@@ -26,7 +26,7 @@ export class PettyCashComponent implements OnInit {
     this.pettyCashService.getList().subscribe((res: any) => {
       this.pattyCashData = res.data;
       this.filterList = this.pattyCashData.filter(res => {
-        return res.name;
+        return res._id;
       })
       this.searchList = this.filterList
     })
@@ -81,7 +81,7 @@ export class PettyCashComponent implements OnInit {
       return res.name.toLowerCase().startsWith(filter);
     });
   }
-  onClick(data){
-    this.pettyCashService.onClickCard(data._id);
+  onClick(item: any){
+    this.pettyCashService.onClickCard(item.name);
   }
 }

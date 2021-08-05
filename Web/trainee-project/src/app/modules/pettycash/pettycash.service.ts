@@ -6,19 +6,15 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class PettyCashService {
-  dataCenter: Subject<any>;
-  constructor(private http: HttpClient) { 
-    this.dataCenter = new Subject();
-  }
+  private onDataChanged$ = new Subject();
+  public onDataChangedObservable$ = this.onDataChanged$.asObservable();
 
-  getDataCenter(): Observable<any>{
-    return this.dataCenter.asObservable();
+  constructor(private http: HttpClient) { }
 
-  }
-  onClickCard(id: string){
-    this.http.get(`http://localhost:3000/api/tableList/${id}`).subscribe((res: any)=>{
-      this.dataCenter.next(res.id);
-      console.log(res.id)
+  onClickCard(id: string):void{
+    console.log(id)
+    this.http.get(`http://localhost:3000/api/tableLists?name=${id}`).subscribe((res: any)=>{
+      this.onDataChanged$.next(res.data);
     })
   }
 
@@ -26,8 +22,8 @@ export class PettyCashService {
   getList(): Observable<any> {
     return this.http.get('http://localhost:3000/api/pettycashs');
   }
-  createCustomer(id): Observable<any> {
-    return this.http.post('http://localhost:3000/api/tableLists', id);
+  createCustomer(body): Observable<any> {
+    return this.http.post('http://localhost:3000/api/pettycashs', body);
   }
   updateCustomer(body): Observable<any> {
     console.log(body)
@@ -36,5 +32,8 @@ export class PettyCashService {
   deleteList(body): Observable<any> {
     console.log(body)
     return this.http.delete(`http://localhost:3000/api/pettycashs/${body._id}`, body)
+  }
+  createItem(body){
+    return this.http.post(`http://localhost:3000/api/tableLists?name=${body._id}`, body);
   }
 }

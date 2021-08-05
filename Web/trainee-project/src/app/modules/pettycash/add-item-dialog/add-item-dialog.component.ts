@@ -11,29 +11,30 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
 
-  constructor(private pettyCashService: PettyCashService,private fb: FormBuilder,
+  constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddItemDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
     this.customerForm = this.createList(this.data);
+
   }
 
-  createList(data){
+  createList(data) {
     return this.fb.group({
-      id:[data._id],
-      date:[data.date,Validators.required],
-      documentNo: [data.documentNo,Validators.required] ,
-      list: [data.list,Validators.required] ,
-      admit:[data.admit,Validators.required] ,
-      pay: [data.pay,Validators.required],
-      placeOfUse: [data.placeOfUse,Validators.required]
+      _id:[data?._id],
+      date: [data?.date, Validators.required],
+      documentNo: [data?.documentNo, Validators.required],
+      list: [data?.list, Validators.required],
+      admit: [data?.admit, Validators.required],
+      pay: [data?.pay, Validators.required],
+      placeOfUse: [data?.placeOfUse, Validators.required]
 
     });
   }
 
-  onSubmit():void{
-    this.pettyCashService.createCustomer(this.customerForm.value).subscribe();
+  onSubmit(): void {
+    this.pettyCashService.createItem(this.customerForm.value).subscribe();
     window.location.reload();
   }
 }
