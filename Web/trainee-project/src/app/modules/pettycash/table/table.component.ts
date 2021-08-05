@@ -23,6 +23,7 @@ export class TableComponent implements OnInit {
   pageSize = 5;
   currentPage = 0;
   totalSize = 0;
+  listCustomer: any;
 
   constructor(private pettyCashService: PettyCashService, public dialog: MatDialog) { }
 

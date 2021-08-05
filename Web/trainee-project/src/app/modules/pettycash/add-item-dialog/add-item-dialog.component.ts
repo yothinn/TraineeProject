@@ -22,13 +22,13 @@ export class AddItemDialogComponent implements OnInit {
 
   createList(data) {
     return this.fb.group({
-      _id:[data?._id],
-      date: [data?.date, Validators.required],
+      pettycashsId:[data.pettycashsId],
+      date: [data.date, Validators.required],
       documentNo: [data?.documentNo, Validators.required],
-      list: [data?.list, Validators.required],
-      admit: [data?.admit, Validators.required],
-      pay: [data?.pay, Validators.required],
-      placeOfUse: [data?.placeOfUse, Validators.required]
+      list: [data.list, Validators.required],
+      admit: [data.admit, Validators.required],
+      pay: [data.pay, Validators.required],
+      placeOfUse: [data.placeOfUse, Validators.required]
 
     });
   }

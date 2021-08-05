@@ -8,15 +8,18 @@ import { Observable, Subject } from 'rxjs';
 export class PettyCashService {
   private onDataChanged$ = new Subject();
   public onDataChangedObservable$ = this.onDataChanged$.asObservable();
+  public onGetList$ = this.onDataChanged$.asObservable();
 
   constructor(private http: HttpClient) { }
 
   onClickCard(id: string):void{
     console.log(id)
-    this.http.get(`http://localhost:3000/api/tableLists?name=${id}`).subscribe((res: any)=>{
+    this.http.get(`http://localhost:3000/api/tableLists?pettycashsId=${id}`)
+    .subscribe((res: any)=>{
       this.onDataChanged$.next(res.data);
     })
   }
+
 
 
   getList(): Observable<any> {
@@ -34,6 +37,6 @@ export class PettyCashService {
     return this.http.delete(`http://localhost:3000/api/pettycashs/${body._id}`, body)
   }
   createItem(body){
-    return this.http.post(`http://localhost:3000/api/tableLists?name=${body._id}`, body);
+    return this.http.post('http://localhost:3000/api/tableLists', body);
   }
 }

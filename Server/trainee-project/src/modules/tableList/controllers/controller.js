@@ -16,7 +16,7 @@ exports.getList = function (req, res) {
     }
     query.skip = size * (pageNo - 1);
     query.limit = size;
-        Tablelist.find({}, {}, query, function (err, datas) {
+        Tablelist.find(req.query, {}, query, function (err, datas) {
             if (err) {
                 return res.status(400).send({
                     status: 400,

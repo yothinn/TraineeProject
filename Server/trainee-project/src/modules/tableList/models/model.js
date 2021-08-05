@@ -5,8 +5,8 @@ var Schema = mongoose.Schema;
 
 
 var TablelistSchema = new Schema({
-    name: {
-        type: String,
+    pettycashsId:{
+        type: String
     },
     date:{
         type: Date ,

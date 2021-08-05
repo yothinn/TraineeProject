@@ -5,6 +5,9 @@ var Schema = mongoose.Schema;
 
 
 var PettycashsSchema = new Schema({
+    pettycashsId:{
+        type: String
+    },
     name: {
         type: String,
         // required: 'Please fill a Attendances name',
