@@ -1,6 +1,6 @@
 .card{
     width: 389px;
-    height: 400px;
+    height: 220px;
     border: solid black;
 }
 .toolbar{
@@ -15,26 +15,12 @@
 
 .card-categories{
     width: 350px;
-    height: 365px;
+    height: 180px;
     border: solid black;
-}
-.card-add{
-    margin-left: 20px;
-    margin-bottom: 33px;
-    width: 311px;
-    height: 100px;
-    border: solid black;
-}
-.card-head{
-    margin-left: 20px;
-    border: solid black;
-    width: 311px;
-    height: 10px;
-
 }
 
 .card-actions{
-    margin-left: 75px;
+    margin-left: 87px;
     padding-top: 1px ;
 }
 .btn-confirm{
@@ -44,14 +30,9 @@
     width: 97px;
     
 }
-// .font-head{
-//     margin-left: 50px;
-// }
-.font-head{
-    margin-left: 119px;
-    font-weight: bold;
+.font-code{
+    margin-right: 10px;
 }
-.font-head-edit{
-    margin-left: 110px;
-    font-weight: bold;
+.font-name{
+    margin-right: 16px;
 }

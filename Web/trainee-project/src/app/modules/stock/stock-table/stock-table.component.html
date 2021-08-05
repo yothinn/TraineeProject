@@ -1,0 +1,69 @@
+<div fxLayout="column">
+    <div style="padding: 15px;" fxLayout="row" fxFlex>
+        <div style="padding-left: 10px;" fxFlex="20">
+            <p>
+                วัน-เวลา
+            </p>
+        </div>
+        <div style="padding-left: 10px;" fxFlex="15">
+            <p>
+                ชื่อสินค้า
+            </p>
+        </div>
+        <div style="padding-left: 10px;" fxFlex="10">
+            <p>
+                รหัสสินค้า
+            </p>
+        </div>
+        <div style="padding-left: 10px;" fxFlex="10">
+            <p>
+                ประเภทสินค้า
+            </p>
+        </div>
+        <div style="padding-left: 10px;" fxFlex="10">
+            <p>
+                ราคา
+            </p>
+        </div>
+        <div style="padding-left: 10px;" fxFlex="10">
+            <p>
+                จำนวน(คงเหลือ)
+            </p>
+        </div>
+
+    </div>
+    <div style="padding: 15px;" fxLayout="row" *ngFor="let item of productData" fxFlex>
+        <div style="padding-left: 10px;" fxFlex="20">
+            <p>
+                {{item?.created | date}}
+            </p>
+        </div>
+        <div style="padding-left: 10px;" fxFlex="15">
+            <p>
+                {{item?.productName}}
+            </p>
+        </div>
+        <div style="padding-left: 10px;" fxFlex="10">
+            <p>
+                {{item?.productId}}
+            </p>
+        </div>
+        <div style="padding-left: 10px;" fxFlex="10">
+            <p>
+                {{item?.type}}
+            </p>
+        </div>
+        <div style="padding-left: 10px;" fxFlex="10">
+            <p>
+                {{item?.price}}
+            </p>
+        </div>
+        <div style="padding-left: 10px;" fxFlex="10">
+            <p>
+                {{item?.count}}
+            </p>
+        </div>
+
+
+    </div>
+</div>
