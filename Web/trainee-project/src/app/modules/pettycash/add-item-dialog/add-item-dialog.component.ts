@@ -25,10 +25,10 @@ export class AddItemDialogComponent implements OnInit {
       pettycashsId:[data.pettycashsId],
       date: [data.date, Validators.required],
       documentNo: [data?.documentNo, Validators.required],
-      list: [data.list, Validators.required],
-      admit: [data.admit, Validators.required],
-      pay: [data.pay, Validators.required],
-      placeOfUse: [data.placeOfUse, Validators.required]
+      list: [data?.list, Validators.required],
+      deposit: [data?.deposit, Validators.required],
+      withdraw: [data?.withdraw, Validators.required],
+      placeOfUse: [data?.placeOfUse, Validators.required]
 
     });
   }

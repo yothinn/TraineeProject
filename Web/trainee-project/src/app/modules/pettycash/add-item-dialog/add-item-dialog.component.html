@@ -1,7 +1,15 @@
 <h2 mat-dialog-title>เพื่มรายการ</h2>
 <div>
   <form [formGroup]="customerForm">
-
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     <div>
       <mat-form-field>
         <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
@@ -26,12 +34,12 @@
     </div>
     <div>
       <mat-form-field>
-        <input matInput formControlName="admit" placeholder="รับเข้า">
+        <input matInput formControlName="deposit" placeholder="เงินเข้า">
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
-        <input matInput formControlName="pay" placeholder="จ่าย">
+        <input matInput formControlName="withdraw" placeholder="เงินออก">
       </mat-form-field>
     </div>
     <div>
