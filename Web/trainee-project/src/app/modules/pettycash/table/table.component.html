@@ -42,18 +42,18 @@
   </div>
   <div class="padding">
     <ng-container matColumnDef="รับเข้า">
-      <th mat-header-cell> รับเข้า </th><br>
+      <th mat-header-cell> เงินเข้า </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource"> {{item.admit | number:"0.2"}}
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource" class="layout-number"> {{item.deposit | number:"0.2"}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
   </div>
   <div class="padding">
     <ng-container matColumnDef="จ่าย">
-      <th mat-header-cell> จ่าย </th><br>
+      <th mat-header-cell> เงินออก </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource"> {{item.pay | number:"0.2"}}
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource" class="layout-number"> {{item.withdraw | number:"0.2"}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>

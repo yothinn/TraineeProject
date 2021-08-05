@@ -17,15 +17,18 @@ var TablelistSchema = new Schema({
     list: {
         type: String,
     },
-    admit: {
+    deposit: {
         type: Number,
     },
-    pay: {
+    withdraw: {
         type: Number,
 
     },
     placeOfUse: {
         type: String,
+    },
+    balance: {
+        type: Number,
     },
     created: {
         type: Date,
