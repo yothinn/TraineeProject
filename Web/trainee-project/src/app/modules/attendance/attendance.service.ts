@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AttendanceService {
+
+ private onDataChanged$ = new Subject();
+ public onDataChangedObservable$ = this.onDataChanged$.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -29,9 +32,12 @@ export class AttendanceService {
     return this.http.delete(`http://localhost:3000/api/attendances/${body._id}`, body)
   }
 
-  getEmployeeById(id:any):Observable<any> {
+  getEmployeeById(id:any): void{
     console.log(id)
-  return this.http.get(`http://localhost:3000/api/attendances/${id}`)
+  this.http.get(`http://localhost:3000/api/attendances/${id}`)
+  .subscribe((res: any) => {
+    this.onDataChanged$.next(res.data)
+  })
   }
 
 }
