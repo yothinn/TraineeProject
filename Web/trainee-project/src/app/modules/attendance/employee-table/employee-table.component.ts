@@ -54,6 +54,7 @@ export class EmployeeTableComponent implements OnInit {
     this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
       console.log(res)
       this.dateTimeData = res;
+   
     });
   }
 
