@@ -16,11 +16,7 @@ var PettycashsSchema = new Schema({
         type: String,
         // required: 'Please fill a Attendances lastName',
     },
-    amount: {
-        type: Number,
-        // required: 'Please fill a Attendances amount',
-    },
-    limit: {
+    financialAmount: {
         type: Number,
         // required: 'Please fill a Attendances limit',
     },

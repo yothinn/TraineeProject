@@ -36,7 +36,11 @@ export class PettyCashService {
     console.log(body)
     return this.http.delete(`http://localhost:3000/api/pettycashs/${body._id}`, body)
   }
-  createItem(body){
+  createItem(body): Observable<any> {
     return this.http.post('http://localhost:3000/api/tableLists', body);
   }
+  getTable(id: string){
+    return this.http.get(`http://localhost:3000/api/tableLists?pettycashsId=${id}`)
+  }
 }
+

@@ -10,6 +10,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
+  pettyCashData: any;
+
 
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddItemDialogComponent>,

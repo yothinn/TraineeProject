@@ -2,9 +2,9 @@
   <small>
     <a class="user-details">รายละเอียดผุ้ใช้</a>
     <a class="limit"></a>
-    <div fxLayout="column" *ngFor="let item of PettyCashData">
-      <a>{{item.name}} {{item.lastName}}</a>
-      <a>{{item.limit}}</a>
+    <div fxLayout="column">
+      <a>{{PettyCashData?.name}} {{PettyCashData?.lastName}}</a>
+      <a>{{PettyCashData?.financialAmount}}</a>
     </div>
   </small>
   <button class="button-add" mat-button (click)="openDialog('')">เพิ่มรายการ</button>

@@ -58,10 +58,10 @@ export class PettyCashComponent implements OnInit {
   }
   deleteList(dataDelete): void {
     if (confirm("Are you sure to delete ")) {
-      this.pettyCashService.deleteList(dataDelete).subscribe((res: any) => {
+      this.pettyCashService.deleteList(dataDelete).subscribe(res => {
         if (res) {
-          this.pettyCashService.getList().subscribe((res: any) => {
-            this.pattyCashData = res.data
+          this.pettyCashService.getTable(dataDelete.pettycashsId).subscribe((res: any) => {
+            this.pattyCashData = res.data;
           })
         } else {
           console.log("erro")
@@ -81,8 +81,8 @@ export class PettyCashComponent implements OnInit {
       return res.name.toLowerCase().startsWith(filter);
     });
   }
-  onClick(item: any): void {
-    console.log(item)
-    this.pettyCashService.onClickCard(item.pettycashsId);
+  onClick(data: any): void {
+    console.log(data)
+    this.pettyCashService.onClickCard(data.pettycashsId);
   }
 }
