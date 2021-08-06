@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
   pageEvent: any;
   array: any;
   dataSource: any;
-  pageSize = 5;
+  pageSize = 2;
   currentPage = 0;
   totalSize = 0;
   listCustomer: any;
@@ -30,7 +30,7 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.pettyCashService.onDataChangedObservable$.subscribe(res =>{
       this.PettyCashData = res;
-      console.log(res)
+      // console.log(res)
     })
     this.getArray();
   }
@@ -49,6 +49,7 @@ export class TableComponent implements OnInit {
     this.currentPage = pagin.pageIndex;
     this.pageSize = pagin.pageSize;
     this.iterator();
+    console.log(this.currentPage)
   }
 
   getArray():void{
@@ -59,7 +60,7 @@ export class TableComponent implements OnInit {
         this.array = this.PettyCashData;
         this.totalSize = this.array.length;
         this.iterator();
-        console.log(this.dataSource)
+        console.log(this.totalSize)
       });
   }
 
@@ -68,6 +69,7 @@ export class TableComponent implements OnInit {
     const start = this.currentPage * this.pageSize;
     const part = this.array.slice(start, end);
     this.dataSource = part;
+    
   }
 
 }
