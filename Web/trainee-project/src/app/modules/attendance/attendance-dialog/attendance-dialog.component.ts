@@ -28,7 +28,31 @@ export class AttendanceDialogComponent implements OnInit {
     this.attendanceService.getAttendance().subscribe((res: any) => {
       this.employeeData = res.data;
     });
+    this.workDateForm = this.createForm();
   }
+
+
+  createForm() {
+    // console.log(data)
+    return this.fb.group({
+      employeeId: [""],
+      date: [""],
+      timeIn: [""],
+    });
+  }
+
+  onSubmit() {
+    // console.log(this.workDateForm.value)
+    this.attendanceService.createDatetime(this.workDateForm.value)
+    .subscribe(res => {
+      if (res) {
+        this.dialogRef.close(res);
+      }
+    })
+  }
+
+  
+
 
 
 }

@@ -19,7 +19,8 @@ export class EmployeeTableComponent implements OnInit {
   employeeData: any;
   dataSource = new MatTableDataSource();
   menu: boolean = false;
-
+  dateTimeData :any;
+  dateTimeData1:any;
 
 
   constructor(
@@ -28,21 +29,36 @@ export class EmployeeTableComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.attendanceService.getAttendance().subscribe((res: any) => {
-      // console.log(res)
-      this.employeeData = res.data;
-      // console.log(this.employeeData) 
+    // this.attendanceService.getAttendance().subscribe((res: any) => {
+    //   console.log(res)
+    //   this.employeeData = res.data;
+    //   console.log(this.employeeData) 
+    // });
+    // this.attendanceService.getDateTime().subscribe((res: any) => {
+    //   // console.log(res.data)
+    //   this.dateTimeData1 = res.data;
+    //   // console.log(this.employeeData) 
+    //   // console.log(this.dateTimeData1)
 
-    });
+    // });
     this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
       console.log(res)
       this.employeeData = res;
       this.menu = true;
     });
+    // this.attendanceService.getDateTime().subscribe((res: any) => {
+    //   // console.log(res)
+    //   this.dateTimeData = res.data;
+    //   // console.log(this.employeeData) 
+    // });
+    this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
+      console.log(res)
+      this.dateTimeData = res;
+    });
   }
 
   openDialog(data1) {
-    console.log(data1)
+    // console.log(data1)
     const dialogRef = this.dialog.open(DialogAddComponent, {
       data: data1
     });
