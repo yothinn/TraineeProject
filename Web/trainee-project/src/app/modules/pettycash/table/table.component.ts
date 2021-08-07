@@ -24,13 +24,16 @@ export class TableComponent implements OnInit {
   currentPage = 0;
   totalSize = 0;
   listCustomer: any;
+  tableData: any;
 
   constructor(private pettyCashService: PettyCashService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.pettyCashService.onDataChangedObservable$.subscribe(res =>{
+    this.pettyCashService.onTableChangedObservable$.subscribe((res: any) =>{
+      this.tableData = res;
+    })
+    this.pettyCashService.onDataChangedObservable$.subscribe((res: any) =>{
       this.PettyCashData = res;
-      console.log(res)
     })
     this.getArray();
   }
@@ -52,14 +55,14 @@ export class TableComponent implements OnInit {
   }
 
   getArray():void{
-    this.pettyCashService.onDataChangedObservable$
-      .subscribe(res => {
-        this.dataSource = new MatTableDataSource<Element>(this.PettyCashData);
+    this.pettyCashService.onTableChangedObservable$
+      .subscribe((res: any) => {
+        this.dataSource = new MatTableDataSource<Element>(res);
         this.dataSource.paginator = this.paginator;
-        this.array = this.PettyCashData;
+        this.array = res;
         this.totalSize = this.array.length;
         this.iterator();
-        console.log(this.dataSource)
+        console.log(this.totalSize)
       });
   }
 
