@@ -27,12 +27,12 @@ export class AttendanceService {
 
   updateAttendance(body: any): Observable<any> {
     console.log(body._id)
-    return this.http.put(`http://localhost:3000/api/attendances/${body._id}`, body)
+    return this.http.put(`http://localhost:3000/api/attendances/${body._id}`, body);
   }
 
   deleteAttendance(body: any): Observable<any> {
     // console.log(body)
-    return this.http.delete(`http://localhost:3000/api/attendances/${body._id}`, body)
+    return this.http.delete(`http://localhost:3000/api/attendances/${body._id}`, body);
   }
 
   getDateTimeById(id: any): void {
@@ -56,8 +56,8 @@ export class AttendanceService {
     return this.http.post('http://localhost:3000/api/datetimes', body);
   }
 
-  getDateTime() {
-    return this.http.get('http://localhost:3000/api/datetimes');
-  }
+  // getDateTime() {
+  //   return this.http.get('http://localhost:3000/api/datetimes');
+  // }
 
 }
