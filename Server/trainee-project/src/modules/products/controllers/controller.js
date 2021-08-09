@@ -12,7 +12,9 @@ exports.getList = function (req, res) {
     delete req.query.pageNo;
     delete req.query.size;
 
-    var query = {};
+    var query = {
+    };
+
     if (pageNo < 0 || pageNo === 0) {
         response = { "error": true, "message": "invalid page number, should start with 1" };
         return res.json(response);
