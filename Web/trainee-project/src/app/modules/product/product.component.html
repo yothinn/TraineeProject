@@ -3,10 +3,10 @@
     <label class="font-head">เรียงตาม</label>
     <mat-form-field class="font-category">
       <mat-label>หมวดหมู่สินค้า</mat-label>
-      <mat-select class="font">
-        <mat-option [value]="-1">ทั้งหมด</mat-option>
-        <div fxLayout="row" *ngFor="let item of productCategories;let i = index">
-        <mat-option class="mat-option-name" [value]="item.name" (click)="filterData(item)">{{item.name}}</mat-option>
+      <mat-select value="all" class="font">
+        <mat-option (click)="filterData()" value ="all">ทั้งหมด</mat-option>
+        <div fxLayout="row" *ngFor="let item of productCategories">
+        <mat-option class="mat-option-name" value="item.name" (click)="filterData(item)">{{item.name}}</mat-option>
          <div class="icon" >
         <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="openDialogCategories(item)">edit
         </mat-icon>
@@ -20,7 +20,7 @@
 
     <mat-form-field class="font-search" appearance="standard">
       <mat-label>ค้นหา</mat-label>
-      <input matInput placeholder="กรอกชื่อสินค้า">
+      <input matInput  placeholder="กรอกชื่อสินค้า">                  <!--#search (keyup)="onKeyup($event)"-->
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 
