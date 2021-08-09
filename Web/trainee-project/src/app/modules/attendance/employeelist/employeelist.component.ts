@@ -11,12 +11,14 @@ export class EmployeeListComponent implements OnInit {
 
   @ViewChild('search') searchEle: ElementRef;
   
+  
   employeeListData: any;
   employeeData: any;
   filterList: any[];
   
 
-  constructor(private attendanceService: AttendanceService) { }
+  constructor(
+    private attendanceService: AttendanceService,) { }
 
   ngOnInit(): void {
     this.attendanceService.getAttendance().subscribe((res:any)=>{
@@ -30,20 +32,21 @@ export class EmployeeListComponent implements OnInit {
   }
   onKeyup(event) {
     let filter = this.searchEle.nativeElement.value.toLowerCase();
-    console.log(filter)
+    // console.log(filter)
     this.filterList = this.employeeData.filter(res =>{
-      console.log(res)
+      // console.log(res)
      return res.name.toLowerCase().startsWith(filter);
      
     });
   }
   
   onChooseEmployee(item) {
-    this.attendanceService.getEmployeeById(item._id).subscribe((res: any) => {
-      console.log(res);
-      this.employeeListData = res.data;
-      // return this.employeeListData(item.id)
-    });
+    // console.log(item)
+    this.attendanceService.getProfileById(item) 
+    this.attendanceService.getDateTimeById(item)
+     
   }
+
+
 
 }

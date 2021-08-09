@@ -10,6 +10,8 @@
     <input #search matInput (keyup)="onKeyup($event)" placeholder="กรุณาพิมพ์รายชื่อพนักงาน">
   </mat-form-field>
 </form>
-<mat-card class="employee-list" (click)="onChooseEmployee(item)" *ngFor="let item of filterList; let i = index;">
+<mat-card class="employee-list" (click)="onChooseEmployee(item)"  *ngFor="let item of filterList; let i = index;">
   {{item.name}} {{item.lastname}}
 </mat-card>
+
+

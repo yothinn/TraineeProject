@@ -26,7 +26,7 @@ export class PettyCashComponent implements OnInit {
     this.pettyCashService.getList().subscribe((res: any) => {
       this.pattyCashData = res.data;
       this.filterList = this.pattyCashData.filter(res => {
-        return res.name;
+        return res.pettycashsId;
       })
       this.searchList = this.filterList
     })
@@ -64,10 +64,11 @@ export class PettyCashComponent implements OnInit {
             this.pattyCashData = res.data
           })
         } else {
-          console.log("")
+          console.log("erro")
         }
       })
-    } window.location.reload();
+    }
+    window.location.reload();
     // this.pettyCashService.deleteList(dataDelete).subscribe();
 
   }
@@ -79,5 +80,9 @@ export class PettyCashComponent implements OnInit {
       console.log(res)
       return res.name.toLowerCase().startsWith(filter);
     });
+  }
+  onClick(item: any): void {
+    console.log(item)
+    this.pettyCashService.onClickCard(item.pettycashsId);
   }
 }

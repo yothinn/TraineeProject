@@ -17,22 +17,20 @@ export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   PettyCashData: any;
   customerdata: any;
-  filterList: any[];
   pageEvent: any;
   array: any;
   dataSource: any;
   pageSize = 2;
   currentPage = 0;
   totalSize = 0;
+  listCustomer: any;
 
   constructor(private pettyCashService: PettyCashService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.pettyCashService.getList().subscribe((res: any)=>{
-      this.PettyCashData = res.data;
-      this.filterList = this.PettyCashData.filter(res => {
-        return res.documentNo;
-      });
+    this.pettyCashService.onDataChangedObservable$.subscribe(res =>{
+      this.PettyCashData = res;
+      // console.log(res)
     })
     this.getArray();
   }
@@ -51,17 +49,18 @@ export class TableComponent implements OnInit {
     this.currentPage = pagin.pageIndex;
     this.pageSize = pagin.pageSize;
     this.iterator();
+    console.log(this.currentPage)
   }
 
   getArray():void{
-    this.pettyCashService.getList()
-      .subscribe((res) => {
-        this.dataSource = new MatTableDataSource<Element>(this.filterList);
+    this.pettyCashService.onDataChangedObservable$
+      .subscribe(res => {
+        this.dataSource = new MatTableDataSource<Element>(this.PettyCashData);
         this.dataSource.paginator = this.paginator;
-        this.array = this.filterList;
+        this.array = this.PettyCashData;
         this.totalSize = this.array.length;
         this.iterator();
-        console.log(this.dataSource)
+        console.log(this.totalSize)
       });
   }
 
@@ -70,6 +69,7 @@ export class TableComponent implements OnInit {
     const start = this.currentPage * this.pageSize;
     const part = this.array.slice(start, end);
     this.dataSource = part;
+    
   }
 
 }
