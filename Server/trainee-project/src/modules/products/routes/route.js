@@ -3,6 +3,10 @@ var controller = require('../controllers/controller'),
     mq = require('../../core/controllers/rabbitmq'),
     policy = require('../policy/policy');
 module.exports = function (app) {
+
+    app.route('/api/products/search')
+        .get(controller.search);
+
     var url = '/api/products';
     var urlWithParam = '/api/products/:productsId';
     app.route(url)//.all(policy.isAllowed)
@@ -24,6 +28,6 @@ module.exports = function (app) {
      */
     // mq.consume('exchange', 'qname', 'keymsg', (msg)=>{
     //     console.log(JSON.parse(msg.content));
-        
+
     // });
 }

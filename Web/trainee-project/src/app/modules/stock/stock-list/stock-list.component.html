@@ -37,7 +37,7 @@
               รหัสลูกค้า: {{customer.id}}
             </div> -->
             <!-- {{(customer.updated || customer.created) | dateAgo }} -->
-            1
+            {{item.created | date}}
         </div>
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.8rem">
             <div>
@@ -47,12 +47,12 @@
             <div fxLayout="column" fxFlex>
                 <div fxLayoutAlign="start center" class="contact-name" fxFlex>
                     <!-- {{customer.title | titlecase}} {{customer.name | titlecase}} -->
-                    {{item.productId}}
+                    รหัสสินค้า: {{item.productId}}
                 </div>
                 <!-- <div fxLayout="row" class="contact-message" fxFlex fxLayoutAlign="start start">
                 <p class="overflow-ellipsis">{{customer.lastedEvent || 'ไม่มีข้อมูล'}}</p>
               </div> -->
-              {{item.productName}}
+                ชื่อสินค้า: {{item.productName}}
             </div>
         </div>
     </div>

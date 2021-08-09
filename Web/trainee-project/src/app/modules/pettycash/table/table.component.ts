@@ -21,7 +21,7 @@ export class TableComponent implements OnInit {
   pageEvent: any;
   array: any;
   dataSource: any;
-  pageSize = 5;
+  pageSize = 2;
   currentPage = 0;
   totalSize = 0;
   listCustomer: any;
