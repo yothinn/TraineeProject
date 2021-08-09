@@ -11,6 +11,7 @@ import { AttendanceService } from '../attendance.service';
 })
 export class DialogAddComponent implements OnInit {
   userForm: FormGroup;
+  
 
   constructor(
     private attendanceService: AttendanceService,

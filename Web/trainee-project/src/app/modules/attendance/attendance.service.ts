@@ -56,8 +56,9 @@ export class AttendanceService {
     return this.http.post('http://localhost:3000/api/datetimes', body);
   }
 
-  // getDateTime() {
-  //   return this.http.get('http://localhost:3000/api/datetimes');
-  // }
-
+  uploadImageAttendance(file): Observable<any>{
+    return this.http.post('http://localhost:3000/api/attendances', file);
+  }
 }
+
+

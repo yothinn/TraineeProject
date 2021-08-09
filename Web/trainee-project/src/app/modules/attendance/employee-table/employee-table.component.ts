@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AttendanceService } from '../attendance.service';
@@ -14,19 +15,19 @@ import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 export class EmployeeTableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  // displayedColumns: any[] = ['id', 'name', 'lastname', 'tel'];
 
   employeeData: any;
   dataSource = new MatTableDataSource();
   menu: boolean = false;
-  dateTimeData :any;
-  dateTimeData1:any;
+  dateTimeData: any;
+  dateTimeData1: any;
 
 
   constructor(
     private attendanceService: AttendanceService,
     public dialog: MatDialog,
-    ) { }
+    
+  ) { }
 
   ngOnInit(): void {
     // this.attendanceService.getAttendance().subscribe((res: any) => {
@@ -41,6 +42,7 @@ export class EmployeeTableComponent implements OnInit {
     //   // console.log(this.dateTimeData1)
 
     // });
+
     this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
       console.log(res)
       this.employeeData = res;
@@ -54,7 +56,7 @@ export class EmployeeTableComponent implements OnInit {
     this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
       console.log(res)
       this.dateTimeData = res;
-   
+
     });
   }
 
@@ -76,7 +78,7 @@ export class EmployeeTableComponent implements OnInit {
   }
 
   delete(dataDelete) {
-    if (confirm("Are you sure to delete ")) {
+    if (confirm("Are you sure to delete")) {
       this.attendanceService.deleteAttendance(dataDelete).subscribe((res: any) => {
         if (res) {
           this.attendanceService.getAttendance().subscribe((res: any) => {
@@ -84,25 +86,15 @@ export class EmployeeTableComponent implements OnInit {
           })
         } else {
           console.log("")
-          
+
         }
       })
     }
   }
+
+
 }
 
-// openConfirmDialog(){
-  //   const dialogRef = this.dialog.open(ConfirmdialogComponent);
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     // console.log(`Dialog result: ${result}`)
-  //   });
-  //   dialogRef.afterClosed().subscribe(res => {
-  //     if (res) {
-  //       this.attendanceService.getAttendance().subscribe((res: any) => {
-  //         // console.log(res)
-  //         this.employeeData = res.data
-  //         // console.log(this.employeeData)
-  //       })
-  //     }
-  //   })
-  // }
+
+
+
