@@ -123,19 +123,12 @@ exports.delete = function (req, res) {
 exports.search = function (req, res) {
     let searchText = req.query.query;
     let query = {
-
         productName: { $regex: `${searchText}`}
         // $or: [
         //     { productName: { $regex: `^${searchText}`, $options: "i" } }
         //     { lastName: { $regex: `^${searchText}`, $options: "i" } }
         // ]
     };
-    console.log(query);
-
-    // console.log(searchText)
-    // console.log(req.query.query);
-    // console.log(query);
-
     Products.find(query, function (err, datas) {
         if (err) {
             return res.status(400).send({
