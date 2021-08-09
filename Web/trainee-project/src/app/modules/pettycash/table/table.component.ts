@@ -8,6 +8,7 @@ import { Element } from '@angular/compiler';
 
 
 
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -15,7 +16,7 @@ import { Element } from '@angular/compiler';
 })
 export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  PettyCashData: any;
+  listData: any;
   customerdata: any;
   pageEvent: any;
   array: any;
@@ -25,17 +26,24 @@ export class TableComponent implements OnInit {
   totalSize = 0;
   listCustomer: any;
   tableData: any;
+  
 
-  constructor(private pettyCashService: PettyCashService, public dialog: MatDialog) { }
+  constructor(
+    private pettyCashService: PettyCashService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
-    this.pettyCashService.onTableChangedObservable$.subscribe((res: any) =>{
+    this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
       this.tableData = res;
+      console.log(this.tableData)
     })
-    this.pettyCashService.onDataChangedObservable$.subscribe((res: any) =>{
-      this.PettyCashData = res;
+    this.pettyCashService.onDataChangedObservable().subscribe((res: any) => {
+      this.listData = res;
+      console.log(res)
     })
-    this.getArray();
+    
+    // this.getArray();
   }
   openDialog(data): void {
     const dialogRef = this.dialog.open(AddItemDialogComponent, {
@@ -43,34 +51,36 @@ export class TableComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.pettyCashService.getList().subscribe();
+        this.pettyCashService.onTableChangedObservable$.subscribe();
       }
     })
   }
 
-  handlePage(pagin: any):void {
-    this.currentPage = pagin.pageIndex;
-    this.pageSize = pagin.pageSize;
-    this.iterator();
-  }
+  // handlePage(pagin: any):void {
+  //   this.currentPage = pagin.pageIndex;
+  //   this.pageSize = pagin.pageSize;
+  //   this.iterator();
+  // }
 
-  getArray():void{
-    this.pettyCashService.onTableChangedObservable$
-      .subscribe((res: any) => {
-        this.dataSource = new MatTableDataSource<Element>(res);
-        this.dataSource.paginator = this.paginator;
-        this.array = res;
-        this.totalSize = this.array.length;
-        this.iterator();
-        console.log(this.totalSize)
-      });
-  }
+  // getArray():void{
+  //   this.pettyCashService.onTableChangedObservable$
+  //     .subscribe((res: any) => {
+  //       this.dataSource = new MatTableDataSource<Element>(res);
+  //       this.dataSource.paginator = this.paginator;
+  //       this.array = res;
+  //       this.totalSize = this.array.length;
+  //       this.iterator();
+  //       console.log(this.totalSize)
+  //     });
+  // }
 
-  iterator():void {
-    const end = (this.currentPage + 1) * this.pageSize;
-    const start = this.currentPage * this.pageSize;
-    const part = this.array.slice(start, end);
-    this.dataSource = part;
-  }
+  // iterator():void {
+  //   const end = (this.currentPage + 1) * this.pageSize;
+  //   const start = this.currentPage * this.pageSize;
+  //   const part = this.array.slice(start, end);
+  //   this.dataSource = part;
+  // }
 
+
+  
 }
