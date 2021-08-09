@@ -5,21 +5,8 @@ var Schema = mongoose.Schema;
 
 
 var PettycashsSchema = new Schema({
-    documentNo: {
-        type: Number,
-    },
-    list: {
-        type: String,
-    },
-    admit: {
-        type: Number,
-    },
-    pay: {
-        type: Number,
-
-    },
-    placeOfUse: {
-        type: String,
+    pettycashsId:{
+        type: String
     },
     name: {
         type: String,
@@ -36,9 +23,6 @@ var PettycashsSchema = new Schema({
     limit: {
         type: Number,
         // required: 'Please fill a Attendances limit',
-    },
-    date:{
-        type: Date ,
     },
     created: {
         type: Date,

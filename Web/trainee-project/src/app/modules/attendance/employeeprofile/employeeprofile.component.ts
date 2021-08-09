@@ -11,19 +11,20 @@ import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 export class EmployeeProfileComponent implements OnInit {
 
   employeeData: any;
+  
+
 
   constructor(
     private attendanceService: AttendanceService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,) { }
 
   ngOnInit(): void {
-    this.attendanceService.getAttendance().subscribe((res: any) => {
-      // console.log(res)
-      this.employeeData = res.data;
-      // console.log(this.employeeData)
-
-    });
-  }
+    this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
+      // console.log(res);
+      this.employeeData = res;
+     
+  });
+}
 
   openDialog(data1) {
     const dialogRef = this.dialog.open(DialogAddComponent, {

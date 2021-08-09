@@ -1,13 +1,16 @@
 <mat-drawer-container class="stock-container">
     <mat-drawer fxLayout="column" class="stock-left-panel" mode="side" opened="true" position="start">
-        <app-stock-list></app-stock-list>
+        <app-stock-list ></app-stock-list>
     </mat-drawer>
     <mat-drawer-content class="stock-content-panel" fxLayout="column">
         <div fxLayout="column" fxFlexFill>
             <div fxLayout="row">
                 <mat-toolbar>
                     <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex>
-                        <div fxLayoutAlign="start">
+                        <div fxLayoutAlign="start center">
+                            <div>
+                                <button mat-button (click)="openStockManageDialog(productData)">จัดการสต๊อกสินค้า</button>
+                            </div>
                             <!-- <section>
                                 <label style="padding-right: 15px;">เรียงตาม:</label>
                                 <mat-radio-group>

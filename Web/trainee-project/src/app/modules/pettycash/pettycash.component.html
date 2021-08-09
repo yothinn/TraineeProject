@@ -10,7 +10,7 @@
       </mat-form-field>
     </mat-toolbar>
     <div *ngFor="let item of filterList; let i = index;" class="customer" align="center">
-      <mat-card class="card-customer">
+      <mat-card class="card-customer" (click)="onClick(item)">
         <div fxLayout="row" fxLayoutAlign="space-between stretch">
           <a class="size-name">
             {{item.name}} {{item.lastName}}

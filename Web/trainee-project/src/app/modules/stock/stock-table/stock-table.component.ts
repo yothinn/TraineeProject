@@ -17,7 +17,7 @@ export class StockTableComponent implements OnInit {
     .subscribe((res)=>{
       this.productData = res
       console.log(res);
-    })
+    });
     // this.stockService.getProduct().subscribe((res: any) => {
     //   this.productData = res.data;
     //   this.productList = this.productData;

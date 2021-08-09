@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class StockService {
 
-  
+
   private onDataChanged$ = new Subject();
   public onDataChangedObservable$ = this.onDataChanged$.asObservable();
 
@@ -18,24 +18,38 @@ export class StockService {
   }
 
   getProduct(): Observable<any> {
-    return this.http.get('http://localhost:3000/api/products')
+    return this.http.get('http://localhost:3000/api/products');
   }
 
-  getProductById(id: string) {
+  getStockById(id: string): void {
     console.log(id);
-    this.http.get(`http://localhost:3000/api/products/${id}`)
+    this.http.get(`http://localhost:3000/api/stocksproducts?productId=${id}`)
       .subscribe((res: any) => {
-        this.onDataChanged$.next(res.data)
+        console.log(res);
+        this.onDataChanged$.next(res.data);
       })
   }
 
-  getProductByCategory(id): Observable<any> {
+  getProductByCategory(id: string): Observable<any> {
     return this.http.get(`http://localhost:3000/api/products?categoryId=${id}`);
   }
 
-  getProductByDate(id): Observable<any> {
+  getProductByDate(id: string): Observable<any> {
     return this.http.get(`http://localhost:3000/api/products?created=${id}`);
   }
+
+  createStock(body: string): Observable<any> {
+    return this.http.post(`http://localhost:3000/api/stocksproducts/`, body);
+  }
+
+  updateStock(body: any): Observable<any> {
+    return this.http.post(`http://localhost:3000/api/stocksproducts/${body._id}`, body);
+  }
+
+  searchProduct(text:any):Observable<any>{
+  console.log(text);
+    return this.http.get(`http://localhost:3000/api/products/search?query=${text}`);
+  } 
 
   // getProductByCategories(){
   //   return this.http.get('http://localhost:3000/api/categoriess')

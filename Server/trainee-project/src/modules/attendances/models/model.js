@@ -21,18 +21,7 @@ var AttendancesSchema = new Schema({
         type: String,
        
     },
-    workDate: {
-        type: String,
-
-    },
-    timeIn: {
-        type: String,
-
-    },
-    timeOut: {
-        type: String,
-
-    },
+ 
     created: {
         type: Date,
         default: Date.now

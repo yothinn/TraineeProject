@@ -1,40 +1,67 @@
-    <mat-toolbar class="mat-toolbar-left">
-        <div fxFill fxLayout="column" fxLayoutAlign="start center">
-            <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-                <span name="mat-toolbar-left">รายการสินค้า</span>
-            </div>
+<mat-toolbar class="mat-toolbar-left">
+    <div fxFill fxLayout="column" fxLayoutAlign="start center">
+        <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+            <span name="mat-toolbar-left">รายการสินค้า</span>
         </div>
-    </mat-toolbar>
-    <div fxLayout="column">
-        <div fxLayout="row" fxFlexFill>
-            <div class="stock-searchbar">
-                <mat-form-field appearance="legacy"fxFlex>
-                    <input #searchStockList matInput (keyup)="onSearch()" placeholder="Search">
-                </mat-form-field>
-            </div>
+    </div>
+</mat-toolbar>
+<div fxLayout="column">
+    <div fxLayout="row" fxFlexFill>
+        <div class="stock-searchbar">
+            <mat-form-field appearance="legacy" fxFlex>
+                <input #searchStockList matInput (keyup)="onSearch()" placeholder="Search">
+            </mat-form-field>
+        </div>
 
-
-        </div>
-        <div fxLayout="row">
-            <div class="stock-searchbar" fxLayoutAlign="end ">
-                <mat-form-field appearance="legacy">
-                    <mat-label>หมวดหมู่สินค้า</mat-label>
-                    <mat-select>
-                        <mat-option (click)="getAll()">ทั้งหมด</mat-option>
-                        <mat-option *ngFor="let item of categoriesList" (click)="onChooseCatagory(item)">
-                            {{item.name}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-        </div>
 
     </div>
-    <div fxLayout="column">
+    <div fxLayout="row">
+        <div class="stock-searchbar" fxLayoutAlign="end ">
+            <mat-form-field appearance="legacy">
+                <mat-label>หมวดหมู่สินค้า</mat-label>
+                <mat-select>
+                    <mat-option (click)="getAll()">ทั้งหมด</mat-option>
+                    <mat-option *ngFor="let item of categoriesList" (click)="onChooseCatagory(item)">
+                        {{item.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+</div>
+<div fxLayout="column" class="stock-content">
+    <div fxLayout="column" *ngFor="let item of productList" (click)="onChooseList(item)">
+        <div fxLayout="row" fxLayoutAlign="end" class="stock-message" fxFlex="100">
+            <!-- {{(customer.updated || customer.created) | dateAgo }} -->
+            <!-- <div fxLayoutAlign="start" fxFlex="70">
+              รหัสลูกค้า: {{customer.id}}
+            </div> -->
+            <!-- {{(customer.updated || customer.created) | dateAgo }} -->
+            {{item.created | date}}
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.8rem">
+            <div>
+                <img class="avatar-header"
+                    src="https://www.pinclipart.com/picdir/big/109-1093736_png-file-svg-inventory-icon-png-black-clipart.png">
+            </div>
+            <div fxLayout="column" fxFlex>
+                <div fxLayoutAlign="start center" class="contact-name" fxFlex>
+                    <!-- {{customer.title | titlecase}} {{customer.name | titlecase}} -->
+                    รหัสสินค้า: {{item.productId}}
+                </div>
+                <!-- <div fxLayout="row" class="contact-message" fxFlex fxLayoutAlign="start start">
+                <p class="overflow-ellipsis">{{customer.lastedEvent || 'ไม่มีข้อมูล'}}</p>
+              </div> -->
+                ชื่อสินค้า: {{item.productName}}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div fxLayout="column">
         <mat-selection-list [multiple]="false">
             <mat-list-option *ngFor="let item of productList" (click)="onChooseList(item)">
                 {{item.productName}}
             </mat-list-option>
         </mat-selection-list>
 
-    </div>
-
+    </div> -->
