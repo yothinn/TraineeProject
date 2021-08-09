@@ -29,8 +29,7 @@ export class AddUserDialogComponent implements OnInit {
       pettycashsId:[data.pettycashsId],
       name: [data.name,Validators.required] ,
       lastName: [data.lastName,Validators.required] ,
-      amount:[data.amount,Validators.required] ,
-      limit: [data.limit,Validators.required]
+      financialAmount: [data.financialAmount,Validators.required]
 
 
     });

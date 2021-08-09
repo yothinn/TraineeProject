@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDrawer } from '@angular/material/sidenav';
 import { AttendanceDialogComponent } from './attendance-dialog/attendance-dialog.component';
@@ -13,11 +15,15 @@ import { DialogAddComponent } from './dialog-add/dialog-add.component';
 export class AttendanceComponent implements OnInit {
   @ViewChild('leftSide') left: MatDrawer;
   @ViewChild('rightSide') right: MatDrawer;
+  @ViewChild('fileInput', { static: false}) fileInput: ElementRef;
+  
   employeeData: any;
+  profileForm: FormGroup;
  
   constructor(
     private attendanceService: AttendanceService,
     public dialog: MatDialog,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -54,6 +60,9 @@ export class AttendanceComponent implements OnInit {
       // console.log(`Dialog result: ${result}`)
     });
     
+  }
+  onFileUpload() {
+    this.attendanceService.uploadImageAttendance(this.profileForm.value)
   }
 }
 

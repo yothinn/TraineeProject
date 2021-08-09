@@ -16,23 +16,23 @@ exports.getList = function (req, res) {
     }
     query.skip = size * (pageNo - 1);
     query.limit = size;
-        Pettycashs.find({}, {}, query, function (err, datas) {
-            if (err) {
-                return res.status(400).send({
-                    status: 400,
-                    message: errorHandler.getErrorMessage(err)
-                });
-            } else {
-                res.jsonp({
-                    status: 200,
-                    data: datas
-                });
-            };
-        });
+    Pettycashs.find(req.query, {}, query, function (err, datas) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp({
+                status: 200,
+                data: datas
+            });
+        };
+    });
 };
 
 exports.create = function (req, res) {
-    var newPettycashs = new Pettycashs (req.body);
+    var newPettycashs = new Pettycashs(req.body);
     newPettycashs.createby = req.user;
     newPettycashs.save(function (err, data) {
         if (err) {
@@ -116,3 +116,34 @@ exports.delete = function (req, res) {
         };
     });
 };
+exports.search = function (req, res) {
+    let searchText = req.query.query;
+    let query = {
+
+        name: { $regex: `${searchText}`}
+        // $or: [
+        //     { productName: { $regex: `^${searchText}`, $options: "i" } }
+        //     { lastName: { $regex: `^${searchText}`, $options: "i" } }
+        // ]
+    };
+    console.log(query);
+
+    // console.log(searchText)
+    // console.log(req.query.query);
+    // console.log(query);
+
+    Pettycashs.find(query, function (err, datas) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            // console.log(datas);
+            res.jsonp({
+                status: 200,
+                data: datas
+            });
+        };
+    });
+}

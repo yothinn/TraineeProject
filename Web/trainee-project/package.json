@@ -27,6 +27,7 @@
     "mat-timepicker": "^5.1.4",
     "ngx-material-timepicker": "^5.5.3",
     "ngx-pagination": "^5.1.1",
+    "ngx-pipes": "^2.7.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
