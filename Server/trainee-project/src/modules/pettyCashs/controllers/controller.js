@@ -119,13 +119,18 @@ exports.delete = function (req, res) {
 exports.search = function (req, res) {
     let searchText = req.query.query;
     let query = {
-        $or: [
-            { name: { $regex: `^${searchText}`, $options: "i" } },
-            { lastName: { $regex: `^${searchText}`, $options: "i" } }
-        ]
 
+        name: { $regex: `${searchText}`}
+        // $or: [
+        //     { productName: { $regex: `^${searchText}`, $options: "i" } }
+        //     { lastName: { $regex: `^${searchText}`, $options: "i" } }
+        // ]
     };
+    console.log(query);
 
+    // console.log(searchText)
+    // console.log(req.query.query);
+    // console.log(query);
 
     Pettycashs.find(query, function (err, datas) {
         if (err) {
@@ -134,10 +139,11 @@ exports.search = function (req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
+            // console.log(datas);
             res.jsonp({
                 status: 200,
                 data: datas
             });
         };
     });
-};
+}

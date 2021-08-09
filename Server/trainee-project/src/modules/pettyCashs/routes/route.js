@@ -5,10 +5,9 @@ var controller = require('../controllers/controller'),
 module.exports = function (app) {
     var url = '/api/pettycashs';
     var urlWithParam = '/api/pettycashs/:pettycashsId';
-    
+
     app.route('/api/pettycashs/search')//.all(policy.isAllowed)
-        .get(controller.getList)
-        .post(controller.create);
+        .get(controller.search);
 
     app.route(url)//.all(policy.isAllowed)
         .get(controller.getList)
