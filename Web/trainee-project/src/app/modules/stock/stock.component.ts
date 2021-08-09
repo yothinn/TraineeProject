@@ -12,10 +12,7 @@ import { StockManageDialogComponent } from './stock-manage-dialog/stock-manage-d
 export class StockComponent implements OnInit {
 
 
-  categoriesList: any[];
-  categoriesData: any;
   productData: any;
-  productList: any;
   listData: any;
   range = new FormGroup({
     start: new FormControl(),
@@ -30,7 +27,6 @@ export class StockComponent implements OnInit {
   ngOnInit(): void {
     this.stockService.getProduct().subscribe((res: any) => {
       this.productData = res.data;
-      this.productList = this.productData;
     })
 
   }
@@ -44,9 +40,11 @@ export class StockComponent implements OnInit {
     });
   }
 
-  openStockManageDialog() {
+  openStockManageDialog(dataProduct?: any) :void{
     const dialogRef = this.dialog.open(StockManageDialogComponent, {
-      // data: data
+      data: dataProduct,
+      width:'25vw',
+      height:'70vh'
     });
     // dialogRef.afterClosed().subscribe(res => {
     //   if (res) {

@@ -29,10 +29,16 @@ export class StockListComponent implements OnInit {
 
   onSearch(): void {
     let fillData = this.searchRef.nativeElement.value.toLowerCase();
-    this.productList = this.productData.filter(res => {
-      console.log(res);
-      return res.productName.toLowerCase().startsWith(fillData);
-    });
+     this.stockService.searchProduct(fillData)
+      .subscribe((res) => {
+        console.log(res);
+        this.productList = res.data;
+      })
+
+    // this.productList = this.productData.filter(res => {
+    //   console.log(res);
+    //   return res.productName.toLowerCase().startsWith(fillData);
+    // });
   }
 
   // onChooseList(item: any): void {
