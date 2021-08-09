@@ -1,76 +1,105 @@
+<header>
+  <mat-card>
+
+    
+  <div>
+    รหัสพนักงาน: {{employeeData?.employeeId}} 
+
+    <button  mat-button [matMenuTriggerFor]="menu" class="menu" >
+      <mat-icon><small>edit</small></mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openDialog(employeeData)">Edit</button>
+      <button mat-menu-item (click)="delete(employeeData)">Delete</button>
+    </mat-menu>
+
+  </div>
+  
+  <div fxLayout="row">
+     ชื่อ: {{employeeData?.name}} นามสกุล: {{employeeData?.lastname}}
+  </div>
+
+  <p>
+    เบอร์โทรศัพท์: {{employeeData?.tel}}
+  </p>
+
+   
+  </mat-card>
+</header>
+
 <div fxLayout="column" >
     <div fxLayout="row" style="padding: 15px;" fxFlex>
 
-    <div style="padding-left: 10px;" fxFlex="15">
+    <!-- <div style="padding-left: 10px;" fxFlex="15">
         <p>
           รหัสพนักงาน
         </p>
-    </div>
+    </div> -->
 
-    <div style="padding-left: 10px;" fxFlex="20">
+    <!-- <div style="padding-left: 10px;" fxFlex="20">
       <p>
         ชื่อ
       </p>
-    </div>
+    </div> -->
 
-    <div style="padding-left: 10px;" fxFlex="20">
+    <!-- <div style="padding-left: 10px;" fxFlex="20">
       <p>
         นามสกุล
       </p>
-    </div>
+    </div> -->
 
-    <div style="padding-left: 10px;" fxFlex="20">
+    <!-- <div style="padding-left: 10px;" fxFlex="20">
       <p>
         เบอร์โทรศัพท์
       </p>
-    </div>
+    </div> -->
 
     <div style="padding-left: 10px;" fxFlex="20">
       <p>
-        วันที่เข้าทำงาน
+        วัน-เวลาเข้างาน
       </p>
     </div>
 
     <div style="padding-left: 10px;" fxFlex="20">
       <p>
-        เวลาเข้าทำงาน
+        วัน-เวลาออกงาน
       </p>
     </div>
    
-    <div style="padding-left: 10px;" fxFlex="20">
+    <!-- <div style="padding-left: 10px;" fxFlex="20">
       <p>
        จัดการ
       </p>
-    </div>
+    </div> -->
 
    </div>
 
 
    <div style="padding: 15px;" fxLayout="row"   fxFlex>
 
-    <div style="padding-left: 10px;" fxFlex="15">
+    <!-- <div style="padding-left: 10px;" fxFlex="15">
         <p>
            {{employeeData?.employeeId}}
         </p>
-    </div>
+    </div> -->
 
-    <div style="padding-left: 10px;" fxFlex="20">
+    <!-- <div style="padding-left: 10px;" fxFlex="20">
         <p>
            {{employeeData?.name}}
         </p>
-    </div>
+    </div> -->
 
-    <div style="padding-left: 10px;" fxFlex="20">
+    <!-- <div style="padding-left: 10px;" fxFlex="20">
         <p>
           {{employeeData?.lastname}}
         </p>
-    </div>
+    </div> -->
 
-    <div style="padding-left: 10px;" fxFlex="20">
+    <!-- <div style="padding-left: 10px;" fxFlex="20">
         <p>
           {{employeeData?.tel}}
         </p>
-    </div>
+    </div> -->
 
     <div style="padding-left: 10px;" fxFlex="20" *ngFor="let item of dateTimeData">
         <p>
@@ -84,7 +113,7 @@
         </p>
     </div>
 
-    <div style="padding-left: 10px;" fxFlex="20">
+    <!-- <div style="padding-left: 10px;" fxFlex="20">
 
       <button mat-button [matMenuTriggerFor]="menu" class="menu" >
         <mat-icon>more_vert</mat-icon>

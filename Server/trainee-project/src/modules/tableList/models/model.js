@@ -22,7 +22,6 @@ var TablelistSchema = new Schema({
     },
     withdraw: {
         type: Number,
-
     },
     placeOfUse: {
         type: String,

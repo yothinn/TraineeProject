@@ -6,17 +6,25 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class PettyCashService {
-  private onDataChanged$ = new Subject();
-  public onDataChangedObservable$ = this.onDataChanged$.asObservable();
-  public onGetList$ = this.onDataChanged$.asObservable();
+  private onTableChanged$ = new Subject();
+  public onTableChangedObservable$ = this.onTableChanged$.asObservable();
 
-  constructor(private http: HttpClient) { }
+  dataChanged$ = new Subject<any>();
+  constructor(private http: HttpClient) {
+    this.dataChanged$ = new Subject()
+   }
 
-  onClickCard(id: string):void{
-    console.log(id)
+  onDataChangedObservable(){
+    return this.dataChanged$.asObservable();
+  }
+  onClickCard(data: any){
+    this.dataChanged$.next(data)
+  }
+
+  getTableById(id: any):void{
     this.http.get(`http://localhost:3000/api/tableLists?pettycashsId=${id}`)
     .subscribe((res: any)=>{
-      this.onDataChanged$.next(res.data);
+      this.onTableChanged$.next(res.data);
     })
   }
 
@@ -36,7 +44,11 @@ export class PettyCashService {
     console.log(body)
     return this.http.delete(`http://localhost:3000/api/pettycashs/${body._id}`, body)
   }
-  createItem(body){
+  createItem(body): Observable<any>{
     return this.http.post('http://localhost:3000/api/tableLists', body);
+  }
+  search(text: any): Observable<any>{
+    return this.http.get(`http://localhost:3000/api/pettycashs/search?query=${text}`);
+
   }
 }

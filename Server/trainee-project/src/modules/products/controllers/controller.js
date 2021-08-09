@@ -12,30 +12,32 @@ exports.getList = function (req, res) {
     delete req.query.pageNo;
     delete req.query.size;
 
-    var query = {};
+    var query = {
+    };
+
     if (pageNo < 0 || pageNo === 0) {
         response = { "error": true, "message": "invalid page number, should start with 1" };
         return res.json(response);
     }
     query.skip = size * (pageNo - 1);
     query.limit = size;
-        Products.find(req.query, {}, query, function (err, datas) {
-            if (err) {
-                return res.status(400).send({
-                    status: 400,
-                    message: errorHandler.getErrorMessage(err)
-                });
-            } else {
-                res.jsonp({
-                    status: 200,
-                    data: datas
-                });
-            };
-        });
+    Products.find(req.query, {}, query, function (err, datas) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp({
+                status: 200,
+                data: datas
+            });
+        };
+    });
 };
 
 exports.create = function (req, res) {
-    var newProducts = new Products (req.body);
+    var newProducts = new Products(req.body);
     newProducts.createby = req.user;
     newProducts.save(function (err, data) {
         if (err) {
@@ -119,3 +121,36 @@ exports.delete = function (req, res) {
         };
     });
 };
+
+exports.search = function (req, res) {
+    let searchText = req.query.query;
+    let query = {
+
+        productName: { $regex: `${searchText}`}
+        // $or: [
+        //     { productName: { $regex: `^${searchText}`, $options: "i" } }
+        //     { lastName: { $regex: `^${searchText}`, $options: "i" } }
+        // ]
+    };
+    console.log(query);
+
+    // console.log(searchText)
+    // console.log(req.query.query);
+    // console.log(query);
+
+    Products.find(query, function (err, datas) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            // console.log(datas);
+            res.jsonp({
+                status: 200,
+                data: datas
+            });
+        };
+    });
+}
+

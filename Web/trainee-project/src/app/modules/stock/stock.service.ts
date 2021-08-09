@@ -30,13 +30,26 @@ export class StockService {
       })
   }
 
-  getProductByCategory(id): Observable<any> {
+  getProductByCategory(id: string): Observable<any> {
     return this.http.get(`http://localhost:3000/api/products?categoryId=${id}`);
   }
 
-  getProductByDate(id): Observable<any> {
+  getProductByDate(id: string): Observable<any> {
     return this.http.get(`http://localhost:3000/api/products?created=${id}`);
   }
+
+  createStock(body: string): Observable<any> {
+    return this.http.post(`http://localhost:3000/api/stocksproducts/`, body);
+  }
+
+  updateStock(body: any): Observable<any> {
+    return this.http.post(`http://localhost:3000/api/stocksproducts/${body._id}`, body);
+  }
+
+  searchProduct(text:any):Observable<any>{
+  console.log(text);
+    return this.http.get(`http://localhost:3000/api/products/search?query=${text}`);
+  } 
 
   // getProductByCategories(){
   //   return this.http.get('http://localhost:3000/api/categoriess')
