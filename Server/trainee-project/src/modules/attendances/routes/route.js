@@ -21,6 +21,9 @@ module.exports = (app) => {
     var url = '/api/attendances';
     var urlWithParam = '/api/attendances/:attendancesId';
 
+    // app.route('/api/attendances/search')
+    //     .get(controller.search);
+
     app.route('/api/attendances/uploads')
         .post(upload.single('files'), controller.uploads);
 
