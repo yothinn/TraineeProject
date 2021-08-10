@@ -57,7 +57,8 @@ export class AttendanceService {
   }
 
   uploadImageAttendance(file): Observable<any>{
-    return this.http.post('http://localhost:3000/api/attendances', file);
+    console.log(file);
+    return this.http.post('http://localhost:3000/api/attendances/uploads', file);
   }
 }
 

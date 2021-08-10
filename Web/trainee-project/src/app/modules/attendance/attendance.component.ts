@@ -15,11 +15,11 @@ import { DialogAddComponent } from './dialog-add/dialog-add.component';
 export class AttendanceComponent implements OnInit {
   @ViewChild('leftSide') left: MatDrawer;
   @ViewChild('rightSide') right: MatDrawer;
-  @ViewChild('fileInput', { static: false}) fileInput: ElementRef;
-  
+  @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
+
   employeeData: any;
   profileForm: FormGroup;
- 
+
   constructor(
     private attendanceService: AttendanceService,
     public dialog: MatDialog,
@@ -47,7 +47,7 @@ export class AttendanceComponent implements OnInit {
       }
     })
   }
-  
+
   toggleLeft(): void {
     this.left.toggle();
   }
@@ -59,10 +59,17 @@ export class AttendanceComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`)
     });
-    
   }
-  onFileUpload() {
-    this.attendanceService.uploadImageAttendance(this.profileForm.value)
+  onFileUpload(event) {
+    const file = event.target.files[0];
+    console.log(file);
+    const formData = new FormData();
+    formData.append('files', file);
+    this.attendanceService.uploadImageAttendance(formData)
+      .subscribe((res) => {
+        console.log(res);
+      })
+    // this.attendanceService.uploadImageAttendance(this.profileForm.value)
   }
 }
 
