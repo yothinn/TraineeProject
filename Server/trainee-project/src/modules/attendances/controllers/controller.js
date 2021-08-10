@@ -133,6 +133,36 @@ exports.delete = (req, res) => {
     });
 };
 
+
+exports.search = function (req, res) {
+    let searchText = req.query.query;
+    let query = {
+
+        // name: { $regex: `${searchText}`}
+        $or: [
+            { name: { $regex: `^${searchText}`, $options: "i" } },
+            { lastName: { $regex: `^${searchText}`, $options: "i" } }
+        ]
+    };
+    console.log(query);
+
+    Attendances.find(query, function (err, datas) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            // console.log(datas);
+            res.jsonp({
+                status: 200,
+                data: datas
+            });
+        };
+    });
+
+}
+
 exports.uploads = (req, res) => {
     const url = req.protocol + '://' + req.headers.host + '/' + config.folderName + '/';
     req.file.url = url + req.file.filename;
