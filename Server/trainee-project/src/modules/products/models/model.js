@@ -29,6 +29,9 @@ var ProductsSchema = new Schema({
     description: {
         type: String,
     },
+    image:{
+        type: String,
+    },
     created: {
         type: Date,
         default: Date.now
