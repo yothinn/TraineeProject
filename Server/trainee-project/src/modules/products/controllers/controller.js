@@ -23,6 +23,7 @@ exports.getList = function (req, res) {
     query.skip = size * (pageNo - 1);
     query.limit = size;
     Products.find(req.query, {}, query, function (err, datas) {
+        console.log(req.query)
         if (err) {
             return res.status(400).send({
                 status: 400,

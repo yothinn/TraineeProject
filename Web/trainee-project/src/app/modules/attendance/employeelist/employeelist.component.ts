@@ -43,6 +43,7 @@ export class EmployeeListComponent implements OnInit {
     // console.log(item)
     this.attendanceService.getProfileById(item) 
     this.attendanceService.getDateTimeById(item)
+    this.attendanceService.getDateTimeOutById(item)
      
   }
 

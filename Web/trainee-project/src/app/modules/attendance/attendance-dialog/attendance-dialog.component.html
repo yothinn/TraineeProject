@@ -8,7 +8,7 @@
    
    <mat-form-field appearance="fill">
     <mat-label>เลือกรายชื่อพนักงาน</mat-label>
-    <mat-select [(value)]="selected"formControlName="employeeId">
+    <mat-select [(value)]="selected" formControlName="employeeId">
       <mat-option [value]="item.employeeId"   *ngFor="let item of employeeData">{{item.name}} {{item.lastname}}</mat-option>
     </mat-select>
   </mat-form-field> 
@@ -21,7 +21,7 @@
 
   <mat-form-field>
     <div fxLayout="row">
-      <input matTimepicker formControlName="timeIn" placeholder="กรุณาเลือกเวลา" >
+      <input matTimepicker formControlName="timeIn"  placeholder="กรุณาเลือกเวลา" >
       <mat-icon>schedule</mat-icon>
     </div>
  </mat-form-field>
@@ -29,7 +29,7 @@
 </div>
 <div fxLayout="row">
  <button class="btn-in"  (click)="onSubmitIn()">เข้างาน</button>
- <button class="btn-out" >ออกงาน</button>
+ <button class="btn-out" (click)="onSubmitOut()">ออกงาน</button>
 </div>
 </form>
 

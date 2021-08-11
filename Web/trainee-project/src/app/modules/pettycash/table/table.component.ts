@@ -38,7 +38,7 @@ export class TableComponent implements OnInit {
       this.tableData = res;
       console.log(this.tableData)
     })
-    this.pettyCashService.onDataChangedObservable().subscribe((res: any) => {
+    this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
       this.listData = res;
       console.log(res)
     })
@@ -59,7 +59,7 @@ export class TableComponent implements OnInit {
   // handlePage(pagin: any):void {
   //   this.currentPage = pagin.pageIndex;
   //   this.pageSize = pagin.pageSize;
-  //   this.iterator();
+  //   this.shoose();
   // }
 
   // getArray():void{
@@ -69,12 +69,12 @@ export class TableComponent implements OnInit {
   //       this.dataSource.paginator = this.paginator;
   //       this.array = res;
   //       this.totalSize = this.array.length;
-  //       this.iterator();
+  //       this.shoose();
   //       console.log(this.totalSize)
   //     });
   // }
 
-  // iterator():void {
+  // shoose():void {
   //   const end = (this.currentPage + 1) * this.pageSize;
   //   const start = this.currentPage * this.pageSize;
   //   const part = this.array.slice(start, end);
