@@ -21,6 +21,9 @@ export class EmployeeTableComponent implements OnInit {
   menu: boolean = false;
   dateTimeData: any;
   dateTimeData1: any;
+  dateTimeOut:any;
+  
+ 
 
 
   constructor(
@@ -44,7 +47,7 @@ export class EmployeeTableComponent implements OnInit {
     // });
 
     this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
-      console.log(res)
+      // console.log(res)
       this.employeeData = res;
       this.menu = true;
     });
@@ -54,11 +57,27 @@ export class EmployeeTableComponent implements OnInit {
     //   // console.log(this.employeeData) 
     // });
     this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
-      console.log(res)
+      // console.log(res)
       this.dateTimeData = res;
 
     });
+
+
+    this.attendanceService.onDateOutChangedObservable$.subscribe((res: any) => {
+      // console.log(res)
+      this.dateTimeOut = res;
+
+    });
+
+  
+
+  
+
+
+    
   }
+
+
 
   openDialog(data1) {
     // console.log(data1)
