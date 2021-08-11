@@ -30,14 +30,13 @@ export class EmployeeListComponent implements OnInit {
        
     });
   }
-  onKeyup(event) {
+  onKeyup(event): void {
     let filter = this.searchEle.nativeElement.value.toLowerCase();
-    // console.log(filter)
-    this.filterList = this.employeeData.filter(res =>{
-      // console.log(res)
-     return res.name.toLowerCase().startsWith(filter);
-     
-    });
+     this.attendanceService.searchEmployee(filter)
+      .subscribe((res) => {
+        console.log(res);
+        this.filterList = res.data;
+      })
   }
   
   onChooseEmployee(item) {

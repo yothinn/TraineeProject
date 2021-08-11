@@ -1,25 +1,18 @@
+<header>
+  <mat-card>
 
-<div class="card" > 
-    <img src="https://static.vecteezy.com/system/resources/previews/002/275/847/original/male-avatar-profile-icon-of-smiling-caucasian-man-vector.jpg"
-        style="width:100%">
-    <h1>กรุณาเลือกรายชื่อพนักงานที่ต้องการ</h1>
-    <!-- <div class="detail">
-        <p>ID: {{item.employeeId}}</p>
-        <p>TEL: {{item.tel}}</p>
-    </div> 
-    <div fxLayoutAlign="end">
-    <button mat-button [matMenuTriggerFor]="menu" >
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="openDialog(item)">Edit</button>
-        <button mat-menu-item (click)="delete(item)">Delete</button>
-      </mat-menu>
-    </div>  -->
-    
-    {{employeeData?.name}}
-    {{employeeData?.lastname}}
-    {{employeeData?.tel}}
-</div>
+  <img src="https://static.vecteezy.com/system/resources/previews/002/275/847/original/male-avatar-profile-icon-of-smiling-caucasian-man-vector.jpg"
+    style="width:100%">
+  <h2>รายละเอียดพนักงาน</h2>
+
+  <a><B>ชื่อ:</B> {{employeeData?.name}} <B>นามสกุล:</B> {{employeeData?.lastname}}</a><br>
+  <a><B>เบอร์โทรศัพท์:</B> {{employeeData?.tel}}</a><br>
+  <a><B>ที่อยู่:</B> {{employeeData?.address}}</a><br>
+  <a><B>อายุ:</B> {{employeeData?.age}} <B>ปี สัญชาติ:</B> {{employeeData?.nationality}}</a><br>
+  <a><B>ศาสนา:</B> {{employeeData?.religion}}</a>
+
+  </mat-card>
+  <p></p>
+</header>
 
 

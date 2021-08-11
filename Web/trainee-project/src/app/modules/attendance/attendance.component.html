@@ -12,15 +12,12 @@
                     chevron_right
                 </mat-icon>
             </button>
-
             <button (click)="rightSide.toggle()" class="button-right" fxLayoutAlign="end">
                 <mat-icon>
                     chevron_left
                 </mat-icon>
             </button>
-
         </div>
-
         <form>
             <button mat-button (click)="openDialog('new')">เพิ่มข้อมูลพนักงาน</button>
             <button mat-button (click)="openDialogAttendance()">เข้างาน/ออกงาน</button>
@@ -31,8 +28,8 @@
         <app-employee-table></app-employee-table>
         
         <div>
-            <input #fileInput type="file">
-            <button (click)="onFileUpload()">upload</button>
+            <button mat-stroked-button (click)="fileUpload.click()">เพิ่มไฟล์แนบ</button>
+            <input type="file" #fileUpload (change)="onFileUpload($event)" hidden>
         </div>
 
     </mat-drawer-container>

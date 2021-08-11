@@ -1,131 +1,54 @@
 <header>
   <mat-card>
+  <a><B>รหัสพนักงาน:</B> {{employeeData?.employeeId}}
+      <mat-icon [matMenuTriggerFor]="menu" class="menu"><small>edit</small></mat-icon>
+  </a><br>
 
-    
-  <div>
-    รหัสพนักงาน: {{employeeData?.employeeId}} 
+  <a><B>ชื่อ:</B> {{employeeData?.name}} <B>นามสกุล:</B> {{employeeData?.lastname}}</a><br>
+  <a><B>เบอร์โทรศัพท์:</B> {{employeeData?.tel}}</a>
 
-    <button  mat-button [matMenuTriggerFor]="menu" class="menu" >
-      <mat-icon><small>edit</small></mat-icon>
-    </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="openDialog(employeeData)">Edit</button>
       <button mat-menu-item (click)="delete(employeeData)">Delete</button>
     </mat-menu>
-
-  </div>
-  
-  <div fxLayout="row">
-     ชื่อ: {{employeeData?.name}} นามสกุล: {{employeeData?.lastname}}
-  </div>
-
-  <p>
-    เบอร์โทรศัพท์: {{employeeData?.tel}}
-  </p>
-
-   
   </mat-card>
+  <p></p>
 </header>
 
-<div fxLayout="column" >
-    <div fxLayout="row" style="padding: 15px;" fxFlex>
 
-    <!-- <div style="padding-left: 10px;" fxFlex="15">
-        <p>
-          รหัสพนักงาน
-        </p>
-    </div> -->
+<div align="center" fxLayout="row"  class="padding">
 
-    <!-- <div style="padding-left: 10px;" fxFlex="20">
-      <p>
-        ชื่อ
-      </p>
-    </div> -->
+  <div fxFlex="5" class="padding">
+    <ng-container matColumnDef="No">
+      <th mat-header-cell class="textField"> No </th><br>
+      <mat-divider class="padding" ></mat-divider>
+      <td fxLayout="column" mat-cell  *ngFor="let item of dateTimeData;let i = index;"> {{i+1}} <mat-divider class="padding">
+        </mat-divider>
+      </td>
+    </ng-container>
+  </div>
 
-    <!-- <div style="padding-left: 10px;" fxFlex="20">
-      <p>
-        นามสกุล
-      </p>
-    </div> -->
+  <div class="padding">
+    <ng-container class="padding" matColumnDef="วัน-เวลา-เข้างาน">
+      <th mat-header-cell class="textField">วัน-เวลา-เข้างาน</th><br>
+      <mat-divider class="padding"></mat-divider>
+      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeData"> วันที่ {{item.dateIn | date:"dd/MM/yyyy"}} เวลา {{item.timeIn |date:"h:mm a"}}
+        <mat-divider class="padding"></mat-divider>
+      </td>
+    </ng-container>
+  </div>
 
-    <!-- <div style="padding-left: 10px;" fxFlex="20">
-      <p>
-        เบอร์โทรศัพท์
-      </p>
-    </div> -->
+  <div class="padding">
+    <ng-container matColumnDef="วันเวลาเข้างาน">
+      <th mat-header-cell class="textField">วัน-เวลา-ออกงาน</th><br>
+      <mat-divider class="padding"></mat-divider>
+      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeData"> Waiting BlankerGamer...
+        <mat-divider class="padding"></mat-divider>
+      </td>
+    </ng-container>
+  </div>
 
-    <div style="padding-left: 10px;" fxFlex="20">
-      <p>
-        วัน-เวลาเข้างาน
-      </p>
-    </div>
-
-    <div style="padding-left: 10px;" fxFlex="20">
-      <p>
-        วัน-เวลาออกงาน
-      </p>
-    </div>
-   
-    <!-- <div style="padding-left: 10px;" fxFlex="20">
-      <p>
-       จัดการ
-      </p>
-    </div> -->
-
-   </div>
-
-
-   <div style="padding: 15px;" fxLayout="row"   fxFlex>
-
-    <!-- <div style="padding-left: 10px;" fxFlex="15">
-        <p>
-           {{employeeData?.employeeId}}
-        </p>
-    </div> -->
-
-    <!-- <div style="padding-left: 10px;" fxFlex="20">
-        <p>
-           {{employeeData?.name}}
-        </p>
-    </div> -->
-
-    <!-- <div style="padding-left: 10px;" fxFlex="20">
-        <p>
-          {{employeeData?.lastname}}
-        </p>
-    </div> -->
-
-    <!-- <div style="padding-left: 10px;" fxFlex="20">
-        <p>
-          {{employeeData?.tel}}
-        </p>
-    </div> -->
-
-    <div style="padding-left: 10px;" fxFlex="20" *ngFor="let item of dateTimeData">
-        <p>
-          {{item?.created | date: "dd/mm/yyyy"}}
-        </p>
-    </div>
-
-    <div style="padding-left: 10px;" fxFlex="20" *ngFor="let item of dateTimeData">
-        <p>
-          {{item?.timeIn}}
-        </p>
-    </div>
-
-    <!-- <div style="padding-left: 10px;" fxFlex="20">
-
-      <button mat-button [matMenuTriggerFor]="menu" class="menu" >
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="openDialog(employeeData)">Edit</button>
-        <button mat-menu-item (click)="delete(employeeData)">Delete</button>
-      </mat-menu>
-
-    </div> -->
-
-
-</div>
+  
+ 
 
 </div>

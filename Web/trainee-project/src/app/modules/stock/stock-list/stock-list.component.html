@@ -49,10 +49,12 @@
                     <!-- {{customer.title | titlecase}} {{customer.name | titlecase}} -->
                     รหัสสินค้า: {{item.productId}}
                 </div>
-                <!-- <div fxLayout="row" class="contact-message" fxFlex fxLayoutAlign="start start">
-                <p class="overflow-ellipsis">{{customer.lastedEvent || 'ไม่มีข้อมูล'}}</p>
-              </div> -->
-                ชื่อสินค้า: {{item.productName}}
+                <div fxLayoutAlign="start center" fxFlex>
+                    ชื่อสินค้า: {{item.productName}}
+                </div>
+                <div fxLayoutAlign="start center" fxFlex>
+                    ราคา: {{item.price}}
+                </div>
             </div>
         </div>
     </div>

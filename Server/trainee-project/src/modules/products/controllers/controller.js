@@ -22,6 +22,7 @@ exports.getList = function (req, res) {
     query.skip = size * (pageNo - 1);
     query.limit = size;
     Products.find(req.query, {}, query, function (err, datas) {
+        console.log(req.query)
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -126,17 +127,13 @@ exports.search = function (req, res) {
     let searchText = req.query.query;
     let query = {
 
-        productName: { $regex: `${searchText}`}
+        productName: { $regex: `^${searchText}`}
         // $or: [
         //     { productName: { $regex: `^${searchText}`, $options: "i" } }
         //     { lastName: { $regex: `^${searchText}`, $options: "i" } }
         // ]
     };
     console.log(query);
-
-    // console.log(searchText)
-    // console.log(req.query.query);
-    // console.log(query);
 
     Products.find(query, function (err, datas) {
         if (err) {

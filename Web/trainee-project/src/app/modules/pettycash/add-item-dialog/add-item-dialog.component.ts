@@ -1,7 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { PettyCashService } from '../pettyCash.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+interface description {
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-add-item-dialog',
@@ -11,6 +15,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
+  withdraw = 0;
+  tableData: any;
+  disableSelect = new FormControl(false);
 
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddItemDialogComponent>,
@@ -23,11 +30,11 @@ export class AddItemDialogComponent implements OnInit {
 
   createList(data) {
     return this.fb.group({
-      pettycashsId:[data.pettycashsId],
-      date: [new Date(), [Validators.required]],
+      lastName:[data.lastName],
+      date: [data.date, Validators.required],
       documentNo: [data.documentNo, Validators.required],
-      list: [data.list, Validators.required],
-      deposit: [data.deposit ],
+      description: [data.list, Validators.required],
+      deposit: [data.deposit],
       withdraw: [data.withdraw],
       placeOfUse: [data.placeOfUse, Validators.required]
 
@@ -35,6 +42,14 @@ export class AddItemDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.pettyCashService.createItem(this.customerForm.value).subscribe();
+    this.pettyCashService.createItem(this.customerForm.value).subscribe((res:any)=>{
+      this.tableData = res.data;
+    });
+
   }
+
+  descriptions: description[] = [
+    {viewValue: 'deposit'},
+    {viewValue: 'withdraw'},
+  ];
 }

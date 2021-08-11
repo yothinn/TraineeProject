@@ -9,7 +9,7 @@ var DatetimeSchema = new Schema({
         type: String,
        
     },
-    date: {
+    dateIn: {
         type: String,
     },
     timeIn: {

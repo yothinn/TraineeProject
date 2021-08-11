@@ -36,20 +36,24 @@ export class AttendanceDialogComponent implements OnInit {
     // console.log(data)
     return this.fb.group({
       employeeId: [""],
-      date: [""],
+      dateIn: [""],
       timeIn: [""],
     });
   }
 
-  onSubmit() {
+
+
+  onSubmitIn() {
     // console.log(this.workDateForm.value)
-    this.attendanceService.createDatetime(this.workDateForm.value)
+    this.attendanceService.createDatetimeIn(this.workDateForm.value)
     .subscribe(res => {
       if (res) {
         this.dialogRef.close(res);
       }
     })
   }
+
+ 
 
   
 

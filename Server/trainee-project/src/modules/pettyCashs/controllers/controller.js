@@ -17,6 +17,7 @@ exports.getList = function (req, res) {
     query.skip = size * (pageNo - 1);
     query.limit = size;
     Pettycashs.find(req.query, {}, query, function (err, datas) {
+        
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -119,18 +120,14 @@ exports.delete = function (req, res) {
 exports.search = function (req, res) {
     let searchText = req.query.query;
     let query = {
-
-        name: { $regex: `${searchText}`}
-        // $or: [
-        //     { productName: { $regex: `^${searchText}`, $options: "i" } }
-        //     { lastName: { $regex: `^${searchText}`, $options: "i" } }
-        // ]
+        $or: [
+            { name: { $regex: `^${searchText}` } },
+            { lastName: { $regex: `^${searchText}` } }
+        ]
     };
     console.log(query);
-
-    // console.log(searchText)
-    // console.log(req.query.query);
-    // console.log(query);
+    console.log(searchText);
+    console.log(req.query.query);
 
     Pettycashs.find(query, function (err, datas) {
         if (err) {

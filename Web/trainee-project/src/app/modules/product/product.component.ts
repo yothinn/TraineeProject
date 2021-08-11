@@ -10,7 +10,7 @@ import { ProductService } from './product.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  // @ViewChild('search') searchEle: ElementRef;
+  @ViewChild('searchProductList') searchRef: ElementRef;
   productCategories: any;
   productData: any;
   selected = 'option2';
@@ -104,13 +104,13 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  // testSent(body){
-  //   console.log("มา");
-  //   console.log(body.productName);
-  //   this.dataService.getTest(body).subscribe((res:any) => {
-  //     this.productData = res.data;
-  //   })
-  //   console.log(this.productData)
-  // }
+  searchProduct(): void {
+    let fillData = this.searchRef.nativeElement.value.toLowerCase();
+    this.dataService.searchProduct(fillData)
+      .subscribe((res) => {
+        // console.log(res);
+        this.productData = res.data;
+      })
+  }
 
 }
