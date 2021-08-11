@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { StockService } from '../stock.service';
@@ -13,6 +13,7 @@ export class StockManageDialogComponent implements OnInit {
   productList: any;
   stockForm: FormGroup;
   status: Array<any> = [{ name: "นำเข้า" }, { name: "นำออก" }];
+  // status = new FormControl('auto');
 
   constructor(private fb: FormBuilder,
     private stockService: StockService,
@@ -20,26 +21,33 @@ export class StockManageDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
-    this.stockForm = this.createForm();
-    // console.log(this.data);
+    this.stockForm = this.createForm(this.data);
+    console.log(this.data);
     this.productList = this.data;
-    console.log(this.productList);
+    if (this.data?._id) {
+      console.log("id");
+      this.stockForm = this.createForm(this.data);
+    } else {
+      console.log("new");
+      this.data = [];   
+      this.stockForm = this.createForm(this.data);
+    }
   }
 
-  createForm() {
+  createForm(data) {
     return this.fb.group({
-      productId: [''],
-      productName: [''],
-      productType: [''],
-      date: [''],
-      count: [''],
-      status: ['']
+      productId: [data?.productId],
+      productName: [data?.productName],
+      date: [data?.date],
+      total: [data?.total],
+      status: [data?.status]
     })
   }
 
   onSubmit() {
     console.log(this.stockForm.value)
     if (this.data._id) {
+      console.log("edit");
       this.stockService.updateStock(this.stockForm.value)
         .subscribe((res) => {
           console.log(res)
@@ -48,6 +56,7 @@ export class StockManageDialogComponent implements OnInit {
           }
         })
     } else {
+      console.log("create");
       this.stockService.createStock(this.stockForm.value)
         .subscribe(res => {
           if (res) {

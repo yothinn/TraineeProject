@@ -38,31 +38,18 @@
                     <label class="form" fxLayoutAlign="start center"> ชื่อสินค้า:</label>
                     <mat-form-field class="example-full-width">
                         <mat-label>ชื่อสินค้า</mat-label>
-                        <input type="text" formControlName="productName" matInput [matAutocomplete]="auto">
-                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                            <mat-option *ngFor="let option of productList" [value]="option.productName">
-                                {{option.productName}}
-                            </mat-option>
-                        </mat-autocomplete>
+                        <input type="text" formControlName="productName" matInput>
                     </mat-form-field>
                 </div>
-                <div fxLayout="row" fxFlex>
-                    <label class="form" fxLayoutAlign="start center"> ประเภทสินค้า:</label>
-                    <mat-form-field>
-                        <mat-label>ประเภทสินค้า</mat-label>
-                        <input type="text" formControlName="productType" matInput [matAutocomplete]="auto1">
-                        <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
-                            <mat-option *ngFor="let item of productList" [value]="item.type">
-                                {{item.type}}
-                            </mat-option>
-                        </mat-autocomplete>
-                    </mat-form-field>
-                </div>
-
                 <div fxLayout="row" fxFlex>
                     <label class="form" fxLayoutAlign="start center"> สถานะสินค้า:</label>
                     <mat-form-field>
                         <mat-label>สถานะ</mat-label>
+                        <!-- <input type="radio" formControlName="status" > -->
+                        <!-- <mat-radio-group formControlName="status">
+                            <mat-radio-button [value]="item.name" *ngFor="let item of status">{{item.name}}
+                            </mat-radio-button>
+                        </mat-radio-group> -->
                         <mat-select formControlName="status">
                             <mat-option [value]="item.name" *ngFor="let item of status">{{item.name}}</mat-option>
                         </mat-select>
@@ -72,7 +59,7 @@
                     <label class="form" fxLayoutAlign="start center"> จำนวนสินค้า:</label>
                     <mat-form-field>
                         <mat-label>จำนวนสินค้า</mat-label>
-                        <input matInput formControlName="count" name="name">
+                        <input matInput formControlName="total" name="name">
                     </mat-form-field>
                 </div>
                 <div fxLayoutAlign=" center">
