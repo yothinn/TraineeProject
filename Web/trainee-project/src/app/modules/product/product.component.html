@@ -20,7 +20,7 @@
 
     <mat-form-field class="font-search" appearance="standard">
       <mat-label>ค้นหา</mat-label>
-      <input matInput  placeholder="กรอกชื่อสินค้า">                  <!--#search (keyup)="onKeyup($event)"-->
+      <input #searchProductList matInput (keyup)="searchProduct()" placeholder="Search">                  <!--#search (keyup)="onKeyup($event)"-->
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 

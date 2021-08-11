@@ -4,11 +4,11 @@ var controller = require('../controllers/controller'),
     policy = require('../policy/policy');
 module.exports = function (app) {
 
+    var url = '/api/products';
+    var urlWithParam = '/api/products/:productsId';
     app.route('/api/products/search')
         .get(controller.search);
 
-    var url = '/api/products';
-    var urlWithParam = '/api/products/:productsId';
     app.route(url)//.all(policy.isAllowed)
         .get(controller.getList)
         .post(controller.create);
