@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
     Attendances = mongoose.model('Attendances'),
     errorHandler = require('../../core/controllers/errors.server.controller'),
     _ = require('lodash');
-
+    const config = require('../../../config/config');
 exports.getList = async (req, res) => {
     var pageNo = parseInt(req.query.pageNo);
     var size = parseInt(req.query.size);
@@ -27,7 +27,7 @@ exports.getList = async (req, res) => {
                 .limit(size)
                 .sort(sort)
                 .exec(),
-                Attendances.countDocuments(req.query).exec()
+            Attendances.countDocuments(req.query).exec()
         ]);
 
         res.jsonp({
@@ -47,8 +47,8 @@ exports.getList = async (req, res) => {
     }
 };
 
-exports.create =  (req, res) => {
-    var newAttendances = new Attendances (req.body);
+exports.create = (req, res) => {
+    var newAttendances = new Attendances(req.body);
     newAttendances.createby = req.user;
     newAttendances.save((err, data) => {
         if (err) {
@@ -98,7 +98,7 @@ exports.read = (req, res) => {
     });
 };
 
-exports.update =  (req, res) => {
+exports.update = (req, res) => {
     var updAttendances = _.extend(req.data, req.body);
     updAttendances.updated = new Date();
     updAttendances.updateby = req.user;
@@ -134,3 +134,39 @@ exports.delete = (req, res) => {
 };
 
 
+exports.search = function (req, res) {
+    let searchText = req.query.query;
+    let query = {
+
+        // name: { $regex: `${searchText}`}
+        $or: [
+            { name: { $regex: `^${searchText}`, $options: "i" } },
+            { lastName: { $regex: `^${searchText}`, $options: "i" } }
+        ]
+    };
+    console.log(query);
+
+    Attendances.find(query, function (err, datas) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            // console.log(datas);
+            res.jsonp({
+                status: 200,
+                data: datas
+            });
+        };
+    });
+
+}
+
+exports.uploads = (req, res) => {
+    const url = req.protocol + '://' + req.headers.host + '/' + config.folderName + '/';
+    req.file.url = url + req.file.filename;
+    res.jsonp({
+        data: req.file
+    });
+}

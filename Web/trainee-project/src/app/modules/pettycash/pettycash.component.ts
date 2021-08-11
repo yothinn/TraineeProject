@@ -16,7 +16,7 @@ export class PettyCashComponent implements OnInit {
   @ViewChild('searchList') searchEle: ElementRef;
   pattyCashData: any;
   filterList: any[];
-  searchList: any[];
+  searchList: any;
 
 
 
@@ -26,7 +26,7 @@ export class PettyCashComponent implements OnInit {
     this.pettyCashService.getList().subscribe((res: any) => {
       this.pattyCashData = res.data;
       this.filterList = this.pattyCashData.filter(res => {
-        return res.pettycashsId;
+        return res.name;
       })
       this.searchList = this.filterList
     })
@@ -56,12 +56,12 @@ export class PettyCashComponent implements OnInit {
       }
     })
   }
-  deleteList(dataDelete): void {
+  deleteList(item): void {
     if (confirm("Are you sure to delete ")) {
-      this.pettyCashService.deleteList(dataDelete).subscribe((res: any) => {
+      this.pettyCashService.deleteList(item).subscribe(res => {
         if (res) {
           this.pettyCashService.getList().subscribe((res: any) => {
-            this.pattyCashData = res.data
+            this.pattyCashData = res.data;
           })
         } else {
           console.log("erro")
@@ -73,16 +73,17 @@ export class PettyCashComponent implements OnInit {
 
   }
 
-  onKeyup() {
-    let filter = this.searchEle.nativeElement.value.toLowerCase();
-    console.log(filter)
-    this.filterList = this.searchList.filter(res => {
+  onKeyup():void {
+    let filterData = this.searchEle.nativeElement.value.toLowerCase();
+    console.log(filterData)
+    this.pettyCashService.search(filterData)
+    .subscribe((res: any) => {
       console.log(res)
-      return res.name.toLowerCase().startsWith(filter);
+      this.filterList = res.data
     });
   }
-  onClick(item: any): void {
-    console.log(item)
-    this.pettyCashService.onClickCard(item.pettycashsId);
+  onClick(data: any): void {
+    this.pettyCashService.onClickCard(data);
+    this.pettyCashService.getTableById(data.pettycashsId);
   }
 }

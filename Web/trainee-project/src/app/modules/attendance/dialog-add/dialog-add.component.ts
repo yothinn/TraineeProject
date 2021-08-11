@@ -11,6 +11,7 @@ import { AttendanceService } from '../attendance.service';
 })
 export class DialogAddComponent implements OnInit {
   userForm: FormGroup;
+  
 
   constructor(
     private attendanceService: AttendanceService,
@@ -37,7 +38,11 @@ export class DialogAddComponent implements OnInit {
       employeeId: [data.employeeId],
       name: [data.name],
       lastname: [data.lastname],
-      tel: [data.tel]
+      tel: [data.tel],
+      address:[data.address],
+      age:[data.age],
+      nationality:[data.nationality],
+      religion:[data.religion]
     });
   }
 

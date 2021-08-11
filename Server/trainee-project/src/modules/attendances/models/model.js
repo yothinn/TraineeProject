@@ -6,22 +6,34 @@ var Schema = mongoose.Schema;
 
 var AttendancesSchema = new Schema({
     employeeId: {
-        type: String,
+        type: String
        
     },
     name: {
-        type: String,
+        type: String
         
     },
     lastname: {
-        type: String,
+        type: String
        
     },
     tel: {
-        type: String,
+        type: String
        
     },
- 
+    address: {
+        type: String
+       
+    },
+    nationality: {
+        type: String    
+    },
+    age:{
+        type: String
+    },
+    religion:{
+        type: String
+    },
     created: {
         type: Date,
         default: Date.now

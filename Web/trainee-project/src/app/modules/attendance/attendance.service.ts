@@ -52,12 +52,19 @@ export class AttendanceService {
       })
   }
 
-  createDatetime(body: any): Observable<any> {
+  createDatetimeIn(body: any): Observable<any> {
     return this.http.post('http://localhost:3000/api/datetimes', body);
   }
 
-  // getDateTime() {
-  //   return this.http.get('http://localhost:3000/api/datetimes');
-  // }
+  searchEmployee(text:any):Observable<any>{
+    console.log(text);
+      return this.http.get(`http://localhost:3000/api/attendances/search?query=${text}`);
+    } 
 
+  uploadImageAttendance(file): Observable<any>{
+    console.log(file);
+    return this.http.post('http://localhost:3000/api/attendances/uploads', file);
+  }
 }
+
+
