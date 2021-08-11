@@ -1,79 +1,33 @@
 <div fxLayout="column">
-    <div style="padding: 15px;" fxLayout="row" fxFlex>
-        <div style="padding-left: 10px;" fxFlex="20">
-            <p>
-                วัน-เวลา
-            </p>
+    <header>
+        <div style="padding: 15px;" fxLayoutAlign="center center" fxLayout="row" fxFlex>
+            <div style="padding-left: 10px;"fxFlex>
+                    วัน-เวลา
+            </div>
+            <div style="padding-left: 10px;" fxFlex>
+                    ชื่อสินค้า
+            </div>
+            <div style="padding-left: 10px;" fxFlex>
+                    จำนวนสินค้า
+            </div>
+            <div style="padding-left: 10px;" fxFlex>
+                    สถานะสินค้า
+            </div>
         </div>
-        <div style="padding-left: 10px;" fxFlex="15">
-            <p>
-                ชื่อสินค้า
-            </p>
-        </div>
-        <div style="padding-left: 10px;" fxFlex="10">
-            <p>
-                รหัสสินค้า
-            </p>
-        </div>
-        <div style="padding-left: 10px;" fxFlex="10">
-            <p>
-                ประเภทสินค้า
-            </p>
-        </div>
-        <div style="padding-left: 10px;" fxFlex="10">
-            <p>
-                ราคา
-            </p>
-        </div>
-        <div style="padding-left: 10px;" fxFlex="10">
-            <p>
-                จำนวนสินค้า
-            </p>
-        </div>
-        <div style="padding-left: 10px;" fxFlex="10">
-            <p>
-                สถานะสินค้า
-            </p>
-        </div>
+    </header>
 
-    </div>
     <div style="padding: 15px;" fxLayout="row" *ngFor="let item of productData" fxFlex>
-        <div style="padding-left: 10px;" fxFlex="20">
-            <p>
+        <div style="padding-left: 10px;" fxFlex>
                 {{item?.created | date}}
-            </p>
         </div>
-        <div style="padding-left: 10px;" fxFlex="15">
-            <p>
+        <div style="padding-left: 10px;" fxFlex>
                 {{item?.productName}}
-            </p>
         </div>
-        <div style="padding-left: 10px;" fxFlex="10">
-            <p>
-                {{item?.productId}}
-            </p>
-        </div>
-        <div style="padding-left: 10px;" fxFlex="10">
-            <p>
-                {{item?.type}}
-            </p>
-        </div>
-        <div style="padding-left: 10px;" fxFlex="10">
-            <p>
-                {{item?.price}}
-            </p>
-        </div>
-        <div style="padding-left: 10px;" fxFlex="10">
-            <p>
+        <div style="padding-left: 10px;" fxFlex>
                 {{item?.count}}
-            </p>
         </div>
-        <div style="padding-left: 10px;" fxFlex="10">
-            <p>
+        <div style="padding-left: 10px;" fxFlex>
                 {{item?.status}}
-            </p>
         </div>
-
-
     </div>
 </div>

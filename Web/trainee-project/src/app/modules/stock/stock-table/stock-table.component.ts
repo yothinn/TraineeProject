@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { StockService } from '../stock.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { StockService } from '../stock.service';
   styleUrls: ['./stock-table.component.scss']
 })
 export class StockTableComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   productData: any;
 
 
