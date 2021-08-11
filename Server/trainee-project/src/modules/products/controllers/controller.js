@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
     Products = mongoose.model('Products'),
     errorHandler = require('../../core/controllers/errors.server.controller'),
     _ = require('lodash');
-
+    const config = require('../../../config/config');
+    
 exports.getList = function (req, res) {
     var pageNo = parseInt(req.query.pageNo);
     var size = parseInt(req.query.size);
@@ -148,6 +149,14 @@ exports.search = function (req, res) {
                 data: datas
             });
         };
+    });
+}
+
+exports.uploads = (req, res) => {
+    const url = req.protocol + '://' + req.headers.host + '/' + config.folderName + '/';
+    req.file.url = url + req.file.filename;
+    res.jsonp({
+        data: req.file
     });
 }
 

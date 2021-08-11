@@ -3,4 +3,6 @@ module.exports = {
         secret: 'ngEurope rocks!'
     },
     folderName : "upload"
+    ,
+    folderName : "uploadProduct"
 }
