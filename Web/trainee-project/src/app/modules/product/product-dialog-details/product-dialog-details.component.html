@@ -9,9 +9,10 @@
   </div>
 
   <div fxLayout="row">
-    <mat-card class="card">
-      <img class="img" src="https://www.chiiwiidoctor.com/assets/images/default-profile.jpg">
+    <mat-card (click)="fileUpload.click()" class="card"  >
+      <img class="img" [src]="test"> 
     </mat-card>
+    <input type="file" #fileUpload (change)="onFileUpload($event)" hidden>
     <mat-card fxLayout="column" class="card-menu">
       <form [formGroup]="productForm">
         <mat-form-field class="full-width" appearance="fill">
@@ -31,7 +32,7 @@
               {{item.name}}</mat-option>
           </mat-autocomplete>
         </mat-form-field>
-
+      
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>รายละเอียดสินค้า </mat-label>
           <textarea class="text-area" matInput formControlName="description"></textarea>
