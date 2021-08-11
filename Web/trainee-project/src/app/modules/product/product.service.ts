@@ -45,12 +45,9 @@ export class ProductService {
     return this.http.delete(`http://localhost:3000/api/categories/${body._id}`, body);
   }
 
-  //getTest(body:any):Observable<any> {
-    // return this.http.get('http://localhost:3000/api/products', body);
-    // return this.http.post(`http://localhost:3000/api/products/${body._id}`, body);
-    // return this.http.get('http://localhost:3000/api/products?body._id&body.productName');
-  //}
-  
- 
+  searchProduct(productName:any):Observable<any>{
+    // console.log(productName);
+      return this.http.get(`http://localhost:3000/api/products/search?query=${productName}`);
+    } 
 
 }
