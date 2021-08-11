@@ -14,7 +14,7 @@
   </mat-form-field> 
 
   <mat-form-field>
-   <input matInput formControlName="date"  [matDatepicker]="picker" placeholder="กรุณาเลือกวันที่">
+   <input matInput formControlName="dateIn"  [matDatepicker]="picker" placeholder="กรุณาเลือกวันที่">
    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
    <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
@@ -28,7 +28,7 @@
  
 </div>
 <div fxLayout="row">
- <button class="btn-in"  (click)="onSubmit()">เข้างาน</button>
+ <button class="btn-in"  (click)="onSubmitIn()">เข้างาน</button>
  <button class="btn-out" >ออกงาน</button>
 </div>
 </form>
