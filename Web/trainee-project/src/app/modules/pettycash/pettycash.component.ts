@@ -84,7 +84,7 @@ export class PettyCashComponent implements OnInit {
   }
   onClick(data: any): void {
     this.pettyCashService.getListById(data._id);
-    this.pettyCashService.getTableById(data.name);
-    console.log(data.name);
+    this.pettyCashService.getTableById(data.lastName);
+    console.log(data.lastName);
   }
 }

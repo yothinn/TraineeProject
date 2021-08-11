@@ -16,7 +16,7 @@ export class PettyCashService {
   constructor(private http: HttpClient) { }
 
   getTableById(id: any): void {
-    this.http.get(`http://localhost:3000/api/tableLists?name=${id}`)
+    this.http.get(`http://localhost:3000/api/tableLists?lastName=${id}`)
       .subscribe((res: any) => {
         this.onTableChanged$.next(res.data);
       })

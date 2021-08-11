@@ -9,9 +9,9 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-    <div hidden>
+    <div >
       <mat-form-field>
-        <input  matInput formControlName="name" placeholder="name">
+        <input  matInput formControlName="lastName" placeholder="lastName">
       </mat-form-field>
     </div>
     <div>
@@ -20,12 +20,17 @@
       </mat-form-field>
     </div>
     <div>
-      <mat-form-field>
-        <input matInput formControlName="description" placeholder="รายการ">
+      <mat-form-field appearance="fill">
+        <mat-label>รายการ</mat-label>
+        <mat-select formControlName="description" >
+          <mat-option *ngFor="let item of descriptions" [value]="item.viewValue">
+            {{item.viewValue}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
-    <div>
-      <mat-form-field>
+    <div >
+      <mat-form-field >
         <input matInput formControlName="deposit" placeholder="เงินเข้า">
       </mat-form-field>
     </div>

@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 
 var TablelistSchema = new Schema({
-    name:{
+    lastName:{
         type: String,
     },
     date:{
