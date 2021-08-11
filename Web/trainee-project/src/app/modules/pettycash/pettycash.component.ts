@@ -83,7 +83,8 @@ export class PettyCashComponent implements OnInit {
     });
   }
   onClick(data: any): void {
-    this.pettyCashService.onClickCard(data);
-    this.pettyCashService.getTableById(data.pettycashsId);
+    this.pettyCashService.getListById(data._id);
+    this.pettyCashService.getTableById(data.name);
+    console.log(data.name);
   }
 }

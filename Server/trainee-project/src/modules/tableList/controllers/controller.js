@@ -19,23 +19,25 @@ exports.getList = function (req, res) {
     }
     query.skip = size * (pageNo - 1);
     query.limit = size;
-        Tablelist.find(req.query, {}, query, function (err, datas) {
-            if (err) {
-                return res.status(400).send({
-                    status: 400,
-                    message: errorHandler.getErrorMessage(err)
-                });
-            } else {
-                res.jsonp({
-                    status: 200,
-                    data: datas
-                });
-            };
-        });
+    Tablelist.find(req.query, {}, query, function (err, datas) {
+        console.log(req.query)
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp({
+                status: 200,
+                data: datas
+            });
+        };
+    });
 };
 
 exports.create = function (req, res) {
-    var newTablelist = new Tablelist (req.body);
+    var newTablelist = new Tablelist(req.body);
+    console.log(req.body)
     newTablelist.createby = req.user;
     newTablelist.save(function (err, data) {
         if (err) {

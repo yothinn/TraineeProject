@@ -11,6 +11,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
+  withdraw = 0;
+  tableData: any;
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddItemDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data) { }
@@ -22,18 +24,21 @@ export class AddItemDialogComponent implements OnInit {
 
   createList(data) {
     return this.fb.group({
-      pettycashsId:[data.pettycashsId],
+      name:[data.name],
       date: [data.date, Validators.required],
       documentNo: [data.documentNo, Validators.required],
-      list: [data.list, Validators.required],
+      description: [data.list, Validators.required],
       deposit: [data.deposit],
       withdraw: [data.withdraw],
       placeOfUse: [data.placeOfUse, Validators.required]
-
+      
     });
   }
 
   onSubmit(): void {
-    this.pettyCashService.createItem(this.customerForm.value).subscribe();
+    this.pettyCashService.createItem(this.customerForm.value).subscribe((res:any)=>{
+      this.tableData = res.data;
+    });
+  
   }
 }

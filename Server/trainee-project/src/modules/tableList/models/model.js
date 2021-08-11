@@ -4,9 +4,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
+
 var TablelistSchema = new Schema({
-    pettycashsId:{
-        type: String
+    name:{
+        type: String,
     },
     date:{
         type: Date ,
@@ -14,7 +15,7 @@ var TablelistSchema = new Schema({
     documentNo: {
         type: Number,
     },
-    list: {
+    description: {
         type: String,
     },
     deposit: {
@@ -25,9 +26,6 @@ var TablelistSchema = new Schema({
     },
     placeOfUse: {
         type: String,
-    },
-    balance: {
-        type: Number,
     },
     created: {
         type: Date,
