@@ -12,7 +12,7 @@ export class ProductDialogDetailsComponent implements OnInit {
   productForm: FormGroup;
   categories: any;
   selected = 'option2';
-
+  test:any = 'https://cdn2.iconfinder.com/data/icons/shopping-delivery/25/Product_Package_Add-512.png';
   constructor(private dataService: ProductService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ProductDialogDetailsComponent>,
@@ -39,11 +39,13 @@ export class ProductDialogDetailsComponent implements OnInit {
       type: [data.type],
       description: [data.description],
       count: [data.count],
-      price: [data.price]
+      price: [data.price],
+      image: [data.image]
     })
   }
 
   addProduct(): void {
+
     if (this.data._id) {
       this.dataService.editProductData(this.productForm.value).subscribe(res => {
         if (res) {
@@ -62,6 +64,20 @@ export class ProductDialogDetailsComponent implements OnInit {
   }
   closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  onFileUpload(event) {
+    console.log(event);
+    const file = event.target.files[0];
+    console.log(file);
+    const formData = new FormData();
+    formData.append('files', file);
+    console.log(formData);
+    this.dataService.uploadImageProduct(formData)
+      .subscribe((res) => {
+        console.log(res.data.url)
+        this.test =  res.data.url
+      })
   }
 
 
