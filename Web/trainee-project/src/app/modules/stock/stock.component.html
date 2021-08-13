@@ -5,12 +5,10 @@
     <mat-drawer-content class="stock-content-panel" fxLayout="column">
         <div fxLayout="column" fxFlexFill>
             <div fxLayout="row">
-                <mat-toolbar>
-                    <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex>
+                <mat-toolbar class="mat-toolbar-left">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
                         <div fxLayoutAlign="start center">
-                            <div>
-                                <button mat-button (click)="openStockManageDialog(listData)">จัดการสต๊อกสินค้า</button>
-                            </div>
+                                <button mat-flat-button color="primary" (click)="openStockManageDialog(listData)">จัดการสต๊อกสินค้า</button>
                         </div>
                         <div>
                             <span style="padding-right: 15px;">ค้นหาตามช่วงเวลา</span>
@@ -30,7 +28,7 @@
                             <button mat-button (click)="onChooseDate()">ค้นหา</button>
                         </div>
                         <div>
-                            <button mat-button color="primary">
+                            <button mat-flat-button color="primary">
                                 <label>สรุปรายการสินค้า</label>
                             </button>
                         </div>

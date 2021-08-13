@@ -47,7 +47,8 @@ export class StockComponent implements OnInit {
     const dialogRef = this.dialog.open(StockManageDialogComponent, {
       data: dataProduct[0],
       width:'25vw',
-      height:'70vh'
+      height:'60vh',
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
