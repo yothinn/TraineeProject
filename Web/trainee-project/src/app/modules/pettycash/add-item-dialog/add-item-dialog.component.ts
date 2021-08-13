@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 interface description {
   viewValue: string;
+  value: string;
 }
 
 @Component({
@@ -15,9 +16,7 @@ interface description {
 export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
-  withdraw = 0;
   tableData: any;
-  disableSelect = new FormControl(false);
   
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddItemDialogComponent>,
@@ -25,7 +24,7 @@ export class AddItemDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerForm = this.createList(this.data);
-
+    this.setvalue();
   }
 
   createList(data) {
@@ -37,19 +36,27 @@ export class AddItemDialogComponent implements OnInit {
       deposit: [data.deposit],
       withdraw: [data.withdraw],
       placeOfUse: [data.placeOfUse, Validators.required]
-      
+
     });
+  }
+
+  setvalue(){
+    const form =this.customerForm
+    form.controls['deposit'].setValue(0);
+    form.controls['withdraw'].setValue(0);
   }
 
   onSubmit(): void {
+    // if (confirm("กรุณาเลือกรายชื่อด้านซ้ายก่อน"))
     this.pettyCashService.createItem(this.customerForm.value).subscribe((res:any)=>{
       this.tableData = res.data;
+      
     });
-  
+
   }
 
   descriptions: description[] = [
-    {viewValue: 'deposit'},
-    {viewValue: 'withdraw'},
+    {value: 'เงินเข้า', viewValue: 'deposit'},
+    {value: 'เงินออก',viewValue: 'withdraw'}
   ];
 }
