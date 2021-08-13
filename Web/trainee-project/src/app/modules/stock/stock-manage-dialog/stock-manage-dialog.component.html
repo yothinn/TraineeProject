@@ -21,19 +21,6 @@
                         <input matInput formControlName="productId" name="name">
                     </mat-form-field>
                 </div>
-                <!-- <mat-form-field class="example-full-width">
-                    <mat-label>ชื่อสินค้า</mat-label>
-                    <input type="text"
-                           placeholder="Pick one"
-                           aria-label="Number"
-                           matInput
-                           [matAutocomplete]="auto">
-                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                      <mat-option *ngFor="let option of productList | async" [value]="option">
-                        {{option.productName}}
-                      </mat-option>
-                    </mat-autocomplete>
-                  </mat-form-field> -->
                 <div fxLayout="row" fxFlex>
                     <label class="form" fxLayoutAlign="start center"> ชื่อสินค้า:</label>
                     <mat-form-field class="example-full-width">
@@ -43,17 +30,13 @@
                 </div>
                 <div fxLayout="row" fxFlex>
                     <label class="form" fxLayoutAlign="start center"> สถานะสินค้า:</label>
-                    <mat-form-field>
-                        <mat-label>สถานะ</mat-label>
-                        <!-- <input type="radio" formControlName="status" > -->
-                        <!-- <mat-radio-group formControlName="status">
-                            <mat-radio-button [value]="item.name" *ngFor="let item of status">{{item.name}}
+                        <mat-radio-group  formControlName="status">
+                            <mat-radio-button style="padding-left: 10px;" [value]="item.name" *ngFor="let item of status">{{item.name}}
                             </mat-radio-button>
-                        </mat-radio-group> -->
-                        <mat-select formControlName="status">
+                        </mat-radio-group>
+                        <!-- <mat-select formControlName="status">
                             <mat-option [value]="item.name" *ngFor="let item of status">{{item.name}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                        </mat-select> -->
                 </div>
                 <div fxLayout="row" fxFlex>
                     <label class="form" fxLayoutAlign="start center"> จำนวนสินค้า:</label>

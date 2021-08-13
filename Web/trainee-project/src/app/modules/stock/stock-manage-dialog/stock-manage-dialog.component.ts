@@ -22,10 +22,12 @@ export class StockManageDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.stockForm = this.createForm(this.data);
-    console.log(this.data);
     this.productList = this.data;
     if (this.data?._id) {
-      console.log("id");
+
+      this.data._id = "";
+      // this.data.total = "";
+      console.log(this.data._id);
       this.stockForm = this.createForm(this.data);
     } else {
       console.log("new");
@@ -46,16 +48,16 @@ export class StockManageDialogComponent implements OnInit {
 
   onSubmit() {
     console.log(this.stockForm.value)
-    if (this.data._id) {
-      console.log("edit");
-      this.stockService.updateStock(this.stockForm.value)
-        .subscribe((res) => {
-          console.log(res)
-          if (res) {
-            this.dialogRef.close(res);
-          }
-        })
-    } else {
+    // if (this.data._id) {
+    //   console.log("edit");
+    //   this.stockService.updateStock(this.stockForm.value)
+    //     .subscribe((res) => {
+    //       console.log(res)
+    //       if (res) {
+    //         this.dialogRef.close(res);
+    //       }
+    //     })
+    // } else {
       console.log("create");
       this.stockService.createStock(this.stockForm.value)
         .subscribe(res => {
@@ -64,5 +66,5 @@ export class StockManageDialogComponent implements OnInit {
           }
         })
     }
-  }
+  // }
 }

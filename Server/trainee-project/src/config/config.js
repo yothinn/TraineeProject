@@ -4,5 +4,5 @@ module.exports = {
     },
     folderName : "upload"
     ,
-    folderName : "uploadProduct"
+    folderName1 : "uploadProduct"
 }
