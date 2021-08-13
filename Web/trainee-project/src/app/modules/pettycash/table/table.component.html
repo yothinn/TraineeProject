@@ -1,9 +1,9 @@
 <mat-toolbar class="customer-details">
   <small>
     <a class="user-details">รายละเอียดผุ้ใช้</a><br>
-    <a>{{listData?.name}} {{listData?.lastName}}</a><br>
+    <a>{{listData?.name}} {{listData?.lastName}}</a>
+    <a class="RaisedAmount">{{RaisedAmount | number:"0.2"}}</a><br>
     <a>{{listData?.financialAmount | number:"0.2"}}</a>
-    <a>{{total}}</a>
     <span></span>
   </small>
   <button class="button-add" mat-button (click)="openDialog(listData)">เพิ่มรายการ</button>

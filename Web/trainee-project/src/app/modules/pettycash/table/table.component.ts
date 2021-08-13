@@ -27,7 +27,7 @@ export class TableComponent implements OnInit {
   listCustomer: any;
   tableData: any;
   value: any;
-  total = 0;
+  RaisedAmount = 0;
 
 
   constructor(
@@ -40,7 +40,6 @@ export class TableComponent implements OnInit {
       this.tableData = res;
       console.log(this.tableData)
       this.findsum(this.tableData);
-      console.log(this.findsum)
     })
     this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
       this.listData = res;
@@ -55,7 +54,7 @@ export class TableComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.pettyCashService.onTableChangedObservable$.subscribe((res: any)=>{
+        this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
           this.tableData = res;
         });
       }
@@ -88,15 +87,18 @@ export class TableComponent implements OnInit {
   // }
 
 
-  findsum(data){     
-   this.value=data    
-    console.log(this.value);  
-   for(let j=0;j<data.length;j++){   
-   this.total += this.value[j].deposit - this.value[j].withdraw
-         console.log(this.total)  
-    }  
-  } 
- 
+  findsum(data) {
+    this.value = data
+    for (let j = 0; j < data.length; j++) {
+      if (this.value[j].deposit) {
+        this.RaisedAmount += this.value[j].deposit
+      } else {
+        this.RaisedAmount -= this.value[j].withdraw
+      }
+      console.log(this.RaisedAmount)
+    }
+  }
+
 
 
 
