@@ -1,13 +1,16 @@
-<mat-toolbar class="customer-details">
-  <small>
-    <a class="user-details">รายละเอียดผุ้ใช้</a><br>
-    <a>{{listData?.name}} {{listData?.lastName}}</a>
-    <a class="RaisedAmount">{{RaisedAmount | number:"0.2"}}</a><br>
-    <a>{{listData?.financialAmount | number:"0.2"}}</a>
-    <span></span>
-  </small>
-  <button class="button-add" mat-button (click)="openDialog(listData)">เพิ่มรายการ</button>
-</mat-toolbar>
+<div>
+  <mat-card class="customer-details">
+    <header class="user-details">รายละเอียดผุ้ใช้</header>
+    <div class="fontSize" fxLayout="row" fxLayoutAlign="space-between stretch">
+      <a>{{listData?.name}} {{listData?.lastName}}</a>
+      <a>{{RaisedAmount | number:"0.2"}}</a>
+    </div>
+    <div class="financialAmount" fxLayout="row" fxLayoutAlign="space-between stretch">
+      <a>{{listData?.financialAmount | number:"0.2"}}</a>
+      <button class="button-add" color="primary" mat-button (click)="openDialog(listData)">เพิ่มรายการ</button>
+    </div>
+  </mat-card>
+</div>
 
 <mat-divider></mat-divider>
 
@@ -69,6 +72,6 @@
     </ng-container>
   </div>
 </div>
-<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true" [length]="totalSize"
-    [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
+<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"
+  [length]="totalSize" [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
 </mat-paginator>

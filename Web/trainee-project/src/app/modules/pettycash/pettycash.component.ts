@@ -25,7 +25,7 @@ export class PettyCashComponent implements OnInit {
     this.pettyCashService.getList().subscribe((res: any) => {
       this.pattyCashData = res.data;
       this.filterList = this.pattyCashData.filter(res => {
-        return res.name;
+        return res.lastName;
       });
     });
   }
@@ -48,9 +48,9 @@ export class PettyCashComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.pettyCashService.getList().subscribe((res: any) => {
-          this.pattyCashData = res.data;
-        });
+        this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
+          this.pattyCashData = res;
+        })
       }
     })
   }
@@ -69,14 +69,14 @@ export class PettyCashComponent implements OnInit {
     window.location.reload();
   }
 
-  onKeyup():void {
+  onKeyup(): void {
     let filterData = this.searchEle.nativeElement.value.toLowerCase();
-    console.log(filterData);
+    console.log(filterData)
     this.pettyCashService.search(filterData)
-    .subscribe((res: any) => {
-      console.log(res);
-      this.filterList = res.data;
-    });
+      .subscribe((res: any) => {
+        console.log(res);
+        this.filterList = res.data;
+      });
   }
   onClick(data: any): void {
     this.pettyCashService.getListById(data._id);

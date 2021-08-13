@@ -34,6 +34,9 @@ var AttendancesSchema = new Schema({
     religion:{
         type: String
     },
+    image:{
+        type: String
+    },
     created: {
         type: Date,
         default: Date.now

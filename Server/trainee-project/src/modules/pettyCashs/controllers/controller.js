@@ -125,9 +125,9 @@ exports.search = function (req, res) {
             { lastName: { $regex: `^${searchText}` } }
         ]
     };
-    console.log(query);
-    console.log(searchText);
-    console.log(req.query.query);
+    // console.log(query);
+    // console.log(searchText);
+    // console.log(req.query.query);
 
     Pettycashs.find(query, function (err, datas) {
         if (err) {
