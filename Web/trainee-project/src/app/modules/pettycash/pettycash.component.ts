@@ -16,7 +16,6 @@ export class PettyCashComponent implements OnInit {
   @ViewChild('searchList') searchEle: ElementRef;
   pattyCashData: any;
   filterList: any[];
-  searchList: any;
 
 
 
@@ -27,9 +26,8 @@ export class PettyCashComponent implements OnInit {
       this.pattyCashData = res.data;
       this.filterList = this.pattyCashData.filter(res => {
         return res.name;
-      })
-      this.searchList = this.filterList
-    })
+      });
+    });
   }
 
   openDialog(data): void {
@@ -41,7 +39,7 @@ export class PettyCashComponent implements OnInit {
         this.pettyCashService.getList().subscribe();
 
       }
-    })
+    });
   }
 
   openDialog2(data): void {
@@ -52,7 +50,7 @@ export class PettyCashComponent implements OnInit {
       if (res) {
         this.pettyCashService.getList().subscribe((res: any) => {
           this.pattyCashData = res.data;
-        })
+        });
       }
     })
   }
@@ -62,24 +60,22 @@ export class PettyCashComponent implements OnInit {
         if (res) {
           this.pettyCashService.getList().subscribe((res: any) => {
             this.pattyCashData = res.data;
-          })
+          });
         } else {
-          console.log("erro")
+          console.log("error")
         }
-      })
+      });
     }
     window.location.reload();
-    // this.pettyCashService.deleteList(dataDelete).subscribe();
-
   }
 
   onKeyup():void {
     let filterData = this.searchEle.nativeElement.value.toLowerCase();
-    console.log(filterData)
+    console.log(filterData);
     this.pettyCashService.search(filterData)
     .subscribe((res: any) => {
-      console.log(res)
-      this.filterList = res.data
+      console.log(res);
+      this.filterList = res.data;
     });
   }
   onClick(data: any): void {
