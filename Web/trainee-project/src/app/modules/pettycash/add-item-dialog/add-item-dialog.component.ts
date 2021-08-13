@@ -25,7 +25,7 @@ export class AddItemDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerForm = this.createList(this.data);
-
+    this.setvalue()
   }
 
   createList(data) {
@@ -37,16 +37,23 @@ export class AddItemDialogComponent implements OnInit {
       deposit: [data.deposit],
       withdraw: [data.withdraw],
       placeOfUse: [data.placeOfUse, Validators.required]
-      
+
     });
   }
 
+  setvalue(){
+    const form =this.customerForm
+    form.controls['deposit'].setValue(0)
+    form.controls['withdraw'].setValue(0)
+  }
+
   onSubmit(): void {
+    if (confirm("กรุณาเลือกรายชื่อด้านซ้ายก่อน"))
     this.pettyCashService.createItem(this.customerForm.value).subscribe((res:any)=>{
       this.tableData = res.data;
       
     });
-  
+
   }
 
   descriptions: description[] = [

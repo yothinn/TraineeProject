@@ -62,7 +62,7 @@ export class PettyCashComponent implements OnInit {
             this.pattyCashData = res.data;
           })
         } else {
-          console.log("erro")
+          console.log("error")
         }
       })
     }
