@@ -42,7 +42,7 @@
     <ng-container matColumnDef="วันเวลาเข้างาน">
       <th mat-header-cell class="textField">วัน-เวลา-ออกงาน</th><br>
       <mat-divider class="padding"></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeData"> Waiting BlankerGamer...
+      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeOut"> วันที่ {{item.dateIn | date:"dd/MM/yyyy"}} เวลา {{item.timeIn |date:"h:mm a"}}
         <mat-divider class="padding"></mat-divider>
       </td>
     </ng-container>

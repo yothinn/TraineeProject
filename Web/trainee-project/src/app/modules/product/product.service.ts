@@ -48,6 +48,11 @@ export class ProductService {
   searchProduct(productName:any):Observable<any>{
     // console.log(productName);
       return this.http.get(`http://localhost:3000/api/products/search?query=${productName}`);
-    } 
+    }
+  
+  uploadImageProduct(file): Observable<any>{
+    console.log(file);
+    return this.http.post(`http://localhost:3000/api/products/uploads`, file);
+  }
 
 }
