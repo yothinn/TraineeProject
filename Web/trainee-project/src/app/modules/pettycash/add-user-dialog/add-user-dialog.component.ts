@@ -16,7 +16,7 @@ export class AddUserDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
-    if (this.data?.pettycashsId) {
+    if (this.data.name) {
       this.customerForm = this.createList(this.data);
     }else {
       this.customerForm = this.createList(this.data);
@@ -26,23 +26,21 @@ export class AddUserDialogComponent implements OnInit {
 
   createList(data){
     return this.fb.group({
-      pettycashsId:[data.pettycashsId],
       name: [data.name,Validators.required] ,
       lastName: [data.lastName,Validators.required] ,
-      financialAmount: [data.financialAmount,Validators.required]
-
-
+      financialAmount: [data.financialAmount,Validators.required],
+      position:[data.position,Validators.required]
     });
   }
 
   onSubmit():void{
-    if (this.data.pettycashsId) {
+    if (this.data.name) {
       this.pettyCashService.updateCustomer(this.customerForm.value)
         .subscribe();
     } else {
       this.pettyCashService.createCustomer(this.customerForm.value)
         .subscribe();
-    }window.location.reload();
+    }
   }
 
 }

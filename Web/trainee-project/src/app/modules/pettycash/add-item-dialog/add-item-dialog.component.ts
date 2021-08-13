@@ -1,7 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { PettyCashService } from '../pettyCash.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+interface description {
+  viewValue: string;
+  value: string;
+}
 
 @Component({
   selector: 'app-add-item-dialog',
@@ -11,21 +16,23 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
+  tableData: any;
+  
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddItemDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
     this.customerForm = this.createList(this.data);
-
+    this.setvalue();
   }
 
   createList(data) {
     return this.fb.group({
-      pettycashsId:[data.pettycashsId],
+      lastName:[data.lastName],
       date: [data.date, Validators.required],
       documentNo: [data.documentNo, Validators.required],
-      list: [data.list, Validators.required],
+      description: [data.list, Validators.required],
       deposit: [data.deposit],
       withdraw: [data.withdraw],
       placeOfUse: [data.placeOfUse, Validators.required]
@@ -33,7 +40,23 @@ export class AddItemDialogComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
-    this.pettyCashService.createItem(this.customerForm.value).subscribe();
+  setvalue(){
+    const form =this.customerForm
+    form.controls['deposit'].setValue(0);
+    form.controls['withdraw'].setValue(0);
   }
+
+  onSubmit(): void {
+    // if (confirm("กรุณาเลือกรายชื่อด้านซ้ายก่อน"))
+    this.pettyCashService.createItem(this.customerForm.value).subscribe((res:any)=>{
+      this.tableData = res.data;
+      
+    });
+
+  }
+
+  descriptions: description[] = [
+    {value: 'เงินเข้า', viewValue: 'deposit'},
+    {value: 'เงินออก',viewValue: 'withdraw'}
+  ];
 }

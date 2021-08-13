@@ -2,40 +2,55 @@
 var mongoose = require('mongoose'),
     model = require('../models/model'),
     mq = require('../../core/controllers/rabbitmq'),
-    Pettycashs = mongoose.model('Pettycashs'),
+    Datetimeout = mongoose.model('Datetimeout'),
     errorHandler = require('../../core/controllers/errors.server.controller'),
     _ = require('lodash');
 
-exports.getList = function (req, res) {
+exports.getList = async (req, res) => {
     var pageNo = parseInt(req.query.pageNo);
     var size = parseInt(req.query.size);
-    var query = {};
-    if (pageNo < 0 || pageNo === 0) {
+
+    delete req.query.pageNo;
+    delete req.query.size;
+
+    var sort = { updated: -1, created: -1 };
+
+    if (pageNo < 0) {
         response = { "error": true, "message": "invalid page number, should start with 1" };
         return res.json(response);
     }
-    query.skip = size * (pageNo - 1);
-    query.limit = size;
-    Pettycashs.find(req.query, {}, query, function (err, datas) {
-        
-        if (err) {
-            return res.status(400).send({
-                status: 400,
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.jsonp({
-                status: 200,
-                data: datas
-            });
-        };
-    });
+
+    try {
+        const [_result, _count] = await Promise.all([
+            Datetimeout.find(req.query)
+                .skip(size * (pageNo))
+                .limit(size)
+                .sort(sort)
+                .exec(),
+                Datetimeout.countDocuments(req.query).exec()
+        ]);
+
+        res.jsonp({
+            status: 200,
+            data: _result,
+            pageIndex: pageNo,
+            pageSize: size,
+            totalRecord: _count,
+        });
+
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send({
+            status: 400,
+            message: errorHandler.getErrorMessage(err)
+        });
+    }
 };
 
-exports.create = function (req, res) {
-    var newPettycashs = new Pettycashs(req.body);
-    newPettycashs.createby = req.user;
-    newPettycashs.save(function (err, data) {
+exports.create =  (req, res) => {
+    var newDatetimeout = new Datetimeout (req.body);
+    newDatetimeout.createby = req.user;
+    newDatetimeout.save((err, data) => {
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -54,7 +69,7 @@ exports.create = function (req, res) {
     });
 };
 
-exports.getByID = function (req, res, next, id) {
+exports.getByID = (req, res, next, id) => {
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).send({
@@ -63,7 +78,7 @@ exports.getByID = function (req, res, next, id) {
         });
     }
 
-    Pettycashs.findById(id, function (err, data) {
+    Datetimeout.findById(id, (err, data) => {
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -76,18 +91,18 @@ exports.getByID = function (req, res, next, id) {
     });
 };
 
-exports.read = function (req, res) {
+exports.read = (req, res) => {
     res.jsonp({
         status: 200,
         data: req.data ? req.data : []
     });
 };
 
-exports.update = function (req, res) {
-    var updPettycashs = _.extend(req.data, req.body);
-    updPettycashs.updated = new Date();
-    updPettycashs.updateby = req.user;
-    updPettycashs.save(function (err, data) {
+exports.update =  (req, res) => {
+    var updDatetimeout = _.extend(req.data, req.body);
+    updDatetimeout.updated = new Date();
+    updDatetimeout.updateby = req.user;
+    updDatetimeout.save((err, data) => {
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -102,8 +117,8 @@ exports.update = function (req, res) {
     });
 };
 
-exports.delete = function (req, res) {
-    req.data.remove(function (err, data) {
+exports.delete = (req, res) => {
+    req.data.remove((err, data) => {
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -117,30 +132,5 @@ exports.delete = function (req, res) {
         };
     });
 };
-exports.search = function (req, res) {
-    let searchText = req.query.query;
-    let query = {
-        $or: [
-            { name: { $regex: `^${searchText}` } },
-            { lastName: { $regex: `^${searchText}` } }
-        ]
-    };
-    console.log(query);
-    console.log(searchText);
-    console.log(req.query.query);
 
-    Pettycashs.find(query, function (err, datas) {
-        if (err) {
-            return res.status(400).send({
-                status: 400,
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            // console.log(datas);
-            res.jsonp({
-                status: 200,
-                data: datas
-            });
-        };
-    });
-}
+

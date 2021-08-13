@@ -21,12 +21,14 @@ export class TableComponent implements OnInit {
   pageEvent: any;
   array: any;
   dataSource: any;
-  pageSize = 2;
+  pageSize = 5;
   currentPage = 0;
   totalSize = 0;
   listCustomer: any;
   tableData: any;
-  
+  value: any;
+  RaisedAmount = 0;
+
 
   constructor(
     private pettyCashService: PettyCashService,
@@ -36,14 +38,15 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
       this.tableData = res;
-      console.log(this.tableData)
-    })
-    this.pettyCashService.onDataChangedObservable().subscribe((res: any) => {
+      console.log(this.tableData);
+      this.findsum(this.tableData);
+    });
+    this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
       this.listData = res;
-      console.log(res)
-    })
-    
-    // this.getArray();
+      console.log(res);
+    });
+
+    this.getArray();
   }
   openDialog(data): void {
     const dialogRef = this.dialog.open(AddItemDialogComponent, {
@@ -51,36 +54,49 @@ export class TableComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.pettyCashService.onTableChangedObservable$.subscribe();
+        this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
+          this.tableData = res;
+        });
       }
-    })
+    });
   }
 
-  // handlePage(pagin: any):void {
-  //   this.currentPage = pagin.pageIndex;
-  //   this.pageSize = pagin.pageSize;
-  //   this.iterator();
-  // }
+  handlePage(pagin: any):void {
+    this.currentPage = pagin.pageIndex;
+    this.pageSize = pagin.pageSize;
+    this.shoose();
+  }
 
-  // getArray():void{
-  //   this.pettyCashService.onTableChangedObservable$
-  //     .subscribe((res: any) => {
-  //       this.dataSource = new MatTableDataSource<Element>(res);
-  //       this.dataSource.paginator = this.paginator;
-  //       this.array = res;
-  //       this.totalSize = this.array.length;
-  //       this.iterator();
-  //       console.log(this.totalSize)
-  //     });
-  // }
+  getArray():void{
+    this.pettyCashService.onTableChangedObservable$
+      .subscribe((res: any) => {
+        this.dataSource = new MatTableDataSource<Element>(res);
+        this.dataSource.paginator = this.paginator;
+        this.array = res;
+        this.totalSize = this.array.length;
+        this.shoose();
+        console.log(this.totalSize)
+      });
+  }
 
-  // iterator():void {
-  //   const end = (this.currentPage + 1) * this.pageSize;
-  //   const start = this.currentPage * this.pageSize;
-  //   const part = this.array.slice(start, end);
-  //   this.dataSource = part;
-  // }
+  shoose():void {
+    const end = (this.currentPage + 1) * this.pageSize;
+    const start = this.currentPage * this.pageSize;
+    const part = this.array.slice(start, end);
+    this.dataSource = part;
+  }
 
 
-  
+  findsum(data) {
+    this.value = data;
+    for (let j = 0; j < data.length; j++) {
+      if (this.value[j].deposit) {
+        this.RaisedAmount += this.value[j].deposit;
+      } else {
+        this.RaisedAmount -= this.value[j].withdraw;
+      }
+      console.log(this.RaisedAmount);
+    }
+  }
+
 }

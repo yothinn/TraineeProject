@@ -1,34 +1,27 @@
 <div>
-  <form [formGroup]="customerForm">
-    <div>
+    <form [formGroup]="customerForm">
         <div>
             <mat-form-field>
-                <input matInput formControlName="pettycashsId" placeholder="id" >
+                <input matInput formControlName="name" placeholder="ชื่อ">
             </mat-form-field>
         </div>
-    </div>
-      <div>
-          <div>
-              <mat-form-field>
-                  <input matInput formControlName="name" placeholder="ชื่อ" >
-              </mat-form-field>
-          </div>
-      </div>
-      <div>
-          <div>
-              <mat-form-field>
-                  <input matInput formControlName="lastName" placeholder="นามสกุล">
-              </mat-form-field>
-          </div>
-      </div>
-      <div>
-          <div>
-              <mat-form-field>
-                  <input matInput formControlName="financialAmount" placeholder="วงเงิน" >
-              </mat-form-field>
-          </div>
-      </div>
-      <button mat-raised-button mat-dialog-close type="submit" [disabled]="!customerForm.valid" (click)="onSubmit()"> Add</button>
-  </form>
+        <div>
+            <mat-form-field>
+                <input matInput formControlName="lastName" placeholder="นามสกุล">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <input matInput formControlName="financialAmount" placeholder="วงเงิน">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <input matInput formControlName="position" placeholder="ตำแหน่ง">
+            </mat-form-field>
+        </div>
+        <button mat-raised-button mat-dialog-close type="submit" [disabled]="!customerForm.valid" (click)="onSubmit()">
+            Add</button>
+        <button class="close" mat-raised-button mat-dialog-close type="close"> close</button>
+    </form>
 </div>
-

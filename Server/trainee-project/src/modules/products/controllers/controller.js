@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
     Products = mongoose.model('Products'),
     errorHandler = require('../../core/controllers/errors.server.controller'),
     _ = require('lodash');
-
+    const config = require('../../../config/config');
+    
 exports.getList = function (req, res) {
     var pageNo = parseInt(req.query.pageNo);
     var size = parseInt(req.query.size);
@@ -22,6 +23,7 @@ exports.getList = function (req, res) {
     query.skip = size * (pageNo - 1);
     query.limit = size;
     Products.find(req.query, {}, query, function (err, datas) {
+        console.log(req.query)
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -125,12 +127,15 @@ exports.delete = function (req, res) {
 exports.search = function (req, res) {
     let searchText = req.query.query;
     let query = {
-        productName: { $regex: `${searchText}`}
+
+        productName: { $regex: `^${searchText}`}
         // $or: [
         //     { productName: { $regex: `^${searchText}`, $options: "i" } }
         //     { lastName: { $regex: `^${searchText}`, $options: "i" } }
         // ]
     };
+    console.log(query);
+
     Products.find(query, function (err, datas) {
         if (err) {
             return res.status(400).send({
@@ -144,6 +149,17 @@ exports.search = function (req, res) {
                 data: datas
             });
         };
+    });
+}
+
+exports.uploads = (req, res) => {
+    const url = req.protocol + '://' + req.headers.host + '/' + config.folderName + '/';
+    req.file.url = url + req.file.filename;
+    console.log("ddddd");
+    console.log(req.file.url);
+    console.log(req.file);
+    res.jsonp({
+        data: req.file
     });
 }
 

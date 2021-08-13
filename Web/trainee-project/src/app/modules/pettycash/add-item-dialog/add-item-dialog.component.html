@@ -8,29 +8,34 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-    <div>
+    <div hidden>
       <mat-form-field>
-        <input matInput formControlName="pettycashsId" placeholder="id">
+        <input  matInput formControlName="lastName" placeholder="lastName">
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
-        <input matInput formControlName="documentNo" placeholder="เลขที่เอกสาร">
+        <input  matInput type="number" min="1" formControlName="documentNo" placeholder="เลขที่เอกสาร">
       </mat-form-field>
     </div>
     <div>
-      <mat-form-field>
-        <input matInput formControlName="list" placeholder="รายการ">
+      <mat-form-field appearance="fill">
+        <mat-label>รายการ</mat-label>
+        <mat-select formControlName="description" >
+          <mat-option *ngFor="let item of descriptions" [value]="item.value">
+            {{item.viewValue}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
-    <div>
-      <mat-form-field>
+    <div >
+      <mat-form-field >
         <input matInput formControlName="deposit" placeholder="เงินเข้า">
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
-        <input matInput formControlName="withdraw" placeholder="เงินออก" value="0">
+        <input matInput formControlName="withdraw" placeholder="เงินออก" >
       </mat-form-field>
     </div>
     <div>
@@ -40,5 +45,7 @@
     </div>
     <button mat-raised-button mat-dialog-close type="submit" [disabled]="!customerForm.valid" (click)="onSubmit()">
       เพื่มรายการ</button>
+    <button class="close" mat-raised-button mat-dialog-close type="close">
+      close</button>
   </form>
 </div>
