@@ -16,7 +16,6 @@ interface description {
 export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
-  withdraw = 0;
   tableData: any;
   
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
@@ -25,7 +24,7 @@ export class AddItemDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerForm = this.createList(this.data);
-    this.setvalue()
+    this.setvalue();
   }
 
   createList(data) {
@@ -43,12 +42,12 @@ export class AddItemDialogComponent implements OnInit {
 
   setvalue(){
     const form =this.customerForm
-    form.controls['deposit'].setValue(0)
-    form.controls['withdraw'].setValue(0)
+    form.controls['deposit'].setValue(0);
+    form.controls['withdraw'].setValue(0);
   }
 
   onSubmit(): void {
-    if (confirm("กรุณาเลือกรายชื่อด้านซ้ายก่อน"))
+    // if (confirm("กรุณาเลือกรายชื่อด้านซ้ายก่อน"))
     this.pettyCashService.createItem(this.customerForm.value).subscribe((res:any)=>{
       this.tableData = res.data;
       
@@ -58,6 +57,6 @@ export class AddItemDialogComponent implements OnInit {
 
   descriptions: description[] = [
     {value: 'เงินเข้า', viewValue: 'deposit'},
-    {value: 'เงินออก',viewValue: 'withdraw'},
+    {value: 'เงินออก',viewValue: 'withdraw'}
   ];
 }
