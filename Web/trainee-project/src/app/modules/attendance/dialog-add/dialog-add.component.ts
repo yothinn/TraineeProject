@@ -11,7 +11,8 @@ import { AttendanceService } from '../attendance.service';
 })
 export class DialogAddComponent implements OnInit {
   userForm: FormGroup;
-
+  employeeData;
+  
 
   constructor(
     private attendanceService: AttendanceService,
@@ -23,11 +24,16 @@ export class DialogAddComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.data)
+    this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
+      // console.log(res);
+      this.employeeData = res;
+    })
     if (this.data._id) {
       this.userForm = this.createForm(this.data);
     } else {
-      this.userForm = this.createForm(this.data);
-
+      this.data = {};
+      this.data.image = "https://icons-for-free.com/iconfiles/png/512/add+avatar+human+man+profile+icon-1320085876593184757.png";
+      this.userForm = this.createForm(this.data)
     }
   }
 
@@ -52,7 +58,7 @@ export class DialogAddComponent implements OnInit {
     if (this.data._id) {
       this.attendanceService.updateAttendance(this.userForm.value)
         .subscribe((res) => {
-          // console.log(res)
+          console.log(res)
           if (res) {
             this.dialogRef.close(res);
           }
@@ -79,12 +85,12 @@ export class DialogAddComponent implements OnInit {
     formData.append('files', file);
     this.attendanceService.uploadImageAttendance(formData)
       .subscribe((res: any) => {
-        console.log(res.data.url)
+        // console.log(res.data.url)
         this.userForm.patchValue({
           image: res.data.url
-        })
-        // console.log(this.userForm)
-      })
+        });
+        console.log(this.userForm)
+      });
   }
 }
 
