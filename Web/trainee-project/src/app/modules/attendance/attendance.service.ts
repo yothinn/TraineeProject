@@ -65,6 +65,8 @@ export class AttendanceService {
     console.log(file);
     return this.http.post('http://localhost:3000/api/attendances/uploads', file);
   }
+
+  
 }
 
 

@@ -11,7 +11,7 @@ import { AttendanceService } from '../attendance.service';
 })
 export class DialogAddComponent implements OnInit {
   userForm: FormGroup;
-  
+
 
   constructor(
     private attendanceService: AttendanceService,
@@ -39,18 +39,20 @@ export class DialogAddComponent implements OnInit {
       name: [data.name],
       lastname: [data.lastname],
       tel: [data.tel],
-      address:[data.address],
-      age:[data.age],
-      nationality:[data.nationality],
-      religion:[data.religion]
+      address: [data.address],
+      age: [data.age],
+      nationality: [data.nationality],
+      religion: [data.religion],
+      image: data.image
     });
   }
 
   onSubmit() {
+    
     if (this.data._id) {
       this.attendanceService.updateAttendance(this.userForm.value)
         .subscribe((res) => {
-          console.log(res)
+          // console.log(res)
           if (res) {
             this.dialogRef.close(res);
           }
@@ -70,8 +72,20 @@ export class DialogAddComponent implements OnInit {
     this.dialogRef.close();
   };
 
- 
-
+  onFileUpload(event) {
+    const file = event.target.files[0];
+    console.log(file);
+    const formData = new FormData();
+    formData.append('files', file);
+    this.attendanceService.uploadImageAttendance(formData)
+      .subscribe((res: any) => {
+        console.log(res.data.url)
+        this.userForm.patchValue({
+          image: res.data.url
+        })
+        // console.log(this.userForm)
+      })
+  }
 }
 
 

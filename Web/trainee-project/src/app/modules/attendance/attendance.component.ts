@@ -69,7 +69,6 @@ export class AttendanceComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
       })
-    // this.attendanceService.uploadImageAttendance(this.profileForm.value)
   }
 }
 
