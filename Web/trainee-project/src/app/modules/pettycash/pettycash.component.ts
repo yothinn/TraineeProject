@@ -16,7 +16,6 @@ export class PettyCashComponent implements OnInit {
   @ViewChild('searchList') searchEle: ElementRef;
   pattyCashData: any;
   filterList: any[];
-  searchList: any;
 
 
 
@@ -28,7 +27,6 @@ export class PettyCashComponent implements OnInit {
       this.filterList = this.pattyCashData.filter(res => {
         return res.name;
       })
-      this.searchList = this.filterList
     })
   }
 

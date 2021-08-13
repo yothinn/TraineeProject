@@ -3,9 +3,10 @@
     <a class="user-details">รายละเอียดผุ้ใช้</a><br>
     <a>{{listData?.name}} {{listData?.lastName}}</a><br>
     <a>{{listData?.financialAmount | number:"0.2"}}</a>
+    <a>{{total}}</a>
     <span></span>
   </small>
-  <button class="button-add"  mat-button (click)="openDialog(listData)">เพิ่มรายการ</button>
+  <button class="button-add" mat-button (click)="openDialog(listData)">เพิ่มรายการ</button>
 </mat-toolbar>
 
 <mat-divider></mat-divider>
@@ -42,7 +43,8 @@
     <ng-container matColumnDef="รับเข้า">
       <th mat-header-cell> เงินเข้า </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of tableData" class="layout-number"> {{item.deposit | number:"0.2"}}
+      <td fxLayout="column" mat-cell *ngFor="let item of tableData" class="layout-number"> {{item.deposit |
+        number:"0.2"}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
@@ -51,7 +53,8 @@
     <ng-container matColumnDef="จ่าย">
       <th mat-header-cell> เงินออก </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of tableData" class="layout-number"> {{item.withdraw | number:"0.2"}}
+      <td fxLayout="column" mat-cell *ngFor="let item of tableData" class="layout-number"> {{item.withdraw |
+        number:"0.2"}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
