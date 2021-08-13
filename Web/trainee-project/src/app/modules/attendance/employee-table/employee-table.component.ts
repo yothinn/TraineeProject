@@ -16,13 +16,22 @@ export class EmployeeTableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+
   employeeData: any;
-  dataSource = new MatTableDataSource();
   menu: boolean = false;
   dateTimeData: any;
-  dateTimeData1: any;
   dateTimeOut:any;
-  
+
+
+  pageEvent: any;
+  currentPage = 0;
+  pageSize = 1;
+  array: any;
+  dataSource: any;
+  totalSize = 0;
+
+ 
+
  
 
 
@@ -33,29 +42,15 @@ export class EmployeeTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.attendanceService.getAttendance().subscribe((res: any) => {
-    //   console.log(res)
-    //   this.employeeData = res.data;
-    //   console.log(this.employeeData) 
-    // });
-    // this.attendanceService.getDateTime().subscribe((res: any) => {
-    //   // console.log(res.data)
-    //   this.dateTimeData1 = res.data;
-    //   // console.log(this.employeeData) 
-    //   // console.log(this.dateTimeData1)
 
-    // });
+   
 
     this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
       // console.log(res)
       this.employeeData = res;
       this.menu = true;
     });
-    // this.attendanceService.getDateTime().subscribe((res: any) => {
-    //   // console.log(res)
-    //   this.dateTimeData = res.data;
-    //   // console.log(this.employeeData) 
-    // });
+
     this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
       // console.log(res)
       this.dateTimeData = res;
@@ -68,13 +63,8 @@ export class EmployeeTableComponent implements OnInit {
       this.dateTimeOut = res;
 
     });
-
-  
-
-  
-
-
-    
+      this.getArray();
+      // this.getArray1();
   }
 
 
@@ -110,6 +100,43 @@ export class EmployeeTableComponent implements OnInit {
       })
     }
   }
+
+
+
+  getArray():void{
+    this.attendanceService.onDateChangedObservable$.subscribe((res:any) =>{
+      this.dataSource = new MatTableDataSource<Element>(this.dateTimeData);
+      this.dataSource.paginator = this.paginator;
+      this.array = this.dateTimeData;
+      this.totalSize = this.array.length;
+      this.shoose();
+      console.log(this.totalSize)
+    });
+  }
+
+handlePage(pagin: any){
+  this.currentPage = pagin.pageIndex;
+  this.pageSize = pagin.pageSize;
+  this.shoose();
+  
+}
+
+
+
+shoose():void {
+  const end = (this.currentPage + 1) * this.pageSize;
+  const start = this.currentPage * this.pageSize;
+  const part = this.array.slice(start,end)
+  this.dataSource = part;
+  
+}
+
+
+ 
+
+
+
+
 
 
 }

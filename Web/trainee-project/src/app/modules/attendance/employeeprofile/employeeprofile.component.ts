@@ -22,6 +22,9 @@ export class EmployeeProfileComponent implements OnInit {
     this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
       // console.log(res);
       this.employeeData = res;
+      this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
+        console.log(res)
+      });
      
   });
 }

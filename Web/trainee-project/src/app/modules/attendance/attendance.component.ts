@@ -60,17 +60,6 @@ export class AttendanceComponent implements OnInit {
       // console.log(`Dialog result: ${result}`)
     });
   }
-  onFileUpload(event) {
-    const file = event.target.files[0];
-    console.log(file);
-    const formData = new FormData();
-    formData.append('files', file);
-    this.attendanceService.uploadImageAttendance(formData)
-      .subscribe((res) => {
-        console.log(res);
-      })
-    // this.attendanceService.uploadImageAttendance(this.profileForm.value)
-  }
 }
 
 
