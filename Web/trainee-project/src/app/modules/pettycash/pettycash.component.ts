@@ -16,7 +16,6 @@ export class PettyCashComponent implements OnInit {
   @ViewChild('searchList') searchEle: ElementRef;
   pattyCashData: any;
   filterList: any[];
-  searchList: any;
 
 
 
@@ -26,10 +25,9 @@ export class PettyCashComponent implements OnInit {
     this.pettyCashService.getList().subscribe((res: any) => {
       this.pattyCashData = res.data;
       this.filterList = this.pattyCashData.filter(res => {
-        return res.name;
-      })
-      this.searchList = this.filterList
-    })
+        return res.lastName;
+      });
+    });
   }
 
   openDialog(data): void {
@@ -41,7 +39,7 @@ export class PettyCashComponent implements OnInit {
         this.pettyCashService.getList().subscribe();
 
       }
-    })
+    });
   }
 
   openDialog2(data): void {
@@ -50,8 +48,8 @@ export class PettyCashComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.pettyCashService.getList().subscribe((res: any) => {
-          this.pattyCashData = res.data;
+        this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
+          this.pattyCashData = res;
         })
       }
     })
@@ -62,25 +60,23 @@ export class PettyCashComponent implements OnInit {
         if (res) {
           this.pettyCashService.getList().subscribe((res: any) => {
             this.pattyCashData = res.data;
-          })
+          });
         } else {
           console.log("error")
         }
-      })
+      });
     }
     window.location.reload();
-    // this.pettyCashService.deleteList(dataDelete).subscribe();
-
   }
 
-  onKeyup():void {
+  onKeyup(): void {
     let filterData = this.searchEle.nativeElement.value.toLowerCase();
     console.log(filterData)
     this.pettyCashService.search(filterData)
-    .subscribe((res: any) => {
-      console.log(res)
-      this.filterList = res.data
-    });
+      .subscribe((res: any) => {
+        console.log(res);
+        this.filterList = res.data;
+      });
   }
   onClick(data: any): void {
     this.pettyCashService.getListById(data._id);

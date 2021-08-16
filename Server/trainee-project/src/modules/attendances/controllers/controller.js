@@ -61,10 +61,7 @@ exports.create = (req, res) => {
                 status: 200,
                 data: data
             });
-            /**
-             * Message Queue
-             */
-            // mq.publish('exchange', 'keymsg', JSON.stringify(newOrder));
+        
         };
     });
 };
@@ -138,7 +135,6 @@ exports.search = function (req, res) {
     let searchText = req.query.query;
     let query = {
 
-        // name: { $regex: `${searchText}`}
         $or: [
             { name: { $regex: `^${searchText}`, $options: "i" } },
             { lastName: { $regex: `^${searchText}`, $options: "i" } }
@@ -164,8 +160,9 @@ exports.search = function (req, res) {
 }
 
 exports.uploads = (req, res) => {
-    const url = req.protocol + '://' + req.headers.host + '/' + config.folderName + '/';
+    const url = req.protocol + '://' + req.headers.host + '/src/modules/attendances/' + config.folderName + '/';
     req.file.url = url + req.file.filename;
+    console.log(url)   
     res.jsonp({
         data: req.file
     });

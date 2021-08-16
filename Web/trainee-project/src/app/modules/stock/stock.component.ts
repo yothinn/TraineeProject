@@ -12,7 +12,6 @@ import { StockManageDialogComponent } from './stock-manage-dialog/stock-manage-d
 export class StockComponent implements OnInit {
 
 
-  productData: any;
   listData: any;
   range = new FormGroup({
     start: new FormControl(),
@@ -25,11 +24,14 @@ export class StockComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.stockService.getProduct().subscribe((res: any) => {
-      this.productData = res.data;
-    })
-
+    this.stockService.onDataChangedObservable$
+      .subscribe((res) => {
+        this.listData = res
+        console.log(this.listData);
+      });
   }
+
+
 
 
   onChooseDate(): void {
@@ -40,18 +42,28 @@ export class StockComponent implements OnInit {
     });
   }
 
-  openStockManageDialog(dataProduct?: any) :void{
-    const dialogRef = this.dialog.open(StockManageDialogComponent, {
-      data: dataProduct,
-      width:'25vw',
-      height:'70vh'
-    });
-    // dialogRef.afterClosed().subscribe(res => {
-    //   if (res) {
-    //     this.stockService.getProduct().subscribe((res: any) => {
-    //       this.employeeData = res.data;
-    //     });
-    //   }
-    // })
+  openStockManageDialog(dataProduct?: any): void {
+    if (dataProduct === undefined) {
+      confirm('กรุณาเลือกรายการสินค้าก่อน')
+    } else {
+      console.log(dataProduct)
+      console.log(dataProduct[0])
+      const dialogRef = this.dialog.open(StockManageDialogComponent, {
+        data: dataProduct[0],
+        width:'25vw',
+        height:'60vh',
+        disableClose: true
+      });
+      dialogRef.afterClosed().subscribe(res => {
+        if (res) {
+          this.stockService.onDataChangedObservable$
+          .subscribe((res)=>{
+            this.listData = res
+            console.log(res);
+          });
+        }
+      })
+    }
+
   }
 }

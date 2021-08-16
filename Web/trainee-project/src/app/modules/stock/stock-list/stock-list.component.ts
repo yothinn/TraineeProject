@@ -49,7 +49,7 @@ export class StockListComponent implements OnInit {
   // }
 
   onChooseList(item: any): void {
-    this.stockService.getStockById(item.productId)
+    this.stockService.getStockByProductId(item.productId)
   }
 
   onChooseCatagory(item): void {

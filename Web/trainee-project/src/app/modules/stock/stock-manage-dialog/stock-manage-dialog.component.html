@@ -4,7 +4,7 @@
             <mat-icon style="margin-right: 10px;">pending_actions</mat-icon>
             <div fxFlex="1 0 auto">จัดการสต๊อกสินค้า</div>
             <div>
-                <button type="button" name="btn-modal-close" mat-icon-button>
+                <button (click)="onCloe()" type="button" name="btn-modal-close" mat-icon-button>
                     <mat-icon aria-label="Side nav toggle icon">close</mat-icon>
                 </button>
             </div>
@@ -13,7 +13,7 @@
     <div fxLayout="column" style="padding-top: 40px;" fxFlex="1 0 auto">
         <form [formGroup]="stockForm">
             <div class="requirement-info-right" fxLayout="column" fxFlex fxLayoutAlign="start stretch"
-                fxLayoutGap="0.8rem">
+                fxLayoutGap="0.8rem" fxFlex>
                 <div fxLayout="row" fxLayoutAlign="start center" fxFlex>
                     <label class="form"> รหัสสินค้า:</label>
                     <mat-form-field>
@@ -21,58 +21,28 @@
                         <input matInput formControlName="productId" name="name">
                     </mat-form-field>
                 </div>
-                <!-- <mat-form-field class="example-full-width">
-                    <mat-label>ชื่อสินค้า</mat-label>
-                    <input type="text"
-                           placeholder="Pick one"
-                           aria-label="Number"
-                           matInput
-                           [matAutocomplete]="auto">
-                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                      <mat-option *ngFor="let option of productList | async" [value]="option">
-                        {{option.productName}}
-                      </mat-option>
-                    </mat-autocomplete>
-                  </mat-form-field> -->
                 <div fxLayout="row" fxFlex>
                     <label class="form" fxLayoutAlign="start center"> ชื่อสินค้า:</label>
                     <mat-form-field class="example-full-width">
                         <mat-label>ชื่อสินค้า</mat-label>
-                        <input type="text" formControlName="productName" matInput [matAutocomplete]="auto">
-                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                            <mat-option *ngFor="let option of productList" [value]="option.productName">
-                                {{option.productName}}
-                            </mat-option>
-                        </mat-autocomplete>
+                        <input type="text" formControlName="productName" matInput>
                     </mat-form-field>
                 </div>
-                <div fxLayout="row" fxFlex>
-                    <label class="form" fxLayoutAlign="start center"> ประเภทสินค้า:</label>
-                    <mat-form-field>
-                        <mat-label>ประเภทสินค้า</mat-label>
-                        <input type="text" formControlName="productType" matInput [matAutocomplete]="auto1">
-                        <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
-                            <mat-option *ngFor="let item of productList" [value]="item.type">
-                                {{item.type}}
-                            </mat-option>
-                        </mat-autocomplete>
-                    </mat-form-field>
-                </div>
-
                 <div fxLayout="row" fxFlex>
                     <label class="form" fxLayoutAlign="start center"> สถานะสินค้า:</label>
-                    <mat-form-field>
-                        <mat-label>สถานะ</mat-label>
-                        <mat-select formControlName="status">
+                        <mat-radio-group  formControlName="status">
+                            <mat-radio-button style="padding-left: 10px;" [value]="item.name" *ngFor="let item of status">{{item.name}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                        <!-- <mat-select formControlName="status">
                             <mat-option [value]="item.name" *ngFor="let item of status">{{item.name}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                        </mat-select> -->
                 </div>
                 <div fxLayout="row" fxFlex>
                     <label class="form" fxLayoutAlign="start center"> จำนวนสินค้า:</label>
                     <mat-form-field>
                         <mat-label>จำนวนสินค้า</mat-label>
-                        <input matInput formControlName="count" name="name">
+                        <input matInput formControlName="total" name="name">
                     </mat-form-field>
                 </div>
                 <div fxLayoutAlign=" center">

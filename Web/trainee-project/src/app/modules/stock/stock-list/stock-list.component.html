@@ -32,11 +32,6 @@
 <div fxLayout="column" class="stock-content">
     <div fxLayout="column" *ngFor="let item of productList" (click)="onChooseList(item)">
         <div fxLayout="row" fxLayoutAlign="end" class="stock-message" fxFlex="100">
-            <!-- {{(customer.updated || customer.created) | dateAgo }} -->
-            <!-- <div fxLayoutAlign="start" fxFlex="70">
-              รหัสลูกค้า: {{customer.id}}
-            </div> -->
-            <!-- {{(customer.updated || customer.created) | dateAgo }} -->
             {{item.created | date}}
         </div>
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.8rem">
