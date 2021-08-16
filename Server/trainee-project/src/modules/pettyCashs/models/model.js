@@ -27,28 +27,8 @@ var PettycashsSchema = new Schema({
     updated: {
         type: Date
     },
-    createby: {
-        _id: {
-            type: String
-        },
-        username: {
-            type: String
-        },
-        displayname: {
-            type: String
-        }
-    },
-    updateby: {
-        _id: {
-            type: String
-        },
-        username: {
-            type: String
-        },
-        displayname: {
-            type: String
-        }
-    }
+    createby: {},
+    updateby: {}
 });
 PettycashsSchema.pre('save', function(next){
     let Pettycashs = this;

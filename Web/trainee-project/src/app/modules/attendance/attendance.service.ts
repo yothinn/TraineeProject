@@ -75,12 +75,12 @@ export class AttendanceService {
       })
   }
 
-  createDatetimeIn(body: any): Observable<any> {
+  createDateTimeIn(body: any): Observable<any> {
     return this.http.post('http://localhost:3000/api/datetimes', body);
   }
 
   
-  createDatetimeOut(body: any): Observable<any> {
+  createDateTimeOut(body: any): Observable<any> {
     return this.http.post('http://localhost:3000/api/datetimeouts', body);
   }
 
