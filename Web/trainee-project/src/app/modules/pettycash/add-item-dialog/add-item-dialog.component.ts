@@ -15,7 +15,6 @@ interface description {
 export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
-  withdraw = 0;
   tableData: any;
   disableSelect = new FormControl(false);
 
