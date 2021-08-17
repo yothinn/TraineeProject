@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { PettyCashService } from '../pettyCash.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
 
 interface description {
   viewValue: string;
@@ -31,7 +32,7 @@ export class AddItemDialogComponent implements OnInit {
   createList(data) {
     return this.fb.group({
       lastName: [data.lastName],
-      date: [new Date(), [Validators.required]],
+      date: [new Date(), [Validators.required,DatePipe ]] ,
       documentNo: [data.documentNo, Validators.required],
       description: [data.list, Validators.required],
       deposit: [data.deposit],
