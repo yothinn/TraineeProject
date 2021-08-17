@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-
-  <mat-card>
-<header>
-  <img [src] = "employeeData?.image" style="width:100%"> 
-  <h2>รายละเอียดพนักงาน</h2>   
- 
-    
-  <a><B>ชื่อ:</B> {{employeeData?.name}} <B>นามสกุล:</B> {{employeeData?.lastname}}</a><br>
-  <a><B>เบอร์โทรศัพท์:</B> {{employeeData?.tel}}</a><br>
-  <a><B>ที่อยู่:</B> {{employeeData?.address}}</a><br>
-  <a><B>อายุ:</B> {{employeeData?.age}}</a><br>
-  <a><B>ปี สัญชาติ:</B> {{employeeData?.nationality}}</a><br>
-  <a><B>ศาสนา:</B> {{employeeData?.religion}}</a>
-</header>
-
-
- <mat-menu #menu="matMenu">
-    <button  (click)="openDialog(employeeData)">Edit</button>
-    <button  (click)="delete(employeeData)">Delete</button>
-  </mat-menu>
-  </mat-card>
-  <p></p>
-
-
-=======
 <header>
   <mat-card>
     
@@ -33,7 +7,6 @@
       <button mat-menu-item (click)="delete(employeeData)">Delete</button>
     </mat-menu>
 
->>>>>>> dd2d7b57876b525cf0bd18b84ee3fea6c51cae2b
 
     <img [src]="employeeData?.image" style="width:100%">
       <p class="textdetail">รายละเอียดพนักงาน</p>
