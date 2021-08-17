@@ -1,6 +1,12 @@
 <div>
     <form [formGroup]="userForm">
-        <div>
+        <div >
+
+            <mat-card (click)="fileUpload.click()" class="card" fxLayoutAlign="center">
+                <img class="img" [src]= "data.image"> 
+              </mat-card>
+              <input type="file" #fileUpload (change)="onFileUpload($event)" hidden>
+
             <div>
                 <mat-form-field>
                     <input matInput formControlName="employeeId" placeholder="รหัสพนักงาน" >
@@ -9,10 +15,11 @@
         </div>
         <div fxLayout="row">
             <div>
-                <mat-form-field>
-                    <input matInput formControlName="name" placeholder="ชื่อ">
+                <mat-form-field class="form">
+                    <input matInput formControlName="name" placeholder="ชื่อ" >
                 </mat-form-field>
             </div>
+            
             <div>
                 <mat-form-field>
                     <input matInput formControlName="lastname" placeholder="นามสกุล" >
@@ -22,7 +29,7 @@
 
         <div fxLayout="row">
             <div>
-                <mat-form-field>
+                <mat-form-field class="form">
                     <input matInput formControlName="tel" placeholder="เบอร์โทรศัพท์" >
                 </mat-form-field>
             </div>
@@ -44,7 +51,7 @@
 
         <div fxLayout="row">
             <div>
-                <mat-form-field>
+                <mat-form-field class="form">
                     <input matInput formControlName="nationality" placeholder="สัญชาติ" >
                 </mat-form-field>
             </div>
@@ -56,7 +63,7 @@
             </div>
         </div>
 
-        <button mat-raised-button (click)="onSubmit()"> Update Profile</button>
+        <button mat-raised-button (click)="onSubmit()" > Update Profile</button>
         <button mat-raised-button (click)="onbackClick()">close</button>
     </form>
 </div>

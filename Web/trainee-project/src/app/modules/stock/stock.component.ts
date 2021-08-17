@@ -25,10 +25,10 @@ export class StockComponent implements OnInit {
 
   ngOnInit(): void {
     this.stockService.onDataChangedObservable$
-    .subscribe((res)=>{
-      this.listData = res
-      console.log(this.listData);
-    });
+      .subscribe((res) => {
+        this.listData = res
+        console.log(this.listData);
+      });
   }
 
 
@@ -42,21 +42,28 @@ export class StockComponent implements OnInit {
     });
   }
 
-  openStockManageDialog(dataProduct?: any) :void{
-    console.log(dataProduct[0])
-    const dialogRef = this.dialog.open(StockManageDialogComponent, {
-      data: dataProduct[0],
-      width:'25vw',
-      height:'70vh'
-    });
-    dialogRef.afterClosed().subscribe(res => {
-      if (res) {
-        this.stockService.onDataChangedObservable$
-        .subscribe((res)=>{
-          this.listData = res
-          console.log(res);
-        });
-      }
-    })
+  openStockManageDialog(dataProduct?: any): void {
+    if (dataProduct === undefined) {
+      confirm('กรุณาเลือกรายการสินค้าก่อน')
+    } else {
+      console.log(dataProduct)
+      console.log(dataProduct[0])
+      const dialogRef = this.dialog.open(StockManageDialogComponent, {
+        data: dataProduct[0],
+        width:'25vw',
+        height:'60vh',
+        disableClose: true
+      });
+      dialogRef.afterClosed().subscribe(res => {
+        if (res) {
+          this.stockService.onDataChangedObservable$
+          .subscribe((res)=>{
+            this.listData = res
+            console.log(res);
+          });
+        }
+      })
+    }
+
   }
 }

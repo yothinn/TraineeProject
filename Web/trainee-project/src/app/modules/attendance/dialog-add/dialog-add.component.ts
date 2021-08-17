@@ -11,6 +11,7 @@ import { AttendanceService } from '../attendance.service';
 })
 export class DialogAddComponent implements OnInit {
   userForm: FormGroup;
+  employeeData;
   
 
   constructor(
@@ -23,11 +24,16 @@ export class DialogAddComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.data)
+    this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
+      // console.log(res);
+      this.employeeData = res;
+    })
     if (this.data._id) {
       this.userForm = this.createForm(this.data);
     } else {
-      this.userForm = this.createForm(this.data);
-
+      this.data = {};
+      this.data.image = "https://icons-for-free.com/iconfiles/png/512/add+avatar+human+man+profile+icon-1320085876593184757.png";
+      this.userForm = this.createForm(this.data)
     }
   }
 
@@ -39,14 +45,16 @@ export class DialogAddComponent implements OnInit {
       name: [data.name],
       lastname: [data.lastname],
       tel: [data.tel],
-      address:[data.address],
-      age:[data.age],
-      nationality:[data.nationality],
-      religion:[data.religion]
+      address: [data.address],
+      age: [data.age],
+      nationality: [data.nationality],
+      religion: [data.religion],
+      image: data.image
     });
   }
 
   onSubmit() {
+    
     if (this.data._id) {
       this.attendanceService.updateAttendance(this.userForm.value)
         .subscribe((res) => {
@@ -70,8 +78,20 @@ export class DialogAddComponent implements OnInit {
     this.dialogRef.close();
   };
 
- 
-
+  onFileUpload(event) {
+    const file = event.target.files[0];
+    console.log(file);
+    const formData = new FormData();
+    formData.append('files', file);
+    this.attendanceService.uploadImageAttendance(formData)
+      .subscribe((res: any) => {
+        // console.log(res.data.url)
+        this.userForm.patchValue({
+          image: res.data.url
+        });
+        console.log(this.userForm)
+      });
+  }
 }
 
 

@@ -2,7 +2,7 @@ module.exports = {
     jwt: {
         secret: 'ngEurope rocks!'
     },
-    folderName : "upload"
+    folderName : "uploadAttendance"
     ,
     uploadImageProduct : "uploadImageProduct"
 }

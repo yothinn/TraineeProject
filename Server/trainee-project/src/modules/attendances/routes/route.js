@@ -7,7 +7,8 @@ var controller = require('../controllers/controller'),
 
     const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './' + config.folderName);
+        console.log(file)
+        cb(null, './src/modules/attendances/' + config.folderName);
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
@@ -38,14 +39,4 @@ module.exports = (app) => {
 
     app.param('attendancesId', controller.getByID);
 
-    /**
-     * Message Queue
-     * exchange : ชื่อเครือข่ายไปรษณีย์  เช่น casan
-     * qname : ชื่อสถานีย่อย สาขา
-     * keymsg : ชื่อผู้รับ
-     */
-    // mq.consume('exchange', 'qname', 'keymsg', (msg)=>{
-    //     console.log(JSON.parse(msg.content));
-
-    // });
 }

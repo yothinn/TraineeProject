@@ -67,4 +67,8 @@ export class StockManageDialogComponent implements OnInit {
         })
     }
   // }
+
+  onCloe(){
+    this.dialogRef.close();
+  }
 }
