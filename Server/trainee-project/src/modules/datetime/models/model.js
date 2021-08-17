@@ -9,10 +9,10 @@ var DatetimeSchema = new Schema({
         type: String,
        
     },
-    dateIn: {
+    timeIn: {
         type: String,
     },
-    timeIn: {
+    work: {
         type: String,
     },
     created: {

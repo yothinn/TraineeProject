@@ -29,7 +29,7 @@ export class AttendanceDialogComponent implements OnInit {
       this.employeeData = res.data;
     });
     this.workDateForm = this.createForm();
-    this.workDateForm = this.createDateTimeOut();
+    // this.workDateForm = this.createDateTimeOut();
   }
 
 
@@ -37,49 +37,49 @@ export class AttendanceDialogComponent implements OnInit {
     // console.log(data)
     return this.fb.group({
       employeeId: [""],
-      dateIn: [""],
       timeIn: [""],
+      work:[""]
     });
   }
 
-  createDateTimeOut() {
-    // console.log(data)
-    return this.fb.group({
-      employeeId: [""],
-      dateIn: [""],
-      timeIn: [""],
-    });
-  }
-
-
-
-  // onSubmitIn() {
-  //   // console.log(this.workDateForm.value)
-  //   this.attendanceService.createDatetimeIn(this.workDateForm.value)
-  //   .subscribe(res => {
-  //     if (res) {
-  //       this.dialogRef.close(res);
-  //     }
-  //   })
-    
+  // createDateTimeOut() {
+  //   // console.log(data)
+  //   return this.fb.group({
+  //     employeeId: [""],
+  //     dateIn: [""],
+  //     timeIn: [""],
+  //   });
   // }
-  
-  onSubmit(buttonType) {
-      if (buttonType==="timeIn") 
-      { this.attendanceService.createDateTimeIn(this.workDateForm.value)
-        .subscribe(res => {
-        console.log(res)
+
+
+
+  onSubmit() {
+    // console.log(this.workDateForm.value)
+    this.attendanceService.createDateTimeIn(this.workDateForm.value)
+    .subscribe(res => {
+      if (res) {
         this.dialogRef.close(res);
-      })
-      }  
-      if(buttonType==="timeOut"){ 
-        this.attendanceService.createDateTimeOut(this.workDateForm.value)
-        .subscribe(res => {
-        console.log(res)
-        this.dialogRef.close(res);
-      })
       }
+    })
+    
   }
+  
+  // onSubmit(buttonType) {
+  //     if (buttonType==="timeIn") 
+  //     { this.attendanceService.createDateTimeIn(this.workDateForm.value)
+  //       .subscribe(res => {
+  //       console.log(res)
+  //       this.dialogRef.close(res);
+  //     })
+  //     }  
+  //     if(buttonType==="timeOut"){ 
+  //       this.attendanceService.createDateTimeOut(this.workDateForm.value)
+  //       .subscribe(res => {
+  //       console.log(res)
+  //       this.dialogRef.close(res);
+  //     })
+  //     }
+  // }
 
     // onSubmit() {
     // // console.log(this.workDateForm.value)
