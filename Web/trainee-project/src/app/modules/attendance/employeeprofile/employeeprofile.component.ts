@@ -13,7 +13,6 @@ export class EmployeeProfileComponent implements OnInit {
   employeeData: any;
   
 
-
   constructor(
     private attendanceService: AttendanceService,
     public dialog: MatDialog,) { }
@@ -25,7 +24,6 @@ export class EmployeeProfileComponent implements OnInit {
       this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
         // console.log(res)
       });
-     
   });
 }
 
@@ -45,12 +43,17 @@ export class EmployeeProfileComponent implements OnInit {
   }
   
   delete(dataDelete) {
-    this.attendanceService.deleteAttendance(dataDelete).subscribe((res: any) => {
-      if (res) {
-        this.attendanceService.getAttendance().subscribe((res: any) => {
-          this.employeeData = res.data;
-        })
-      }
-    });
+    if (confirm("Are you sure to delete")) {
+      this.attendanceService.deleteAttendance(dataDelete).subscribe((res: any) => {
+        if (res) {
+          this.attendanceService.getAttendance().subscribe((res: any) => {
+            this.employeeData = res.data
+          })
+        } else {
+          console.log("")
+        }
+      })
+    }
+    window.location.reload();
   }
 }
