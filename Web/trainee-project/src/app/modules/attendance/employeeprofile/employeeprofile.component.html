@@ -1,18 +1,25 @@
 <header>
   <mat-card>
-
-  <img [src] = "employeeData?.image" style="width:100%"> 
-  <h2>รายละเอียดพนักงาน</h2>
     
-  <a><B>ชื่อ:</B> {{employeeData?.name}} <B>นามสกุล:</B> {{employeeData?.lastname}}</a><br>
-  <a><B>เบอร์โทรศัพท์:</B> {{employeeData?.tel}}</a><br>
-  <a><B>ที่อยู่:</B> {{employeeData?.address}}</a><br>
-  <a><B>อายุ:</B> {{employeeData?.age}}</a><br>
-  <a><B>ปี สัญชาติ:</B> {{employeeData?.nationality}}</a><br>
-  <a><B>ศาสนา:</B> {{employeeData?.religion}}</a>
+    <mat-icon [matMenuTriggerFor]="menu" class="menu"><small>more_vert</small></mat-icon>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openDialog(employeeData)">Edit</button>
+      <button mat-menu-item (click)="delete(employeeData)">Delete</button>
+    </mat-menu>
+
+
+    <img [src]="employeeData?.image" style="width:100%">
+      <p class="textdetail">รายละเอียดพนักงาน</p>
+
+    <a><B>ชื่อ:</B> {{employeeData?.name}} <B>นามสกุล:</B> {{employeeData?.lastname}}</a><br>
+    <a><B>เบอร์โทรศัพท์:</B> {{employeeData?.tel}}</a><br>
+    <a><B>ที่อยู่:</B> {{employeeData?.address}}</a><br>
+    <a><B>อายุ:</B> {{employeeData?.age}}</a><br>
+    <a><B>สัญชาติ:</B> {{employeeData?.nationality}}</a><br>
+    <a><B>ศาสนา:</B> {{employeeData?.religion}}</a>
+
+
 
   </mat-card>
   <p></p>
 </header>
-
-

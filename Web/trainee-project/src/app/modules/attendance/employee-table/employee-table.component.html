@@ -1,16 +1,9 @@
 <header>
   <mat-card>
-  <a><B>รหัสพนักงาน:</B> {{employeeData?.employeeId}}
-      <mat-icon [matMenuTriggerFor]="menu" class="menu"><small>edit</small></mat-icon>
-  </a><br>
+  <a><B>รหัสพนักงาน:</B> {{employeeData?.employeeId}}</a><br>
+  <a><B>ชื่อ:</B> {{employeeData?.name}} {{employeeData?.lastname}}</a><br>
+  <a><B>เบอร์โทร:</B> {{employeeData?.tel}}</a>
 
-  <a><B>ชื่อ:</B> {{employeeData?.name}} <B>นามสกุล:</B> {{employeeData?.lastname}}</a><br>
-  <a><B>เบอร์โทรศัพท์:</B> {{employeeData?.tel}}</a>
-
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="openDialog(employeeData)">Edit</button>
-      <button mat-menu-item (click)="delete(employeeData)">Delete</button>
-    </mat-menu>
   </mat-card>
   <p></p>
 </header>
