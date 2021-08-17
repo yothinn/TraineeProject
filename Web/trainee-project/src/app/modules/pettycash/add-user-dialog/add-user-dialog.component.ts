@@ -50,6 +50,7 @@ export class AddUserDialogComponent implements OnInit {
           }
         });
     }
+    window.location.reload();
   }
 
 }
