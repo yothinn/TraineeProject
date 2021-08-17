@@ -28,6 +28,8 @@ export class TableComponent implements OnInit {
   tableData: any;
   value: any;
   RaisedAmount = 0;
+  sumData: any;
+  checkData: boolean = true;
 
 
   constructor(
@@ -38,8 +40,10 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
       this.tableData = res;
-      console.log(this.tableData);
-      this.findsum(this.tableData);
+      console.log(this.checkData);
+      if (this.checkData === true) {
+        this.findsum(this.tableData);
+      }
     });
     this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
       this.listData = res;
@@ -55,19 +59,19 @@ export class TableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
-          this.tableData = res;
+          this.tableData = res.data;
         });
       }
     });
   }
 
-  handlePage(pagin: any):void {
+  handlePage(pagin: any): void {
     this.currentPage = pagin.pageIndex;
     this.pageSize = pagin.pageSize;
     this.shoose();
   }
 
-  getArray():void{
+  getArray(): void {
     this.pettyCashService.onTableChangedObservable$
       .subscribe((res: any) => {
         this.dataSource = new MatTableDataSource<Element>(res);
@@ -79,7 +83,7 @@ export class TableComponent implements OnInit {
       });
   }
 
-  shoose():void {
+  shoose(): void {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
     const part = this.array.slice(start, end);
@@ -88,14 +92,17 @@ export class TableComponent implements OnInit {
 
 
   findsum(data) {
+    this.checkData = false;
     this.value = data;
+    console.log(data)
     for (let j = 0; j < data.length; j++) {
+      console.log(this.value[j].deposit)
       if (this.value[j].deposit) {
         this.RaisedAmount += this.value[j].deposit;
       } else {
         this.RaisedAmount -= this.value[j].withdraw;
       }
-      console.log(this.RaisedAmount);
+      // console.log(this.RaisedAmount);
     }
   }
 

@@ -50,7 +50,9 @@ export class AddItemDialogComponent implements OnInit {
     // if (confirm("กรุณาเลือกรายชื่อด้านซ้ายก่อน"))
     this.pettyCashService.createItem(this.customerForm.value).subscribe((res:any)=>{
       this.tableData = res.data;
-      
+      if (res) {
+        this.dialogRef.close(res);
+      }
     });
 
   }

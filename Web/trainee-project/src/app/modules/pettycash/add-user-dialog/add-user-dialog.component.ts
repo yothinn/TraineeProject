@@ -11,36 +11,44 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AddUserDialogComponent implements OnInit {
   customerForm: FormGroup;
 
-  constructor(private pettyCashService: PettyCashService,private fb: FormBuilder,
+  constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddUserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
     if (this.data._id) {
       this.customerForm = this.createList(this.data);
-    }else {
+    } else {
       this.customerForm = this.createList(this.data);
 
     };
   }
 
-  createList(data){
+  createList(data) {
     return this.fb.group({
       _id: [data._id],
-      name: [data.name,Validators.required] ,
-      lastName: [data.lastName,Validators.required] ,
-      financialAmount: [data.financialAmount,Validators.required],
-      position:[data.position,Validators.required]
+      name: [data.name, Validators.required],
+      lastName: [data.lastName, Validators.required],
+      financialAmount: [data.financialAmount, Validators.required],
+      position: [data.position, Validators.required]
     });
   }
 
-  onSubmit():void{
+  onSubmit(): void {
     if (this.data._id) {
       this.pettyCashService.updateCustomer(this.customerForm.value)
-        .subscribe();
+        .subscribe((res) => {
+          if (res) {
+            this.dialogRef.close(res);
+          }
+        });
     } else {
       this.pettyCashService.createCustomer(this.customerForm.value)
-        .subscribe();
+        .subscribe((res) => {
+          if (res) {
+            this.dialogRef.close(res);
+          }
+        });
     }
   }
 
