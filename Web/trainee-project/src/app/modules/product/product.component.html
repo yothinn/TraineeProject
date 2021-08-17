@@ -30,7 +30,7 @@
   </mat-toolbar>
 
 
-  <div fxLayout="row warp">
+  <div fxLayout="row warp"> <!---->
     <div *ngFor="let item of productData">
       <mat-card class="card">
         <button class="button-test" mat-icon-button [matMenuTriggerFor]="menu"
@@ -43,7 +43,7 @@
           </button>
         </mat-menu>
         <div (click)="openDialogProduct(item)">
-          <img class="img" src="https://www.chiiwiidoctor.com/assets/images/default-profile.jpg">
+          <img class="img" [src]="item.image">
           <div>
             <content>
               <p>
@@ -58,5 +58,5 @@
         </div>
       </mat-card>
     </div>
-  </div>
+  </div>   <!---->
 </div>

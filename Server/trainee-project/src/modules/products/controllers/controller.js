@@ -153,9 +153,9 @@ exports.search = function (req, res) {
 }
 
 exports.uploads = (req, res) => {
-    const url = req.protocol + '://' + req.headers.host + '/' + config.folderName + '/';
+    const url = req.protocol + '://' + req.headers.host + '/src/modules/products/' + config.uploadImageProduct + '/';
     req.file.url = url + req.file.filename;
-    console.log("ddddd");
+    console.log("pass");
     console.log(req.file.url);
     console.log(req.file);
     res.jsonp({
