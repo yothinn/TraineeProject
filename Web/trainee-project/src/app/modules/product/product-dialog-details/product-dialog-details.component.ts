@@ -11,8 +11,7 @@ import { ProductService } from '../product.service';
 export class ProductDialogDetailsComponent implements OnInit {
   productForm: FormGroup;
   categories: any;
-  selected = 'option2';
-  test:any = 'https://cdn2.iconfinder.com/data/icons/shopping-delivery/25/Product_Package_Add-512.png';
+
   constructor(private dataService: ProductService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ProductDialogDetailsComponent>,
@@ -26,8 +25,11 @@ export class ProductDialogDetailsComponent implements OnInit {
     if (this.data?._id) {
       this.productForm = this.createForm(this.data);
     } else {
-      this.data = [];                            //if (this.data == null) เช็ค null เเล้ว เซ้คให้เป็นค่าว่างก่อนส่งเข้า function
-      this.productForm = this.createForm(this.data); // this.productForm = this.createForm(this.data);
+      console.log(this.data)
+      this.data = {};   
+      this.data.image = "https://cdn2.iconfinder.com/data/icons/shopping-delivery/25/Product_Package_Add-512.png"                         //if (this.data == null) เช็ค null เเล้ว เซ้คให้เป็นค่าว่างก่อนส่งเข้า function
+      console.log(this.data)
+      this.productForm = this.createForm(this.data); 
     }
   }
 
@@ -45,7 +47,7 @@ export class ProductDialogDetailsComponent implements OnInit {
   }
 
   addProduct(): void {
-
+    console.log(this.productForm.value)
     if (this.data._id) {
       this.dataService.editProductData(this.productForm.value).subscribe(res => {
         if (res) {
@@ -66,7 +68,7 @@ export class ProductDialogDetailsComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onFileUpload(event) {
+  uploadImage(event) {
     console.log(event);
     const file = event.target.files[0];
     console.log(file);
@@ -75,8 +77,11 @@ export class ProductDialogDetailsComponent implements OnInit {
     console.log(formData);
     this.dataService.uploadImageProduct(formData)
       .subscribe((res) => {
+        this.productForm.patchValue({
+          image: res.data.url
+        })
         console.log(res.data.url)
-        this.test =  res.data.url
+        this.data.image =  res.data.url
       })
   }
 
