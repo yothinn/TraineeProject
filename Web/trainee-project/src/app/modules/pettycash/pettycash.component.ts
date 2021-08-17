@@ -30,8 +30,10 @@ export class PettyCashComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
+  openDialog(data): void {
     const dialogRef = this.dialog.open(AddUserDialogComponent, {
+      width: "300px",
+      data:data
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
@@ -42,17 +44,6 @@ export class PettyCashComponent implements OnInit {
     });
   }
 
-  openDialog2(): void {
-    const dialogRef = this.dialog.open(AddUserDialogComponent, {
-    });
-    dialogRef.afterClosed().subscribe(res => {
-      if (res) {
-        this.pettyCashService.getList().subscribe((res: any) => {
-          this.pattyCashData = res;
-        });
-      }
-    });
-  }
   deleteList(item): void {
     if (confirm("Are you sure to delete ")) {
       this.pettyCashService.deleteList(item).subscribe(res => {

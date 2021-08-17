@@ -17,6 +17,7 @@ export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
   tableData: any;
+  disableSelect = new FormControl(false);
 
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddItemDialogComponent>,
@@ -54,13 +55,10 @@ export class AddItemDialogComponent implements OnInit {
         this.dialogRef.close(res);
       }
     });
-
-  });
     window.location.reload();
+  }
+    descriptions: description[] = [
+      { value: 'เงินเข้า', viewValue: 'Deposit' },
+      { value: 'เงินออก', viewValue: 'Withdraw' }
+    ];
 }
-
-descriptions: description[] = [
-  { value: 'เงินเข้า', viewValue: 'deposit' },
-  { value: 'เงินออก', viewValue: 'withdraw' }
-];
-

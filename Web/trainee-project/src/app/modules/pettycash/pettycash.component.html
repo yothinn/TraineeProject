@@ -18,7 +18,7 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="openDialog2(item)">
+            <button mat-menu-item (click)="openDialog(item)">
               <mat-icon>edit</mat-icon>
               <span>edit</span>
             </button>
@@ -30,10 +30,10 @@
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between stretch">
           <a class="size-amount">
-            {{item.amount | number:"0.2"}}
+            {{RaisedAmount | number:"0.2"}}
           </a>
           <a class="limit">
-            วงเงิน {{item.financialAmount | number}}
+            วงเงิน {{item.financialAmount | number:"0.2"}}
           </a>
         </div>
       </mat-card>
@@ -45,5 +45,5 @@
 </mat-drawer-container>
 
 <form>
-  <button class="button-customer" mat-button (click)="openDialog()">เพิ่มผู้ใช้</button>
+  <button class="button-customer" mat-button (click)="openDialog('new')">เพิ่มผู้ใช้</button>
 </form>

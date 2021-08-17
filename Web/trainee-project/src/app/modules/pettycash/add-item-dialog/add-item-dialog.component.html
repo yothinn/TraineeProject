@@ -1,50 +1,52 @@
 <h2 mat-dialog-title>เพื่มรายการ</h2>
-<div>
+<div align="center">
   <form [formGroup]="customerForm">
     <div>
-      <mat-form-field>
+      <mat-form-field class="width">
         <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
     <div hidden>
-      <mat-form-field>
-        <input  matInput formControlName="lastName" placeholder="lastName">
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field>
-        <input  matInput type="number" min="1" formControlName="documentNo" placeholder="เลขที่เอกสาร">
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>รายการ</mat-label>
-        <mat-select formControlName="description" >
-          <mat-option *ngFor="let item of descriptions" [value]="item.value">
-            {{item.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div >
       <mat-form-field >
-        <input matInput formControlName="deposit" onfocus="this.value=''" placeholder="เงินเข้า">
+        <input matInput formControlName="lastName" placeholder="lastName">
       </mat-form-field>
     </div>
     <div>
-      <mat-form-field>
-        <input matInput formControlName="withdraw" onfocus="this.value=''" placeholder="เงินออก" >
+      <mat-form-field class="width">
+        <input matInput min="1" formControlName="documentNo" type="number" onfocus="this.value=''"
+          placeholder="เลขที่เอกสาร">
       </mat-form-field>
     </div>
     <div>
-      <mat-form-field>
-        <input matInput formControlName="placeOfUse" placeholder="สถานที่ใช้งาน">
+      <mat-radio-group formControlName="description">
+        <mat-radio-button class="padding" *ngFor="let item of descriptions" [value]="item.value">
+          {{item.viewValue}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div><br>
+    <div>
+      <mat-form-field class="width">
+        <input matInput formControlName="deposit" type="number" onfocus="this.value=''" class="example-right-align"
+          placeholder="เงินเข้า">
+        <span matSuffix>.00</span>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="width" >
+        <input matInput formControlName="withdraw" type="number" onfocus="this.value=''" class="example-right-align"
+          placeholder="เงินออก">
+        <span matSuffix>.00</span>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="width" appearance="outline">
+        <textarea class="hieght" matInput formControlName="placeOfUse" placeholder="สถานที่ใช้งาน"></textarea>
       </mat-form-field>
     </div>
     <button mat-raised-button mat-dialog-close type="submit" [disabled]="!customerForm.valid" (click)="onSubmit()">
-      เพื่มรายการ</button>
+      add</button>
     <button class="close" mat-raised-button mat-dialog-close type="close">
       close</button>
   </form>

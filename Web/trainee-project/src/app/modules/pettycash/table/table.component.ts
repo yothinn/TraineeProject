@@ -27,7 +27,7 @@ export class TableComponent implements OnInit {
   listCustomer: any;
   tableData: any;
   value: any;
-  RaisedAmount = 0;
+  public RaisedAmount = 0;
   sumData: any;
   checkData: boolean = true;
 
@@ -57,7 +57,9 @@ export class TableComponent implements OnInit {
       confirm('กรุณาเลือกการ์ดผู้ใช้ก่อน')
     } else {
       const dialogRef = this.dialog.open(AddItemDialogComponent, {
+        width: "300px",
         data: data
+
       });
       dialogRef.afterClosed().subscribe(res => {
         if (res) {
@@ -97,7 +99,7 @@ export class TableComponent implements OnInit {
   }
 
 
-  findsum(data) {
+  public findsum(data) {
     this.checkData = false;
     this.value = data;
     console.log(data)
