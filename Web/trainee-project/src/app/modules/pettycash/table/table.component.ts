@@ -49,25 +49,31 @@ export class TableComponent implements OnInit {
     this.getArray();
   }
   openDialog(data): void {
-    const dialogRef = this.dialog.open(AddItemDialogComponent, {
-      data: data
-    });
-    dialogRef.afterClosed().subscribe(res => {
-      if (res) {
-        this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
-          this.tableData = res;
-        });
-      }
-    });
+    if (data === undefined) {
+      confirm('กรุณาเลือกการ์ดผู้ใช้ก่อน')
+    } else {
+      const dialogRef = this.dialog.open(AddItemDialogComponent, {
+        data: data
+      });
+      dialogRef.afterClosed().subscribe(res => {
+        if (res) {
+          this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
+            this.tableData = res;
+          });
+        }
+      });
+    }
+
+
   }
 
-  handlePage(pagin: any):void {
+  handlePage(pagin: any): void {
     this.currentPage = pagin.pageIndex;
     this.pageSize = pagin.pageSize;
     this.shoose();
   }
 
-  getArray():void{
+  getArray(): void {
     this.pettyCashService.onTableChangedObservable$
       .subscribe((res: any) => {
         this.dataSource = new MatTableDataSource<Element>(res);
@@ -79,7 +85,7 @@ export class TableComponent implements OnInit {
       });
   }
 
-  shoose():void {
+  shoose(): void {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
     const part = this.array.slice(start, end);
