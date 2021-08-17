@@ -53,25 +53,52 @@ export class AttendanceDialogComponent implements OnInit {
 
 
 
-  onSubmitIn() {
-    // console.log(this.workDateForm.value)
-    this.attendanceService.createDatetimeIn(this.workDateForm.value)
-    .subscribe(res => {
-      if (res) {
+  // onSubmitIn() {
+  //   // console.log(this.workDateForm.value)
+  //   this.attendanceService.createDatetimeIn(this.workDateForm.value)
+  //   .subscribe(res => {
+  //     if (res) {
+  //       this.dialogRef.close(res);
+  //     }
+  //   })
+    
+  // }
+  
+  onSubmit(buttonType) {
+      if (buttonType==="timeIn") 
+      { this.attendanceService.createDateTimeIn(this.workDateForm.value)
+        .subscribe(res => {
+        console.log(res)
         this.dialogRef.close(res);
+      })
+      }  
+      if(buttonType==="timeOut"){ 
+        this.attendanceService.createDateTimeOut(this.workDateForm.value)
+        .subscribe(res => {
+        console.log(res)
+        this.dialogRef.close(res);
+      })
       }
-    })
   }
 
-    onSubmitOut() {
-    // console.log(this.workDateForm.value)
-    this.attendanceService.createDatetimeOut(this.workDateForm.value)
-    .subscribe(res => {
-      if (res) {
-        this.dialogRef.close(res);
-      }
-    })
-  }
+    // onSubmit() {
+    // // console.log(this.workDateForm.value)
+    // this.attendanceService.createDatetimeOut(this.workDateForm.value)
+    // .subscribe(res => {
+    //   if (res) {
+    //     this.dialogRef.close(res);
+    //   }
+    // })
+  // }
+  // onSubmitOut() {
+  //   // console.log(this.workDateForm.value)
+  //   this.attendanceService.createDatetimeOut(this.workDateForm.value)
+  //   .subscribe(res => {
+  //     if (res) {
+  //       this.dialogRef.close(res);
+  //     }
+  //   })
+  // }
 
  
 
