@@ -7,7 +7,7 @@
     </div>
     <div class="financialAmount" fxLayout="row" fxLayoutAlign="space-between stretch">
       <a>{{listData?.financialAmount | number:"0.2"}}</a>
-      <button class="button-add" color="primary" mat-button (click)="openDialog(listData)">เพิ่มรายการ</button>
+      <button class="button-add" color="primary" mat-button (click)="openDialog(listData)" [disabled]="!listData" >เพิ่มรายการ</button>
     </div>
   </mat-card>
 </div>
