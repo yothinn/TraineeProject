@@ -3,6 +3,10 @@
     margin-top: 24px;
 }
 
+.font-category-add{
+ color: rgb(6, 103, 248);
+}
+
 
 .font-category{
   margin-left: 50px;
@@ -74,3 +78,26 @@
     width: 132px;
 }
 
+.header{
+    height: 5vh;
+    border:1px solid gray;
+    background-color: #dddddd;
+}
+.footer{
+  height: 5vh;
+  padding-left: 20px;
+  padding-right: 20px;
+  
+}
+.font-type{
+    margin-right: 10px;
+}
+
+.redClass{
+    color: crimson;
+}
+
+.content{
+    height:516px;
+    overflow: auto;
+}
