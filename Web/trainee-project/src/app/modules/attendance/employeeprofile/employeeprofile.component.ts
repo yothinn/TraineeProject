@@ -22,7 +22,7 @@ export class EmployeeProfileComponent implements OnInit {
       // console.log(res);
       this.employeeData = res;
       this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
-        console.log(res)
+        // console.log(res)
       });
   });
 }

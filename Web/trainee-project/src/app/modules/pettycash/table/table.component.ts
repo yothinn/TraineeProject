@@ -51,9 +51,9 @@ export class TableComponent implements OnInit {
     this.getArray();
   }
   openDialog(data): void {
-    if (data === undefined) {
-      confirm('กรุณาเลือกการ์ดผู้ใช้ก่อน');
-    } else {
+    // if (data === undefined) {
+    //   confirm('กรุณาเลือกการ์ดผู้ใช้ก่อน')
+    // } else {
       const dialogRef = this.dialog.open(AddItemDialogComponent, {
         width: "300px",
         data: data
@@ -66,7 +66,7 @@ export class TableComponent implements OnInit {
           });
         }
       });
-    }
+    // }
 
 
   }
@@ -97,7 +97,7 @@ export class TableComponent implements OnInit {
   }
 
 
-  public findsum(data) {
+  findsum(data) {
     this.RaisedAmount = 0;
     this.value = data;
     console.log(data);
