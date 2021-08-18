@@ -9,7 +9,7 @@
       </mat-form-field>
     </div>
     <div hidden>
-      <mat-form-field >
+      <mat-form-field>
         <input matInput formControlName="lastName" placeholder="lastName">
       </mat-form-field>
     </div>
@@ -20,29 +20,33 @@
       </mat-form-field>
     </div>
     <div>
-      <mat-radio-group formControlName="description">
-        <mat-radio-button class="padding" *ngFor="let item of descriptions" [value]="item.value">
-          {{item.viewValue}}
-        </mat-radio-button>
+      <mat-radio-group  formControlName="description" >
+        <mat-radio-button class="padding" value="เงินเข้า" [checked]="showDateInput" (click)="radioValueCheck(1)">deposit</mat-radio-button>
+        <mat-radio-button value="เงินออก" [checked]="showDateInput" (click)="radioValueCheck(2)">withdraw</mat-radio-button>
       </mat-radio-group>
     </div><br>
     <div>
-      <mat-form-field class="width">
+      <mat-form-field class="width" >
         <input matInput formControlName="deposit" type="number" onfocus="this.value=''" class="example-right-align"
-          placeholder="เงินเข้า">
+          placeholder="เงินเข้า" [disabled]="!showDateInput">
         <span matSuffix>.00</span>
       </mat-form-field>
     </div>
     <div>
-      <mat-form-field class="width" >
+      <mat-form-field class="width">
         <input matInput formControlName="withdraw" type="number" onfocus="this.value=''" class="example-right-align"
-          placeholder="เงินออก">
+          placeholder="เงินออก" >
         <span matSuffix>.00</span>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="width" appearance="outline">
-        <textarea class="hieght" matInput formControlName="placeOfUse" placeholder="สถานที่ใช้งาน"></textarea>
+        <mat-label>สถานที่ใช้งาน</mat-label>
+        <mat-select formControlName="placeOfUse">
+          <mat-option *ngFor="let item of placeOfUses" [value]="item.item">
+            {{item.item}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <button mat-raised-button mat-dialog-close type="submit" [disabled]="!customerForm.valid" (click)="onSubmit()">

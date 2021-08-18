@@ -21,7 +21,7 @@ export class TableComponent implements OnInit {
   pageEvent: any;
   array: any;
   dataSource: any;
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 0;
   totalSize = 0;
   listCustomer: any;
@@ -41,9 +41,7 @@ export class TableComponent implements OnInit {
     this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
       this.tableData = res;
       console.log(this.checkData);
-      if (this.checkData === true) {
-        this.findsum(this.tableData);
-      }
+      this.findsum(this.tableData);
     });
     this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
       this.listData = res;
@@ -100,7 +98,7 @@ export class TableComponent implements OnInit {
 
 
   public findsum(data) {
-    this.checkData = false;
+    this.RaisedAmount = 0;
     this.value = data;
     console.log(data);
     for (let j = 0; j < data.length; j++) {
