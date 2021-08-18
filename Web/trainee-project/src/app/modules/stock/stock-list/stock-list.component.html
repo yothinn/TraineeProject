@@ -30,7 +30,7 @@
 
 </div>
 <div fxLayout="column" class="stock-content">
-    <div fxLayout="column" *ngFor="let item of productList" (click)="onChooseList(item)">
+    <div fxLayout="column"  #stockList *ngFor="let item of productList" (click)="onChooseList(item)">
         <div fxLayout="row" fxLayoutAlign="end" class="stock-message" fxFlex="100">
             {{item.created | date}}
         </div>

@@ -48,12 +48,17 @@
                 </div>
                 <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
                         <p>
-                                จำนวนสินค้า
+                                จำนวนสินค้านำเข้า
                         </p>
                 </div>
                 <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
                         <p>
-                                สถานะสินค้า
+                                จำนวนสินค้านำออก
+                        </p>
+                </div>
+                <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
+                        <p>
+                                จำนวนสินค้าคงเหลือ
                         </p>
                 </div>
         </header>
@@ -72,6 +77,10 @@
                 </div>
                 <hr>
                 <div class="footer" fxLayoutAlign="start center " fxFlex>
+                        <!-- {{item?.total}} -->
+                </div>
+                <hr>
+                <div class="footer" fxLayoutAlign="start center " fxFlex  [ngClass]="{greenClass: item.status == 'นำเข้า' , redClass: item.status == 'นำออก'}">
                         {{item?.status}}
                 </div>
         </div>

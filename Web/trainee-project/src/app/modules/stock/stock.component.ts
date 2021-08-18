@@ -3,6 +3,7 @@ import { StockService } from './stock.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { StockManageDialogComponent } from './stock-manage-dialog/stock-manage-dialog.component';
+import { StockReportDialogComponent } from './stock-report-dialog/stock-report-dialog.component';
 
 @Component({
   selector: 'app-stock',
@@ -27,7 +28,7 @@ export class StockComponent implements OnInit {
     this.stockService.onDataChangedObservable$
       .subscribe((res) => {
         this.listData = res
-        console.log(this.listData);
+        // console.log(this.listData);
       });
   }
 
@@ -38,7 +39,7 @@ export class StockComponent implements OnInit {
     let date;
     date = this.range.value;
     this.stockService.getProductByDate(date.start).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
     });
   }
 
@@ -46,24 +47,31 @@ export class StockComponent implements OnInit {
     if (dataProduct === undefined) {
       confirm('กรุณาเลือกรายการสินค้าก่อน')
     } else {
-      console.log(dataProduct)
-      console.log(dataProduct[0])
+      // console.log(dataProduct)
+      // console.log(dataProduct[0])
       const dialogRef = this.dialog.open(StockManageDialogComponent, {
         data: dataProduct[0],
-        width:'25vw',
-        height:'60vh',
+        width: '25vw',
+        height: '60vh',
         disableClose: true
       });
       dialogRef.afterClosed().subscribe(res => {
         if (res) {
           this.stockService.onDataChangedObservable$
-          .subscribe((res)=>{
-            this.listData = res
-            console.log(res);
-          });
+            .subscribe((res) => {
+              this.listData = res
+              // console.log(res);
+            });
         }
       })
     }
+  }
 
+  onConclude(dataProduct?: any) {
+    const dialogRef = this.dialog.open(StockReportDialogComponent,{
+      data:dataProduct,
+      width: '60vw',
+      height: '70vh'
+    })
   }
 }

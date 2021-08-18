@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { fromEvent } from 'rxjs';
 import { StockService } from '../stock.service';
 
 @Component({
@@ -16,7 +17,6 @@ export class StockListComponent implements OnInit {
   constructor(private stockService: StockService) { }
 
   ngOnInit(): void {
-
     this.stockService.getCategories().subscribe((res: any) => {
       this.categoriesData = res.data;
       this.categoriesList = this.categoriesData;
@@ -29,7 +29,7 @@ export class StockListComponent implements OnInit {
 
   onSearch(): void {
     let fillData = this.searchRef.nativeElement.value.toLowerCase();
-     this.stockService.searchProduct(fillData)
+    this.stockService.searchProduct(fillData)
       .subscribe((res) => {
         console.log(res);
         this.productList = res.data;
@@ -40,13 +40,6 @@ export class StockListComponent implements OnInit {
     //   return res.productName.toLowerCase().startsWith(fillData);
     // });
   }
-
-  // onChooseList(item: any): void {
-  //   this.stockService.getProductById(item.productName).subscribe((res: any) => {
-  //     console.log(res.data);
-  //     this.productData = res.data;
-  //   });
-  // }
 
   onChooseList(item: any): void {
     this.stockService.getStockByProductId(item.productId)
@@ -64,5 +57,9 @@ export class StockListComponent implements OnInit {
       this.productList = this.productData;
     })
   }
+
+  // onScrolled(event) {
+  //   console.log(event);
+  // }
 
 }

@@ -20,6 +20,9 @@ export class StockService {
   getProduct(): Observable<any> {
     return this.http.get('http://localhost:3000/api/products');
   }
+  getStockProduct(){
+    return this.http.get('http://localhost:3000/api/stocksproducts');
+  }
 
   // getProductById(id :string): Observable<any> {
   //   return this.http.get(`http://localhost:3000/api/products`);
