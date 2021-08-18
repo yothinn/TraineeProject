@@ -12,7 +12,7 @@ import { AttendanceService } from '../attendance.service';
 export class DialogAddComponent implements OnInit {
   userForm: FormGroup;
   employeeData;
-  
+
 
   constructor(
     private attendanceService: AttendanceService,
@@ -32,7 +32,7 @@ export class DialogAddComponent implements OnInit {
       this.userForm = this.createForm(this.data);
     } else {
       this.data = {};
-      this.data.image = "https://icons-for-free.com/iconfiles/png/512/add+avatar+human+man+profile+icon-1320085876593184757.png";
+      this.data.image = "https://img-premium.flaticon.com/png/512/1176/premium/1176381.png?token=exp=1629190815~hmac=a74c49ab6da8214076075a21b2e4201f";
       this.userForm = this.createForm(this.data)
     }
   }
@@ -54,7 +54,7 @@ export class DialogAddComponent implements OnInit {
   }
 
   onSubmit() {
-    
+
     if (this.data._id) {
       this.attendanceService.updateAttendance(this.userForm.value)
         .subscribe((res) => {
@@ -62,6 +62,7 @@ export class DialogAddComponent implements OnInit {
           if (res) {
             this.dialogRef.close(res);
           }
+          window.location.reload();
         })
     } else {
       this.attendanceService.createAttendance(this.userForm.value)
@@ -70,8 +71,8 @@ export class DialogAddComponent implements OnInit {
             this.dialogRef.close(res);
           }
         })
+        window.location.reload();
     }
-
   }
 
   onbackClick() {
@@ -90,6 +91,7 @@ export class DialogAddComponent implements OnInit {
           image: res.data.url
         });
         console.log(this.userForm)
+        this.data.image = res.data.url;
       });
   }
 }

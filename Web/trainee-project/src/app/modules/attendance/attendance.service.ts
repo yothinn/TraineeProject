@@ -13,8 +13,16 @@ export class AttendanceService {
   private onDateChanged$ = new Subject();
   public onDateChangedObservable$ = this.onDateChanged$.asObservable();
 
-  private onDateOutChanged$ = new Subject();
-  public onDateOutChangedObservable$ = this.onDateOutChanged$.asObservable();
+  
+  private onWorkChanged$ = new Subject();
+  public onWorkChanged$Observable$ = this.onWorkChanged$.asObservable();
+
+
+
+
+
+
+
 
   
 
@@ -50,17 +58,27 @@ export class AttendanceService {
     // console.log(id)
     this.http.get(`http://localhost:3000/api/datetimes?employeeId=${id.employeeId}`)
       .subscribe((res: any) => {
-        // console.log(res)
+        console.log(res)
         this.onDateChanged$.next(res.data)
       })
   }
 
-  getDateTimeOutById(id: any): void {
-    // console.log(id)
-    this.http.get(`http://localhost:3000/api/datetimeouts?employeeId=${id.employeeId}`)
+  
+  getWorkById(id: any): void {
+    console.log(id)
+    this.http.get(`http://localhost:3000/api/datetimes?work=ออกงาน`)
       .subscribe((res: any) => {
         console.log(res)
-        this.onDateOutChanged$.next(res.data)
+        this.onWorkChanged$.next(res.data)
+      })
+  }
+
+  getDateTime(id: any): void {
+    // console.log(id)
+    this.http.get(`http://localhost:3000/api/datetimes?employeeId=${id.employeeId}`)
+      .subscribe((res: any) => {
+        console.log(res)
+        this.onDateChanged$.next(res.data)
       })
   }
 

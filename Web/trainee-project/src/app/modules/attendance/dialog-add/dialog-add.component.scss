@@ -1,15 +1,26 @@
 .img {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 150px;
-    height: 150px;
+    
+    width: 300px;
+    height: 300px;
     font-size: 45px;
   }
-.card{
-    margin-bottom: 5px;
-    width: 200px;
-    height: 200px;
-}
+  .card {
+    padding: 20px;
+    width: 300px;
+    height: 340px;
+    border: solid black;
+  }
 .form{
     margin-right: 5px;
+    
 }
+.card-menu{
+  padding: 20px;
+  width: 400px;
+  height: 384px;
+  border: solid black;
+}
+.addimage{
+  color: rgb(194, 194, 194);
+}
+

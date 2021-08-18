@@ -1,16 +1,9 @@
 <header>
   <mat-card>
-  <a><B>รหัสพนักงาน:</B> {{employeeData?.employeeId}}
-      <mat-icon [matMenuTriggerFor]="menu" class="menu"><small>edit</small></mat-icon>
-  </a><br>
+  <a><B>รหัสพนักงาน:</B> {{employeeData?.employeeId}}</a><br>
+  <a><B>ชื่อ:</B> {{employeeData?.name}} {{employeeData?.lastname}}</a><br>
+  <a><B>เบอร์โทร:</B> {{employeeData?.tel}}</a>
 
-  <a><B>ชื่อ:</B> {{employeeData?.name}} <B>นามสกุล:</B> {{employeeData?.lastname}}</a><br>
-  <a><B>เบอร์โทรศัพท์:</B> {{employeeData?.tel}}</a>
-
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="openDialog(employeeData)">Edit</button>
-      <button mat-menu-item (click)="delete(employeeData)">Delete</button>
-    </mat-menu>
   </mat-card>
   <p></p>
 </header>
@@ -22,38 +15,51 @@
     <ng-container matColumnDef="No">
       <th mat-header-cell class="textField"> No </th><br>
       <mat-divider class="padding" ></mat-divider>
-      <td fxLayout="column" mat-cell  *ngFor="let item of dataSource;let i = index;"> {{i+1}} <mat-divider class="padding">
-        </mat-divider>
+      <td fxLayout="column" mat-cell  *ngFor="let item of dataSource;let i = index;"> {{i+1}} 
+        <mat-divider></mat-divider>
+      </td>
+    </ng-container>
+  </div>
+
+ 
+  <div class="padding">
+    <ng-container class="padding" matColumnDef="วันที่">
+      <th mat-header-cell class="textField">วันที่</th><br>
+      <mat-divider class="padding"></mat-divider>
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource"> {{item.date | date:"dd/MM/yyyy"}} 
+        <mat-divider ></mat-divider>
       </td>
     </ng-container>
   </div>
 
   <div class="padding">
-    <ng-container class="padding" matColumnDef="วัน-เวลา-เข้างาน">
-      <th mat-header-cell class="textField">วัน-เวลา-เข้างาน</th><br>
+    <ng-container class="padding" matColumnDef="เวลาเข้างาน">
+      <th mat-header-cell class="textField">เข้างาน</th><br>
       <mat-divider class="padding"></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource"> วันที่ {{item.dateIn | date:"dd/MM/yyyy"}} เวลา {{item.timeIn |date:"h:mm a"}}
-        <mat-divider class="padding"></mat-divider>
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource">  {{item.timeIn |date:"h:mm a"}}
+        <mat-divider></mat-divider>
       </td>
     </ng-container>
   </div>
 
   <div class="padding">
-    <ng-container matColumnDef="วันเวลาเข้างาน">
-      <th mat-header-cell class="textField">วัน-เวลา-ออกงาน</th><br>
+    <ng-container class="padding" matColumnDef="เวลาเข้างาน">
+      <th mat-header-cell class="textField">ออกงาน</th><br>
       <mat-divider class="padding"></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeOut"> วันที่ {{item.dateIn | date:"dd/MM/yyyy"}} เวลา {{item.timeIn |date:"h:mm a"}}
-        <mat-divider class="padding"></mat-divider>
+      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeDataOut">  {{item.timeIn |date:"h:mm a"}}
+        <mat-divider ></mat-divider>
       </td>
     </ng-container>
   </div>
 
 </div> 
+<!-- <button (click)="filter()"></button> -->
+
 
 
 <mat-paginator #paginator 
  [pageSize]="pageSize" 
- [pageSizeOptions]="[1, 3, 10]"
+ [pageSizeOptions]="[1, 10, 15]"
  [showFirstLastButtons]="true"
  [length]="totalSize"
  [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">

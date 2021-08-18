@@ -3,6 +3,7 @@ import { PettyCashService } from '../pettyCash.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+
 interface description {
   viewValue: string;
   value: string;
@@ -17,7 +18,7 @@ export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
   tableData: any;
-  
+
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddItemDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data) { }
@@ -29,8 +30,8 @@ export class AddItemDialogComponent implements OnInit {
 
   createList(data) {
     return this.fb.group({
-      lastName:[data.lastName],
-      date: [data.date, Validators.required],
+      lastName: [data.lastName],
+      date: [new Date(), [Validators.required ]] ,
       documentNo: [data.documentNo, Validators.required],
       description: [data.list, Validators.required],
       deposit: [data.deposit],
@@ -40,23 +41,23 @@ export class AddItemDialogComponent implements OnInit {
     });
   }
 
-  setvalue(){
-    const form =this.customerForm
+  setvalue() {
+    const form = this.customerForm
     form.controls['deposit'].setValue(0);
     form.controls['withdraw'].setValue(0);
   }
 
   onSubmit(): void {
     // if (confirm("กรุณาเลือกรายชื่อด้านซ้ายก่อน"))
-    this.pettyCashService.createItem(this.customerForm.value).subscribe((res:any)=>{
+    this.pettyCashService.createItem(this.customerForm.value).subscribe((res: any) => {
       this.tableData = res.data;
-      
-    });
 
+    });
+    window.location.reload();
   }
 
   descriptions: description[] = [
-    {value: 'เงินเข้า', viewValue: 'deposit'},
-    {value: 'เงินออก',viewValue: 'withdraw'}
+    { value: 'เงินเข้า', viewValue: 'deposit' },
+    { value: 'เงินออก', viewValue: 'withdraw' }
   ];
 }
