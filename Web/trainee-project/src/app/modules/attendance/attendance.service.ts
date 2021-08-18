@@ -58,7 +58,7 @@ export class AttendanceService {
     // console.log(id)
     this.http.get(`http://localhost:3000/api/datetimes?employeeId=${id.employeeId}`)
       .subscribe((res: any) => {
-        // console.log(res)
+        console.log(res)
         this.onDateChanged$.next(res.data)
       })
   }
@@ -66,14 +66,21 @@ export class AttendanceService {
   
   getWorkById(id: any): void {
     console.log(id)
-    this.http.get(`http://localhost:3000/api/datetimes?work=${id.work}`)
+    this.http.get(`http://localhost:3000/api/datetimes?work=ออกงาน`)
       .subscribe((res: any) => {
-        console.log(id.work)
+        console.log(res)
         this.onWorkChanged$.next(res.data)
       })
   }
 
-
+  getDateTime(id: any): void {
+    // console.log(id)
+    this.http.get(`http://localhost:3000/api/datetimes?employeeId=${id.employeeId}`)
+      .subscribe((res: any) => {
+        console.log(res)
+        this.onDateChanged$.next(res.data)
+      })
+  }
 
 
 

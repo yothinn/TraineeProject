@@ -16,6 +16,7 @@ export class AttendanceDialogComponent implements OnInit {
   workDateForm: FormGroup;
   employeeData: any;
   selected = 'option2';
+  today: number = Date.now();
 
 
   constructor(private attendanceService: AttendanceService,
@@ -37,6 +38,7 @@ export class AttendanceDialogComponent implements OnInit {
     // console.log(data)
     return this.fb.group({
       employeeId: [""],
+      date:[Date.now()],
       timeIn: [""],
       work:[""]
     });
@@ -51,7 +53,7 @@ export class AttendanceDialogComponent implements OnInit {
   //   });
   // }
 
-
+  
 
   onSubmit() {
     // console.log(this.workDateForm.value)

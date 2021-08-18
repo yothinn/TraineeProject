@@ -15,6 +15,7 @@ export class EmployeeListComponent implements OnInit {
   employeeListData: any;
   employeeData: any;
   filterList: any[];
+  dateTime:any;
   
 
   constructor(
@@ -39,11 +40,14 @@ export class EmployeeListComponent implements OnInit {
       })
   }
   
+
   onChooseEmployee(item) {
-    // console.log(item)
+    console.log(item)
     this.attendanceService.getProfileById(item) 
     this.attendanceService.getDateTimeById(item)
-    this.attendanceService.getWorkById(item)
+    // this.attendanceService.getWorkById(item)
+    
+    
    
     
      

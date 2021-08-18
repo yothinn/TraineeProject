@@ -13,16 +13,16 @@
     </mat-select>
   </mat-form-field> 
 
-  <!-- <mat-form-field>
-   <input matInput formControlName="dateIn"  [matDatepicker]="picker" placeholder="กรุณาเลือกวันที่">
-   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-form-field>
+   <input matInput formControlName="date"  [matDatepicker]="picker" placeholder='{{today| date}}'>
+   <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field> -->
+  </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>กรุณาเลือก</mat-label>
     <mat-select formControlName="work" >
-      <mat-option >เข้างาน</mat-option>
+      <mat-option value="เข้างาน">เข้างาน</mat-option>
       <mat-option value="ออกงาน">ออกงาน</mat-option>
     </mat-select>
   </mat-form-field>

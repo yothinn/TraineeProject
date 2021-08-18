@@ -32,6 +32,11 @@ export class EmployeeTableComponent implements OnInit {
   dataSource: any;
   totalSize = 0;
 
+  dateTime:any;
+
+
+  dateTimeDataOut:[];
+
  
 
  
@@ -48,6 +53,7 @@ export class EmployeeTableComponent implements OnInit {
    
 
     this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
+      
       // console.log(res)
       this.employeeData = res;
       this.menu = true;
@@ -55,16 +61,40 @@ export class EmployeeTableComponent implements OnInit {
 
     this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
       // console.log(res)
-      this.dateTimeData = res;
+      this.dateTimeData = res.filter((res)=>{
+        return res.work==="เข้างาน";
+      })
+      console.log(this.dateTimeData)
+    });
 
+
+    this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
+      // console.log(res)
+      this.dateTimeDataOut = res.filter((res)=>{
+        return res.work==="ออกงาน";
+      });
+     
+      console.log(this.dateTimeDataOut)
     });
 
     
-    this.attendanceService.onWorkChanged$Observable$.subscribe((res: any) => {
-      // console.log(res)
-      this.work = res;
+    // this.attendanceService.onWorkChanged$Observable$.subscribe((res: any) => {
+    //   console.log(res)
+    //   this.dateTime = res.filer((res)=>{
+    //     return res.work="ออกงาน";
+    //   });
+    //   console.log(this.dateTime)
+    // });
 
-    });
+    // filterData() {
+    //   this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
+    //     this.dateTime = res.filter((res) => {
+    //       return res.employeeId === "P09"; 
+    //     })
+    //   })   
+    //   console.log(this.dateTime)
+    // }
+    
   
   
       this.getArray();
@@ -135,6 +165,27 @@ shoose():void {
   
 }
 
+// filter(){
+// this.attendanceService.onWorkChanged$Observable$.subscribe((res: any) => {
+//   // console.log(res)
+//   this.work = res.filer((res)=>{
+//     return res.work ==="ออกงาน";
+//   });
+//   console.log(this.dateTime)
+// });
+// }
+
+
+
+  
+      
+      // else {
+      //   this.dataService.getProductData().subscribe((res: any) => {
+      //     this.productData = res.data;
+      //   })
+      // }
+    }
+
 
  
 
@@ -143,7 +194,7 @@ shoose():void {
 
 
 
-}
+
 
 
 
