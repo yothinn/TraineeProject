@@ -11,7 +11,7 @@
   </mat-form-field>
 </form>
 <mat-card class="employee-list" (click)="onChooseEmployee(item)"  *ngFor="let item of filterList; let i = index;">
-  <img src = "{{item.image}}" class="avatar"> {{item.name}} {{item.lastname}}
+<div fxLayoutAlign="start center"> <img src = "{{item.image}}" class="avatar"> {{item.name}} {{item.lastname}}</div>
 </mat-card>
 
 
