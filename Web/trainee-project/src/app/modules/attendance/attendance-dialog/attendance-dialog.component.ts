@@ -38,7 +38,7 @@ export class AttendanceDialogComponent implements OnInit {
     // console.log(data)
     return this.fb.group({
       employeeId: [""],
-      date:[Date.now()],
+      date:[new Date()],
       timeIn: [""],
       work:[""]
     });
