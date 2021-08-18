@@ -6,7 +6,7 @@
   border: solid black;
 }
 .card {
-  background-color: lightskyblue;
+  background-color: rgb(255, 255, 255);
   padding: 20px;
   width: 323;
   height: 321;
@@ -29,6 +29,8 @@
   width: 323px;
   height: 321px;
   font-size: 45px;
+  border: solid black;
+  
 }
 .text{
   font-size:25px;
@@ -38,7 +40,7 @@
 }
 
 .card-menu{
-  background-color: lightskyblue;
+  background-color: rgb(255, 255, 255);
   padding: 20px;
   width: 1000px;
   height: 585px;
@@ -57,4 +59,7 @@
   width: 100%;
   height: 50px;
   
+}
+.btn-confirm{
+ margin-left: 1px;
 }
