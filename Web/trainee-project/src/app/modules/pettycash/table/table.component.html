@@ -3,11 +3,11 @@
     <header class="user-details">รายละเอียดผุ้ใช้</header>
     <div class="fontSize" fxLayout="row" fxLayoutAlign="space-between stretch">
       <a>{{listData?.name}} {{listData?.lastName}}</a>
-      <a>{{RaisedAmount | number:"0.2"}}</a>
+      <a [ngClass]="{negative: RaisedAmount < 0}">{{RaisedAmount | number:"0.2"}}</a>
     </div>
     <div class="financialAmount" fxLayout="row" fxLayoutAlign="space-between stretch">
       <a>{{listData?.financialAmount | number:"0.2"}}</a>
-      <button class="button-add" color="primary" mat-button (click)="openDialog(listData)">เพิ่มรายการ</button>
+      <button class="button-add" color="primary" mat-button (click)="openDialog(listData)" [disabled]="!listData" >เพิ่มรายการ</button>
     </div>
   </mat-card>
 </div>

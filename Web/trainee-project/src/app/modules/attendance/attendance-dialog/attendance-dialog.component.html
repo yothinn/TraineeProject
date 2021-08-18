@@ -2,7 +2,7 @@
 <mat-dialog-content fxLayout="column" fxLayoutAlign="space-around ">
 
 
-<form [formGroup]="workDateForm" (ngSubmit)="onSubmit('buttonType')">
+<form [formGroup]="workDateForm" >
 
    <div fxLayout="column">
    
@@ -14,9 +14,17 @@
   </mat-form-field> 
 
   <mat-form-field>
-   <input matInput formControlName="dateIn"  [matDatepicker]="picker" placeholder="กรุณาเลือกวันที่">
-   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+   <input matInput formControlName="date"  [matDatepicker]="picker" placeholder='{{today| date}}'>
+   <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>กรุณาเลือก</mat-label>
+    <mat-select formControlName="work" >
+      <mat-option value="เข้างาน">เข้างาน</mat-option>
+      <mat-option value="ออกงาน">ออกงาน</mat-option>
+    </mat-select>
   </mat-form-field>
 
 
@@ -30,8 +38,8 @@
 
 </div>
 <div fxLayout="row">
- <button class="btn-in"  (click)="onSubmit('timeIn')">เข้างาน</button>
- <button class="btn-out" (click)="onSubmit('timeOut')">ออกงาน</button>
+ <button class="btn-in"  (click)="onSubmit()">ยืนยัน</button>
+ <!-- <button class="btn-out" (click)="onSubmit('timeOut')">ออกงาน</button> -->
 </div>
 </form>
 
