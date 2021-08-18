@@ -26,7 +26,7 @@
     <ng-container class="padding" matColumnDef="วันที่">
       <th mat-header-cell class="textField">วันที่</th><br>
       <mat-divider class="padding"></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource"> วันที่ {{item.date | date:"dd/MM/yyyy"}} 
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource"> {{item.date | date:"dd/MM/yyyy"}} 
         <mat-divider ></mat-divider>
       </td>
     </ng-container>
@@ -36,7 +36,7 @@
     <ng-container class="padding" matColumnDef="เวลาเข้างาน">
       <th mat-header-cell class="textField">เข้างาน</th><br>
       <mat-divider class="padding"></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource">  เวลา {{item.timeIn |date:"h:mm a"}}
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource">  {{item.timeIn |date:"h:mm a"}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
@@ -46,7 +46,7 @@
     <ng-container class="padding" matColumnDef="เวลาเข้างาน">
       <th mat-header-cell class="textField">ออกงาน</th><br>
       <mat-divider class="padding"></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeDataOut">  เวลา {{item.timeIn |date:"h:mm a"}}
+      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeDataOut">  {{item.timeIn |date:"h:mm a"}}
         <mat-divider ></mat-divider>
       </td>
     </ng-container>
