@@ -1,1 +1,19 @@
-<p>stock-report-dialog works!</p>
+<div fxLayout="column" fxFlex>
+    <mat-toolbar fxFlex="0 1 auto" class="stock-report-header">
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex>
+            <mat-icon style="margin-right: 10px;">pending_actions</mat-icon>
+            <div fxFlex="1 0 auto">สรุปรายการการสต๊อกสินค้า</div>
+            <div>
+                <button type="button" name="btn-modal-close" mat-icon-button>
+                    <mat-icon aria-label="Side nav toggle icon">close</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-toolbar>
+    <div fxLayout="row" fxFlex>
+        รายการสินค้านำเข้า:
+    </div>
+    <div fxLayout="row" fxFlex>
+        รายการสินค้านำออก:
+    </div>
+</div>
