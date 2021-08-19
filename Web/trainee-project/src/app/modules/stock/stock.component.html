@@ -8,7 +8,7 @@
                 <mat-toolbar class="mat-toolbar-left">
                     <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
                         <div fxLayoutAlign="start center">
-                                <button mat-flat-button color="primary" (click)="openStockManageDialog(listData)">จัดการสต๊อกสินค้า</button>
+                                <button mat-flat-button color="primary"[disabled]="!listData" (click)="openStockManageDialog(listData)">จัดการสต๊อกสินค้า</button>
                         </div>
                         <div>
                             <span style="padding-right: 15px;">ค้นหาตามช่วงเวลา</span>

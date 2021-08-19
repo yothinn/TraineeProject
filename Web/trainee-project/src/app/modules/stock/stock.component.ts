@@ -44,32 +44,28 @@ export class StockComponent implements OnInit {
   }
 
   openStockManageDialog(dataProduct?: any): void {
-    if (dataProduct === undefined) {
-      confirm('กรุณาเลือกรายการสินค้าก่อน')
-    } else {
-      // console.log(dataProduct)
-      // console.log(dataProduct[0])
-      const dialogRef = this.dialog.open(StockManageDialogComponent, {
-        data: dataProduct[0],
-        width: '25vw',
-        height: '60vh',
-        disableClose: true
-      });
-      dialogRef.afterClosed().subscribe(res => {
-        if (res) {
-          this.stockService.onDataChangedObservable$
-            .subscribe((res) => {
-              this.listData = res
-              // console.log(res);
-            });
-        }
-      })
-    }
+    // console.log(dataProduct)
+    // console.log(dataProduct[0])
+    const dialogRef = this.dialog.open(StockManageDialogComponent, {
+      data: dataProduct[0],
+      width: '25vw',
+      height: '60vh',
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.stockService.onDataChangedObservable$
+          .subscribe((res) => {
+            this.listData = res
+            // console.log(res);
+          });
+      }
+    })
   }
 
   onConclude(dataProduct?: any) {
-    const dialogRef = this.dialog.open(StockReportDialogComponent,{
-      data:dataProduct,
+    const dialogRef = this.dialog.open(StockReportDialogComponent, {
+      data: dataProduct,
       width: '60vw',
       height: '70vh'
     })

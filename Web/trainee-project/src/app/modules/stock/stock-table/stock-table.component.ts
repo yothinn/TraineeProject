@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { element, EventEmitter } from 'protractor';
 import { StockService } from '../stock.service';
 
 @Component({
@@ -10,16 +11,17 @@ import { StockService } from '../stock.service';
 })
 export class StockTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  // @Output() totalResult = new EventEmitter<string>();
   pageEvent: any;
   array: any;
-  pageSize = 2;
+  pageSize = 5;
   currentPage = 0;
   totalSize = 0;
   value: any;
-  RaisedAmount: any = 0;
-
+  totalAmountIn: any;
+  totalAmountOut: any;
+  totalResult : any;
   productData: any;
-
 
 
 
@@ -29,6 +31,7 @@ export class StockTableComponent implements OnInit {
     this.stockService.onDataChangedObservable$
       .subscribe((res) => {
         this.productData = res;
+        this.productData.sort((x, y) => - new Date(x.created) - -new Date(y.created));
         this.findsum(this.productData)
       });
 
@@ -61,15 +64,26 @@ export class StockTableComponent implements OnInit {
   }
 
   findsum(data) {
-    // console.log(data);
-    data.forEach(element => {
+    let sumIn = data.filter(element => {
       if (element.status === 'นำเข้า') {
-        console.log(element.total);
-        // this.RaisedAmount.reduce(element.total)
-        // console.log(this.RaisedAmount); 
+        return element.total
       }
     })
-    console.log(this.RaisedAmount);
+    let sumOut = data.filter(element => {
+      if (element.status === 'นำออก') {
+        return element.total
+      }
+    })
+    this.totalAmountIn = sumIn.map(item => item.total).reduce((prev, next) => prev + next);
+    this.totalAmountOut = sumOut.map(item => item.total).reduce((prev, next) => prev + next);
+
+    this.totalResult =   this.totalAmountIn - this.totalAmountOut
+    console.log(this.totalResult);
+
+
+
+    // this.toitalAmountIn.tatol.reduce((acc, cur) => acc + cur, 0);
+
     // this.value = data.filter(text => text.status === 'นำเข้า')
     // for (let j = 0; j < data.length; j++) {
     //   if (data.status === 'นำเข้า') {

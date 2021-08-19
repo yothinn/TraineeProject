@@ -17,10 +17,11 @@ export class StockService {
     return this.http.get('http://localhost:3000/api/categories');
   }
 
-  getProduct(): Observable<any> {
-    return this.http.get('http://localhost:3000/api/products');
+  getProduct(pageNo = 1, size = 10): Observable<any> {
+    console.log(pageNo, size);
+    return this.http.get(`http://localhost:3000/api/products?pageNo=${pageNo}&size=${size}`);
   }
-  getStockProduct(){
+  getStockProduct() {
     return this.http.get('http://localhost:3000/api/stocksproducts');
   }
 
@@ -53,10 +54,10 @@ export class StockService {
     return this.http.post(`http://localhost:3000/api/stocksproducts/${body._id}`, body);
   }
 
-  searchProduct(text:any):Observable<any>{
-  console.log(text);
+  searchProduct(text: any): Observable<any> {
+    console.log(text);
     return this.http.get(`http://localhost:3000/api/products/search?query=${text}`);
-  } 
+  }
 
   // getProductByCategories(){
   //   return this.http.get('http://localhost:3000/api/categoriess')

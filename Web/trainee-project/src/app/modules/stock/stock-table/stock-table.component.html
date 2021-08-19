@@ -1,4 +1,5 @@
-<div fxLayout="column">
+<div style="overflow: auto; height: 78vh;">
+  <div  fxLayout="column">
         <!-- <div fxLayoutAlign="start center" fxLayout="column" class="padding">
                 <ng-container matColumnDef="วัน-เวลา">
                         <th mat-header-cell> วัน-เวลา </th>
@@ -35,7 +36,7 @@
                 </ng-container>
         </div> -->
 
-        <header >
+        <header>
                 <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
                         <p>
                                 วัน-เวลา
@@ -63,7 +64,7 @@
                 </div>
         </header>
 
-        <div fxLayout="row"  *ngFor="let item of productData" fxFlex>
+        <div fxLayout="row" *ngFor="let item of productData" fxFlex>
                 <div class="footer" fxLayoutAlign="start center " fxFlex>
                         {{item?.created | date}}
                 </div>
@@ -72,20 +73,29 @@
                         {{item?.productName}}
                 </div>
                 <hr>
+                <!-- *ngIf="item.total === 'นำเข้า'" -->
                 <div class="footer" fxLayoutAlign="start center " fxFlex>
-                        {{item?.total}}
+                        <p style="color: green;" *ngIf="item.status === 'นำเข้า'">
+                                {{item?.total}}
+                        </p>
+
                 </div>
                 <hr>
                 <div class="footer" fxLayoutAlign="start center " fxFlex>
-                        <!-- {{item?.total}} -->
+                        <p style="color: red;" *ngIf="item.status === 'นำออก'">
+                                {{item?.total}}
+                        </p>
                 </div>
                 <hr>
-                <div class="footer" fxLayoutAlign="start center " fxFlex  [ngClass]="{greenClass: item.status == 'นำเข้า' , redClass: item.status == 'นำออก'}">
-                        {{item?.status}}
+                <div class="footer" fxLayoutAlign="start center " fxFlex
+                        [ngClass]="{greenClass: item.status == 'นำเข้า' , redClass: item.status == 'นำออก'}">
+                        <!-- {{item?.status}} -->
                 </div>
         </div>
 
+</div>      
 </div>
-<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[2, 4, 20]" [showFirstLastButtons]="true"
+
+<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"
         [length]="totalSize" [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
 </mat-paginator>
