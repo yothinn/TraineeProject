@@ -21,18 +21,18 @@
     </div>
     <div>
       <mat-radio-group  formControlName="description" >
-        <mat-radio-button class="padding" value="เงินเข้า" [checked]="showDateInput" (click)="radioValueCheck(1)">deposit</mat-radio-button>
-        <mat-radio-button value="เงินออก" [checked]="showDateInput" (click)="radioValueCheck(2)">withdraw</mat-radio-button>
+        <mat-radio-button class="padding" value="เงินเข้า" (click)="onSelectOn()">deposit</mat-radio-button>
+        <mat-radio-button value="เงินออก" (click)="onSelectOf()">withdraw</mat-radio-button>
       </mat-radio-group>
     </div><br>
-    <div>
+    <div *ngIf="readioSelectedOn == readioSelectedOf" >
       <mat-form-field class="width" >
         <input matInput formControlName="deposit" type="number" onfocus="this.value=''" class="example-right-align"
-          placeholder="เงินเข้า" [disabled]="!showDateInput">
+          placeholder="เงินเข้า" >
         <span matSuffix>.00</span>
       </mat-form-field>
     </div>
-    <div>
+    <div *ngIf="readioSelectedOf" >
       <mat-form-field class="width">
         <input matInput formControlName="withdraw" type="number" onfocus="this.value=''" class="example-right-align"
           placeholder="เงินออก" >

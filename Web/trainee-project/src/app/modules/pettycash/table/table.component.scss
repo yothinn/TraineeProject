@@ -6,20 +6,12 @@
   font-size: 17px;
 
 }
-.amount{
-  margin-left: auto;
-}
 .padding{
   width: 100%;
-  border: 0.5px solid rgb(199, 199, 199);
 }
 .layout-number{
   text-align: end;
   margin-right:  5px;
-}
-.limit{
-  max-width: 100%;
-  margin-left: 520%;
 }
 .fontSize{
   font-size: 16px;
@@ -38,4 +30,8 @@
 }
 .width-matDrawer{
   width: 100;
+}
+.tableList{
+  height:70%;
+  overflow: auto;
 }

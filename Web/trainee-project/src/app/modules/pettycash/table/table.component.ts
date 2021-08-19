@@ -29,7 +29,6 @@ export class TableComponent implements OnInit {
   value: any;
   public RaisedAmount = 0;
   sumData: any;
-  checkData: boolean = true;
 
 
   constructor(
@@ -40,7 +39,7 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
       this.tableData = res;
-      console.log(this.checkData);
+      this.tableData.sort((x, y) => - new Date(x.date) - -new Date(y.date));
       this.findsum(this.tableData);
     });
     this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
@@ -51,24 +50,18 @@ export class TableComponent implements OnInit {
     this.getArray();
   }
   openDialog(data): void {
-    // if (data === undefined) {
-    //   confirm('กรุณาเลือกการ์ดผู้ใช้ก่อน')
-    // } else {
-      const dialogRef = this.dialog.open(AddItemDialogComponent, {
-        width: "300px",
-        data: data
+    const dialogRef = this.dialog.open(AddItemDialogComponent, {
+      width: "300px",
+      data: data
 
-      });
-      dialogRef.afterClosed().subscribe(res => {
-        if (res) {
-          this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
-            this.tableData = res;
-          });
-        }
-      });
-    // }
-
-
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
+          this.tableData = res;
+        });
+      }
+    });
   }
 
   handlePage(pagin: any): void {
@@ -80,8 +73,8 @@ export class TableComponent implements OnInit {
   getArray(): void {
     this.pettyCashService.onTableChangedObservable$
       .subscribe((res: any) => {
-        this.dataSource = new MatTableDataSource<Element>(res);
-        this.dataSource.paginator = this.paginator;
+        this.tableData = new MatTableDataSource<Element>(res);
+        this.tableData.paginator = this.paginator;
         this.array = res;
         this.totalSize = this.array.length;
         this.shoose();
@@ -93,22 +86,19 @@ export class TableComponent implements OnInit {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
     const part = this.array.slice(start, end);
-    this.dataSource = part;
+    this.tableData = part;
   }
 
 
   findsum(data) {
     this.RaisedAmount = 0;
     this.value = data;
-    console.log(data);
     for (let j = 0; j < data.length; j++) {
-      console.log(this.value[j].deposit);
       if (this.value[j].deposit) {
         this.RaisedAmount += this.value[j].deposit;
       } else {
         this.RaisedAmount -= this.value[j].withdraw;
       }
-      // console.log(this.RaisedAmount);
     }
   }
 

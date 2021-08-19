@@ -18,8 +18,9 @@ export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
   tableData: any;
-  disableSelect = new FormControl(false);
-  public showDateInput = false;
+  readioSelectedOn: boolean =false;
+  readioSelectedOf: boolean =false;
+
 
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddItemDialogComponent>,
@@ -37,7 +38,7 @@ export class AddItemDialogComponent implements OnInit {
       lastName: [data.lastName],
       date: [new Date(), [Validators.required]],
       documentNo: [data.documentNo, Validators.required],
-      description: [data.description],
+      description: [data.description, Validators.required],
       deposit: [data.deposit],
       withdraw: [data.withdraw],
       placeOfUse: [data.placeOfUse, Validators.required]
@@ -54,7 +55,6 @@ export class AddItemDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // if (confirm("กรุณาเลือกรายชื่อด้านซ้ายก่อน"))
     this.pettyCashService.createItem(this.customerForm.value).subscribe((res: any) => {
       this.tableData = res.data;
       if (res) {
@@ -63,11 +63,6 @@ export class AddItemDialogComponent implements OnInit {
     });
     window.location.reload();
   }
-
-  radioValueCheck(x) {
-    this.showDateInput = (x === 1);
-  }
-
   placeOfUses: placeOfUse[] = [
     { item: ' สนามบิน' },
     { item: ' สถานีขนส่ง' },
@@ -82,4 +77,11 @@ export class AddItemDialogComponent implements OnInit {
     { item: ' สำนักงาน' },
     { item: ' แผนกซ่อมบำรุง' },
   ];
+
+  onSelectOn() {
+    this.readioSelectedOn = !this.readioSelectedOn
+  }
+  onSelectOf(){
+    this.readioSelectedOf = !this.readioSelectedOf
+  }
 }
