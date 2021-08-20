@@ -2,6 +2,19 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { PettyCashService } from '../pettyCash.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+
+const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  },
+};
 
 
 
@@ -12,7 +25,10 @@ interface placeOfUse {
 @Component({
   selector: 'app-add-item-dialog',
   templateUrl: './add-item-dialog.component.html',
-  styleUrls: ['./add-item-dialog.component.scss']
+  styleUrls: ['./add-item-dialog.component.scss'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
 })
 export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
@@ -36,7 +52,7 @@ export class AddItemDialogComponent implements OnInit {
   createList(data) {
     return this.fb.group({
       lastName: [data.lastName],
-      date: [new Date(), [Validators.required]],
+      date: [new Date(), Validators.required],
       documentNo: [data.documentNo, Validators.required],
       description: [data.description, Validators.required],
       deposit: [data.deposit],
