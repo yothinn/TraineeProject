@@ -12,6 +12,7 @@ export class EmployeeProfileComponent implements OnInit {
 
   employeeData: any;
   
+  
 
   constructor(
     private attendanceService: AttendanceService,

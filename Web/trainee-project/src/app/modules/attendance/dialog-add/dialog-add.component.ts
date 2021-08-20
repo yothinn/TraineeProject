@@ -62,7 +62,6 @@ export class DialogAddComponent implements OnInit {
           if (res) {
             this.dialogRef.close(res);
           }
-          window.location.reload();
         })
     } else {
       this.attendanceService.createAttendance(this.userForm.value)

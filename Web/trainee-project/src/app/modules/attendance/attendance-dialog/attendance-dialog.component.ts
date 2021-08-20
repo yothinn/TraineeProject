@@ -64,7 +64,7 @@ export class AttendanceDialogComponent implements OnInit {
         this.dialogRef.close(res);
       }
     })
-    
+    window.location.reload();
   }
   
   // onSubmit(buttonType) {

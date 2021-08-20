@@ -32,28 +32,18 @@ export class PettyCashComponent implements OnInit {
 
   openDialog(data): void {
     const dialogRef = this.dialog.open(AddUserDialogComponent, {
-      data: data
+      width: "300px",
+      data:data
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.pettyCashService.getList().subscribe();
-
-      }
-    });
-  }
-
-  openDialog2(data): void {
-    const dialogRef = this.dialog.open(AddUserDialogComponent, {
-      data: data
-    });
-    dialogRef.afterClosed().subscribe(res => {
-      if (res) {
-        this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
+        this.pettyCashService.getList().subscribe((res: any) => {
           this.pattyCashData = res;
-        })
+        });
       }
-    })
+    });
   }
+
   deleteList(item): void {
     if (confirm("Are you sure to delete ")) {
       this.pettyCashService.deleteList(item).subscribe(res => {
@@ -62,7 +52,7 @@ export class PettyCashComponent implements OnInit {
             this.pattyCashData = res.data;
           });
         } else {
-          console.log("error")
+          console.log("error");
         }
       });
     }

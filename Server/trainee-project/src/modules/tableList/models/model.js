@@ -6,11 +6,11 @@ var Schema = mongoose.Schema;
 
 
 var TablelistSchema = new Schema({
-    lastName:{
+    lastName: {
         type: String,
     },
-    date:{
-        type: Date ,
+    date: {
+        type: Date,
     },
     documentNo: {
         type: Number,
@@ -27,6 +27,8 @@ var TablelistSchema = new Schema({
     placeOfUse: {
         type: String,
     },
+
+
     created: {
         type: Date,
         default: Date.now
@@ -57,18 +59,18 @@ var TablelistSchema = new Schema({
         }
     }
 });
-TablelistSchema.pre('save', function(next){
+TablelistSchema.pre('save', function (next) {
     let Tablelist = this;
     const model = mongoose.model("Tablelist", TablelistSchema);
     if (Tablelist.isNew) {
         // create
         next();
-    }else{
+    } else {
         // update
         Tablelist.updated = new Date();
         next();
     }
-    
-    
+
+
 })
 mongoose.model("Tablelist", TablelistSchema);
