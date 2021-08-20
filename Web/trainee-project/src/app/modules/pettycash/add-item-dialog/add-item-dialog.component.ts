@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { PettyCashService } from '../pettyCash.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 
@@ -34,8 +34,9 @@ export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
   tableData: any;
-  readioSelectedOn: boolean =false;
-  readioSelectedOf: boolean =false;
+  type: any;
+  readioSelectedOn: boolean =true;
+  readioSelectedOf: boolean;
 
 
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
@@ -64,7 +65,6 @@ export class AddItemDialogComponent implements OnInit {
 
   setvalue() {
     const form = this.customerForm
-    form.controls['description'].setValue('เงินเข้า');
     form.controls['deposit'].setValue(0);
     form.controls['withdraw'].setValue(0);
 
@@ -95,9 +95,11 @@ export class AddItemDialogComponent implements OnInit {
   ];
 
   onSelectOn() {
-    this.readioSelectedOn = !this.readioSelectedOn
+    this.readioSelectedOn = true;
+    this.readioSelectedOf = false;
   }
   onSelectOf(){
-    this.readioSelectedOf = !this.readioSelectedOf
+    this.readioSelectedOn = false;
+    this.readioSelectedOf = true;
   }
 }

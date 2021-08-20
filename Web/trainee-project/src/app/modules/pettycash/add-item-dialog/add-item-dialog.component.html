@@ -5,7 +5,7 @@
       <mat-form-field class="width">
         <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date" date>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
       </mat-form-field>
     </div>
     <div hidden>
@@ -20,22 +20,28 @@
       </mat-form-field>
     </div>
     <div>
-      <mat-radio-group  formControlName="description" >
-        <mat-radio-button class="padding" value="เงินเข้า" (click)="onSelectOn()">deposit</mat-radio-button>
-        <mat-radio-button value="เงินออก" (click)="onSelectOf()">withdraw</mat-radio-button>
+      <mat-form-field class="width-area" appearance="outline" >
+        <mat-label>รายการ</mat-label>
+        <textarea class="hieght" matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-radio-group class="margin-radio">
+        <mat-radio-button class="radio" (click)="onSelectOn()" [value]="0" checked>deposit</mat-radio-button>
+        <mat-radio-button (click)="onSelectOf()" [value]="1">withdraw</mat-radio-button>
       </mat-radio-group>
-    </div><br>
-    <div *ngIf="readioSelectedOn == readioSelectedOf" >
-      <mat-form-field class="width" >
+    </div>
+    <div *ngIf="readioSelectedOn">
+      <mat-form-field class="width">
         <input matInput formControlName="deposit" type="number" onfocus="this.value=''" class="example-right-align"
-          placeholder="เงินเข้า" >
+          placeholder="เงินเข้า">
         <span matSuffix>.00</span>
       </mat-form-field>
     </div>
-    <div *ngIf="readioSelectedOf" >
+    <div *ngIf="readioSelectedOf">
       <mat-form-field class="width">
         <input matInput formControlName="withdraw" type="number" onfocus="this.value=''" class="example-right-align"
-          placeholder="เงินออก" >
+          placeholder="เงินออก">
         <span matSuffix>.00</span>
       </mat-form-field>
     </div>
