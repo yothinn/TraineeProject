@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { StockManageDialogComponent } from './stock-manage-dialog/stock-manage-dialog.component';
 import { StockReportDialogComponent } from './stock-report-dialog/stock-report-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stock',
@@ -20,6 +21,7 @@ export class StockComponent implements OnInit {
   });
 
   constructor(
+   private router: Router,
     private stockService: StockService,
     public dialog: MatDialog,
   ) { }
@@ -36,11 +38,11 @@ export class StockComponent implements OnInit {
 
 
   onChooseDate(): void {
-    let date;
-    date = this.range.value;
-    this.stockService.getProductByDate(date.start).subscribe((res: any) => {
-      // console.log(res);
-    });
+    // let date;
+    // date = this.range.value;
+    // this.stockService.getProductByDate(date.start).subscribe((res: any) => {
+    //   // console.log(res);
+    // });
   }
 
   openStockManageDialog(dataProduct?: any): void {
@@ -63,11 +65,12 @@ export class StockComponent implements OnInit {
     })
   }
 
-  onConclude(dataProduct?: any) {
-    const dialogRef = this.dialog.open(StockReportDialogComponent, {
-      data: dataProduct,
-      width: '60vw',
-      height: '70vh'
-    })
+  onConclude() {
+    this.router.navigateByUrl("product");
+    // const dialogRef = this.dialog.open(StockReportDialogComponent, {
+    //   data: dataProduct,
+    //   width: '60vw',
+    //   height: '70vh'
+    // })
   }
 }

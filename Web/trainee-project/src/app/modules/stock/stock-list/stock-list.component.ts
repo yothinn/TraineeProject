@@ -91,7 +91,8 @@ export class StockListComponent implements OnInit, AfterViewInit {
   }
 
   onChooseList(item: any): void {
-    this.stockService.getStockByProductId(item.productId)
+    this.stockService.getStockByProductId(item.productId);
+    // this.currentPage--;
   }
 
   onChooseCatagory(item): void {
