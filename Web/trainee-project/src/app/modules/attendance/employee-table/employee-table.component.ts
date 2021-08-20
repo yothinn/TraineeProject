@@ -38,9 +38,7 @@ export class EmployeeTableComponent implements OnInit {
 
   dateTimeDataOut:[];
   dataSource1: any;
-
-  timeIn:any;
-  timeOut:any;
+ 
 
  
 
@@ -64,10 +62,13 @@ export class EmployeeTableComponent implements OnInit {
 
     this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
       // console.log(res)
+
       this.dateTimeData = res.filter((res)=>{
         return res.work==="เข้างาน";
       })
-      console.log(this.dateTimeData)
+  
+      this.dateTimeData.timeIn
+      console.log(this.dateTimeData.timeIn)
     });
 
 
@@ -78,14 +79,12 @@ export class EmployeeTableComponent implements OnInit {
       });
      
       console.log(this.dateTimeDataOut)
-     
     });
 
-    
+  
   
       this.getArray();
       this.getArray1();
-
 
   }
 
@@ -181,21 +180,10 @@ shoose1():void {
   
 }
 
-CalculateTime(startDate,endDate):void {
-  this.timeIn  = this.dateTimeData
-  this.timeOut =this.dateTimeDataOut
+caculateTime(){
   
-
-  var diff = endDate.getTime() - startDate.getTime();
-  console.log( diff)
 }
 
-// var diff = endDate.getTime() - startDate.getTime();
-// var days = Math.floor(diff / (60 * 60 * 24 * 1000));
-// var hours = Math.floor(diff / (60 * 60 * 1000)) - (days * 24);
-// var minutes = Math.floor(diff / (60 * 1000)) - ((days * 24 * 60) + (hours * 60));
-// var seconds = Math.floor(diff / 1000) - ((days * 24 * 60 * 60) + (hours * 60 * 60) + (minutes * 60));
-// return { day: days, hour: hours, minute: minutes, second: seconds };
 
     }
 
