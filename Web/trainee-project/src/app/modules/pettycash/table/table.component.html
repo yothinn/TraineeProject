@@ -7,71 +7,74 @@
     </div>
     <div class="financialAmount" fxLayout="row" fxLayoutAlign="space-between stretch">
       <a>{{listData?.financialAmount | number:"0.2"}}</a>
-      <button class="button-add" color="primary" mat-button (click)="openDialog(listData)" [disabled]="!listData" >เพิ่มรายการ</button>
+      <button class="button-add" color="primary" mat-button (click)="openDialog(listData)"
+        [disabled]="!listData">เพิ่มรายการ</button>
     </div>
   </mat-card>
 </div>
 
 <mat-divider></mat-divider>
 
-<div align="center" fxLayout="row">
-  <div class="padding">
+
+<div class="tableList" align="center" fxLayout="row" fxLayoutAlign="space-between stretch" >
+  <div class="padding-date">
     <ng-container matColumnDef="วันที่">
       <th mat-header-cell> วันที่ </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource"> {{item.date | date:"dd/MM/yy"}} <mat-divider>
+      <td fxLayout="column" mat-cell *ngFor="let item of tableData"> {{item.date | date :"dd-MM-yy"}}<mat-divider>
         </mat-divider>
       </td>
     </ng-container>
-  </div>
-  <div class="padding">
+  </div><hr>
+  <div class="padding-documentNo">
     <ng-container matColumnDef="เลขที่เอกสาร">
       <th mat-header-cell> เลขที่เอกสาร </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource">{{item.documentNo}}
+      <td fxLayout="column" mat-cell *ngFor="let item of tableData">{{item.documentNo}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
-  </div>
+  </div><hr>
   <div class="padding">
     <ng-container matColumnDef="รายการ">
       <th mat-header-cell> รายการ </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource"> {{item.description}}
+      <td fxLayout="column" mat-cell *ngFor="let item of tableData"> {{item.description}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
-  </div>
-  <div class="padding">
+  </div><hr>
+  <div class="padding-deposit-withdraw">
     <ng-container matColumnDef="รับเข้า">
       <th mat-header-cell> เงินเข้า </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource" class="layout-number"> {{item.deposit |
+      <td fxLayout="column" mat-cell *ngFor="let item of tableData" class="layout-number"> {{item.deposit |
         number:"0.2"}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
-  </div>
-  <div class="padding">
+  </div><hr>
+  <div class="padding-deposit-withdraw">
     <ng-container matColumnDef="จ่าย">
       <th mat-header-cell> เงินออก </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource" class="layout-number"> {{item.withdraw |
+      <td fxLayout="column" mat-cell *ngFor="let item of tableData" class="layout-number"> {{item.withdraw |
         number:"0.2"}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
-  </div>
-  <div class="padding">
+  </div><hr>
+  <div class="padding-placeOfUse">
     <ng-container matColumnDef="สถานที่ใช้งาน">
       <th mat-header-cell> สถานที่ใช้งาน </th><br>
       <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource"> {{item.placeOfUse}}
+      <td fxLayout="column" mat-cell *ngFor="let item of tableData"> {{item.placeOfUse}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
   </div>
 </div>
-<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"
+<mat-divider></mat-divider>
+<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 30]" [showFirstLastButtons]="true"
   [length]="totalSize" [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
 </mat-paginator>

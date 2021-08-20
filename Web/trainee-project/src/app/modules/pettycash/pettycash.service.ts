@@ -47,6 +47,9 @@ export class PettyCashService {
   createItem(body): Observable<any> {
     return this.http.post('http://localhost:3000/api/tableLists', body);
   }
+  getTable(){
+    return this.http.get('http://localhost:3000/api/tableLists')
+  }
   search(text: any): Observable<any> {
     return this.http.get(`http://localhost:3000/api/pettycashs/search?query=${text}`);
 

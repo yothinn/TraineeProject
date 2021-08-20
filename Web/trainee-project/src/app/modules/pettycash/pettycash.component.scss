@@ -1,12 +1,12 @@
 
 mat-drawer-container{
     
-    height: 87%;
-    border: 1px solid black;
+    height: 92%;
+    border: solid rgb(156, 156, 156) 0.5px;
 
     mat-drawer{
         width: 20%;
-        border-color: black;
+        border: solid rgb(156, 156, 156) 0.5px;
     }
 }
 .button-customer{
@@ -22,7 +22,6 @@ mat-drawer-container{
    
 }
 .limit{
-    margin-left: 40%;
     font-size: 11px;
 }
 .size-name{
@@ -38,4 +37,10 @@ mat-drawer-container{
 }
 .customer{
     margin-top: 10px;
+}
+.card-overflow{
+    overflow: auto;
+}
+.test{
+    background: white;
 }

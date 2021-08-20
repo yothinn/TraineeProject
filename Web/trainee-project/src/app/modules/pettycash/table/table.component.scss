@@ -1,25 +1,18 @@
 .customer-details {
   height: 9vh;
+  border: solid rgb(179, 179, 179) 1px;
 }
 
 .user-details {
   font-size: 17px;
 
 }
-.amount{
-  margin-left: auto;
-}
 .padding{
   width: 100%;
-  border: 0.5px solid rgb(201, 201, 201);
 }
 .layout-number{
   text-align: end;
   margin-right:  5px;
-}
-.limit{
-  max-width: 100%;
-  margin-left: 520%;
 }
 .fontSize{
   font-size: 16px;
@@ -35,4 +28,23 @@
 }
 .negative{
   color: red;
+}
+.width-matDrawer{
+  width: 100;
+}
+.tableList{
+  height:73%;
+  overflow: auto;
+}
+.padding-date{
+  width: 30%;
+}
+.padding-documentNo{
+  width: 20%;
+}
+.padding-deposit-withdraw{
+  width: 30%;
+}
+.padding-placeOfUse{
+  width: 40%;
 }

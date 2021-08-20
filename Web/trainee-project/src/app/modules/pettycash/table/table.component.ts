@@ -21,13 +21,14 @@ export class TableComponent implements OnInit {
   pageEvent: any;
   array: any;
   dataSource: any;
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 0;
   totalSize = 0;
   listCustomer: any;
   tableData: any;
   value: any;
-  RaisedAmount = 0;
+  public RaisedAmount = 0;
+  sumData: any;
 
 
   constructor(
@@ -38,7 +39,7 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
       this.tableData = res;
-      console.log(this.tableData);
+      this.tableData.sort((x, y) => - new Date(x.date) - -new Date(y.date));
       this.findsum(this.tableData);
     });
     this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
@@ -49,22 +50,18 @@ export class TableComponent implements OnInit {
     this.getArray();
   }
   openDialog(data): void {
-    // if (data === undefined) {
-    //   confirm('กรุณาเลือกการ์ดผู้ใช้ก่อน')
-    // } else {
-      const dialogRef = this.dialog.open(AddItemDialogComponent, {
-        data: data
-      });
-      dialogRef.afterClosed().subscribe(res => {
-        if (res) {
-          this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
-            this.tableData = res;
-          });
-        }
-      });
-    // }
+    const dialogRef = this.dialog.open(AddItemDialogComponent, {
+      width: "400px",
+      data: data
 
-
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
+          this.tableData = res;
+        });
+      }
+    });
   }
 
   handlePage(pagin: any): void {
@@ -76,12 +73,12 @@ export class TableComponent implements OnInit {
   getArray(): void {
     this.pettyCashService.onTableChangedObservable$
       .subscribe((res: any) => {
-        this.dataSource = new MatTableDataSource<Element>(res);
-        this.dataSource.paginator = this.paginator;
+        this.tableData = new MatTableDataSource<Element>(res);
+        this.tableData.paginator = this.paginator;
         this.array = res;
         this.totalSize = this.array.length;
         this.shoose();
-        console.log(this.totalSize)
+        console.log(this.totalSize);
       });
   }
 
@@ -89,7 +86,7 @@ export class TableComponent implements OnInit {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
     const part = this.array.slice(start, end);
-    this.dataSource = part;
+    this.tableData = part;
   }
 
 
@@ -102,7 +99,6 @@ export class TableComponent implements OnInit {
       } else {
         this.RaisedAmount -= this.value[j].withdraw;
       }
-      console.log(this.RaisedAmount);
     }
   }
 

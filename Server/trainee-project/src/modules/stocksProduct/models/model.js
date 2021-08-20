@@ -15,7 +15,7 @@ var StocksproductSchema = new Schema({
         type: String
     },
     total: {
-        type: String
+        type: Number
     },
     status: {
         type: String

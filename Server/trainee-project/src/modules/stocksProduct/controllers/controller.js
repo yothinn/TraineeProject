@@ -19,6 +19,7 @@ exports.getList = function (req, res) {
     }
     query.skip = size * (pageNo - 1);
     query.limit = size;
+    query.sort = {updated: -1,created: -1}
         Stocksproduct.find(req.query, {}, query, function (err, datas) {
             if (err) {
                 return res.status(400).send({

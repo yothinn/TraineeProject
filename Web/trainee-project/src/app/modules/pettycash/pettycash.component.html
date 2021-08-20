@@ -1,14 +1,14 @@
-<app-toolbar></app-toolbar>
 <mat-drawer-container>
   <mat-drawer mode="side" opened>
     <mat-toolbar class="test">
       <mat-icon class="search">search</mat-icon>
       <mat-form-field class="field-search" appearance="outline">
         <mat-label></mat-label>
-        <input #searchList matInput placeholder="Search..." (keyup)="onKeyup()" >
+        <input #searchList matInput placeholder="Search..." (keyup)="onKeyup()">
       </mat-form-field>
     </mat-toolbar>
-    <div *ngFor="let item of filterList; let i = index;" class="customer" align="center">
+    <mat-divider></mat-divider>
+    <div class="card-overflow" *ngFor="let item of filterList; let i = index;" class="customer" align="center">
       <mat-card class="card-customer" (click)="onClick(item)">
         <div fxLayout="row" fxLayoutAlign="space-between stretch">
           <a class="size-name">
@@ -18,7 +18,7 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="openDialog2(item)">
+            <button mat-menu-item (click)="openDialog(item)">
               <mat-icon>edit</mat-icon>
               <span>edit</span>
             </button>
@@ -30,13 +30,14 @@
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between stretch">
           <a class="size-amount">
-            {{item.amount | number:"0.2"}}
+            {{RaisedAmount | number:"0.2"}}
           </a>
           <a class="limit">
-            วงเงิน {{item.financialAmount | number}}
+            วงเงิน {{item.financialAmount | number:"0.2"}}
           </a>
         </div>
-      </mat-card>
+      </mat-card><br>
+      <mat-divider></mat-divider>
     </div>
   </mat-drawer>
   <mat-drawer-content>
