@@ -32,7 +32,7 @@ export class PettyCashComponent implements OnInit {
 
   openDialog(data): void {
     const dialogRef = this.dialog.open(AddUserDialogComponent, {
-      width: "300px",
+      width: "400px",
       data:data
     });
     dialogRef.afterClosed().subscribe(res => {

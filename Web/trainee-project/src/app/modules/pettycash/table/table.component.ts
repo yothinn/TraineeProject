@@ -51,7 +51,7 @@ export class TableComponent implements OnInit {
   }
   openDialog(data): void {
     const dialogRef = this.dialog.open(AddItemDialogComponent, {
-      width: "300px",
+      width: "400px",
       data: data
 
     });
