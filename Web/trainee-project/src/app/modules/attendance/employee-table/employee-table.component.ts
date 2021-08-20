@@ -14,7 +14,8 @@ import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 })
 export class EmployeeTableComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator') paginator: MatPaginator;
+ 
 
 
   employeeData: any;
@@ -36,8 +37,10 @@ export class EmployeeTableComponent implements OnInit {
 
 
   dateTimeDataOut:[];
+  dataSource1: any;
 
- 
+  timeIn:any;
+  timeOut:any;
 
  
 
@@ -75,30 +78,15 @@ export class EmployeeTableComponent implements OnInit {
       });
      
       console.log(this.dateTimeDataOut)
+     
     });
 
     
-    // this.attendanceService.onWorkChanged$Observable$.subscribe((res: any) => {
-    //   console.log(res)
-    //   this.dateTime = res.filer((res)=>{
-    //     return res.work="ออกงาน";
-    //   });
-    //   console.log(this.dateTime)
-    // });
-
-    // filterData() {
-    //   this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
-    //     this.dateTime = res.filter((res) => {
-    //       return res.employeeId === "P09"; 
-    //     })
-    //   })   
-    //   console.log(this.dateTime)
-    // }
-    
-  
   
       this.getArray();
-      // this.getArray1();
+      this.getArray1();
+
+
   }
 
 
@@ -152,6 +140,7 @@ handlePage(pagin: any){
   this.currentPage = pagin.pageIndex;
   this.pageSize = pagin.pageSize;
   this.shoose();
+  this.shoose1();
   
 }
 
@@ -165,25 +154,49 @@ shoose():void {
   
 }
 
-// filter(){
-// this.attendanceService.onWorkChanged$Observable$.subscribe((res: any) => {
-//   // console.log(res)
-//   this.work = res.filer((res)=>{
-//     return res.work ==="ออกงาน";
-//   });
-//   console.log(this.dateTime)
-// });
-// }
 
+  getArray1():void{
+    this.attendanceService.onDateChangedObservable$.subscribe((res:any) =>{
+      this.dataSource1 = new MatTableDataSource<Element>(this.dateTimeDataOut);
+      this.dataSource1.paginator = this.paginator;
+      this.array = this.dateTimeDataOut;
+      this.totalSize = this.array.length;
+      this.shoose1();
+      // console.log(this.totalSize)
+    });
+  }
 
-
+handlePage1(pagin: any){
+  this.currentPage = pagin.pageIndex;
+  this.pageSize = pagin.pageSize;
+  this.shoose1();
   
-      
-      // else {
-      //   this.dataService.getProductData().subscribe((res: any) => {
-      //     this.productData = res.data;
-      //   })
-      // }
+}
+
+shoose1():void {
+  const end = (this.currentPage + 1) * this.pageSize;
+  const start = this.currentPage * this.pageSize;
+  const part = this.array.slice(start,end)
+  this.dataSource1 = part;
+  
+}
+
+CalculateTime(startDate,endDate):void {
+  this.timeIn  = this.dateTimeData
+  this.timeOut =this.dateTimeDataOut
+  
+
+  var diff = endDate.getTime() - startDate.getTime();
+  console.log( diff)
+}
+
+// var diff = endDate.getTime() - startDate.getTime();
+// var days = Math.floor(diff / (60 * 60 * 24 * 1000));
+// var hours = Math.floor(diff / (60 * 60 * 1000)) - (days * 24);
+// var minutes = Math.floor(diff / (60 * 1000)) - ((days * 24 * 60) + (hours * 60));
+// var seconds = Math.floor(diff / 1000) - ((days * 24 * 60 * 60) + (hours * 60 * 60) + (minutes * 60));
+// return { day: days, hour: hours, minute: minutes, second: seconds };
+
     }
 
 
