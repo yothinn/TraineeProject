@@ -1,7 +1,7 @@
 <mat-toolbar class="header">
-    <small>
-      <mat-label class="header-list">ข้อมูลรายชื่อพนักงาน</mat-label>
-    </small>
+  <small>
+    <mat-label class="header-list">ข้อมูลรายชื่อพนักงาน</mat-label>
+  </small>
 </mat-toolbar>
 <mat-divider></mat-divider>
 <form>
@@ -11,9 +11,11 @@
   </mat-form-field>
 </form>
 
-<div  class="list">
-<mat-card class="employee-list" (click)="onChooseEmployee(item)"  *ngFor="let item of filterList; let i = index;">
-<div fxLayoutAlign="start center"> <img src = "{{item.image}}" class="avatar"> {{item.name}} {{item.lastname}}</div>
-</mat-card>
+<div class="list">
+  <mat-card class="employee-list" (click)="onChooseEmployee(item)" *ngFor="let item of filterList; let i = index;">
+    <div fxLayoutAlign="start center"> <img src="{{item.image}}" class="avatar">
+      {{item.name}} {{item.lastname}}<br>
+      {{item.jobPositions}}
+    </div>
+  </mat-card>
 </div>
-

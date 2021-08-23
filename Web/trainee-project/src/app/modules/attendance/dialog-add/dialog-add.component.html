@@ -11,21 +11,23 @@
 
     <mat-card fxLayout="column" class="card-menu">
         <form [formGroup]="userForm">
-            <input type="file" #fileUpload (change)="onFileUpload($event)" hidden>
+            <input type="file" #fileUpload (change)="onFileUpload($event)" hidden />
             <div>
-                <mat-form-field class="form">
+                <mat-form-field class="id">
                     <input matInput formControlName="employeeId" placeholder="รหัสพนักงาน">
                 </mat-form-field>
             </div>
 
 
-            <div fxLayout="row">
+            <div>
                 <div>
                     <mat-form-field class="form">
                         <input matInput formControlName="name" placeholder="ชื่อ">
                     </mat-form-field>
                 </div>
+            </div>
 
+            <div>
                 <div>
                     <mat-form-field class="form">
                         <input matInput formControlName="lastname" placeholder="นามสกุล">
@@ -33,41 +35,38 @@
                 </div>
             </div>
 
-            <div fxLayout="row">
+            <div>
                 <div>
                     <mat-form-field class="form">
                         <input matInput formControlName="tel" placeholder="เบอร์โทรศัพท์">
                     </mat-form-field>
                 </div>
+            </div>
 
+            <div  fxLayout="row">
                 <div>
-                    <mat-form-field class="form">
-                        <input matInput formControlName="address" placeholder="ที่อยู่">
+                    <mat-form-field class="age">
+                        <input matInput formControlName="age" placeholder="อายุ">
+                    </mat-form-field>
+                
+                    <mat-form-field class="jobPositions">
+                        <input matInput formControlName="jobPositions" placeholder="ตำแหน่ง">
                     </mat-form-field>
                 </div>
             </div>
+
 
             <div>
                 <div>
                     <mat-form-field class="form">
-                        <input matInput formControlName="age" placeholder="อายุ">
+                        <mat-label>ที่อยู่</mat-label>
+                        <textarea matInput formControlName="address" placeholder="ที่อยู่"></textarea>
                     </mat-form-field>
                 </div>
             </div>
 
-            <div fxLayout="row">
-                <div>
-                    <mat-form-field class="form">
-                        <input matInput formControlName="nationality" placeholder="สัญชาติ">
-                    </mat-form-field>
-                </div>
+            
 
-                <div>
-                    <mat-form-field class="form">
-                        <input matInput formControlName="religion" placeholder="ศาสนา">
-                    </mat-form-field>
-                </div>
-            </div>
             <button mat-raised-button (click)="onSubmit()"> Update Profile</button>
         </form>
     </mat-card>
