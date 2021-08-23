@@ -2,7 +2,7 @@
   <mat-card>
   <a><B>รหัสพนักงาน:</B> {{employeeData?.employeeId}}</a><br>
   <a><B>ชื่อ:</B> {{employeeData?.name}} {{employeeData?.lastname}}</a><br>
-  <a><B>เบอร์โทร:</B> {{employeeData?.tel}}</a>
+  <a><B>โทร:</B> {{employeeData?.tel}}</a>
 
   </mat-card>
   <p></p>
@@ -43,18 +43,29 @@
   </div>
 
   <div class="padding">
-    <ng-container class="padding" matColumnDef="เวลาเข้างาน">
+    <ng-container class="padding" matColumnDef="เวลาออกงาน">
       <th mat-header-cell class="textField">ออกงาน</th><br>
       <mat-divider class="padding"></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeDataOut">  {{item.timeIn |date:"h:mm a"}}
+      <td fxLayout="column" mat-cell *ngFor="let item of dataSource1">  {{item.timeIn |date:"h:mm a"}}
         <mat-divider ></mat-divider>
       </td>
     </ng-container>
   </div>
 
+  <div class="padding">
+    <ng-container class="padding" matColumnDef="ระยะเวลาทำงาน">
+      <th mat-header-cell class="textField">ระยะเวลาทำงาน</th><br>
+      <mat-divider class="padding"></mat-divider>
+      <td fxLayout="column" mat-cell > 
+        <mat-divider ></mat-divider>
+      </td>
+    </ng-container>
+  </div>
 </div> 
-<!-- <button (click)="filter()"></button> -->
-</div>
+
+<!-- <button (click)="CalculateTime()"></button> -->
+
+
 <mat-paginator #paginator 
  [pageSize]="pageSize" 
  [pageSizeOptions]="[1, 10, 15]"
@@ -63,6 +74,14 @@
  [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
 </mat-paginator>
 
+
+ <!-- <mat-paginator #paginatorOut 
+ [pageSize]="pageSize" 
+ [pageSizeOptions]="[1, 10, 15]"
+ [showFirstLastButtons]="true"
+ [length]="totalSize"
+ [pageIndex]="currentPage" (page)="pageEvent = handlePage1($event)">
+</mat-paginator>  -->
 
  
  

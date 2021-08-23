@@ -1,23 +1,27 @@
 <div>
     <form [formGroup]="customerForm">
         <div>
-            <mat-form-field class="width">
-                <input matInput type="text" formControlName="name" placeholder="ชื่อ">
+            <mat-form-field class="width" appearance="outline">
+                <mat-label>ชื่อ</mat-label>
+                <input matInput type="text" formControlName="name">
             </mat-form-field>
         </div>
         <div>
-            <mat-form-field class="width">
-                <input matInput type="text" formControlName="lastName" placeholder="นามสกุล">
+            <mat-form-field class="width" appearance="outline">
+                <mat-label>นามสกุล</mat-label>
+                <input matInput type="text" formControlName="lastName">
             </mat-form-field>
         </div>
         <div>
-            <mat-form-field class="width">
-                <input matInput type="number" formControlName="financialAmount" placeholder="วงเงิน">
+            <mat-form-field class="width" appearance="outline">
+                <mat-label>วงเงิน</mat-label>
+                <input matInput type="number" formControlName="financialAmount" >
             </mat-form-field>
         </div>
         <div>
-            <mat-form-field class="width">
-                <input matInput type="text" formControlName="position" placeholder="ตำแหน่ง">
+            <mat-form-field class="width" appearance="outline">
+                <mat-label>ตำแหน่ง</mat-label>
+                <input matInput type="text" formControlName="position" >
             </mat-form-field>
         </div>
         <button mat-raised-button mat-dialog-close type="submit" [disabled]="!customerForm.valid" (click)="onSubmit()">

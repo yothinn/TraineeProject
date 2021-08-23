@@ -1,5 +1,6 @@
 .customer-details {
   height: 9vh;
+  border: solid rgb(179, 179, 179) 1px;
 }
 
 .user-details {
@@ -32,6 +33,18 @@
   width: 100;
 }
 .tableList{
-  height:70%;
+  height:73%;
   overflow: auto;
+}
+.padding-date{
+  width: 30%;
+}
+.padding-documentNo{
+  width: 20%;
+}
+.padding-deposit-withdraw{
+  width: 30%;
+}
+.padding-placeOfUse{
+  width: 40%;
 }

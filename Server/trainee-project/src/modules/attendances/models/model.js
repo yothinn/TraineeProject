@@ -25,13 +25,10 @@ var AttendancesSchema = new Schema({
         type: String
        
     },
-    nationality: {
+    jobPositions: {
         type: String    
     },
     age:{
-        type: String
-    },
-    religion:{
         type: String
     },
     image:{
