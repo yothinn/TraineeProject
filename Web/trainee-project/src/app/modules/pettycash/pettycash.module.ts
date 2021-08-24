@@ -22,7 +22,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [PettyCashComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent,SumComponent,],
+  declarations: [PettyCashComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent,],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
