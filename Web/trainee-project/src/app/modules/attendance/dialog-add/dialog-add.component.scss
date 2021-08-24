@@ -1,5 +1,4 @@
 .img {
-    
     width: 300px;
     height: 300px;
     font-size: 45px;
@@ -7,17 +6,28 @@
   .card {
     padding: 20px;
     width: 300px;
-    height: 340px;
+    height: 400px;
     border: solid black;
   }
-.form{
+  .form{
     margin-right: 5px;
-    
+    width: 90%;
 }
+.id{
+  width: 30%;
+}
+.age{
+  margin-right: 5px;
+  width: 30%;
+}
+.jobPositions{
+  width: 60%;
+}
+
 .card-menu{
   padding: 20px;
-  width: 400px;
-  height: 384px;
+  width: 380px;
+  height: 443px;
   border: solid black;
 }
 .addimage{

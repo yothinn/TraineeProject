@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AttendanceService } from '../attendance.service';
 import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 
@@ -11,12 +12,11 @@ import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 export class EmployeeProfileComponent implements OnInit {
 
   employeeData: any;
-  
-  
 
   constructor(
     private attendanceService: AttendanceService,
-    public dialog: MatDialog,) { }
+    public dialog: MatDialog,
+    ) { }
 
   ngOnInit(): void {
     this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
@@ -26,6 +26,7 @@ export class EmployeeProfileComponent implements OnInit {
         // console.log(res)
       });
   });
+     
 }
 
   openDialog(data1) {
