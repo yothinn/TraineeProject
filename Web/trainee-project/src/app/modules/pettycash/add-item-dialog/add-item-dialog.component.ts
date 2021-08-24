@@ -18,9 +18,7 @@ const MY_DATE_FORMATS = {
 
 
 
-interface placeOfUse {
-  item: string;
-}
+
 
 @Component({
   selector: 'app-add-item-dialog',
@@ -35,8 +33,8 @@ export class AddItemDialogComponent implements OnInit {
   pettyCashData: any;
   tableData: any;
   type: any;
-  readioSelectedOn: boolean =true;
-  readioSelectedOf: boolean;
+  readioSelectedDeposit: boolean =true;
+  readioSelectedWithdraw: boolean;
 
 
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
@@ -48,6 +46,13 @@ export class AddItemDialogComponent implements OnInit {
   ngOnInit(): void {
     this.customerForm = this.createList(this.data);
     this.setvalue();
+    this.pettyCashService.getTable().subscribe((res:any)=>{
+      this.tableData=res.data
+      this.tableData=this.tableData
+      this.tableData = this.tableData.filter(res => {
+        return res.locationUse;
+      });
+    });
   }
 
   createList(data) {
@@ -79,27 +84,13 @@ export class AddItemDialogComponent implements OnInit {
     });
     window.location.reload();
   }
-  placeOfUses: placeOfUse[] = [
-    { item: ' สนามบิน' },
-    { item: ' สถานีขนส่ง' },
-    { item: ' ร้านกาแฟ' },
-    { item: ' สำนักงาน' },
-    { item: ' ธนาคาร' },
-    { item: ' คลินิก' },
-    { item: ' ห้องสมุด' },
-    { item: ' พิพิธภัณฑ์' },
-    { item: ' โรงแรม' },
-    { item: ' บ้าน' },
-    { item: ' สำนักงาน' },
-    { item: ' แผนกซ่อมบำรุง' },
-  ];
 
-  onSelectOn() {
-    this.readioSelectedOn = true;
-    this.readioSelectedOf = false;
+  onSelectDeposit() {
+    this.readioSelectedDeposit = true;
+    this.readioSelectedWithdraw = false;
   }
-  onSelectOf(){
-    this.readioSelectedOn = false;
-    this.readioSelectedOf = true;
+  onSelectWithdraw(){
+    this.readioSelectedDeposit = false;
+    this.readioSelectedWithdraw = true;
   }
 }
