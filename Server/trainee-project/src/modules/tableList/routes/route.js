@@ -2,9 +2,28 @@
 var controller = require('../controllers/controller'),
     mq = require('../../core/controllers/rabbitmq'),
     policy = require('../policy/policy');
+
+    const multer = require('multer');
+    const config = require('../../../config/config');
+
+    const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        console.log(file)
+        cb(null, './src/modules/tablelist/' + config.imageBill);
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+
 module.exports = function (app) {
     var url = '/api/tablelists';
     var urlWithParam = '/api/tablelists/:tablelistId';
+
+    app.route('/api/tablelists/uploads')
+        .post(upload.single('files'), controller.uploads);
+
     app.route(url)//.all(policy.isAllowed)
         .get(controller.getList)
         .post(controller.create);
