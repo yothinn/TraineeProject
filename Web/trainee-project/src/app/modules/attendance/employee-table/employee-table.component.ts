@@ -1,4 +1,5 @@
 
+import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -20,28 +21,23 @@ export class EmployeeTableComponent implements OnInit {
 
   employeeData: any;
   menu: boolean = false;
-  dateTimeData: any;
-  dateTimeOut:any;
-  dateTimeOutData:any;
-  work:any;
 
+  dateTimeInData: any;
+  dateTimeOutData:any;
 
   pageEvent: any;
   currentPage = 0;
-  pageSize = 1;
+  pageSize = 100;
   array: any;
-  dataSource: any;
   totalSize = 0;
-
-  dateTime:any;
-
-
-  dateTimeDataOut:[];
+  dataSource: any;
   dataSource1: any;
  
-
- 
-
+  totalIn:any;
+  totalOut:any;
+  
+  dateTimeData:any;
+  totalTime:any;
 
   constructor(
     private attendanceService: AttendanceService,
@@ -58,33 +54,34 @@ export class EmployeeTableComponent implements OnInit {
       // console.log(res)
       this.employeeData = res;
       this.menu = true;
+     
     });
 
     this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
       // console.log(res)
-
-      this.dateTimeData = res.filter((res)=>{
+      this.dateTimeInData = res.filter((res)=>{
         return res.work==="เข้างาน";
       })
   
-      this.dateTimeData.timeIn
-      console.log(this.dateTimeData.timeIn)
+      console.log(this.dateTimeInData)
     });
 
 
     this.attendanceService.onDateChangedObservable$.subscribe((res: any) => {
       // console.log(res)
-      this.dateTimeDataOut = res.filter((res)=>{
+      this.dateTimeOutData = res.filter((res)=>{
         return res.work==="ออกงาน";
       });
-     
-      console.log(this.dateTimeDataOut)
     });
-
-  
+    this.attendanceService.onDateChangedObservable$.subscribe((res:any)=>{
+      this.dateTimeData = res;
+      this.findsum(this.dateTimeData);
+    })
   
       this.getArray();
       this.getArray1();
+     
+      
 
   }
 
@@ -122,13 +119,11 @@ export class EmployeeTableComponent implements OnInit {
     }
   }
 
-
-
   getArray():void{
     this.attendanceService.onDateChangedObservable$.subscribe((res:any) =>{
-      this.dataSource = new MatTableDataSource<Element>(this.dateTimeData);
+      this.dataSource = new MatTableDataSource<Element>(this.dateTimeInData);
       this.dataSource.paginator = this.paginator;
-      this.array = this.dateTimeData;
+      this.array = this.dateTimeInData;
       this.totalSize = this.array.length;
       this.shoose();
       // console.log(this.totalSize)
@@ -156,9 +151,9 @@ shoose():void {
 
   getArray1():void{
     this.attendanceService.onDateChangedObservable$.subscribe((res:any) =>{
-      this.dataSource1 = new MatTableDataSource<Element>(this.dateTimeDataOut);
+      this.dataSource1 = new MatTableDataSource<Element>(this.dateTimeOutData);
       this.dataSource1.paginator = this.paginator;
-      this.array = this.dateTimeDataOut;
+      this.array = this.dateTimeOutData;
       this.totalSize = this.array.length;
       this.shoose1();
       // console.log(this.totalSize)
@@ -180,9 +175,56 @@ shoose1():void {
   
 }
 
-caculateTime(){
+findsum(data){
+ let sumIn = data.filter(res =>{ 
   
+    if(res.work ==="เข้างาน"){     
+      return res.time
+    } 
+ }) 
+  let sumOut = data.filter(res =>{
+    if(res.work === "ออกงาน"){
+      return res.time
+    }
+  })
+ this.totalIn = sumIn.map(res => res.time)
+ this.totalIn  = new Date(this.totalIn)
+ console.log(this.totalIn.getHours())
+
+ this.totalOut = sumOut.map(res => res.time)
+ this.totalOut  = new Date(this.totalOut)
+ console.log( this.totalOut.getHours())
+
+ var total = this.totalOut.getTime() - this.totalIn.getTime()
+ var hours = Math.floor(total / (60 * 60 * 1000))
+ console.log(this.totalOut.getTime())
+ var minutes = Math.floor(total / (60 * 1000))  - (hours * 60);
+ this.totalTime =  {hour: hours, minute: minutes}
+ console.log(this.totalTime)
+
+
 }
+
+
+
+
+
+// findsum(data) {
+//   let sumIn = data.filter(element => {
+//     if (element.status === 'นำเข้า') {
+//       return element.total
+//     }
+//   })
+//   let sumOut = data.filter(element => {
+//     if (element.status === 'นำออก') {
+//       return element.total
+//     }
+//   })
+//   this.totalAmountIn = sumIn.map(item => item.total).reduce((prev, next) => prev + next);
+//   this.totalAmountOut = sumOut.map(item => item.total).reduce((prev, next) => prev + next);
+
+//   this.totalResult =   this.totalAmountIn - this.totalAmountOut
+//   console.log(this.totalResult);
 
 
     }
