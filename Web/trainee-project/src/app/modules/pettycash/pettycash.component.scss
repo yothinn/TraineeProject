@@ -1,7 +1,7 @@
 
 mat-drawer-container{
     
-    height: 92%;
+    height: 93%;
     border: solid rgb(156, 156, 156) 0.5px;
 
     mat-drawer{
@@ -11,6 +11,9 @@ mat-drawer-container{
 }
 .button-customer{
     margin-left: 7%;
+}
+.button-listSummary{
+    margin-left: 80%;
 }
 .search{
     width: 25px;
@@ -43,4 +46,40 @@ mat-drawer-container{
 }
 .test{
     background: white;
+}
+.example-box {
+    height: 590px;
+    width: 100%;
+}
+.tableList{
+    height:71%;
+    overflow: auto;
+    height: 590px;
+    width: 100%;
+}
+.header{
+    background-color: #cccccc;
+    border: solid 1px rgb(143, 143, 143);
+}
+.padding-date{
+    width: 30%;
+    height: 4vh;
+}
+.padding-documentNo{
+    width: 20%;
+    height: 4vh;
+}
+.padding-deposit-withdraw{
+    width: 30%;
+    height: 4vh;
+    text-align: end;
+    margin-right:  5px;
+}
+.padding-placeOfUse{
+    width: 40%;
+    height: 4vh;
+}
+.padding{
+    width: 100%;
+    height: 4vh;
 }

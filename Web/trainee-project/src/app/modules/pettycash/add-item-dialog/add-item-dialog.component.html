@@ -22,7 +22,7 @@
     <div>
       <mat-form-field class="width-area" appearance="outline" >
         <mat-label>รายการ</mat-label>
-        <textarea class="hieght" matInput formControlName="description"></textarea>
+        <textarea matInput formControlName="description"></textarea>
       </mat-form-field>
     </div>
     <div>
@@ -31,14 +31,14 @@
         <mat-radio-button (click)="onSelectOf()" [value]="1">withdraw</mat-radio-button>
       </mat-radio-group>
     </div>
-    <div *ngIf="readioSelectedOn">
+    <div *ngIf="radioSelectedOn">
       <mat-form-field class="width">
         <input matInput formControlName="deposit" type="number" onfocus="this.value=''" class="example-right-align"
           placeholder="เงินเข้า">
         <span matSuffix>.00</span>
       </mat-form-field>
     </div>
-    <div *ngIf="readioSelectedOf">
+    <div *ngIf="radioSelectedOf">
       <mat-form-field class="width">
         <input matInput formControlName="withdraw" type="number" onfocus="this.value=''" class="example-right-align"
           placeholder="เงินออก">
@@ -49,8 +49,8 @@
       <mat-form-field class="width" appearance="outline">
         <mat-label>สถานที่ใช้งาน</mat-label>
         <mat-select formControlName="placeOfUse">
-          <mat-option *ngFor="let item of placeOfUses" [value]="item.item">
-            {{item.item}}
+          <mat-option  >
+            
           </mat-option>
         </mat-select>
       </mat-form-field>

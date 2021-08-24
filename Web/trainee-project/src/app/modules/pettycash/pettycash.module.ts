@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { TableComponent } from './table/table.component';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
+import { SumComponent } from './sum/sum.component';
 
 
 
@@ -20,7 +21,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [PettyCashComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent],
+  declarations: [PettyCashComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent,SumComponent,],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

@@ -27,6 +27,7 @@ var TablelistSchema = new Schema({
     placeOfUse: {
         type: String,
     },
+    image: {},
 
 
     created: {

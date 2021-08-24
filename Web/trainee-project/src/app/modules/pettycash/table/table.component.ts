@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddItemDialogComponent } from '../add-item-dialog/add-item-dialog.component';
 import { PettyCashService } from '../pettyCash.service';
@@ -16,7 +16,7 @@ import { Element } from '@angular/compiler';
 })
 export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @Input() RaisedAmount = 0;
+  RaisedAmount = 0;
   listData: any;
   customerdata: any;
   pageEvent: any;

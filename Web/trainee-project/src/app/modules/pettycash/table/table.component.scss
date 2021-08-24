@@ -9,19 +9,13 @@
 }
 .padding{
   width: 100%;
-}
-.layout-number{
-  text-align: end;
-  margin-right:  5px;
+  height: 4vh;
 }
 .fontSize{
   font-size: 16px;
 }
 .financialAmount{
   margin-top: auto;
-}
-.width{
-  width: 100%;
 }
 .button-add{
   margin-left: 40%;
@@ -33,18 +27,31 @@
   width: 100;
 }
 .tableList{
-  height:73%;
+  height:71%;
   overflow: auto;
 }
 .padding-date{
   width: 30%;
+  height: 4vh;
 }
 .padding-documentNo{
   width: 20%;
+  height: 4vh;
 }
 .padding-deposit-withdraw{
   width: 30%;
+  height: 4vh;
+  text-align: end;
+  margin-right:  5px;
 }
 .padding-placeOfUse{
   width: 40%;
+  height: 4vh;
+}
+.header{
+  background-color: #cccccc;
+  border: solid 1px rgb(143, 143, 143);
+}
+.content{
+  border: solid 1px rgb(143, 143, 143);
 }
