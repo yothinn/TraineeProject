@@ -80,12 +80,7 @@ export class EmployeeTableComponent implements OnInit {
   
       this.getArray();
       this.getArray1();
-     
-      
-
   }
-
-
 
   openDialog(data1) {
     // console.log(data1)
@@ -138,8 +133,6 @@ handlePage(pagin: any){
   
 }
 
-
-
 shoose():void {
   const end = (this.currentPage + 1) * this.pageSize;
   const start = this.currentPage * this.pageSize;
@@ -187,26 +180,29 @@ findsum(data){
       return res.time
     }
   })
+
  this.totalIn = sumIn.map(res => res.time)
  this.totalIn  = new Date(this.totalIn)
  console.log(this.totalIn.getHours())
-
+ 
  this.totalOut = sumOut.map(res => res.time)
  this.totalOut  = new Date(this.totalOut)
  console.log( this.totalOut.getHours())
 
  var total = this.totalOut.getTime() - this.totalIn.getTime()
+ console.log(total)
  var hours = Math.floor(total / (60 * 60 * 1000))
  console.log(this.totalOut.getTime())
  var minutes = Math.floor(total / (60 * 1000))  - (hours * 60);
+
  this.totalTime =  {hour: hours, minute: minutes}
  console.log(this.totalTime)
-
 
 }
 
 
-
+// this.totalAmountIn = sumIn.map(item => item.total).reduce((prev, next) => prev + next);
+// this.totalAmountOut = sumOut.map(item => item.total).reduce((prev, next) => prev + next);
 
 
 // findsum(data) {
