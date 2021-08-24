@@ -2,6 +2,20 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { PettyCashService } from '../pettyCash.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+
+const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  },
+};
+
 
 
 
@@ -9,15 +23,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-add-item-dialog',
   templateUrl: './add-item-dialog.component.html',
-  styleUrls: ['./add-item-dialog.component.scss']
+  styleUrls: ['./add-item-dialog.component.scss'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
 })
 export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
   tableData: any;
   type: any;
-  radioSelectedOn: boolean = true;
-  radioSelectedOf: boolean;
+  readioSelectedDeposit: boolean =true;
+  readioSelectedWithdraw: boolean;
 
 
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
@@ -31,12 +48,19 @@ export class AddItemDialogComponent implements OnInit {
     this.data.image = "https://img-premium.flaticon.com/png/512/1176/premium/1176381.png?token=exp=1629358197~hmac=b48e7dcb72563493b8157053c8b516bb";
     this.customerForm = this.createList(this.data)
     this.setvalue();
+    this.pettyCashService.getTable().subscribe((res:any)=>{
+      this.tableData=res.data
+      this.tableData=this.tableData
+      this.tableData = this.tableData.filter(res => {
+        return res.locationUse;
+      });
+    });
   }
 
   createList(data) {
     return this.fb.group({
       lastName: [data.lastName],
-      date: [new Date(), [Validators.required]],
+      date: [new Date(), Validators.required],
       documentNo: [data.documentNo, Validators.required],
       description: [data.description, Validators.required],
       deposit: [data.deposit],
@@ -64,15 +88,16 @@ export class AddItemDialogComponent implements OnInit {
     window.location.reload();
   }
 
-  onSelectOn() {
-    this.radioSelectedOn = true;
-    this.radioSelectedOf = false;
+  onSelectDeposit() {
+    this.readioSelectedDeposit = true;
+    this.readioSelectedWithdraw = false;
   }
-  onSelectOf() {
-    this.radioSelectedOn = false;
-    this.radioSelectedOf = true;
-  }
+  onSelectWithdraw(){
+    this.readioSelectedDeposit = false;
+    this.readioSelectedWithdraw = true;
 
+  }
+  
   onFileUpload(event) {
     const file = event.target.files[0];
     console.log(file);

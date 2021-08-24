@@ -28,6 +28,9 @@ var TablelistSchema = new Schema({
         type: String,
     },
     image: {},
+    locationUse:{
+        type: String,
+    },
 
 
     created: {

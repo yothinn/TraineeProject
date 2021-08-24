@@ -41,6 +41,7 @@ export class TableComponent implements OnInit {
       this.tableData = res;
       this.tableData.sort((x, y) => - new Date(x.date) - -new Date(y.date));
       this.findsum(this.tableData);
+      console.log(this.tableData)
     });
     this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
       this.listData = res;
@@ -55,13 +56,8 @@ export class TableComponent implements OnInit {
       data: data
 
     });
-    dialogRef.afterClosed().subscribe(res => {
-      if (res) {
-        this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
-          this.tableData = res;
-        });
-      }
-    });
+    dialogRef.afterClosed().subscribe(
+    );
   }
 
   handlePage(pagin: any): void {

@@ -6,8 +6,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { TableComponent } from './table/table.component';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
-import { SumComponent } from './sum/sum.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MomentDateModule } from '@angular/material-moment-adapter';
 
 
 
@@ -26,6 +27,10 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MomentDateModule
+
   ]
 })
 export class PettyCashModule { }

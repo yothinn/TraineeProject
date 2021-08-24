@@ -3,7 +3,7 @@
   <form [formGroup]="customerForm">
     <div>
       <mat-form-field class="width">
-        <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
+        <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date" date>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -27,18 +27,18 @@
     </div>
     <div>
       <mat-radio-group class="margin-radio">
-        <mat-radio-button class="radio" (click)="onSelectOn()" [value]="0" checked>deposit</mat-radio-button>
-        <mat-radio-button (click)="onSelectOf()" [value]="1">withdraw</mat-radio-button>
+        <mat-radio-button class="radio" (click)="onSelectDeposit()" [value]="0" checked>deposit</mat-radio-button>
+        <mat-radio-button (click)="onSelectWithdraw()" [value]="1">withdraw</mat-radio-button>
       </mat-radio-group>
     </div>
-    <div *ngIf="radioSelectedOn">
+    <div *ngIf="readioSelectedDeposit">
       <mat-form-field class="width">
         <input matInput formControlName="deposit" type="number" onfocus="this.value=''" class="example-right-align"
           placeholder="เงินเข้า">
         <span matSuffix>.00</span>
       </mat-form-field>
     </div>
-    <div *ngIf="radioSelectedOf">
+    <div *ngIf="readioSelectedWithdraw">
       <mat-form-field class="width">
         <input matInput formControlName="withdraw" type="number" onfocus="this.value=''" class="example-right-align"
           placeholder="เงินออก">
@@ -49,8 +49,8 @@
       <mat-form-field class="width" appearance="outline">
         <mat-label>สถานที่ใช้งาน</mat-label>
         <mat-select formControlName="placeOfUse">
-          <mat-option  >
-            
+          <mat-option *ngFor="let item of tableData" [value]="item.locationUse">
+            {{item.locationUse}}
           </mat-option>
         </mat-select>
       </mat-form-field>
