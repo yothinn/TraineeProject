@@ -1,50 +1,117 @@
-<mat-drawer-container>
-  <mat-drawer mode="side" opened>
-    <mat-toolbar class="test">
-      <mat-icon class="search">search</mat-icon>
-      <mat-form-field class="field-search" appearance="outline">
-        <mat-label></mat-label>
-        <input #searchList matInput placeholder="Search..." (keyup)="onKeyup()">
-      </mat-form-field>
-    </mat-toolbar>
-    <mat-divider></mat-divider>
-    <div class="card-overflow" *ngFor="let item of filterList; let i = index;" class="customer" align="center">
-      <mat-card class="card-customer" (click)="onClick(item)">
-        <div fxLayout="row" fxLayoutAlign="space-between stretch">
-          <a class="size-name">
-            {{item.name}} {{item.lastName}}
-          </a>
-          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="openDialog(item)">
-              <mat-icon>edit</mat-icon>
-              <span>edit</span>
-            </button>
-            <button mat-menu-item (click)="deleteList(item)">
-              <mat-icon>delete</mat-icon>
-              <span>delete</span>
-            </button>
-          </mat-menu>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="space-between stretch">
-          <a class="size-amount">
-            {{RaisedAmount | number:"0.2"}}
-          </a>
-          <a class="limit">
-            วงเงิน {{item.financialAmount | number:"0.2"}}
-          </a>
-        </div>
-      </mat-card><br>
-      <mat-divider></mat-divider>
+<mat-tab-group dynamicHeight>
+  <mat-tab label="เงินสดย่อย">
+    <div class="example-box mat-elevation-z4">
+      <mat-drawer-container>
+        <mat-drawer mode="side" opened>
+          <mat-toolbar class="test">
+            <mat-icon class="search">search</mat-icon>
+            <mat-form-field class="field-search" appearance="outline">
+              <mat-label></mat-label>
+              <input #searchList matInput placeholder="Search..." (keyup)="onKeyup()">
+            </mat-form-field>
+          </mat-toolbar>
+          <mat-divider></mat-divider>
+          <div class="card-overflow" *ngFor="let item of filterList; let i = index;" class="customer" align="center">
+            <mat-card class="card-customer" (click)="onClick(item)">
+              <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                <a class="size-name">
+                  {{item.name}} {{item.lastName}}
+                </a>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="openDialog(item)">
+                    <mat-icon>edit</mat-icon>
+                    <span>edit</span>
+                  </button>
+                  <button mat-menu-item (click)="deleteList(item)">
+                    <mat-icon>delete</mat-icon>
+                    <span>delete</span>
+                  </button>
+                </mat-menu>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                <a class="size-amount">
+                </a>
+                <a class="limit">
+                  วงเงิน {{item.financialAmount | number:"0.2"}}
+                </a>
+              </div>
+            </mat-card><br>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-drawer>
+        <mat-drawer-content>
+          <app-table></app-table>
+        </mat-drawer-content>
+      </mat-drawer-container>
+      <form>
+        <button class="button-customer" mat-button (click)="openDialog('new')">เพิ่มผู้ใช้</button>
+      </form>
     </div>
-  </mat-drawer>
-  <mat-drawer-content>
-    <app-table></app-table>
-  </mat-drawer-content>
-</mat-drawer-container>
+  </mat-tab>
+  <mat-tab label="สรุปรายการ">
+    <div class="tableList">
+      <div fxLayout="column">
+        <header align="center" class="header" fxLayout="row" fxLayoutAlign="space-around stretch">
+          <div class="padding">
+            <p>
+              ชื่อ
+            </p>
+          </div>
+          <hr>
+          <div class="padding">
+            <p>
+              นามสกุล
+            </p>
+          </div>
+          <hr>
+          <div class="padding">
+            <p>
+              ตำแหน่ง
+            </p>
+          </div>
+          <hr>
+          <div class="padding">
+            <p>
+              วงเงิน
+            </p>
+          </div>
+          <div class="padding">
+            <p>
+              ยอดเงินยก
+            </p>
+          </div>
+        </header>
+        <div align="center" fxLayout="row" fxLayoutAlign="space-between stretch" *ngFor="let item of pettyCashData">
+          <div class="padding">
+            {{item.name}}
+            <mat-divider></mat-divider>
+          </div>
+          <hr>
+          <div class="padding">
+            {{item.lastName}}
+            <mat-divider></mat-divider>
+          </div>
+          <hr>
+          <div class="padding">
+            {{item.position}}
+            <mat-divider></mat-divider>
+          </div>
+          <hr>
+          <div class="padding">
+            {{item.financialAmount | number:"0.2"}}
+            <mat-divider></mat-divider>
+          </div>
+          <hr>
+          <div class="padding">
 
-<form>
-  <button class="button-customer" mat-button (click)="openDialog('new')">เพิ่มผู้ใช้</button>
-</form>
+            <mat-divider></mat-divider>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </mat-tab>
+</mat-tab-group>

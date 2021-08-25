@@ -44,7 +44,9 @@ export class AddItemDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.customerForm = this.createList(this.data);
+    this.data = {};
+    this.data.image = "https://img-premium.flaticon.com/png/512/1176/premium/1176381.png?token=exp=1629358197~hmac=b48e7dcb72563493b8157053c8b516bb";
+    this.customerForm = this.createList(this.data)
     this.setvalue();
     this.pettyCashService.getTable().subscribe((res:any)=>{
       this.tableData=res.data
@@ -63,7 +65,8 @@ export class AddItemDialogComponent implements OnInit {
       description: [data.description, Validators.required],
       deposit: [data.deposit],
       withdraw: [data.withdraw],
-      placeOfUse: [data.placeOfUse, Validators.required]
+      placeOfUse: [data.placeOfUse, Validators.required],
+      Image: data.Image
 
     });
   }
@@ -92,5 +95,22 @@ export class AddItemDialogComponent implements OnInit {
   onSelectWithdraw(){
     this.readioSelectedDeposit = false;
     this.readioSelectedWithdraw = true;
+
+  }
+  
+  onFileUpload(event) {
+    const file = event.target.files[0];
+    console.log(file);
+    const formData = new FormData();
+    formData.append('files', file);
+    this.pettyCashService.uploadImage(formData)
+      .subscribe((res: any) => {
+        console.log(res.data.url)
+        this.customerForm.patchValue({
+          image: res.data.url
+        });
+        console.log(this.customerForm)
+        this.data.image = res.data.url;
+      });
   }
 }

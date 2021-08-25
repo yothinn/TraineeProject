@@ -5,7 +5,7 @@
       <mat-form-field class="width">
         <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date" date>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker disabled="false"></mat-datepicker>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
     <div hidden>
@@ -22,7 +22,7 @@
     <div>
       <mat-form-field class="width-area" appearance="outline" >
         <mat-label>รายการ</mat-label>
-        <textarea class="hieght" matInput formControlName="description"></textarea>
+        <textarea matInput formControlName="description"></textarea>
       </mat-form-field>
     </div>
     <div>
