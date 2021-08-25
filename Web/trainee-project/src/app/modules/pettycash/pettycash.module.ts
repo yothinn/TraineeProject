@@ -9,6 +9,7 @@ import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.compon
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MomentDateModule } from '@angular/material-moment-adapter';
+import { SumComponent } from './sum/sum.component';
 
 
 
@@ -22,7 +23,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [PettyCashComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent,],
+  declarations: [PettyCashComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent,SumComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
