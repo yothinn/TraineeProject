@@ -2,25 +2,39 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { PettyCashService } from '../pettyCash.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+
+const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  },
+};
 
 
 
-interface placeOfUse {
-  item: string;
-}
+
 
 @Component({
   selector: 'app-add-item-dialog',
   templateUrl: './add-item-dialog.component.html',
-  styleUrls: ['./add-item-dialog.component.scss']
+  styleUrls: ['./add-item-dialog.component.scss'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
 })
 export class AddItemDialogComponent implements OnInit {
   customerForm: FormGroup;
   pettyCashData: any;
   tableData: any;
   type: any;
-  readioSelectedOn: boolean =true;
-  readioSelectedOf: boolean;
+  readioSelectedDeposit: boolean =true;
+  readioSelectedWithdraw: boolean;
 
 
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
@@ -30,19 +44,29 @@ export class AddItemDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.customerForm = this.createList(this.data);
+    this.data = {};
+    this.data.image = "https://img-premium.flaticon.com/png/512/1176/premium/1176381.png?token=exp=1629358197~hmac=b48e7dcb72563493b8157053c8b516bb";
+    this.customerForm = this.createList(this.data)
     this.setvalue();
+    this.pettyCashService.getTable().subscribe((res:any)=>{
+      this.tableData=res.data
+      this.tableData=this.tableData
+      this.tableData = this.tableData.filter(res => {
+        return res.locationUse;
+      });
+    });
   }
 
   createList(data) {
     return this.fb.group({
       lastName: [data.lastName],
-      date: [new Date(), [Validators.required]],
+      date: [new Date(), Validators.required],
       documentNo: [data.documentNo, Validators.required],
       description: [data.description, Validators.required],
       deposit: [data.deposit],
       withdraw: [data.withdraw],
-      placeOfUse: [data.placeOfUse, Validators.required]
+      placeOfUse: [data.placeOfUse, Validators.required],
+      Image: data.Image
 
     });
   }
@@ -63,27 +87,30 @@ export class AddItemDialogComponent implements OnInit {
     });
     window.location.reload();
   }
-  placeOfUses: placeOfUse[] = [
-    { item: ' สนามบิน' },
-    { item: ' สถานีขนส่ง' },
-    { item: ' ร้านกาแฟ' },
-    { item: ' สำนักงาน' },
-    { item: ' ธนาคาร' },
-    { item: ' คลินิก' },
-    { item: ' ห้องสมุด' },
-    { item: ' พิพิธภัณฑ์' },
-    { item: ' โรงแรม' },
-    { item: ' บ้าน' },
-    { item: ' สำนักงาน' },
-    { item: ' แผนกซ่อมบำรุง' },
-  ];
 
-  onSelectOn() {
-    this.readioSelectedOn = true;
-    this.readioSelectedOf = false;
+  onSelectDeposit() {
+    this.readioSelectedDeposit = true;
+    this.readioSelectedWithdraw = false;
   }
-  onSelectOf(){
-    this.readioSelectedOn = false;
-    this.readioSelectedOf = true;
+  onSelectWithdraw(){
+    this.readioSelectedDeposit = false;
+    this.readioSelectedWithdraw = true;
+
+  }
+  
+  onFileUpload(event) {
+    const file = event.target.files[0];
+    console.log(file);
+    const formData = new FormData();
+    formData.append('files', file);
+    this.pettyCashService.uploadImage(formData)
+      .subscribe((res: any) => {
+        console.log(res.data.url)
+        this.customerForm.patchValue({
+          image: res.data.url
+        });
+        console.log(this.customerForm)
+        this.data.image = res.data.url;
+      });
   }
 }

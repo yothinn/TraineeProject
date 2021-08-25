@@ -3,7 +3,7 @@
     <header class="user-details">รายละเอียดผุ้ใช้</header>
     <div class="fontSize" fxLayout="row" fxLayoutAlign="space-between stretch">
       <a>{{listData?.name}} {{listData?.lastName}}</a>
-      <a [ngClass]="{negative: RaisedAmount < 0}">{{RaisedAmount | number:"0.2"}}</a>
+      <app-sum></app-sum>
     </div>
     <div class="financialAmount" fxLayout="row" fxLayoutAlign="space-between stretch">
       <a>{{listData?.financialAmount | number:"0.2"}}</a>
@@ -13,68 +13,81 @@
   </mat-card>
 </div>
 
-<mat-divider></mat-divider>
+<div class="tableList">
+  <div fxLayout="column" >
+    <header class="header"  fxLayout="row" fxLayoutAlign="space-between stretch" >
+      <div class="padding-date" fxLayoutAlign="center ">
+        <p>
+          วันที่
+        </p>
+      </div>
+      <hr>
+      <div class="padding-documentNo" fxLayoutAlign="center " >
+        <p>
+          เลขที่เอกสาร
+        </p>
+      </div>
+      <hr>
+      <div class="padding" fxLayoutAlign="center " >
+        <p>
+          รายการ
+        </p>
+      </div>
+      <hr>
+      <div class="padding-deposit-withdraw" fxLayoutAlign="center " >
+        <p>
+          เงินเข้า
+        </p>
+      </div>
+      <hr>
+      <div class="padding-deposit-withdraw" fxLayoutAlign="center " >
+        <p>
+          เงินออก
+        </p>
+      </div>
+      <hr>
+      <div class="padding-placeOfUse" fxLayoutAlign="center " >
+        <p>
+          สถานที่ใช้งาน
+        </p>
+      </div>
 
-
-<div class="tableList" align="center" fxLayout="row" fxLayoutAlign="space-between stretch" >
-  <div class="padding-date">
-    <ng-container matColumnDef="วันที่">
-      <th mat-header-cell> วันที่ </th><br>
-      <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of tableData"> {{item.date | date :"dd-MM-yy"}}<mat-divider>
-        </mat-divider>
-      </td>
-    </ng-container>
-  </div><hr>
-  <div class="padding-documentNo">
-    <ng-container matColumnDef="เลขที่เอกสาร">
-      <th mat-header-cell> เลขที่เอกสาร </th><br>
-      <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of tableData">{{item.documentNo}}
+    </header>
+    <div align="center" fxLayout="row" fxLayoutAlign="space-between stretch" *ngFor="let item of tableData" >
+      <div class="padding-date"  >
+        {{item.date | date :"dd-MM-yy"}}
         <mat-divider></mat-divider>
-      </td>
-    </ng-container>
-  </div><hr>
-  <div class="padding">
-    <ng-container matColumnDef="รายการ">
-      <th mat-header-cell> รายการ </th><br>
-      <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of tableData"> {{item.description}}
+      </div>
+      <hr>
+      <div class="padding-documentNo"  >
+        {{item.documentNo}}
         <mat-divider></mat-divider>
-      </td>
-    </ng-container>
-  </div><hr>
-  <div class="padding-deposit-withdraw">
-    <ng-container matColumnDef="รับเข้า">
-      <th mat-header-cell> เงินเข้า </th><br>
-      <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of tableData" class="layout-number"> {{item.deposit |
-        number:"0.2"}}
+      </div>
+      <hr>
+      <div class="padding"  >
+        {{item.description}}
         <mat-divider></mat-divider>
-      </td>
-    </ng-container>
-  </div><hr>
-  <div class="padding-deposit-withdraw">
-    <ng-container matColumnDef="จ่าย">
-      <th mat-header-cell> เงินออก </th><br>
-      <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of tableData" class="layout-number"> {{item.withdraw |
-        number:"0.2"}}
+      </div>
+      <hr>
+      <div class="padding-deposit-withdraw"  >
+        {{item.deposit | number:"0.2"}}
         <mat-divider></mat-divider>
-      </td>
-    </ng-container>
-  </div><hr>
-  <div class="padding-placeOfUse">
-    <ng-container matColumnDef="สถานที่ใช้งาน">
-      <th mat-header-cell> สถานที่ใช้งาน </th><br>
-      <mat-divider></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of tableData"> {{item.placeOfUse}}
+      </div>
+      <hr>
+      <div class="padding-deposit-withdraw"  >
+        {{item.withdraw | number:"0.2"}}
         <mat-divider></mat-divider>
-      </td>
-    </ng-container>
+      </div>
+      <hr>
+      <div class="padding-placeOfUse"  >
+        {{item.placeOfUse}}
+        <mat-divider></mat-divider>
+      </div>
+    </div>
   </div>
 </div>
 <mat-divider></mat-divider>
+
 <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 30]" [showFirstLastButtons]="true"
   [length]="totalSize" [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
 </mat-paginator>

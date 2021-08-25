@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddItemDialogComponent } from '../add-item-dialog/add-item-dialog.component';
 import { PettyCashService } from '../pettyCash.service';
@@ -16,6 +16,7 @@ import { Element } from '@angular/compiler';
 })
 export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  RaisedAmount = 0;
   listData: any;
   customerdata: any;
   pageEvent: any;
@@ -27,7 +28,6 @@ export class TableComponent implements OnInit {
   listCustomer: any;
   tableData: any;
   value: any;
-  public RaisedAmount = 0;
   sumData: any;
 
 
@@ -41,6 +41,7 @@ export class TableComponent implements OnInit {
       this.tableData = res;
       this.tableData.sort((x, y) => - new Date(x.date) - -new Date(y.date));
       this.findsum(this.tableData);
+      console.log(this.tableData)
     });
     this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
       this.listData = res;
@@ -55,13 +56,8 @@ export class TableComponent implements OnInit {
       data: data
 
     });
-    dialogRef.afterClosed().subscribe(res => {
-      if (res) {
-        this.pettyCashService.onTableChangedObservable$.subscribe((res: any) => {
-          this.tableData = res;
-        });
-      }
-    });
+    dialogRef.afterClosed().subscribe(
+    );
   }
 
   handlePage(pagin: any): void {
