@@ -137,7 +137,7 @@ exports.search = function (req, res) {
 
         $or: [
             { name: { $regex: `^${searchText}`, $options: "i" } },
-            { lastName: { $regex: `^${searchText}`, $options: "i" } }
+            { lastname: { $regex: `^${searchText}`, $options: "i" } }
         ]
     };
     console.log(query);

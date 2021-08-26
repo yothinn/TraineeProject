@@ -35,7 +35,7 @@ export class DialogAddComponent implements OnInit {
       this.userForm = this.createForm(this.data);
     } else {
       this.data = {};
-      this.data.image = "https://img-premium.flaticon.com/png/512/1176/premium/1176381.png?token=exp=1629358197~hmac=b48e7dcb72563493b8157053c8b516bb";
+      this.data.image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMx1itTXTXLB8p4ALTTL8mUPa9TFN_m9h5VQ&usqp=CAU";
       this.userForm = this.createForm(this.data)
     }
   }
