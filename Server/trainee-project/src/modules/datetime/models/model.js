@@ -11,8 +11,8 @@ var DatetimeSchema = new Schema({
     date: {
         type: String,  
     },
-    timeIn: {
-        type: String,  
+    time: {
+        type: Date,  
     },
     work: {
         type: String,
