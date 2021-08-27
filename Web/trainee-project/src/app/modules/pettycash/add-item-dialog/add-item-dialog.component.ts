@@ -35,6 +35,7 @@ export class AddItemDialogComponent implements OnInit {
   type: any;
   readioSelectedDeposit: boolean =true;
   readioSelectedWithdraw: boolean;
+  filterData: [];
 
 
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
@@ -44,14 +45,16 @@ export class AddItemDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data = {};
-    this.data.image = "https://img-premium.flaticon.com/png/512/1176/premium/1176381.png?token=exp=1629358197~hmac=b48e7dcb72563493b8157053c8b516bb";
-    this.customerForm = this.createList(this.data)
+    if (this.data.lastName) {
+      this.customerForm = this.createList(this.data);
+    } else {
+      this.data.image = {};
+      this.customerForm = this.createList(this.data);
+    }
     this.setvalue();
     this.pettyCashService.getTable().subscribe((res:any)=>{
       this.tableData=res.data
-      this.tableData=this.tableData
-      this.tableData = this.tableData.filter(res => {
+      this.filterData = this.tableData.filter(res => {
         return res.locationUse;
       });
     });
@@ -66,7 +69,7 @@ export class AddItemDialogComponent implements OnInit {
       deposit: [data.deposit],
       withdraw: [data.withdraw],
       placeOfUse: [data.placeOfUse, Validators.required],
-      Image: data.Image
+      image: [data.image]
 
     });
   }
@@ -83,6 +86,8 @@ export class AddItemDialogComponent implements OnInit {
       this.tableData = res.data;
       if (res) {
         this.dialogRef.close(res);
+      }else{
+        this.onFileUpload(event);
       }
     });
     window.location.reload();
