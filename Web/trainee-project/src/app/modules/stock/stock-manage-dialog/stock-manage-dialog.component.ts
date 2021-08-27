@@ -21,19 +21,30 @@ export class StockManageDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
+    this.stockService.getProduct()
+      .subscribe((res) => {
+        this.productList = res.data;
+        console.log(this.productList);
+      })
     this.stockForm = this.createForm(this.data);
-    this.productList = this.data;
-    if (this.data?._id) {
 
+    if (this.data?._id) {
       this.data._id = "";
-      // this.data.total = "";
       console.log(this.data._id);
       this.stockForm = this.createForm(this.data);
     } else {
-      console.log("new");
-      this.data = [];   
+      console.log(this.data);
+      this.data = [];
       this.stockForm = this.createForm(this.data);
     }
+  }
+
+  getByProductId(item) {
+    let data = item.viewValue.split("|");
+   let name = data[1].trim();
+   this.stockForm.patchValue({
+    productName: name
+  });
   }
 
   createForm(data) {
@@ -48,27 +59,16 @@ export class StockManageDialogComponent implements OnInit {
 
   onSubmit() {
     console.log(this.stockForm.value)
-    // if (this.data._id) {
-    //   console.log("edit");
-    //   this.stockService.updateStock(this.stockForm.value)
-    //     .subscribe((res) => {
-    //       console.log(res)
-    //       if (res) {
-    //         this.dialogRef.close(res);
-    //       }
-    //     })
-    // } else {
-      console.log("create");
-      this.stockService.createStock(this.stockForm.value)
-        .subscribe(res => {
-          if (res) {
-            this.dialogRef.close(res);
-          }
-        })
-    }
-  // }
+    console.log("create");
+    this.stockService.createStock(this.stockForm.value)
+      .subscribe(res => {
+        if (res) {
+          this.dialogRef.close(res);
+        }
+      })
+  }
 
-  onCloe(){
+  onCloe() {
     this.dialogRef.close();
   }
 }
