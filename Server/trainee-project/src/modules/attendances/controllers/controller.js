@@ -134,13 +134,11 @@ exports.delete = (req, res) => {
 exports.search = function (req, res) {
     let searchText = req.query.query;
     let query = {
-
         $or: [
             { name: { $regex: `^${searchText}`, $options: "i" } },
             { lastname: { $regex: `^${searchText}`, $options: "i" } }
         ]
     };
-    console.log(query);
 
     Attendances.find(query, function (err, datas) {
         if (err) {
