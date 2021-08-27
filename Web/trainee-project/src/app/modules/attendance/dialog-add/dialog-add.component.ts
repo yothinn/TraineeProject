@@ -12,7 +12,7 @@ import { AttendanceService } from '../attendance.service';
 export class DialogAddComponent implements OnInit {
   userForm: FormGroup;
   employeeData;
-  srcImg: any ;
+  srcImg: any = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMx1itTXTXLB8p4ALTTL8mUPa9TFN_m9h5VQ&usqp=CAU";
   formData: any;
 
 
