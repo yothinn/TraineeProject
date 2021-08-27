@@ -42,6 +42,9 @@ export class TableComponent implements OnInit {
       this.tableData.sort((x, y) => - new Date(x.date) - -new Date(y.date));
       this.findsum(this.tableData);
       console.log(this.tableData)
+      // let selectedMembers = this.tableData.filter(
+      //   m => new Date(m.date) >= new Date() && new Date(m.date) <= new Date()
+      //   );
     });
     this.pettyCashService.onListChangedObservable$.subscribe((res: any) => {
       this.listData = res;

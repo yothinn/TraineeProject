@@ -9,7 +9,7 @@ var controller = require('../controllers/controller'),
     const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         console.log(file)
-        cb(null, './src/modules/tablelist/' + config.imageBill);
+        cb(null, './src/modules/tablelist/' + config.folderPettyCash);
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
