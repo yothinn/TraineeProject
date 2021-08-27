@@ -6,21 +6,23 @@
         <app-employeeprofile class="profile"></app-employeeprofile>
     </mat-drawer>
     <mat-drawer-container class="middle">
-        <div fxLayout="row">
-            <button (click)="leftSide.toggle()" class="button-left" fxLayoutAlign="start">
+        
+      
+            <button (click)="leftSide.toggle()" class="button-left" >
                 <mat-icon>
                     chevron_right
                 </mat-icon>
             </button>
-            <button (click)="rightSide.toggle()" class="button-right" fxLayoutAlign="end">
+            <button (click)="rightSide.toggle()" class="button-right" >
                 <mat-icon>
                     chevron_left
                 </mat-icon>
             </button>
-        </div>
+            
+      
         <form>
-            <button mat-button (click)="openDialog('new')">เพิ่มข้อมูลพนักงาน</button>
-            <button mat-button (click)="openDialogAttendance()">เข้างาน/ออกงาน</button>
+          <br><button  mat-raised-button color="primary" (click)="openDialog('new')">เพิ่มข้อมูลพนักงาน</button>
+        &nbsp;<button  mat-raised-button color="primary" (click)="openDialogAttendance()">เข้างาน/ออกงาน</button>
         </form>
 
         <app-employee-table></app-employee-table>
