@@ -34,8 +34,6 @@ export class StockListComponent implements OnInit, AfterViewInit {
 
   getStockList() {
     this.stockService.getProduct(this.currentPage).subscribe((res: any) => {
-      console.log(res);
-      console.log(this.currentPage);
       if (this.currentPage === 1) {
         this.productData = res.data;
         this.productList = this.productData;
@@ -71,20 +69,14 @@ export class StockListComponent implements OnInit, AfterViewInit {
 
   onScrollStock() {
     let scrollStock = fromEvent(this.stockRef.nativeElement, 'scroll').pipe(
-      // tap(n => console.log(n)),
       debounceTime(300),
       filter((v: any) => {
-        // console.log(v.target.scrollHeight,v.target.scrollTop,v.target.offsetHeight);
         let maxPos = v.target.scrollHeight;
         let curPos = v.target.scrollTop + v.target.offsetHeight;
-        console.log(curPos >= (maxPos - 10));
-        console.log(`maxPos : ${maxPos} cusPos: ${curPos}`);
         return (curPos >= (maxPos - 10));
       })
     );
-    console.log(scrollStock);
     scrollStock.subscribe((res: any) => {
-      console.log(res);
       this.currentPage++;
       this.getStockList();
     })
