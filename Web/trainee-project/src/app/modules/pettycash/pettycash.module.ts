@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { PettyCashComponent } from './pettyCash.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TableComponent } from './table/table.component';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MomentDateModule } from '@angular/material-moment-adapter';
+import { SumComponent } from './sum/sum.component';
+import { DialogCheckBillComponent } from './dialog-check-bill/dialog-check-bill.component';
 
 
 
@@ -21,11 +24,15 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [PettyCashComponent,ToolbarComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent],
+  declarations: [PettyCashComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent,SumComponent, DialogCheckBillComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MomentDateModule
+
   ]
 })
 export class PettyCashModule { }

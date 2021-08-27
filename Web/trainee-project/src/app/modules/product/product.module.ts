@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductDialogDetailsComponent } from './product-dialog-details/product-dialog-details.component';
 import { CategoriesDialogComponent } from './categories-dialog/categories-dialog.component';
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 const routes: Routes = [{
   path: '',
@@ -17,6 +17,7 @@ const routes: Routes = [{
   imports: [
     CommonModule,
     SharedModule,
+    MatTabsModule,
     RouterModule.forChild(routes)
   ]
 })

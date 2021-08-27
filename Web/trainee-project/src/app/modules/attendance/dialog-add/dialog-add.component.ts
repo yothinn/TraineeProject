@@ -12,6 +12,9 @@ import { AttendanceService } from '../attendance.service';
 export class DialogAddComponent implements OnInit {
   userForm: FormGroup;
   employeeData;
+  srcImg: any = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMx1itTXTXLB8p4ALTTL8mUPa9TFN_m9h5VQ&usqp=CAU";
+  formData: any;
+
 
 
   constructor(
@@ -28,13 +31,7 @@ export class DialogAddComponent implements OnInit {
       // console.log(res);
       this.employeeData = res;
     })
-    if (this.data._id) {
-      this.userForm = this.createForm(this.data);
-    } else {
-      this.data = {};
-      this.data.image = "https://img-premium.flaticon.com/png/512/1176/premium/1176381.png?token=exp=1629190815~hmac=a74c49ab6da8214076075a21b2e4201f";
-      this.userForm = this.createForm(this.data)
-    }
+      this.userForm = this.createForm(this.data); 
   }
 
   createForm(data) {
@@ -47,8 +44,7 @@ export class DialogAddComponent implements OnInit {
       tel: [data.tel],
       address: [data.address],
       age: [data.age],
-      nationality: [data.nationality],
-      religion: [data.religion],
+      jobPositions: [data.jobPositions],
       image: data.image
     });
   }
@@ -58,20 +54,21 @@ export class DialogAddComponent implements OnInit {
     if (this.data._id) {
       this.attendanceService.updateAttendance(this.userForm.value)
         .subscribe((res) => {
-          console.log(res)
+          console.log(res);
           if (res) {
-            this.dialogRef.close(res);
+            this.dialogRef.close();
           }
           window.location.reload();
         })
     } else {
+      console.log(this.userForm.value)
       this.attendanceService.createAttendance(this.userForm.value)
         .subscribe(res => {
           if (res) {
-            this.dialogRef.close(res);
+            this.dialogRef.close();
           }
         })
-        window.location.reload();
+      window.location.reload();
     }
   }
 
@@ -79,21 +76,47 @@ export class DialogAddComponent implements OnInit {
     this.dialogRef.close();
   };
 
+
   onFileUpload(event) {
     const file = event.target.files[0];
-    console.log(file);
-    const formData = new FormData();
-    formData.append('files', file);
-    this.attendanceService.uploadImageAttendance(formData)
-      .subscribe((res: any) => {
-        // console.log(res.data.url)
+
+    this.userForm.get('image').updateValueAndValidity()
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.srcImg = reader.result as string;
+      
+    }
+    reader.readAsDataURL(file)
+
+    const form = new FormData();
+    form.append('files', file);
+    this.formData = form;
+    console.log(this.formData);
+    this.attendanceService.uploadImageAttendance(this.formData)
+      .subscribe((res) => {
         this.userForm.patchValue({
           image: res.data.url
-        });
-        console.log(this.userForm)
-        this.data.image = res.data.url;
-      });
+        })
+        console.log(res.data.url)
+      })
+
   }
 }
 
 
+// onFileUpload(event) {
+//     const file = event.target.files[0];
+//     console.log(file);
+//     const formData = new FormData();
+//     formData.append('files', file);
+//     this.attendanceService.uploadImageAttendance(formData)
+//       .subscribe((res: any) => {
+//         console.log(res.data.url)
+//         this.userForm.patchValue({
+//           image: res.data.url
+//         });
+//         console.log(this.userForm)
+//         this.data.image = res.data.url;
+//       });
+//     }
+//   }

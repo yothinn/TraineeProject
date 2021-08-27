@@ -5,4 +5,6 @@ module.exports = {
     folderName : "uploadAttendance"
     ,
     uploadImageProduct : "uploadImageProduct"
+    ,
+    folderPettyCash : "imageBill"
 }

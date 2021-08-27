@@ -6,14 +6,13 @@ var Schema = mongoose.Schema;
 
 var DatetimeSchema = new Schema({
     employeeId: {
-        type: String,
-       
+        type: String,    
     },
     date: {
-        type: String,
+        type: String,  
     },
-    timeIn: {
-        type: String,
+    time: {
+        type: Date,  
     },
     work: {
         type: String,

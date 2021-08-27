@@ -11,7 +11,10 @@ import { EmployeeTableComponent } from './employee-table/employee-table.componen
 import { DialogAddComponent } from './dialog-add/dialog-add.component';
 import { AttendanceDialogComponent } from './attendance-dialog/attendance-dialog.component';
 import { MatTimepickerModule } from 'mat-timepicker';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MomentDateModule } from '@angular/material-moment-adapter';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 
 const routes: Routes = [
@@ -31,7 +34,11 @@ const routes: Routes = [
     MatCardModule,
     MatIconModule,
     SharedModule,
-    MatTimepickerModule
+    MatTimepickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MomentDateModule,
+    NgxMaterialTimepickerModule
     
   ]
 })

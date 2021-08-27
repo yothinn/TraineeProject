@@ -1,6 +1,6 @@
 <mat-drawer-container class="stock-container">
     <mat-drawer fxLayout="column" class="stock-left-panel" mode="side" opened="true" position="start">
-        <app-stock-list ></app-stock-list>
+        <app-stock-list></app-stock-list>
     </mat-drawer>
     <mat-drawer-content class="stock-content-panel" fxLayout="column">
         <div fxLayout="column" fxFlexFill>
@@ -8,13 +8,14 @@
                 <mat-toolbar class="mat-toolbar-left">
                     <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
                         <div fxLayoutAlign="start center">
-                                <button mat-flat-button color="primary" (click)="openStockManageDialog(listData)">จัดการสต๊อกสินค้า</button>
+                            <button mat-flat-button color="primary" [disabled]="!listData"
+                                (click)="openStockManageDialog(listData)">จัดการสต๊อกสินค้า</button>
                         </div>
                         <div>
                             <span style="padding-right: 15px;">ค้นหาตามช่วงเวลา</span>
                             <mat-form-field appearance="legacy">
                                 <mat-label>Enter a date range</mat-label>
-                                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                                <mat-date-range-input [formGroup]="range" #dateFill [rangePicker]="picker">
                                     <input matStartDate formControlName="start" placeholder="Start date">
                                     <input matEndDate formControlName="end" placeholder="End date">
                                 </mat-date-range-input>
@@ -27,15 +28,21 @@
                             </mat-form-field>
                             <button mat-button (click)="onChooseDate()">ค้นหา</button>
                         </div>
+                        <div style="padding-right: 15px;">
+                            <label>จำนวนสินค้าสุทธิ: {{totalResult}} ชิ้น</label>
+                        </div>
                         <div>
-                            <button mat-flat-button color="primary">
+                            <button (click)="onConclude()" mat-flat-button color="primary">
                                 <label>สรุปรายการสินค้า</label>
                             </button>
                         </div>
                     </div>
                 </mat-toolbar>
             </div>
-            <app-stock-table></app-stock-table>
+            <div class="stock-table">
+                <app-stock-table></app-stock-table>
+            </div>
+
         </div>
     </mat-drawer-content>
 </mat-drawer-container>

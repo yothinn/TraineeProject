@@ -2,14 +2,15 @@
   <mat-card>
   <a><B>รหัสพนักงาน:</B> {{employeeData?.employeeId}}</a><br>
   <a><B>ชื่อ:</B> {{employeeData?.name}} {{employeeData?.lastname}}</a><br>
-  <a><B>เบอร์โทร:</B> {{employeeData?.tel}}</a>
+  <a><B>โทร:</B> {{employeeData?.tel}}</a>
 
   </mat-card>
   <p></p>
 </header>
 
-
+<div class="center"  style="overflow: auto; height: 55vh;">
 <div align="center" fxLayout="row"  class="padding">
+
 
   <div fxFlex="5" class="padding">
     <ng-container matColumnDef="No">
@@ -36,35 +37,40 @@
     <ng-container class="padding" matColumnDef="เวลาเข้างาน">
       <th mat-header-cell class="textField">เข้างาน</th><br>
       <mat-divider class="padding"></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dataSource">  {{item.timeIn |date:"h:mm a"}}
+      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeInData">  {{item.time |date:"h:mm a"}}
         <mat-divider></mat-divider>
       </td>
     </ng-container>
   </div>
 
   <div class="padding">
-    <ng-container class="padding" matColumnDef="เวลาเข้างาน">
+    <ng-container class="padding" matColumnDef="เวลาออกงาน">
       <th mat-header-cell class="textField">ออกงาน</th><br>
       <mat-divider class="padding"></mat-divider>
-      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeDataOut">  {{item.timeIn |date:"h:mm a"}}
+      <td fxLayout="column" mat-cell *ngFor="let item of dateTimeOutData">{{item.time |date:"h:mm a"}}
         <mat-divider ></mat-divider>
       </td>
     </ng-container>
   </div>
 
+  <div class="padding">
+    <ng-container class="padding" matColumnDef="ระยะเวลาทำงาน">
+      <th mat-header-cell class="textField">ระยะเวลาทำงาน</th><br>
+      <mat-divider class="padding"></mat-divider>
+      <td fxLayout="column" mat-cell >
+        <mat-divider ></mat-divider>
+      </td>
+    </ng-container>
+  </div>
 </div> 
-<!-- <button (click)="filter()"></button> -->
-
-
-
+</div>
 <mat-paginator #paginator 
  [pageSize]="pageSize" 
- [pageSizeOptions]="[1, 10, 15]"
+ [pageSizeOptions]="[5, 10, 15]"
  [showFirstLastButtons]="true"
  [length]="totalSize"
  [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
-</mat-paginator>
+</mat-paginator>   
 
 
- 
  

@@ -1,11 +1,15 @@
 .padding{
     width: 100%;
-    border: 0.5px solid rgb(3, 3, 3);
+    border: 0.01px solid rgb(92, 89, 89);
   }
 .textField{
     font-size: 15px;
-    color: black;
+    color: rgb(0, 0, 0);
     padding-top: 10px;
+}
+.center{
+  height: 50vh;
+  overflow: auto;
 }
 
 

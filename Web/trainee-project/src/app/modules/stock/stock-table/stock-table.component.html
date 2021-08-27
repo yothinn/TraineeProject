@@ -1,82 +1,56 @@
-<div fxLayout="column">
-        <!-- <div fxLayoutAlign="start center" fxLayout="column" class="padding">
-                <ng-container matColumnDef="วัน-เวลา">
-                        <th mat-header-cell> วัน-เวลา </th>
-                        <td style="padding-top: 15px;" mat-cell *ngFor="let item of productData">
-                                {{item?.created |
-                                date:"dd/MM/yy"}}
-                        </td>
-                </ng-container>
-        </div>
-        <div fxLayoutAlign="start center" fxLayout="column" class="padding">
-                <ng-container matColumnDef="ชื่อสินค้า">
-                        <th mat-header-cell> ชื่อสินค้า </th>
-                        <td style="padding-top: 15px;"  mat-cell *ngFor="let item of productData">
+<div style="overflow: auto; height: 78vh;" >
+        <div fxLayout="column">
+                <header>
+                        <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
+                                <p>
+                                        วัน-เวลา
+                                </p>
+                        </div>
+                        <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
+                                <p>
+                                        ชื่อสินค้า
+                                </p>
+                        </div>
+                        <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
+                                <p>
+                                        จำนวนสินค้านำเข้า
+                                </p>
+                        </div>
+                        <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
+                                <p>
+                                        จำนวนสินค้านำออก
+                                </p>
+                        </div>
+                </header>
+
+                <div fxLayout="row" *ngFor="let item of productData" fxFlex>
+                        <div class="footer" fxLayoutAlign="start center " fxFlex>
+                                {{item?.created | date:'dd/MM/yyyy'}}
+                        </div>
+                        <hr>
+                        <div class="footer" fxLayoutAlign="start center " fxFlex>
                                 {{item?.productName}}
-                        </td>
-                </ng-container>
+                        </div>
+                        <hr>
+                        <!-- *ngIf="item.total === 'นำเข้า'" -->
+                        <div class="footer" fxLayoutAlign="start center " fxFlex>
+                                <p style="color: green;" *ngIf="item.status === 'นำเข้า'">
+                                        {{item?.total}}
+                                </p>
+
+                        </div>
+                        <hr>
+                        <div class="footer" fxLayoutAlign="start center " fxFlex>
+                                <p style="color: red;" *ngIf="item.status === 'นำออก'">
+                                        {{item?.total}}
+                                </p>
+                        </div>
+
+                </div>
+
         </div>
-        <div fxLayoutAlign="start center" fxLayout="column" class="padding">
-                <ng-container matColumnDef="จำนวนสินค้า">
-                        <th mat-header-cell> จำนวนสินค้า </th>
-                        <td style="padding-top: 15px;"  mat-cell *ngFor="let item of productData">
-                                {{item?.total}}
-                        </td>
-
-                </ng-container>
-        </div>
-        <div fxLayoutAlign="start center" fxLayout="column" class="padding">
-                <ng-container matColumnDef="สถานะสินค้า">
-                        <th mat-header-cell> สถานะสินค้า </th>
-                        <td style="padding-top: 15px;"  mat-cell *ngFor="let item of productData">
-                                {{item?.status}}
-                        </td>
-
-                </ng-container>
-        </div> -->
-
-        <header >
-                <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
-                        <p>
-                                วัน-เวลา
-                        </p>
-                </div>
-                <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
-                        <p>
-                                ชื่อสินค้า
-                        </p>
-                </div>
-                <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
-                        <p>
-                                จำนวนสินค้า
-                        </p>
-                </div>
-                <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
-                        <p>
-                                สถานะสินค้า
-                        </p>
-                </div>
-        </header>
-
-        <div fxLayout="row"  *ngFor="let item of productData" fxFlex>
-                <div class="footer" fxLayoutAlign="start center " fxFlex>
-                        {{item?.created | date}}
-                </div>
-                <hr>
-                <div class="footer" fxLayoutAlign="start center " fxFlex>
-                        {{item?.productName}}
-                </div>
-                <hr>
-                <div class="footer" fxLayoutAlign="start center " fxFlex>
-                        {{item?.total}}
-                </div>
-                <hr>
-                <div class="footer" fxLayoutAlign="start center " fxFlex>
-                        {{item?.status}}
-                </div>
-        </div>
-
 </div>
-<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[2, 4, 20]" [showFirstLastButtons]="true"
+
+<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"
         [length]="totalSize" [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
 </mat-paginator>

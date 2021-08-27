@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
     Tablelist = mongoose.model('Tablelist'),
     errorHandler = require('../../core/controllers/errors.server.controller'),
     _ = require('lodash');
-
+    const config = require('../../../config/config');
+    
 exports.getList = function (req, res) {
     var pageNo = parseInt(req.query.pageNo);
     var size = parseInt(req.query.size);
@@ -121,3 +122,13 @@ exports.delete = function (req, res) {
         };
     });
 };
+exports.uploads = (req, res) => {
+    const url = req.protocol + '://' + req.headers.host + '/src/modules/tablelist/' + config.folderPettyCash + '/';
+    req.file.url = url + req.file.filename;
+    console.log("pass");
+    console.log(req.file.url);
+    console.log(req.file);
+    res.jsonp({
+        data: req.file
+    });
+}
