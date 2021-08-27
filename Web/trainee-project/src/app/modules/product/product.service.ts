@@ -10,6 +10,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getProductData():Observable<any> {
+    // console.log(pageNo,size);
     return this.http.get('http://localhost:3000/api/products');
   }
 
@@ -54,5 +55,12 @@ export class ProductService {
     console.log(file);
     return this.http.post(`http://localhost:3000/api/products/uploads`, file);
   }
+
+  importFileProduct(file): Observable<any> {
+    console.log(file);
+    return this.http.post(`http://localhost:3000/api/products/imports/file`, file);
+  }
+  
+  
 
 }

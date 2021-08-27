@@ -5,8 +5,9 @@ var mongoose = require('mongoose'),
     Products = mongoose.model('Products'),
     errorHandler = require('../../core/controllers/errors.server.controller'),
     _ = require('lodash');
-    const config = require('../../../config/config');
-    
+const config = require('../../../config/config');
+const readXlsxFile = require('read-excel-file/node');
+
 exports.getList = function (req, res) {
     var pageNo = parseInt(req.query.pageNo);
     var size = parseInt(req.query.size);
@@ -23,7 +24,6 @@ exports.getList = function (req, res) {
     query.skip = size * (pageNo - 1);
     query.limit = size;
     Products.find(req.query, {}, query, function (err, datas) {
-        console.log(req.query)
         if (err) {
             return res.status(400).send({
                 status: 400,
@@ -128,13 +128,12 @@ exports.search = function (req, res) {
     let searchText = req.query.query;
     let query = {
 
-        productName: { $regex: `^${searchText}`}
+        productName: { $regex: `^${searchText}` }
         // $or: [
         //     { productName: { $regex: `^${searchText}`, $options: "i" } }
         //     { lastName: { $regex: `^${searchText}`, $options: "i" } }
         // ]
     };
-    console.log(query);
 
     Products.find(query, function (err, datas) {
         if (err) {
@@ -143,7 +142,6 @@ exports.search = function (req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            // console.log(datas);
             res.jsonp({
                 status: 200,
                 data: datas
@@ -155,11 +153,48 @@ exports.search = function (req, res) {
 exports.uploads = (req, res) => {
     const url = req.protocol + '://' + req.headers.host + '/src/modules/products/' + config.uploadImageProduct + '/';
     req.file.url = url + req.file.filename;
-    console.log("pass");
-    console.log(req.file.url);
-    console.log(req.file);
     res.jsonp({
         data: req.file
     });
 }
+
+exports.import = (req, res) => {
+    
+    readXlsxFile(req.file.path).then((rows) => {
+        rows.shift()
+        rows.forEach(row => {
+                let dataTest = {
+                productId:row[0],
+                productName:row[1],
+                type:row[2],
+                price:row[3],
+                count:row[4],
+                description:row[5]
+            };
+            console.log(dataTest);
+            //  test.push(dataTest)
+            var newProducts = new Products(dataTest);
+            newProducts.save(function (err, data) {
+                 console.log(data);
+                //  if (err) {
+                //     return res.status(400).send({
+                //         status: 400,
+                //         message: errorHandler.getErrorMessage(err)
+                //     });
+                // } else {
+                //     res.jsonp({
+                //         status: 200,
+                //         data: data
+                //     });
+                   
+                // };
+                
+            });
+        });
+        // console.log(test)
+    })
+}
+
+
+
 
