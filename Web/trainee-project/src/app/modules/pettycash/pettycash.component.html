@@ -11,7 +11,7 @@
             </mat-form-field>
           </mat-toolbar>
           <mat-divider></mat-divider>
-          <div class="card-overflow" *ngFor="let item of filterList; let i = index;" class="customer" align="center">
+          <div class="card-overflow" *ngFor="let item of pettyCashData; let i = index;" class="customer" align="center">
             <mat-card class="card-customer" (click)="onClick(item)">
               <div fxLayout="row" fxLayoutAlign="space-between stretch">
                 <a class="size-name">

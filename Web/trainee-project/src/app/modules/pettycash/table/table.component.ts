@@ -5,6 +5,7 @@ import { PettyCashService } from '../pettyCash.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Element } from '@angular/compiler';
+import { DialogCheckBillComponent } from '../dialog-check-bill/dialog-check-bill.component';
 
 
 
@@ -62,7 +63,15 @@ export class TableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
     );
   }
-
+  openDialogBill(data): void {
+    const dialogRef = this.dialog.open(DialogCheckBillComponent, {
+      width: "560px",
+      height: "550px",
+      data:data
+    });
+    dialogRef.afterClosed().subscribe(
+    );
+  }
   handlePage(pagin: any): void {
     this.currentPage = pagin.pageIndex;
     this.pageSize = pagin.pageSize;

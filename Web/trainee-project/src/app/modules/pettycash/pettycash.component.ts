@@ -34,9 +34,6 @@ export class PettyCashComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.pettyCashService.getList().subscribe((res: any) => {
       this.pettyCashData = res.data;
-      this.filterList = this.pettyCashData.filter(res => {
-        return res.lastName;
-      });
     });
     // this.getArray();
   }
