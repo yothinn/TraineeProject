@@ -64,13 +64,13 @@ export class TableComponent implements OnInit {
     );
   }
   openDialogBill(data): void {
+    this.pettyCashService.getImage(data) ;
     const dialogRef = this.dialog.open(DialogCheckBillComponent, {
-      width: "560px",
+      width: "600px",
       height: "550px",
       data:data
     });
-    dialogRef.afterClosed().subscribe(
-    );
+    dialogRef.afterClosed().subscribe();
   }
   handlePage(pagin: any): void {
     this.currentPage = pagin.pageIndex;

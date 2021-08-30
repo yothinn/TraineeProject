@@ -33,9 +33,10 @@ export class AddItemDialogComponent implements OnInit {
   pettyCashData: any;
   tableData: any;
   type: any;
-  readioSelectedDeposit: boolean =true;
+  readioSelectedDeposit: boolean = true;
   readioSelectedWithdraw: boolean;
   filterData: [];
+  formData: any;
 
 
   constructor(private pettyCashService: PettyCashService, private fb: FormBuilder,
@@ -45,15 +46,10 @@ export class AddItemDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.data.lastName) {
-      this.customerForm = this.createList(this.data);
-    } else {
-      this.data.image = {};
-      this.customerForm = this.createList(this.data);
-    }
+    this.customerForm = this.createList(this.data);
     this.setvalue();
-    this.pettyCashService.getTable().subscribe((res:any)=>{
-      this.tableData=res.data
+    this.pettyCashService.getTable().subscribe((res: any) => {
+      this.tableData = res.data
       this.filterData = this.tableData.filter(res => {
         return res.locationUse;
       });
@@ -86,8 +82,6 @@ export class AddItemDialogComponent implements OnInit {
       this.tableData = res.data;
       if (res) {
         this.dialogRef.close(res);
-      }else{
-        this.onFileUpload(event);
       }
     });
     window.location.reload();
@@ -97,25 +91,25 @@ export class AddItemDialogComponent implements OnInit {
     this.readioSelectedDeposit = true;
     this.readioSelectedWithdraw = false;
   }
-  onSelectWithdraw(){
+  onSelectWithdraw() {
     this.readioSelectedDeposit = false;
     this.readioSelectedWithdraw = true;
 
   }
-  
+
   onFileUpload(event) {
     const file = event.target.files[0];
-    console.log(file);
-    const formData = new FormData();
-    formData.append('files', file);
-    this.pettyCashService.uploadImage(formData)
-      .subscribe((res: any) => {
-        console.log(res.data.url)
+    this.customerForm.get('image').updateValueAndValidity()
+    const form = new FormData();
+    form.append('files', file);
+    this.formData = form;
+    console.log(this.formData);
+    this.pettyCashService.uploadImage(this.formData)
+      .subscribe((res) => {
         this.customerForm.patchValue({
           image: res.data.url
-        });
-        console.log(this.customerForm)
-        this.data.image = res.data.url;
-      });
+        })
+        console.log(res.data.url)
+      })
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddItemDialogComponent } from '../add-item-dialog/add-item-dialog.component';
 import { PettyCashService } from '../pettyCash.service';
@@ -12,6 +12,7 @@ import { PettyCashService } from '../pettyCash.service';
 export class DialogCheckBillComponent implements OnInit {
   tableData: any;
   filterData: [];
+  customerForm: FormGroup;
 
   constructor(
     private pettyCashService: PettyCashService,
@@ -21,10 +22,12 @@ export class DialogCheckBillComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pettyCashService.getTable().subscribe((res: any) => {
-      this.tableData = res.data
+    this.pettyCashService.onImageChangedObservable$.subscribe((res: any) => {
+      this.tableData = res;
       console.log(this.tableData)
+      // this.filterData = this.tableData.filter(res)
+      // return res.image;
     });
+    
   }
-
 }
