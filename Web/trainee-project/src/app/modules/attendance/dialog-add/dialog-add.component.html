@@ -3,14 +3,15 @@
         <mat-icon>close</mat-icon>
     </button>
 </div>
-<div fxLayout="row">
-    <mat-card (click)="fileUpload.click()" class="card">
-        <p class="addimage">Add Image</p>
-        <img class="img" [src]="data.image">
-    </mat-card>
+<form [formGroup]="userForm">
+    <div fxLayout="row">
+        <mat-card (click)="fileUpload.click()" class="card">
+            <p class="addimage">Add Image</p>
+            <img class="img" [src]="srcImg">
+        </mat-card>
 
-    <mat-card fxLayout="column" class="card-menu">
-        <form [formGroup]="userForm">
+        <mat-card fxLayout="column" class="card-menu">
+
             <input type="file" #fileUpload (change)="onFileUpload($event)" hidden />
             <div>
                 <mat-form-field class="id">
@@ -43,12 +44,12 @@
                 </div>
             </div>
 
-            <div  fxLayout="row">
+            <div fxLayout="row">
                 <div>
                     <mat-form-field class="age">
                         <input matInput formControlName="age" placeholder="อายุ">
                     </mat-form-field>
-                
+
                     <mat-form-field class="jobPositions">
                         <input matInput formControlName="jobPositions" placeholder="ตำแหน่ง">
                     </mat-form-field>
@@ -65,9 +66,9 @@
                 </div>
             </div>
 
-            
+
 
             <button mat-raised-button (click)="onSubmit()"> Update Profile</button>
-        </form>
-    </mat-card>
-</div>
+        </mat-card>
+    </div>
+</form>

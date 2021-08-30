@@ -87,6 +87,7 @@
   height: 5vh;
   padding-left: 20px;
   padding-right: 20px;
+  border:1px solid gray;
   
 }
 .font-type{
@@ -100,4 +101,18 @@
 .content{
     height:516px;
     overflow: auto;
+}
+
+.table-width{
+    width: 1300px;}
+
+.footer-end{
+    height: 5vh;
+    padding-left: 20px;
+    border:1px solid gray;
+    
+}
+
+.button-add-product{
+    margin-right: 30px;
 }
