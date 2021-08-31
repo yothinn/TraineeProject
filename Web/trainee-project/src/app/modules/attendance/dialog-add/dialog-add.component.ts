@@ -12,7 +12,7 @@ import { AttendanceService } from '../attendance.service';
 export class DialogAddComponent implements OnInit {
   userForm: FormGroup;
   employeeData;
-  srcImg: any = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMx1itTXTXLB8p4ALTTL8mUPa9TFN_m9h5VQ&usqp=CAU";
+  srcImg: any;
   formData: any;
 
 
@@ -31,7 +31,17 @@ export class DialogAddComponent implements OnInit {
       // console.log(res);
       this.employeeData = res;
     })
+    if (this.data?._id) {
+      this.userForm = this.createForm(this.data);
+      this.srcImg = this.data.image
+    } else {
+      console.log(this.data)
+      this.data = {};   
+      this.srcImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMx1itTXTXLB8p4ALTTL8mUPa9TFN_m9h5VQ&usqp=CAU"                        //if (this.data == null) เช็ค null เเล้ว เซ้คให้เป็นค่าว่างก่อนส่งเข้า function
+      console.log(this.data);
       this.userForm = this.createForm(this.data); 
+    }
+      // this.userForm = this.createForm(this.data); 
   }
 
   createForm(data) {
@@ -80,12 +90,12 @@ export class DialogAddComponent implements OnInit {
   onFileUpload(event) {
     const file = event.target.files[0];
 
-    this.userForm.get('image').updateValueAndValidity()
+    this.userForm.get('image').updateValueAndValidity();
     const reader = new FileReader();
     reader.onload = () => {
       this.srcImg = reader.result as string;
       
-    }
+    };
     reader.readAsDataURL(file)
 
     const form = new FormData();
@@ -97,7 +107,9 @@ export class DialogAddComponent implements OnInit {
         this.userForm.patchValue({
           image: res.data.url
         })
-        console.log(res.data.url)
+        console.log(res.data.url);
+        
+      
       })
 
   }
