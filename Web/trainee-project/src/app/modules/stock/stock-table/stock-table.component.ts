@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { element, EventEmitter } from 'protractor';
@@ -11,6 +11,7 @@ import { StockService } from '../stock.service';
 })
 export class StockTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @Input('dateFill') dataDate ;
   // @Output() findsum = new EventEmitter();
   pageEvent: any;
   array: any;
@@ -25,6 +26,7 @@ export class StockTableComponent implements OnInit {
   constructor(private stockService: StockService) { }
 
   ngOnInit(): void {
+    console.log(this.dataDate);
     this.stockService.onDataChangedObservable$
       .subscribe((res) => {
         this.productData = res;

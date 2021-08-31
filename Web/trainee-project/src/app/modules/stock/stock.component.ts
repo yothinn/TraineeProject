@@ -1,48 +1,19 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { StockService } from './stock.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { StockManageDialogComponent } from './stock-manage-dialog/stock-manage-dialog.component';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-stock',
   templateUrl: './stock.component.html',
   styleUrls: ['./stock.component.scss'],
+  providers: [DatePipe]
 })
 export class StockComponent implements OnInit {
-  @ViewChild('picker') dateFill: ElementRef;
-  date: any = [
-    {
-      "id": 1,
-      "name": "Jack",
-      "date": "01-06-2017"
-    },
-    {
-      "id": 1,
-      "name": "Jack",
-      "date": "30-06-2017"
-    },
-    {
-      "id": 1,
-      "name": "Jack",
-      "date": "15-06-2017"
-    },
-    {
-      "id": 2,
-      "name": "Allen",
-      "date": "07-08-2017"
-    },
-    {
-      "id": 3,
-      "name": "Annie",
-      "date": "22-11-2017"
-    },
-  ]
-  dstart = "01-06-2017";
-  dend = "18-06-2017";
 
   totalAmountIn: any;
   totalAmountOut: any;
@@ -57,17 +28,11 @@ export class StockComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private stockService: StockService,
+    private datePipe: DatePipe,
     public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
-
-    let selectedMembers = this.date.filter(
-      m => new Date(m.date) >= new Date(this.dstart) && new Date(m.date) <= new Date(this.dend)
-    );
-
-    console.log(selectedMembers);
-
     this.stockService.onDataChangedObservable$
       .subscribe((res) => {
         this.listData = res;
@@ -76,25 +41,23 @@ export class StockComponent implements OnInit {
         } else {
           this.totalResult = 0
         }
-
-
       });
 
   }
 
 
 
-
   onChooseDate(): void {
     let date;
-    date = this.range.value
-    
-    console.log(date.start);
-    // let dateStart = date.stert
-    // let dateEnd = date.end
-    // this.stockService.getProductByDate(date.start).subscribe((res: any) => {
-    //   // console.log(res);
-    // });
+    date = this.range.value;
+    let datestart = this.datePipe.transform(date.start, 'yyyy-MM-dd')
+    let dateend = this.datePipe.transform(date.end, 'yyyy-MM-dd')
+    let data = this.listData.filter(res => {
+      return res.created = this.datePipe.transform(res.created, 'yyyy-MM-dd')
+    })
+    let dateFill = data.filter(res => {
+      return res.created >= datestart && res.created <= dateend
+    })
   }
 
   openStockManageDialog(dataProduct?: any): void {
