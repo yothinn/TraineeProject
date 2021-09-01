@@ -29,6 +29,12 @@ var ProductsSchema = new Schema({
     description: {
         type: String,
     },
+    description: {  //นำเข้า
+        type: Number,
+    },
+    description: { //นำออก
+        type: Number,
+    },
     image:{
         type: String,
     },

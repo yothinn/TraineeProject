@@ -25,6 +25,7 @@ export class EmployeeProfileComponent implements OnInit {
       this.attendanceService.onDataChangedObservable$.subscribe((res: any) => {
         // console.log(res)
       });
+      
   });
      
 }

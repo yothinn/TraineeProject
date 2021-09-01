@@ -163,7 +163,7 @@ exports.import = (req, res) => {
     readXlsxFile(req.file.path).then((rows) => {
         rows.shift()
         rows.forEach(row => {
-                let dataTest = {
+                let dataProduct = {
                 productId:row[0],
                 productName:row[1],
                 type:row[2],
@@ -171,9 +171,9 @@ exports.import = (req, res) => {
                 count:row[4],
                 description:row[5]
             };
-            console.log(dataTest);
+            console.log(dataProduct);
             //  test.push(dataTest)
-            var newProducts = new Products(dataTest);
+            var newProducts = new Products(dataProduct);
             newProducts.save(function (err, data) {
                  console.log(data);
                 //  if (err) {
