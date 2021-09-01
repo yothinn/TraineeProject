@@ -10,9 +10,8 @@ import { PettyCashService } from '../pettyCash.service';
   styleUrls: ['./dialog-check-bill.component.scss']
 })
 export class DialogCheckBillComponent implements OnInit {
-  tableData: any;
+  imageData: any ;
   filterData: [];
-  customerForm: FormGroup;
 
   constructor(
     private pettyCashService: PettyCashService,
@@ -23,10 +22,8 @@ export class DialogCheckBillComponent implements OnInit {
 
   ngOnInit(): void {
     this.pettyCashService.onImageChangedObservable$.subscribe((res: any) => {
-      this.tableData = res;
-      console.log(this.tableData)
-      // this.filterData = this.tableData.filter(res)
-      // return res.image;
+      this.imageData = res;
+      console.log(this.imageData)
     });
     
   }

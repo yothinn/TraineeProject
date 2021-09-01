@@ -90,11 +90,12 @@ export class AddItemDialogComponent implements OnInit {
   onSelectDeposit() {
     this.readioSelectedDeposit = true;
     this.readioSelectedWithdraw = false;
+    this.setvalue();
   }
   onSelectWithdraw() {
     this.readioSelectedDeposit = false;
     this.readioSelectedWithdraw = true;
-
+    this.setvalue();
   }
 
   onFileUpload(event) {

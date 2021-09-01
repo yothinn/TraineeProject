@@ -9,7 +9,6 @@ import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.compon
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MomentDateModule } from '@angular/material-moment-adapter';
-import { SumComponent } from './sum/sum.component';
 import { DialogCheckBillComponent } from './dialog-check-bill/dialog-check-bill.component';
 
 
@@ -24,7 +23,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [PettyCashComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent,SumComponent, DialogCheckBillComponent],
+  declarations: [PettyCashComponent, TableComponent, AddUserDialogComponent,AddItemDialogComponent, DialogCheckBillComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

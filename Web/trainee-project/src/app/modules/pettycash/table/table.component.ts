@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Element } from '@angular/compiler';
 import { DialogCheckBillComponent } from '../dialog-check-bill/dialog-check-bill.component';
+import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.component';
 
 
 
@@ -30,6 +31,7 @@ export class TableComponent implements OnInit {
   tableData: any;
   value: any;
   sumData: any;
+  pettyCashData: any;
 
 
   constructor(
@@ -56,7 +58,7 @@ export class TableComponent implements OnInit {
   }
   openDialog(data): void {
     const dialogRef = this.dialog.open(AddItemDialogComponent, {
-      width: "400px",
+      width: "600px",
       data: data
 
     });
@@ -64,14 +66,29 @@ export class TableComponent implements OnInit {
     );
   }
   openDialogBill(data): void {
-    this.pettyCashService.getImage(data) ;
+    this.pettyCashService.getImage(data);
     const dialogRef = this.dialog.open(DialogCheckBillComponent, {
       width: "600px",
       height: "550px",
-      data:data
+      data: data
+
     });
     dialogRef.afterClosed().subscribe();
   }
+  openDialogAddUser(data): void {
+    const dialogRef = this.dialog.open(AddUserDialogComponent, {
+      width: "400px",
+      data: data
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.pettyCashService.getList().subscribe((res: any) => {
+          this.pettyCashData = res;
+        });
+      }
+    });
+  }
+
   handlePage(pagin: any): void {
     this.currentPage = pagin.pageIndex;
     this.pageSize = pagin.pageSize;
@@ -101,13 +118,8 @@ export class TableComponent implements OnInit {
   findsum(data) {
     this.RaisedAmount = 0;
     this.value = data;
-    for (let j = 0; j < data.length; j++) {
-      if (this.value[j].deposit) {
-        this.RaisedAmount += this.value[j].deposit;
-      } else {
-        this.RaisedAmount -= this.value[j].withdraw;
-      }
-    }
+    this.value.forEach(a => this.RaisedAmount += a.deposit - a.withdraw);
+    console.log(this.RaisedAmount);
   }
 
 }

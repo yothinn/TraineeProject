@@ -1,16 +1,13 @@
 
 mat-drawer-container{
     
-    height: 92%;
-    border: solid rgb(156, 156, 156) 0.5px;
+    height: 100%;
+    border: solid rgb(56, 56, 56) 0.5px;
 
     mat-drawer{
         width: 20%;
         border: solid rgb(156, 156, 156) 0.5px;
     }
-}
-.button-customer{
-    margin-left: 7%;
 }
 .button-listSummary{
     margin-left: 80%;
@@ -48,7 +45,7 @@ mat-drawer-container{
     background: white;
 }
 .example-box {
-    height: 590px;
+    height: 610px;
     width: 100%;
 }
 .tableList{
