@@ -18,7 +18,13 @@
                     <label class="form"> รหัสสินค้า:</label>
                     <mat-form-field>
                         <mat-label>รหัสสินค้า</mat-label>
-                        <input matInput formControlName="productId" name="name">
+                        <input matInput formControlName="productId"[matAutocomplete]="auto" name="name">
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getByProductId($event.option)'>
+                            <mat-option *ngFor="let option of productList" [value]="option.productId">
+                                <span>{{option.productId}}</span>|
+                                <small>{{option.productName}}</small>
+                            </mat-option>
+                          </mat-autocomplete>
                     </mat-form-field>
                 </div>
                 <div fxLayout="row" fxFlex>

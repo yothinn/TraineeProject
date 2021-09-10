@@ -13,12 +13,22 @@ export class PettyCashService {
   private onListChanged$ = new Subject();
   public onListChangedObservable$ = this.onListChanged$.asObservable();
 
+  private onImageChanged$ = new Subject();
+  public onImageChangedObservable$ = this.onImageChanged$.asObservable();
+
   constructor(private http: HttpClient) { }
 
   getTableById(id: any): void {
     this.http.get(`http://localhost:3000/api/tableLists?lastName=${id}`)
       .subscribe((res: any) => {
         this.onTableChanged$.next(res.data);
+      })
+  }
+  getImage(id: any): void {
+    console.log(id)
+    this.http.get(`http://localhost:3000/api/tableLists/${id._id}`)
+      .subscribe((res: any) => {
+        this.onImageChanged$.next(res.data);
       })
   }
   getListById(id: any): void {

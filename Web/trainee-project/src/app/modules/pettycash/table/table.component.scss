@@ -18,7 +18,8 @@
   margin-top: auto;
 }
 .button-add{
-  margin-left: 40%;
+  margin-left: 1%;
+  background: rgb(236, 236, 236);
 }
 .negative{
   color: red;
@@ -27,7 +28,7 @@
   width: 100;
 }
 .tableList{
-  height:71%;
+  height: 63%;
   overflow: auto;
 }
 .padding-date{
@@ -54,4 +55,11 @@
 }
 .content{
   border: solid 1px rgb(143, 143, 143);
+}
+
+.marginDate{
+  height: 7vh;
+}
+.color-button{
+  background: rgb(236, 236, 236);
 }

@@ -11,7 +11,7 @@
             </mat-form-field>
           </mat-toolbar>
           <mat-divider></mat-divider>
-          <div class="card-overflow" *ngFor="let item of filterList; let i = index;" class="customer" align="center">
+          <div class="card-overflow" *ngFor="let item of pettyCashData; let i = index;" class="customer" align="center">
             <mat-card class="card-customer" (click)="onClick(item)">
               <div fxLayout="row" fxLayoutAlign="space-between stretch">
                 <a class="size-name">
@@ -46,9 +46,6 @@
           <app-table></app-table>
         </mat-drawer-content>
       </mat-drawer-container>
-      <form>
-        <button class="button-customer" mat-button (click)="openDialog('new')">เพิ่มผู้ใช้</button>
-      </form>
     </div>
   </mat-tab>
   <mat-tab label="สรุปรายการ">
@@ -78,6 +75,7 @@
               วงเงิน
             </p>
           </div>
+          <hr>
           <div class="padding">
             <p>
               ยอดเงินยก

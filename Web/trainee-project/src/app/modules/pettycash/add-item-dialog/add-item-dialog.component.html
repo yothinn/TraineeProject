@@ -24,6 +24,9 @@
         <mat-label>รายการ</mat-label>
         <textarea matInput formControlName="description"></textarea>
       </mat-form-field>
+      <button (click)="fileUpload.click()" hidden>
+      </button>
+      <input class="fileupload" #fileUpload type="file"  (change)="onFileUpload($event)" >
     </div>
     <div>
       <mat-radio-group class="margin-radio">
@@ -49,7 +52,7 @@
       <mat-form-field class="width" appearance="outline">
         <mat-label>สถานที่ใช้งาน</mat-label>
         <mat-select formControlName="placeOfUse">
-          <mat-option *ngFor="let item of tableData" [value]="item.locationUse">
+          <mat-option *ngFor="let item of filterData; let i = index;" [value]="item.locationUse">
             {{item.locationUse}}
           </mat-option>
         </mat-select>

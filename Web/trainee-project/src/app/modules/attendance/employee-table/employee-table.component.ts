@@ -14,11 +14,8 @@ import { DialogAddComponent } from '../dialog-add/dialog-add.component';
   styleUrls: ['./employee-table.component.scss']
 })
 export class EmployeeTableComponent implements OnInit {
-
   @ViewChild('paginator') paginator: MatPaginator;
- 
-
-
+  
   employeeData: any;
   menu: boolean = false;
 
@@ -27,7 +24,7 @@ export class EmployeeTableComponent implements OnInit {
 
   pageEvent: any;
   currentPage = 0;
-  pageSize = 100;
+  pageSize = 5;
   array: any;
   totalSize = 0;
   dataSource: any;
@@ -38,6 +35,7 @@ export class EmployeeTableComponent implements OnInit {
   
   dateTimeData:any;
   totalTime:any;
+  arrayTime:Array<any>;
 
   constructor(
     private attendanceService: AttendanceService,
@@ -180,47 +178,50 @@ findsum(data){
       return res.time
     }
   })
+  this.totalIn = sumIn.map(res => res.time)
+  this.totalOut = sumOut.map(res => res.time)
+  // console.log( this.totalIn.length)
+  // console.log( this.totalOut.length)
+   
+  for (let i = 0;i < this.totalIn.length && i < this.totalOut.length;i++) {
+   
+    let timeIn  = new Date(this.totalIn[i])
+    let timeOut = new Date(this.totalOut[i])
+    let total = timeOut.getTime() - timeIn.getTime()
+    let hours = Math.floor(total / (60 * 60 * 1000))
+    let minutes = Math.floor(total / (60 * 1000))  - (hours * 60);
+    this.totalTime =  {hour: hours, minute: minutes}
+    
+    const zoo = {
+    hour: this.totalTime.hour,
+    minutes:this.totalTime.minutes,
+    }; 
+    this.arrayTime.push(zoo)
 
- this.totalIn = sumIn.map(res => res.time)
- this.totalIn  = new Date(this.totalIn)
- console.log(this.totalIn.getHours())
+    console.log(this.arrayTime)
+  }    
+
+
+  // this.arrayTime = Object.entries(numbers);
+  // console.log(this.arrayTime)
+//  this.totalIn = sumIn.map(res => res.time)
+//  this.totalIn  = new Date(this.totalIn)
+//  console.log(this.totalIn.getHours())
  
- this.totalOut = sumOut.map(res => res.time)
- this.totalOut  = new Date(this.totalOut)
- console.log( this.totalOut.getHours())
+//  this.totalOut = sumOut.map(res => res.time)
+//  this.totalOut  = new Date(this.totalOut)
+//  console.log( this.totalOut.getHours())
 
- var total = this.totalOut.getTime() - this.totalIn.getTime()
- console.log(total)
- var hours = Math.floor(total / (60 * 60 * 1000))
- console.log(this.totalOut.getTime())
- var minutes = Math.floor(total / (60 * 1000))  - (hours * 60);
+//  var total = this.totalOut.getTime() - this.totalIn.getTime()
+//  console.log(total)
+//  var hours = Math.floor(total / (60 * 60 * 1000))
+//  console.log(this.totalOut.getTime())
+//  var minutes = Math.floor(total / (60 * 1000))  - (hours * 60);
 
- this.totalTime =  {hour: hours, minute: minutes}
- console.log(this.totalTime)
+//  this.totalTime =  {hour: hours, minute: minutes}
+//  console.log(this.totalTime)
 
 }
-
-
-// this.totalAmountIn = sumIn.map(item => item.total).reduce((prev, next) => prev + next);
-// this.totalAmountOut = sumOut.map(item => item.total).reduce((prev, next) => prev + next);
-
-
-// findsum(data) {
-//   let sumIn = data.filter(element => {
-//     if (element.status === 'นำเข้า') {
-//       return element.total
-//     }
-//   })
-//   let sumOut = data.filter(element => {
-//     if (element.status === 'นำออก') {
-//       return element.total
-//     }
-//   })
-//   this.totalAmountIn = sumIn.map(item => item.total).reduce((prev, next) => prev + next);
-//   this.totalAmountOut = sumOut.map(item => item.total).reduce((prev, next) => prev + next);
-
-//   this.totalResult =   this.totalAmountIn - this.totalAmountOut
-//   console.log(this.totalResult);
 
 
     }

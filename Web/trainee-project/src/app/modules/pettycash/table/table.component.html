@@ -1,85 +1,89 @@
 <div>
+  <mat-toolbar>
+    <button class="color-button" mat-button (click)="openDialogAddUser('new')">เพิ่มผู้ใช้</button>
+    <button class="button-add" mat-button (click)="openDialog(listData)" [disabled]="!listData">เพิ่มรายการ</button>
+  </mat-toolbar>
+</div>
+<div>
   <mat-card class="customer-details">
     <header class="user-details">รายละเอียดผุ้ใช้</header>
     <div class="fontSize" fxLayout="row" fxLayoutAlign="space-between stretch">
       <a>{{listData?.name}} {{listData?.lastName}}</a>
-      <app-sum></app-sum>
+      <a [ngClass]="{negative: RaisedAmount < 0}">{{RaisedAmount | number:"0.2"}}</a>
     </div>
     <div class="financialAmount" fxLayout="row" fxLayoutAlign="space-between stretch">
       <a>{{listData?.financialAmount | number:"0.2"}}</a>
-      <button class="button-add" color="primary" mat-button (click)="openDialog(listData)"
-        [disabled]="!listData">เพิ่มรายการ</button>
     </div>
   </mat-card>
 </div>
 
 <div class="tableList">
-  <div fxLayout="column" >
-    <header class="header"  fxLayout="row" fxLayoutAlign="space-between stretch" >
+  <div fxLayout="column">
+    <header class="header" fxLayout="row" fxLayoutAlign="space-between stretch">
       <div class="padding-date" fxLayoutAlign="center ">
         <p>
           วันที่
         </p>
       </div>
       <hr>
-      <div class="padding-documentNo" fxLayoutAlign="center " >
+      <div class="padding-documentNo" fxLayoutAlign="center ">
         <p>
           เลขที่เอกสาร
         </p>
       </div>
       <hr>
-      <div class="padding" fxLayoutAlign="center " >
+      <div class="padding" fxLayoutAlign="center ">
         <p>
           รายการ
         </p>
       </div>
       <hr>
-      <div class="padding-deposit-withdraw" fxLayoutAlign="center " >
+      <div class="padding-deposit-withdraw" fxLayoutAlign="center ">
         <p>
           เงินเข้า
         </p>
       </div>
       <hr>
-      <div class="padding-deposit-withdraw" fxLayoutAlign="center " >
+      <div class="padding-deposit-withdraw" fxLayoutAlign="center ">
         <p>
           เงินออก
         </p>
       </div>
       <hr>
-      <div class="padding-placeOfUse" fxLayoutAlign="center " >
+      <div class="padding-placeOfUse" fxLayoutAlign="center ">
         <p>
           สถานที่ใช้งาน
         </p>
       </div>
 
     </header>
-    <div align="center" fxLayout="row" fxLayoutAlign="space-between stretch" *ngFor="let item of tableData" >
-      <div class="padding-date"  >
+    <div align="center" fxLayout="row" fxLayoutAlign="space-between stretch" *ngFor="let item of tableData">
+      <div class="padding-date">
         {{item.date | date :"dd-MM-yy"}}
         <mat-divider></mat-divider>
       </div>
       <hr>
-      <div class="padding-documentNo"  >
+      <div (click)="openDialogBill(item)" class="padding-documentNo">
         {{item.documentNo}}
         <mat-divider></mat-divider>
       </div>
       <hr>
-      <div class="padding"  >
+      <div class="padding">
         {{item.description}}
         <mat-divider></mat-divider>
       </div>
       <hr>
-      <div class="padding-deposit-withdraw"  >
+      <div class="padding-deposit-withdraw">
         {{item.deposit | number:"0.2"}}
         <mat-divider></mat-divider>
       </div>
       <hr>
-      <div class="padding-deposit-withdraw"  >
+      <div class="padding-deposit-withdraw">
         {{item.withdraw | number:"0.2"}}
         <mat-divider></mat-divider>
       </div>
       <hr>
-      <div class="padding-placeOfUse"  >
+      <div class="padding-placeOfUse">
         {{item.placeOfUse}}
         <mat-divider></mat-divider>
       </div>
@@ -88,6 +92,10 @@
 </div>
 <mat-divider></mat-divider>
 
-<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 30]" [showFirstLastButtons]="true"
-  [length]="totalSize" [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
-</mat-paginator>
+
+<div>
+  <mat-paginator fxLayoutAlign="end" #paginator [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 30]"
+    [showFirstLastButtons]="true" [length]="totalSize" [pageIndex]="currentPage"
+    (page)="pageEvent = handlePage($event)">
+  </mat-paginator>
+</div>

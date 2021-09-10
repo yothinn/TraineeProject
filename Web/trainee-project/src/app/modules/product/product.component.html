@@ -10,30 +10,30 @@
           <div class="icon">
             <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="openDialogCategories(item)">edit
             </mat-icon>
-            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="deleteCategories(item)">delete
+            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="delete(item)">delete
             </mat-icon>
           </div>
         </div>
         <mat-option class="font-category-add" (click)="openDialogCategories()">เพิ่ม</mat-option>
       </mat-select>
     </mat-form-field>
-
     <mat-form-field class="font-search" appearance="standard">
       <mat-label>ค้นหา</mat-label>
       <input #searchProductList matInput (keyup)="searchProduct()" placeholder="Search">
       <!--#search (keyup)="onKeyup($event)"-->
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
-
     <div class="button-add">
-      <button mat-button color="primary" (click)="openDialogProduct()">เพิ่มสินค้า</button>
+      <button class="button-add-product" mat-raised-button color="primary"
+        (click)="openDialogProduct()">เพิ่มสินค้า</button>
+      <button mat-raised-button color="primary" (click)="fileUploadProduct.click()">นำเข้า</button>
+      <input type="file" #fileUploadProduct (change)="importFile($event)" hidden>
     </div>
   </mat-toolbar>
 
   <mat-tab-group mat-align-tabs="start">
     <mat-tab label="รายการสินค้า">
-
-      <div class="content" fxLayout="row warp">
+      <div #productList class="content" fxLayout="row warp">
         <div *ngFor="let item of productData">
           <mat-card class="card">
             <button class="button-test" mat-icon-button [matMenuTriggerFor]="menu"
@@ -52,24 +52,23 @@
                   <p>
                     ชื่อสินค้า: {{item.productName}}
                   <p>
-                    ราคา: {{item.price}}
+                    ราคา: {{item.price | currency:'฿'}}
                   <p>
                     จำนวนคงเหลือ: {{item.count}}
                   <p>
                 </content>
-
               </div>
             </div>
           </mat-card>
         </div>
       </div>
-
     </mat-tab>
     <mat-tab label="ตารางรายการสินค้า">
       <div class="content">
         <div fxLayout="column">
-          <header>
-            <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
+
+          <header class="table-width">
+            <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex=10>
               <p>
                 รหัสสินค้า
               </p>
@@ -79,30 +78,29 @@
                 ชื่อสินค้า
               </p>
             </div>
-            <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
+            <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex=30.3>
               <p>
                 ประเภท
               </p>
             </div>
-            <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
+            <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex=10.1>
               <p>
                 ราคาต่อชิ้น
               </p>
             </div>
-            <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
+            <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex=12.1>
               <p>
                 จำนวนสินค้า
               </p>
             </div>
-            <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
-              <p>
-                เเก้ไข/ลบ รายการสินค้า
-              </p>
-            </div>
-
+            <!-- <div class="header" fxLayoutAlign="center " fxLayout="row" fxFlex>
+            <p>
+              เเก้ไข/ลบ รายการสินค้า
+            </p>
+          </div> -->
           </header>
-          <div fxLayout="row" *ngFor="let item of productData" fxFlex>
-            <div class="footer" fxLayoutAlign="start center " fxFlex>
+          <div class="table-width" fxLayout="row" *ngFor="let item of productData">
+            <div class="footer" fxLayoutAlign="start center " fxFlex=10>
               {{item.productId}}
             </div>
             <hr>
@@ -110,32 +108,44 @@
               {{item.productName}}
             </div>
             <hr>
-            <div class="footer" fxLayoutAlign="start center " fxFlex>
+            <div class="footer" fxLayoutAlign="start center " fxFlex=30>
               {{item.type}}
             </div>
             <hr>
-            <div class="footer" fxLayoutAlign="start center " fxFlex>
-              {{item.price}}
-              <div fxLayoutAlign="end center" fxFlex>: บาท</div>
+            <div class="footer" fxLayoutAlign="end center " fxFlex=10>
+              {{item.price | number:0 }}
+              <div fxLayoutAlign="end center" fxFlex=50> บาท</div>
             </div>
             <hr>
-            <div class="footer" fxLayoutAlign="start center " fxFlex [ngClass]="{redClass: item.count <= 0}">
-              {{item.count}}
-              <div fxLayoutAlign="end center" fxFlex>: ชิ้น</div>
+            <div class="footer-end" fxLayoutAlign="end center " fxFlex=12 [ngClass]="{redClass: item.count <= 0}">
+              {{item.count | number:0 }}
+              <div fxLayoutAlign="end center" fxFlex=35> ชิ้น </div>
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openDialogProduct(item)">
+                  <mat-icon>edit</mat-icon><span>แก้ไข</span>
+                </button>
+                <button mat-menu-item (click)="delete(item)">
+                  <mat-icon>deletel</mat-icon><span>ลบ</span>
+                </button>
+              </mat-menu>
             </div>
-            <hr>
-            <div class="footer" fxLayoutAlign="center center " fxFlex>
-              <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="openDialogProduct(item)">edit
-              </mat-icon>
-              <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="delete(item)">delete</mat-icon>
-            </div>
+
+
+            <!-- <hr>
+          <div class="footer" fxLayoutAlign="center center " fxFlex >
+            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="openDialogProduct(item)" >edit</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="delete(item)" >delete</mat-icon>
+          </div> -->
+
           </div>
         </div>
       </div>
     </mat-tab>
   </mat-tab-group>
-
-  <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 30]" [showFirstLastButtons]="true"
+  <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[15, 25, 35]" [showFirstLastButtons]="true"
     [length]="totalSize" [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
   </mat-paginator>
 </div>
